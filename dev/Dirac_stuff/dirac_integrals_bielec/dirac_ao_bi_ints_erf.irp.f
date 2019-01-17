@@ -10,7 +10,7 @@
   double precision               :: I_center(3),J_center(3),K_center(3),L_center(3)
   integer                        :: num_i,num_j,num_k,num_l,dim1,I_power(3),J_power(3),K_power(3),L_power(3)
   double precision               :: integral
-  include 'Utils/constants.include.F'
+  include 'utils/constants.include.F'
   double precision               :: P_new(0:max_dim,3),P_center(3),fact_p,pp
   double precision               :: Q_new(0:max_dim,3),Q_center(3),fact_q,qq
   integer                        :: iorder_p(3), iorder_q(3)
@@ -117,7 +117,7 @@
   double precision               :: I_center(3),J_center(3),K_center(3),L_center(3)
   integer                        :: num_i,num_j,num_k,num_l,dim1,I_power(3),J_power(3),K_power(3),L_power(3)
   double precision               :: integral
-  include 'Utils/constants.include.F'
+  include 'utils/constants.include.F'
   double precision               :: P_new(0:max_dim,3),P_center(3),fact_p,pp
   double precision               :: Q_new(0:max_dim,3),Q_center(3),fact_q,qq
   integer                        :: iorder_p(3), iorder_q(3)
@@ -270,7 +270,7 @@
   BEGIN_DOC
   ! Compute AO 1/r12 integrals for all i and fixed j,k,l
   END_DOC
-  include 'Utils/constants.include.F'
+  include 'utils/constants.include.F'
   integer, intent(in)            :: j,k,l,sze
   real(integral_kind), intent(out) :: buffer_value(sze)
   double precision               :: dirac_ao_bielec_integral_erf
@@ -309,7 +309,7 @@
   integer                        :: i,j,k,l
   double precision               :: dirac_ao_bielec_integral_erf,cpu_1,cpu_2, wall_1, wall_2
   double precision               :: integral, wall_0
-  include 'Utils/constants.include.F'
+  include 'utils/constants.include.F'
   ! For integrals file
   integer(key_kind),allocatable  :: buffer_i(:)
   integer,parameter              :: size_buffer = 1024*64
@@ -593,7 +593,7 @@
       endif
       n_integrals += 1
       !DIR$ FORCEINLINE
-      call bielec_integrals_index(i,j,k,l,buffer_i(n_integrals))
+      call two_e_integrals_index(i,j,k,l,buffer_i(n_integrals))
       buffer_value(n_integrals) = integral
     enddo
   enddo
@@ -612,7 +612,7 @@
   END_DOC
   integer(key_kind)              :: key_max
   integer(map_size_kind)         :: sze
-  call bielec_integrals_index(dirac_ao_num,dirac_ao_num,dirac_ao_num,dirac_ao_num,key_max)
+  call two_e_integrals_index(dirac_ao_num,dirac_ao_num,dirac_ao_num,dirac_ao_num,key_max)
   sze = key_max
   call map_init(dirac_ao_integrals_erf_map,sze)
   print*,  'DIRAC AO map initialized : ', sze
@@ -644,7 +644,7 @@
     do j=dirac_ao_integrals_erf_cache_min,dirac_ao_integrals_erf_cache_max
      do i=dirac_ao_integrals_erf_cache_min,dirac_ao_integrals_erf_cache_max
  !DIR$ FORCEINLINE
-      call bielec_integrals_index(i,j,k,l,idx)
+      call two_e_integrals_index(i,j,k,l,idx)
  !DIR$ FORCEINLINE
       call map_get(dirac_ao_integrals_erf_map,idx,integral)
       ii = l-dirac_ao_integrals_erf_cache_min
@@ -684,7 +684,7 @@ double precision function get_dirac_ao_bielec_integral_erf(i,j,k,l,map) result(r
     ii = ior(ii, i-dirac_ao_integrals_erf_cache_min)
     if (iand(ii, -64) /= 0) then
       !DIR$ FORCEINLINE
-      call bielec_integrals_index(i,j,k,l,idx)
+      call two_e_integrals_index(i,j,k,l,idx)
       !DIR$ FORCEINLINE
       call map_get(map,idx,tmp)
     else
@@ -752,7 +752,7 @@ end
    if (dirac_ao_bielec_integral_erf_schwartz(i,k)*dirac_ao_bielec_integral_erf_schwartz(j,l) < thresh) then
     cycle
    endif
-   call bielec_integrals_index(i,j,k,l,hash)
+   call two_e_integrals_index(i,j,k,l,hash)
    call map_get(dirac_ao_integrals_erf_map, hash,tmp)
    if (dabs(tmp) < thresh ) cycle
    non_zero_int = non_zero_int+1

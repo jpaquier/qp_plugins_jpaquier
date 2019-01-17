@@ -22,7 +22,7 @@
     integer                        :: ierr
     call MPI_BCAST( has, 1, MPI_LOGICAL, 0, MPI_COMM_WORLD, ierr)
     if (ierr /= MPI_SUCCESS) then
-      stop 'Unable to read mo_tot_num with MPI'
+      stop 'Unable to read mo_num with MPI'
     endif
   IRP_ENDIF
   if (.not.has) then
@@ -33,9 +33,9 @@
       call ezfio_get_dirac_mo_basis_twice_dirac_mo_tot_num(twice_dirac_mo_tot_num)
     endif
     IRP_IF MPI
-      call MPI_BCAST( mo_tot_num, 1, MPI_INTEGER, 0, MPI_COMM_WORLD, ierr)
+      call MPI_BCAST( mo_num, 1, MPI_INTEGER, 0, MPI_COMM_WORLD, ierr)
       if (ierr /= MPI_SUCCESS) then
-        stop 'Unable to read mo_tot_num with MPI'
+        stop 'Unable to read mo_num with MPI'
       endif
     IRP_ENDIF
   endif
