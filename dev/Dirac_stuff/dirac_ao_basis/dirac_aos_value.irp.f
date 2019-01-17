@@ -24,10 +24,9 @@
    k = Nucl_dirac_Aos_transposed(j,i) ! index of the dirac ao in the ordered format 
    dirac_aos_array_tmp(k) = 0.d0
    dirac_power_ao(1:3)= dirac_ao_power_ordered_transp_per_nucl(1:3,j,i)
-   double precision :: power
-   dx2 = power(dirac_power_ao(1),dx)
-   dy2 = power(dirac_power_ao(2),dy)
-   dz2 = power(dirac_power_ao(3),dz)
+   dx2 = dx ** dirac_power_ao(1)
+   dy2 = dy ** dirac_power_ao(2)
+   dz2 = dz ** dirac_power_ao(3)
    do l = 1,dirac_ao_prim_num(k)
     beta = dirac_ao_expo_ordered_transp_per_nucl(l,j,i)
     dirac_aos_array_tmp(k)+= dirac_ao_coef_normalized_ordered_transp_per_nucl(l,j,i) * dexp(-beta*r2) 
