@@ -1,6 +1,0 @@
-=======
-FourIdx 
-=======
-
-Four-index transformation.
-
