@@ -1,4 +1,4 @@
-program Dirac_Integrals_Bielec
+program dirac_two_e_ints
   implicit none
 
 

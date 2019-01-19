@@ -1,4 +1,4 @@
- program Dirac_RS_KS_SCF
+ program dirac_rs_ks_scf
   BEGIN_DOC
   ! Produce `Dirac_Hartree_Fock` MO orbital 
   ! output: none for the moment

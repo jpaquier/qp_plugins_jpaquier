@@ -1,4 +1,4 @@
-program Dirac_Integrals_Monoelec
+program dirac_one_e_ints
   implicit none
   integer :: i
   BEGIN_DOC

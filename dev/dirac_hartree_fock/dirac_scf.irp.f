@@ -1,4 +1,5 @@
  program dirac_scf
+  implicit none
   BEGIN_DOC
   ! Produces `Dirac_Hartree_Fock` MO orbital 
   END_DOC

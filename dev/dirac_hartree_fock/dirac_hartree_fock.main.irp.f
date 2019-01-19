@@ -1,4 +1,4 @@
-program Dirac_Hartree_Fock
+program dirac_hartree_fock
   implicit none
 
   integer :: i,j
