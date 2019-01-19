@@ -1,4 +1,4 @@
- program dirac_rs_ks_scf
+program dirac_rs_ks_scf
   BEGIN_DOC
   ! Produce `Dirac_Hartree_Fock` MO orbital 
   ! output: none for the moment
@@ -91,6 +91,6 @@
   dirac_mo_coef_Im = Aimag(dirac_mo_coef)
   call ezfio_set_dirac_mo_basis_dirac_mo_coef_Re(dirac_mo_coef_Re)
   call ezfio_set_dirac_mo_basis_dirac_mo_coef_Im(dirac_mo_coef_Im)
- end
+end
 
 

@@ -1,9 +1,6 @@
 program dirac_one_e_ints
   implicit none
   integer :: i
-  BEGIN_DOC
-! TODO
-  END_DOC
  
  print*, "2*small_ao_num =",2*small_ao_num
  do i=1,2*dirac_ao_num

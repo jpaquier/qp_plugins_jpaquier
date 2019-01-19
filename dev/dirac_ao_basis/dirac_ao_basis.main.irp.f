@@ -1,4 +1,4 @@
-program Dirac_AO_Basis
+program dirac_ao_basis
   implicit none
   integer :: i,j
   double precision :: r(3)
@@ -19,9 +19,8 @@ program Dirac_AO_Basis
  enddo
 
  call give_all_dirac_aos_at_r(r,dirac_aos_array)
-!do i = 1,dirac_ao_num
-! print*,i,dirac_aos_array_tmp(i)
-!enddo
+ do i = 1,dirac_ao_num
+ enddo
  print*,'**********************************************'
  do i = 1,2*dirac_ao_num
   print*,i,dirac_aos_array(i)

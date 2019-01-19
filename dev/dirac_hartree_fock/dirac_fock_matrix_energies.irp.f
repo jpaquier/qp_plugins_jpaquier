@@ -36,7 +36,7 @@
    n_elements = n_elements_max
    call get_cache_map(dirac_ao_integrals_map,i8,keys,values,n_elements)
    do k1=1,n_elements
-    call bielec_integrals_index_reverse(kk,ii,ll,jj,keys(k1))
+    call two_e_integrals_index_reverse(kk,ii,ll,jj,keys(k1))
     do k2=1,8
      if (kk(k2)==0) then
       cycle
@@ -138,7 +138,7 @@
    n_elements = n_elements_max
    call get_cache_map(dirac_ao_integrals_map,i8,keys,values,n_elements)
    do k1=1,n_elements
-    call bielec_integrals_index_reverse(kk,ii,ll,jj,keys(k1))
+    call two_e_integrals_index_reverse(kk,ii,ll,jj,keys(k1))
     do k2=1,8
      if (kk(k2)==0) then
       cycle
@@ -243,7 +243,7 @@
    n_elements = n_elements_max
    call get_cache_map(dirac_ao_integrals_map,i8,keys,values,n_elements)
    do k1=1,n_elements
-    call bielec_integrals_index_reverse(kk,ii,ll,jj,keys(k1))
+    call two_e_integrals_index_reverse(kk,ii,ll,jj,keys(k1))
     do k2=1,8
      if (kk(k2)==0) then
       cycle
@@ -353,7 +353,7 @@
    n_elements = n_elements_max
    call get_cache_map(dirac_ao_integrals_map,i8,keys,values,n_elements)
    do k1=1,n_elements
-    call bielec_integrals_index_reverse(kk,ii,ll,jj,keys(k1))
+    call two_e_integrals_index_reverse(kk,ii,ll,jj,keys(k1))
     do k2=1,8
      if (kk(k2)==0) then
       cycle
@@ -462,7 +462,7 @@
    n_elements = n_elements_max
    call get_cache_map(dirac_ao_integrals_map,i8,keys,values,n_elements)
    do k1=1,n_elements
-    call bielec_integrals_index_reverse(kk,ii,ll,jj,keys(k1))
+    call two_e_integrals_index_reverse(kk,ii,ll,jj,keys(k1))
     do k2=1,8
      if (kk(k2)==0) then
       cycle
@@ -589,7 +589,7 @@
    n_elements = n_elements_max
    call get_cache_map(dirac_ao_integrals_map,i8,keys,values,n_elements)
    do k1=1,n_elements
-    call bielec_integrals_index_reverse(kk,ii,ll,jj,keys(k1))
+    call two_e_integrals_index_reverse(kk,ii,ll,jj,keys(k1))
     do k2=1,8
      if (kk(k2)==0) then
       cycle
