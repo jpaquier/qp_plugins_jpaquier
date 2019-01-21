@@ -136,7 +136,7 @@
    ! Medium values of tmp_mu
    elseif (tmp_mu .le. 1d+1) then
 
-    if (dirac_exchange_functional == "dirac_short_range_LDA_P2") then
+    if (dirac_pade_approximant == "dirac_pade_order_2") then
  
      e_x = (c12*kF_4*(z60*(-z3 + z2*tmp_mu_2*(-z3 + tmp_mu_2 - (z1*(-z2 + tmp_mu_2))*dexp(-z1/tmp_mu_2)) +                       &               
         c13*tmp_mu*derf(z1/tmp_mu)) + (z20*(z1 + z6*tmp_mu_4*(z3 - z2*tmp_mu_2 + (-z1 + z2*tmp_mu_2)*dexp(-z1/tmp_mu_2)) -        &
@@ -220,7 +220,7 @@
 !       (1.d0 + (0.05d0*(24.d0*tmp_mu**4*(4.d0 + 13.d0*tmp_mu**2 - 27.d0*tmp_mu**4) + dexp(1.d0/tmp_mu**2)*(-13.d0 - 540.d0*tmp_mu**4 - 960.d0*tmp_mu**6 +             & 
 !       648.d0*tmp_mu**8 + 21.26944621086619d0*tmp_mu**3*(8.d0 + 45.d0*tmp_mu**2)*derf(1.d0/tmp_mu))))/(tmp_c**2*(6.d0*tmp_mu**4 - 12.d0*tmp_mu**6 +                    &
 !       dexp(1.d0/tmp_mu**2)*(-1.d0 - 18.d0*tmp_mu**4 + 12.d0*tmp_mu**6 + 10.6347231054331d0*tmp_mu**3*derf(1.d0/tmp_mu))))) 
-  
+! 
 !    v_x = (0.0353677651315323d0*kF*(864.d0*tmp_mu**10*(96.d0 + 559.d0*tmp_mu**2 - 882.d0*tmp_mu**4 - 1932.d0*tmp_mu**6 + 2734.d0*tmp_mu**8 + 150.d0*tmp_c**4*(1.d0 -    &
 !       2.d0*tmp_mu**2)**2 + 30.d0*tmp_c**2*(8.d0 + 5.d0*tmp_mu**2 - 86.d0*tmp_mu**4 + 88.d0*tmp_mu**6)) - 432.d0*dexp(1.d0/tmp_mu**2)*tmp_mu**6*(52.d0 +              & 
 !       296.d0*tmp_mu**2 + 100.d0*tmp_c**4*(1.d0 + tmp_mu**2 + 9.d0*tmp_mu**4 - 48.d0*tmp_mu**6 + 36.d0*tmp_mu**8) + tmp_mu**4*(2879.d0 + 4.d0*tmp_mu**2*(2791.d0 -    &

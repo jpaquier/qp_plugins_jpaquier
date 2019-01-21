@@ -7,12 +7,12 @@
 
   if(dirac_exchange_functional.EQ."None")then
    dirac_potential_x_ao = (0.d0,0.d0) 
-  else
+  elseif(dirac_exchange_functional.EQ."dirac_short_range_LDA")then
    dirac_potential_x_ao = dirac_potential_x_ao_LDA
   endif
   if(dirac_correlation_functional.EQ."None")then
    dirac_potential_c_ao = (0.d0,0.d0) 
-  else
+  elseif(dirac_correlation_functional.EQ."dirac_short_range_LDA")then
    dirac_potential_c_ao = dirac_potential_c_ao_LDA
   endif
  END_PROVIDER 
@@ -46,12 +46,12 @@
  implicit none
   if(dirac_exchange_functional.EQ."None")then
    dirac_energy_x = 0.d0
-  else
+  elseif(dirac_exchange_functional.EQ."dirac_short_range_LDA")then
    dirac_energy_x = dirac_energy_x_LDA
   endif
   if(dirac_correlation_functional.EQ."None")then
    dirac_energy_c = 0.d0
-  else
+  elseif(dirac_correlation_functional.EQ."dirac_short_range_LDA")then
    dirac_energy_c = dirac_energy_c_LDA
   endif  
  END_PROVIDER 

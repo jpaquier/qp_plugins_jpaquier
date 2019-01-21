@@ -4,7 +4,7 @@
  dirac_ao_potential_xc = (0.d0,0.d0)
   do i = 1, 2*dirac_ao_num
    do j = 1, 2*dirac_ao_num
- !  dirac_ao_potential_xc(i,j) =  dirac_potential_c_ao(i,j,1) + dirac_potential_x_ao(i,j,1)
+    dirac_ao_potential_xc(i,j) =  dirac_potential_c_ao(i,j,1) + dirac_potential_x_ao(i,j,1)
    enddo
   enddo
  END_PROVIDER

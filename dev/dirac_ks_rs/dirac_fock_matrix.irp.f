@@ -9,7 +9,7 @@
   dirac_trace_potential_xc_complex = (0.d0,0.d0)
   do j=1, 2*dirac_ao_num
    do i=1, 2*dirac_ao_num
-    dirac_trace_potential_xc_complex += 0.5d0*dirac_ao_potential_xc(i,j) * dirac_SCF_density_matrix_ao(j,i)
+    dirac_trace_potential_xc_complex += dirac_ao_potential_xc(i,j) * dirac_SCF_density_matrix_ao(j,i)
    enddo
   enddo
   dirac_trace_potential_xc = real(dirac_trace_potential_xc_complex)
@@ -25,8 +25,7 @@
   BEGIN_DOC
   !Contribution from electronic density
   END_DOC
-  dirac_extra_energy_contrib_from_density = dirac_e_exchange_dft + dirac_e_correlation_dft 
- !-0.5d0 * dirac_trace_potential_xc
+  dirac_extra_energy_contrib_from_density = dirac_e_exchange_dft + dirac_e_correlation_dft - 0.5d0 * dirac_trace_potential_xc
  END_PROVIDER
 
  BEGIN_PROVIDER [ complex*16, dirac_HF_one_electron_energy_complex]
