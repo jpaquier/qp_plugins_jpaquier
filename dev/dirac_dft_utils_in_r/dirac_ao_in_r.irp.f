@@ -10,8 +10,8 @@
   r(3) = final_grid_points(3,i) 
   call give_all_dirac_aos_at_r(r,dirac_aos_array)
   do j = 1, 2*dirac_ao_num
-   dirac_aos_in_r_array(j,i) = (1.d0,0.d0)*dirac_aos_array(j)
-   dirac_aos_in_r_array_transp(i,j) = (1.d0,0.d0)*dirac_aos_array(j)
+   dirac_aos_in_r_array(j,i) = dirac_aos_array(j)
+   dirac_aos_in_r_array_transp(i,j) = dirac_aos_array(j)
   enddo
  enddo
  END_PROVIDER
