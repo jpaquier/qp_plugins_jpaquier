@@ -5,9 +5,9 @@ program dirac_rs_ks_scf
   END_DOC
   call check_range_separation
   call create_dirac_guess
-  print*, dirac_energy_x_LDA(1)
-! call run_dirac
-! call print_dirac_mo_coef
+! print*, dirac_energy_x_LDA(1)
+  call run_dirac
+  call print_dirac_mo_coef
  end
 
  subroutine check_range_separation
