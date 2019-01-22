@@ -1,4 +1,4 @@
- program dirac_energy_mono
+program dirac_energy_mono
   BEGIN_DOC
   ! produce the dirac energy
   END_DOC

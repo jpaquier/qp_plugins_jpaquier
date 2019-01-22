@@ -1,4 +1,4 @@
-program dirac_ks_rs
+program dirac_density
  implicit none
  integer :: istate,i,j
  double precision :: r(3)
@@ -15,12 +15,9 @@ program dirac_ks_rs
    rho(istate) = dirac_one_body_dm_at_r(i,istate)
    call dirac_ex_LDA_sr(mu_erf,rho(istate),e_x,v_x)
    print*,r(1),r(2),r(3), rho(istate)
- 
-  !rhoa(istate) = one_e_dm_alpha_at_r(i,istate)
-  !rhob(istate) = one_e_dm_beta_at_r(i,istate)
-  !call ex_LDA_sr(mu_erf,rhoa(istate),rhob(istate),ex_ab,vx_a,vx_b)
-  !print*,r(1),r(2),r(3), rhoa(istate), rhob(istate)
- 
+   open (10, file='density_X_B',position ='append')
+   write(10,*)  r(1),r(2),r(3), rho(istate)
+
   enddo
  enddo
 
