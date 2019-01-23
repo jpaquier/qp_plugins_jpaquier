@@ -18,6 +18,7 @@
  END_DOC
  double precision, intent(in) :: r(3)
  complex*16 :: dm_complex(N_states)
+ double precision :: dm_im
  double precision, intent(out) :: dm(N_states)
  integer :: istate
  complex*16  :: dirac_aos_array(2*dirac_ao_num),dirac_aos_array_bis(2*dirac_ao_num),u_dotc_v
@@ -27,10 +28,19 @@
   call zgemv('N',2*dirac_ao_num,2*dirac_ao_num,(1.d0,0.d0),dirac_one_body_dm_ao_for_dft(1,1,istate),2*dirac_ao_num,dirac_aos_array,1,(0.d0,0.d0),dirac_aos_array_bis,1)
   dm_complex(istate) = u_dotc_v(dirac_aos_array,dirac_aos_array_bis,2*dirac_ao_num)
   dm = real(dm_complex)
-  if (aimag(dm_complex(1)) .gt. 1.d-10) then
-   print*, 'Warning! The electronic density is not real'
-   print*, 'dm_complex =',dm_complex
-   stop
+  dm_im = aimag(dm_complex(1))/dm(1)
+  if (dm(1) .gt. 1.d0) then
+   if (dm_im .gt. 1.d-10) then
+    print*, 'Warning! The electronic density is not real'
+    print*, 'dm_complex =',dm_complex
+    stop
+   endif
+  else
+   if (aimag(dm_complex(1)) .gt. 1.d-10) then
+    print*, 'Warning! The electronic density is not real'
+    print*, 'dm_complex =',dm_complex
+    stop
+   endif
   endif
  enddo
  end
