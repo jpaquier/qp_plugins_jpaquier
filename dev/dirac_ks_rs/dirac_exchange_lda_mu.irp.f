@@ -28,13 +28,13 @@ program dirac_exchange_lda_mu
   endif
 
  !For helium
-  if (mu_erf .lt. 1.25) then
-   mu_erf += 0.125d0
-  elseif (mu_erf .lt. 2.5) then
-   mu_erf+=0.25d0
-  elseif (mu_erf .lt. 25) then
-   mu_erf+=1.0d0
-  endif
+ !if (mu_erf .lt. 1.25) then
+ ! mu_erf += 0.125d0
+ !elseif (mu_erf .lt. 2.5) then
+ ! mu_erf+=0.25d0
+ !elseif (mu_erf .lt. 25) then
+ ! mu_erf+=1.0d0
+ !endif
 
  !For Neon
  !if (mu_erf .lt. 2.5) then
@@ -56,13 +56,13 @@ program dirac_exchange_lda_mu
  !endif
 
  !For Krypton
- !if (mu_erf .lt. 10) then
- ! mu_erf += 1d0
- !elseif (mu_erf .lt. 20) then
- ! mu_erf+=2.d0
- !elseif (mu_erf .lt. 200) then
- ! mu_erf+=10.d0
- !endif
+  if (mu_erf .lt. 10) then
+   mu_erf += 1d0
+  elseif (mu_erf .lt. 20) then
+   mu_erf+=2.d0
+  elseif (mu_erf .lt. 200) then
+   mu_erf+=10.d0
+  endif
 
  !For Xenon
  !if (mu_erf .lt. 20) then
