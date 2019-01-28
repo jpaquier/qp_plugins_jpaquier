@@ -5,7 +5,7 @@ program dirac_rs_ks_scf
   END_DOC
   call check_range_separation
   call create_dirac_guess
-! print*, dirac_energy_x_LDA(1)
+  print*, dirac_energy_x_LDA(1)
 ! print*, dirac_aos_vx_LDA_w(5000,2*small_ao_num +1,1)
 ! print*, dirac_aos_in_r_array(2*small_ao_num +1, 5100)
 ! print*, dirac_potential_x_ao_LDA(2*small_ao_num +1,2*small_ao_num +1,1)
