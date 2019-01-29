@@ -10,8 +10,8 @@ program dirac_rs_ks_scf
 ! print*, dirac_aos_in_r_array(2*small_ao_num +1, 5100)
 ! print*, dirac_potential_x_ao_LDA(2*small_ao_num +1,2*small_ao_num +1,1)
 ! print*, dirac_trace_potential_xc
-  call run_dirac
-  call print_dirac_mo_coef
+! call run_dirac
+! call print_dirac_mo_coef
  end
 
  subroutine check_range_separation
