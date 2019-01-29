@@ -13,7 +13,7 @@
  dirac_energy_x_LDA = 0.d0
  dirac_energy_c_LDA = 0.d0
  do istate = 1, N_states
-  do i = 1000, 10000
+  do i = 300, 10000
 ! do i = 1, n_points_final_grid
    r(1) = final_grid_points(1,i)
    r(2) = final_grid_points(2,i)
