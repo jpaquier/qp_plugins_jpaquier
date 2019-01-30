@@ -204,8 +204,8 @@
         dsqrt(z1 + tmp_c_2)))))/(z1 + tmp_c_2) + c3*(c7 - tmp_mu)*tmp_mu)
 
    ! Medium values of tmp_mu
- ! elseif (tmp_mu .le. 1d+1) then
-   elseif (tmp_mu .le. 2.5d0) then
+   elseif (tmp_mu .le. 1d+1) then
+ ! elseif (tmp_mu .le. 2.5d0) then
  
     if (dirac_approximant == "dirac_pade_order_2") then
 
