@@ -15,18 +15,18 @@
  double precision, intent(out) ::  v_x
  double precision, intent(in)  ::  rho,mu
  double precision :: kF, c, tmp_c, tmp_mu
- double precision :: kF_4, tmp_c_2,tmp_c_4,tmp_c_m,tmp_c_m_2
+ double precision :: kF_4,kF_6,tmp_c_2,tmp_c_4,tmp_c_m,tmp_c_m_2
  double precision :: tmp_mu_2,tmp_mu_3,tmp_mu_4,tmp_mu_6,tmp_mu_8
  double precision :: tmp_mu_m,tmp_mu_m_2
  double precision :: z0,z1,z2,z3,z4,z5,z6,z7,z8,z9,z12,z13,z18,z20,z24,z25,z27
- double precision :: z30,z45,z50,z56,z60,z70,z72,z105,z112,z120,z144,z149,z163,z175,z180
+ double precision :: z30,z36,z45,z50,z56,z60,z70,z72,z105,z112,z120,z144,z149,z163,z175,z180
  double precision :: z313,z420,z492,z525,z540,z648,z672,z735,z756,z770,z906,z945
  double precision :: z960,z984,z1466,z1680,z1715,z2100,z2625,z3280,z6300,z8064
  double precision :: z8694,z13533,z14000,z19680,z28704
  double precision :: f13,f120,f23,f25,f43
  double precision :: ckf 
  double precision :: c0,c1,c2,c2bis,c2ter,c3,c4,c5,c6,c7,c8,c9,c10,c11,c12,c13,c14,c15
- double precision :: c16,c17,c18,c19,c20 
+ double precision :: c16,c17,c18,c19,c20,c21,c22,c23,c24,c25,c26,c27,c28,c29,c30
 
  z1  = 1.d0
  z2  = 2.d0
@@ -45,6 +45,7 @@
  z25 = 25.d0
  z27 = 27.d0
  z30 = 30.d0
+ z36 = 36.d0
  z45 = 45.d0
  z50 = 50.d0
  z56 = 56.d0
@@ -114,8 +115,17 @@
  c18 = 0.0002239689891194409d0
  c19 = 53.17361552716548d0
  c20 = 26.58680776358274d0
+ c21 = 0.001473656880480512d0
+ c22 = 255.2333545303943d0
+ c23 = 31.90416931629929d0
+ c24 = 14.17963080724413d0
+ c25 = 150.7964473723101d0
+ c26 = 28.35926161448826d0
+ c27 = 56.71852322897651d0 
+ c28 = 16.75516081914556d0
  kF = ckf*(rho**f13)
  kF_4 = kF*kF*kF*kF
+ kF_6 = kF_4*kF*kF
  c = speed_of_light
  tmp_c = c/kF
  tmp_c_2 = tmp_c*tmp_c
@@ -195,7 +205,7 @@
  ! elseif (tmp_mu .le. 5d+1) then
  
     if (dirac_approximant == "dirac_pade_order_2") then
- 
+
      e_x = (c12*kF_4*(z60*(-z3 + z2*tmp_mu_2*(-z3 + tmp_mu_2 - (z1*(-z2 + tmp_mu_2))*dexp(-tmp_mu_m_2)) +                       &               
         c13*tmp_mu*derf(tmp_mu_m)) + (z20*(z1 + z6*tmp_mu_4*(z3 - z2*tmp_mu_2 + (-z1 + z2*tmp_mu_2)*dexp(-tmp_mu_m_2)) -        &
         c14*tmp_mu_3*derf(tmp_mu_m))**2 - (z3*(-z2*tmp_mu_2*(-z2 + tmp_mu_2) + dexp(tmp_mu_m_2)*(-z3 - z6*tmp_mu_2 +                &
@@ -300,7 +310,7 @@
 
      v_x = 0.d0 
 
-    elseif (dirac_approximant == "four_parameter_interpolation") then
+    elseif (dirac_approximant == "mu_interpolation") then
 
      e_x = (c10*kF_4*(z4 + z9*(tmp_c_2 + tmp_c_4) + z9*tmp_c_4*dlog(dsqrt(z1 + tmp_c_m_2) + tmp_c_m)*(-z2* dsqrt(z1 + tmp_c_2) +                        &
         tmp_c_2*dlog(dsqrt(z1 + tmp_c_m_2) + tmp_c_m)))**2*(c2ter*(-z2 + tmp_c_2 + z2* (z1 + tmp_c_2)**2*dlog(z1 + tmp_c_m_2) -                         &
@@ -317,17 +327,163 @@
         tmp_c_2) + tmp_c_2*dlog(dsqrt(z1 + tmp_c_m_2) + tmp_c_m)))*(z4 + z9* tmp_c_2 + z9* tmp_c_4 + z9* tmp_c_4*dlog(dsqrt(z1 + tmp_c_m_2) +           &
         tmp_c_m)*(-z2* dsqrt(z1 + tmp_c_2) + tmp_c_2*dlog(dsqrt(z1 + tmp_c_m_2) + tmp_c_m)) + (-z2 + tmp_c_2 + z2* (z1 + tmp_c_2)**2*dlog(z1 +          &
         tmp_c_m_2) - z2* dsqrt(z1 + tmp_c_2)*(z2 + z3* tmp_c_2)*dlog(dsqrt(z1 + tmp_c_m_2) + tmp_c_m) + z3* tmp_c_4*dlog(dsqrt(z1 + tmp_c_m_2) +        &
-        tmp_c_m)**2)**2) - z12* tmp_mu**3*(z3* (-z2 + tmp_c_2 + z2* (z1 + tmp_c_2)**2*dlog(z1 + tmp_c_m_2) - z2* dsqrt(z1 + tmp_c_2)*(z2 +              &
+        tmp_c_m)**2)**2) - z12* tmp_mu_3*(z3* (-z2 + tmp_c_2 + z2* (z1 + tmp_c_2)**2*dlog(z1 + tmp_c_m_2) - z2* dsqrt(z1 + tmp_c_2)*(z2 +               &
         z3* tmp_c_2)*dlog(dsqrt(z1 + tmp_c_m_2) + tmp_c_m) + z3* tmp_c_4*dlog(dsqrt(z1 + tmp_c_m_2) + tmp_c_m)**2)**3 + c16*(z4 + z9* (tmp_c_2 +        &
         tmp_c_4) + z9* tmp_c_4*dlog(dsqrt(z1 + tmp_c_m_2) + tmp_c_m)*(-z2* dsqrt(z1 + tmp_c_2) + tmp_c_2*dlog(dsqrt(z1 + tmp_c_m_2) + tmp_c_m))) +      &
         z3* (-z2 + tmp_c_2 + z2* (z1 + tmp_c_2)**2*dlog(z1 + tmp_c_m_2) - z2* dsqrt(z1 + tmp_c_2)*(z2 + z3* tmp_c_2)*dlog(dsqrt(z1 + tmp_c_m_2) +       &
         tmp_c_m) + z3* tmp_c_4*dlog(dsqrt(z1 + tmp_c_m_2) + tmp_c_m)**2)*(z4 + z9* (tmp_c_2 + tmp_c_4) + z9* tmp_c_4*dlog(dsqrt(z1 + tmp_c_m_2) +       &
-        tmp_c_m)*(-z2* dsqrt(z1 + tmp_c_2) + tmp_c_2*dlog(dsqrt(z1 + tmp_c_m_2) + tmp_c_m)))) + c17*tmp_mu**2*(z4 + z9* (tmp_c_2 + tmp_c_4) +           &
+        tmp_c_m)*(-z2* dsqrt(z1 + tmp_c_2) + tmp_c_2*dlog(dsqrt(z1 + tmp_c_m_2) + tmp_c_m)))) + c17*tmp_mu_2*(z4 + z9* (tmp_c_2 + tmp_c_4) +            &
         z9* tmp_c_4*dlog(dsqrt(z1 + tmp_c_m_2) + tmp_c_m)*(-z2* dsqrt(z1 + tmp_c_2) + tmp_c_2*dlog(dsqrt(z1 + tmp_c_m_2) + tmp_c_m)))*(z2 -             &
         tmp_c_2 + z2* dsqrt(z1 + tmp_c_2)*(z2 + z3* tmp_c_2)*dlog(dsqrt(z1 + tmp_c_m_2) + tmp_c_m) - z3* tmp_c_4*dlog(dsqrt(z1 + tmp_c_m_2) +           &
         tmp_c_m)**2 + z2* (z1 + tmp_c_2)**2*dlog(tmp_c_2/(z1 + tmp_c_2))))
- 
-     v_x = 0.d0
+        
+     v_x = (c21*kF*(z4 + z9*tmp_c_2 + z9*tmp_c_4 - z18*tmp_c_4*dsqrt(z1 + tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z9*tmp_c_6*dlog((z1 +                             & 
+        dsqrt(z1 + tmp_c_2))/tmp_c)**2)*(z4*(z4 + z9*tmp_c_2 + z9*tmp_c_4 - z18*tmp_c_4*dsqrt(z1 + tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) +                          & 
+        z9*tmp_c_6*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)*(c17*tmp_mu_2*(z2 - z1*tmp_c_2 + z2*(z1 + tmp_c_2)**2*dlog(tmp_c_2/(z1 + tmp_c_2)) +                            & 
+        z2*dsqrt(z1 + tmp_c_2)*(z2 + z3*tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) - z3*tmp_c_4*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)*(z4 +                         & 
+        z9*tmp_c_2 + z9*tmp_c_4 - z18*tmp_c_4*dsqrt(z1 + tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z9*tmp_c_6*dlog((z1 + dsqrt(z1 +                                   & 
+        tmp_c_2))/tmp_c)**2) + c2ter*(z4 + z9*tmp_c_2 + z9*tmp_c_4 - z18*tmp_c_4*dsqrt(z1 + tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) +                                 & 
+        z9*tmp_c_6*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)**2 + z3*tmp_mu*(z4 + z9*tmp_c_2 + z9*tmp_c_4 - z18*tmp_c_4*dsqrt(z1 + tmp_c_2)*dlog((z1 +                       & 
+        dsqrt(z1 + tmp_c_2))/tmp_c) + z9*tmp_c_6*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)*(z4 + z9*tmp_c_2 + z9*tmp_c_4 - z18*tmp_c_4*dsqrt(z1 +                            & 
+        tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z9*tmp_c_6*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2 + (-z2 + tmp_c_2 + z2*(z1 +                                    & 
+        tmp_c_2)**2*dlog(z1 + tmp_c_m_2) - z2*dsqrt(z1 + tmp_c_2)*(z2 + z3*tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z3*tmp_c_4*dlog((z1 +                            & 
+        dsqrt(z1 + tmp_c_2))/tmp_c)**2)**2) + z12*tmp_mu_3*(z3*(z2 - z1*tmp_c_2 - z2*(z1 + tmp_c_2)**2*dlog(z1 + tmp_c_m_2) + z2*dsqrt(z1 +                                   & 
+        tmp_c_2)*(z2 + z3*tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) - z3*tmp_c_4*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)**3 - c16*(z4 +                              & 
+        z9*tmp_c_2 + z9*tmp_c_4 - z18*tmp_c_4*dsqrt(z1 + tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z9*tmp_c_6*dlog((z1 + dsqrt(z1 +                                   & 
+        tmp_c_2))/tmp_c)**2) + z3*(z2 - z1*tmp_c_2 - z2*(z1 + tmp_c_2)**2*dlog(z1 + tmp_c_m_2) + z2*dsqrt(z1 + tmp_c_2)*(z2 + z3*tmp_c_2)*dlog((z1 +                          & 
+        dsqrt(z1 + tmp_c_2))/tmp_c) - z3*tmp_c_4*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)*(z4 + z9*tmp_c_2 + z9*tmp_c_4 - z18*tmp_c_4*dsqrt(z1 +                            & 
+        tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z9*tmp_c_6*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)))*(c23*(-z2 + tmp_c_2 + z2*(z1 +                              & 
+        tmp_c_2)**2*dlog(z1 + tmp_c_m_2) - z2*dsqrt(z1 + tmp_c_2)*(z2 + z3*tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z3*tmp_c_4*dlog((z1 +                            & 
+        dsqrt(z1 + tmp_c_2))/tmp_c)**2) - (z9*tmp_mu*(-z3*(-z2 + tmp_c_2 + z2*(z1 + tmp_c_2)**2*dlog(z1 + tmp_c_m_2) - z2*dsqrt(z1 + tmp_c_2)*(z2 +                           & 
+        z3*tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z3*tmp_c_4*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)**3 - c16*(z4 + z9*tmp_c_2 +                                & 
+        z9*tmp_c_4 - z18*tmp_c_4*dsqrt(z1 + tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z9*tmp_c_6*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2) -                         & 
+        z3*(-z2 + tmp_c_2 + z2*(z1 + tmp_c_2)**2*dlog(z1 + tmp_c_m_2) - z2*dsqrt(z1 + tmp_c_2)*(z2 + z3*tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) +                     & 
+        z3*tmp_c_4*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)*(z4 + z9*tmp_c_2 + z9*tmp_c_4 - z18*tmp_c_4*dsqrt(z1 + tmp_c_2)*dlog((z1 + dsqrt(z1 +                           & 
+        tmp_c_2))/tmp_c) + z9*tmp_c_6*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)))/(z4 + z9*tmp_c_2 + z9*tmp_c_4 - z18*tmp_c_4*dsqrt(z1 +                                     & 
+        tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z9*tmp_c_6*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)) - (z36*tmp_c*(z1 + z4*tmp_c_2 +                              & 
+        z3*tmp_c_4 - z2*tmp_c_2*dsqrt(z1 + tmp_c_2)*(z2 + z3*tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z3*(tmp_c_4 + tmp_c_6)*dlog((z1 +                              & 
+        dsqrt(z1 + tmp_c_2))/tmp_c)**2)*(c17*tmp_mu_2*(z2 - z1*tmp_c_2 + z2*(z1 + tmp_c_2)**2*dlog(tmp_c_2/(z1 + tmp_c_2)) + z2*dsqrt(z1 + tmp_c_2)*(z2 +                     & 
+        z3*tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) - z3*tmp_c_4*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)*(z4 + z9*tmp_c_2 + z9*tmp_c_4 -                            & 
+        z18*tmp_c_4*dsqrt(z1 + tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z9*tmp_c_6*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2) + c2ter*(z4 +                          & 
+        z9*tmp_c_2 + z9*tmp_c_4 - z18*tmp_c_4*dsqrt(z1 + tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z9*tmp_c_6*dlog((z1 + dsqrt(z1 +                                   & 
+        tmp_c_2))/tmp_c)**2)**2 + z3*tmp_mu*(z4 + z9*tmp_c_2 + z9*tmp_c_4 - z18*tmp_c_4*dsqrt(z1 + tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) +                          & 
+        z9*tmp_c_6*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)*(z4 + z9*tmp_c_2 + z9*tmp_c_4 - z18*tmp_c_4*dsqrt(z1 + tmp_c_2)*dlog((z1 + dsqrt(z1 +                           & 
+        tmp_c_2))/tmp_c) + z9*tmp_c_6*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2 + (-z2 + tmp_c_2 + z2*(z1 + tmp_c_2)**2*dlog(z1 + tmp_c_m_2) -                                & 
+        z2*dsqrt(z1 + tmp_c_2)*(z2 + z3*tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z3*tmp_c_4*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)**2) +                         & 
+        z12*tmp_mu_3*(z3*(z2 - z1*tmp_c_2 - z2*(z1 + tmp_c_2)**2*dlog(z1 + tmp_c_m_2) + z2*dsqrt(z1 + tmp_c_2)*(z2 + z3*tmp_c_2)*dlog((z1 + dsqrt(z1 +                        & 
+        tmp_c_2))/tmp_c) - z3*tmp_c_4*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)**3 - c16*(z4 + z9*tmp_c_2 + z9*tmp_c_4 - z18*tmp_c_4*dsqrt(z1 +                              & 
+        tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z9*tmp_c_6*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2) + z3*(z2 - z1*tmp_c_2 - z2*(z1 +                              & 
+        tmp_c_2)**2*dlog(z1 + tmp_c_m_2) + z2*dsqrt(z1 + tmp_c_2)*(z2 + z3*tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) - z3*tmp_c_4*dlog((z1 +                            & 
+        dsqrt(z1 + tmp_c_2))/tmp_c)**2)*(z4 + z9*tmp_c_2 + z9*tmp_c_4 - z18*tmp_c_4*dsqrt(z1 + tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) +                              & 
+        z9*tmp_c_6*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)))*(c23*(-z2 + tmp_c_2 + z2*(z1 + tmp_c_2)**2*dlog(z1 + tmp_c_m_2) - z2*dsqrt(z1 +                               & 
+        tmp_c_2)*(z2 + z3*tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z3*tmp_c_4*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2) - (z9*tmp_mu*(-z3*(-z2 +                    & 
+        tmp_c_2 + z2*(z1 + tmp_c_2)**2*dlog(z1 + tmp_c_m_2) - z2*dsqrt(z1 + tmp_c_2)*(z2 + z3*tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) +                               & 
+        z3*tmp_c_4*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)**3 - c16*(z4 + z9*tmp_c_2 + z9*tmp_c_4 - z18*tmp_c_4*dsqrt(z1 + tmp_c_2)*dlog((z1 +                             & 
+        dsqrt(z1 + tmp_c_2))/tmp_c) + z9*tmp_c_6*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2) - z3*(-z2 + tmp_c_2 + z2*(z1 + tmp_c_2)**2*dlog(z1 + tmp_c_m_2) -                 & 
+        z2*dsqrt(z1 + tmp_c_2)*(z2 + z3*tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z3*tmp_c_4*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)*(z4 +                         & 
+        z9*tmp_c_2 + z9*tmp_c_4 - z18*tmp_c_4*dsqrt(z1 + tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z9*tmp_c_6*dlog((z1 + dsqrt(z1 +                                   & 
+        tmp_c_2))/tmp_c)**2)))/(z4 + z9*tmp_c_2 + z9*tmp_c_4 - z18*tmp_c_4*dsqrt(z1 + tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z9*tmp_c_6*dlog((z1 +                 & 
+        dsqrt(z1 + tmp_c_2))/tmp_c)**2)))/(z1/tmp_c + tmp_c) + z9*(z4 + z9*tmp_c_2 + z9*tmp_c_4 - z18*tmp_c_4*dsqrt(z1 + tmp_c_2)*dlog((z1 + dsqrt(z1 +                       &         
+        tmp_c_2))/tmp_c) + z9*tmp_c_6*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)*(c17*tmp_mu_2*(z2 - z1*tmp_c_2 + z2*(z1 + tmp_c_2)**2*dlog(tmp_c_2/(z1 +                     &          
+        tmp_c_2)) + z2*dsqrt(z1 + tmp_c_2)*(z2 + z3*tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) - z3*tmp_c_4*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)*                  & 
+        (z4 + z9*tmp_c_2 + z9*tmp_c_4 - z18*tmp_c_4*dsqrt(z1 + tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z9*tmp_c_6*dlog((z1 + dsqrt(z1 +                             & 
+        tmp_c_2))/tmp_c)**2) + c2ter*(z4 + z9*tmp_c_2 + z9*tmp_c_4 - z18*tmp_c_4*dsqrt(z1 + tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) +                                 & 
+        z9*tmp_c_6*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)**2 + z3*tmp_mu*(z4 + z9*tmp_c_2 + z9*tmp_c_4 - z18*tmp_c_4*dsqrt(z1 + tmp_c_2)*dlog((z1 +                       &   
+        dsqrt(z1 + tmp_c_2))/tmp_c) + z9*tmp_c_6*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)* (z4 + z9*tmp_c_2 + z9*tmp_c_4 - z18*tmp_c_4*dsqrt(z1 +                           & 
+        tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z9*tmp_c_6*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2 + (-z2 + tmp_c_2 + z2*(z1 +                                    &   
+        tmp_c_2)**2*dlog(z1 + tmp_c_m_2) - z2*dsqrt(z1 + tmp_c_2)*(z2 + z3*tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z3*tmp_c_4*dlog((z1 + dsqrt(z1 +                 &         
+        tmp_c_2))/tmp_c)**2)**2) + z12*tmp_mu_3*(z3*(z2 - z1*tmp_c_2 - z2*(z1 + tmp_c_2)**2*dlog(z1 + tmp_c_m_2) + z2*dsqrt(z1 + tmp_c_2)*(z2 +                               & 
+        z3*tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) - z3*tmp_c_4*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)**3 - c16*(z4 + z9*tmp_c_2 + z9*tmp_c_4 -                   & 
+        z18*tmp_c_4*dsqrt(z1 + tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z9*tmp_c_6*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2) + z3*(z2 - z1*tmp_c_2 -                & 
+        z2*(z1 + tmp_c_2)**2*dlog(z1 + tmp_c_m_2) + z2*dsqrt(z1 + tmp_c_2)*(z2 + z3*tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) - z3*tmp_c_4*dlog((z1 +                   & 
+        dsqrt(z1 + tmp_c_2))/tmp_c)**2)*(z4 + z9*tmp_c_2 + z9*tmp_c_4 - z18*tmp_c_4*dsqrt(z1 + tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) +                              & 
+        z9*tmp_c_6*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)))*((-c24*tmp_c*(z1 + tmp_c_2 + z2*(z1 + tmp_c_2)**2*dlog(z1 + tmp_c_m_2) - z2*dsqrt(z1 +                        & 
+        tmp_c_2)*(z2 + z3*tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z3*(tmp_c_2 + tmp_c_4)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2))/(1/tmp_c +                     &         
+        tmp_c) + (tmp_mu*(-z3*(-z2 + tmp_c_2 + z2*(z1 + tmp_c_2)**2*dlog(z1 + tmp_c_m_2) - z2*dsqrt(z1 + tmp_c_2)*(z2 + z3*tmp_c_2)*dlog((z1 + dsqrt(z1 +                     & 
+        tmp_c_2))/tmp_c) + z3*tmp_c_4*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)**3 - c16*(z4 + z9*tmp_c_2 + z9*tmp_c_4 - z18*tmp_c_4*dsqrt(z1 +                              & 
+        tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z9*tmp_c_6*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2) - z3*(-z2 + tmp_c_2 + z2*(z1 +                                & 
+        tmp_c_2)**2*dlog(z1 + tmp_c_m_2) - z2*dsqrt(z1 + tmp_c_2)*(z2 + z3*tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z3*tmp_c_4*dlog((z1 + dsqrt(z1 +                 &         
+        tmp_c_2))/tmp_c)**2)*(z4 + z9*tmp_c_2 + z9*tmp_c_4 - z18*tmp_c_4*dsqrt(z1 + tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z9*tmp_c_6*dlog((z1 +                   & 
+        dsqrt(z1 + tmp_c_2))/tmp_c)**2)))/(z4 + z9*tmp_c_2 + z9*tmp_c_4 - z18*tmp_c_4*dsqrt(z1 + tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) +                            & 
+        z9*tmp_c_6*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2) - (z18*tmp_c_2*tmp_mu*(z1 + z4*tmp_c_2 + z3*tmp_c_4 - z2*tmp_c_2*dsqrt(z1 + tmp_c_2)*(z2 +                      &         
+        z3*tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z3*(tmp_c_4 + tmp_c_6)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)*(-z3*(-z2 + tmp_c_2 + z2*(z1 +                 &         
+        tmp_c_2)**2*dlog(z1 + tmp_c_m_2) - z2*dsqrt(z1 + tmp_c_2)*(z2 + z3*tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z3*tmp_c_4*dlog((z1 + dsqrt(z1 +                 & 
+        tmp_c_2))/tmp_c)**2)**3 - c16*(z4 + z9*tmp_c_2 + z9*tmp_c_4 - z18*tmp_c_4*dsqrt(z1 + tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) +                                & 
+        z9*tmp_c_6*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2) - z3*(-z2 + tmp_c_2 + z2*(z1 + tmp_c_2)**2*dlog(z1 + tmp_c_m_2) - z2*dsqrt(z1 + tmp_c_2)*(z2 +                  &         
+        z3*tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z3*tmp_c_4*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)*(z4 + z9*tmp_c_2 + z9*tmp_c_4 -                            & 
+        z18*tmp_c_4*dsqrt(z1 + tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z9*tmp_c_6*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)))/((z1 + tmp_c_2)*(z4 +                &         
+        z9*tmp_c_2 + z9*tmp_c_4 - z18*tmp_c_4*dsqrt(z1 + tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z9*tmp_c_6*dlog((z1 + dsqrt(z1 +                                   &         
+        tmp_c_2))/tmp_c)**2)**2) - (z6*tmp_c_2*tmp_mu*(z6*(-z2 + tmp_c_2 + z2*(z1 + tmp_c_2)**2*dlog(z1 + tmp_c_m_2) - z2*dsqrt(z1 + tmp_c_2)*(z2 +                           & 
+        z3*tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z3*tmp_c_4*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)**2*(z1 + tmp_c_2 + z2*(z1 +                                & 
+        tmp_c_2)**2*dlog(z1 + tmp_c_m_2) - z2*dsqrt(z1 + tmp_c_2)*(z2 + z3*tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z3*(tmp_c_2 + tmp_c_4)*dlog((z1 +                &         
+        dsqrt(z1 + tmp_c_2))/tmp_c)**2) + z2*(z4 + z9*tmp_c_2 + z9*tmp_c_4 - z18*tmp_c_4*dsqrt(z1 + tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) +                         & 
+        z9*tmp_c_6*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)*(z1 + tmp_c_2 + z2*(z1 + tmp_c_2)**2*dlog(z1 + tmp_c_m_2) - z2*dsqrt(z1 + tmp_c_2)*(z2 +                        &         
+        z3*tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z3*(tmp_c_2 + tmp_c_4)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2) + c25*(z1 + z4*tmp_c_2 +                       &         
+        z3*tmp_c_4 - z2*tmp_c_2*dsqrt(z1 + tmp_c_2)*(z2 + z3*tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z3*(tmp_c_4 + tmp_c_6)*dlog((z1 + dsqrt(z1 +                   &         
+        tmp_c_2))/tmp_c)**2) - z9*(z2 - z1*tmp_c_2 - z2*(z1 + tmp_c_2)**2*dlog(z1 + tmp_c_m_2) + z2*dsqrt(z1 + tmp_c_2)*(z2 + z3*tmp_c_2)*dlog((z1 + dsqrt(z1 +               &         
+        tmp_c_2))/tmp_c) - z3*tmp_c_4*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)*(z1 + z4*tmp_c_2 + z3*tmp_c_4 - z2*tmp_c_2*dsqrt(z1 + tmp_c_2)*(z2 +                         & 
+        z3*tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z3*(tmp_c_4 + tmp_c_6)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)))/((z1 + tmp_c_2)*(z4 +                        &         
+        z9*tmp_c_2 + z9*tmp_c_4 - z18*tmp_c_4*dsqrt(z1 + tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z9*tmp_c_6*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2))) -          &         
+        z3*(z4 + z9*tmp_c_2 + z9*tmp_c_4 - z18*tmp_c_4*dsqrt(z1 + tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z9*tmp_c_6*dlog((z1 + dsqrt(z1 +                          & 
+        tmp_c_2))/tmp_c)**2)*(c23*(-z2 + tmp_c_2 + z2*(z1 + tmp_c_2)**2*dlog(z1 + tmp_c_m_2) - z2*dsqrt(z1 + tmp_c_2)*(z2 + z3*tmp_c_2)*dlog((z1 + dsqrt(z1 +                 & 
+        tmp_c_2))/tmp_c) + z3*tmp_c_4*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2) - (z9*tmp_mu*(-z3*(-z2 + tmp_c_2 + z2*(z1 + tmp_c_2)**2*dlog(z1 + tmp_c_m_2) -               &         
+        z2*dsqrt(z1 + tmp_c_2)*(z2 + z3*tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z3*tmp_c_4*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)**3 - c16*(z4 +                & 
+        z9*tmp_c_2 + z9*tmp_c_4 - z18*tmp_c_4*dsqrt(z1 + tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z9*tmp_c_6*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2) -            &         
+        z3*(-z2 + tmp_c_2 + z2*(z1 + tmp_c_2)**2*dlog(z1 + tmp_c_m_2) - z2*dsqrt(z1 + tmp_c_2)*(z2 + z3*tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) +                     &         
+        z3*tmp_c_4*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)*(z4 + z9*tmp_c_2 + z9*tmp_c_4 - z18*tmp_c_4*dsqrt(z1 + tmp_c_2)*dlog((z1 + dsqrt(z1 +                           &         
+        tmp_c_2))/tmp_c) + z9*tmp_c_6*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)))/(z4 + z9*tmp_c_2 + z9*tmp_c_4 - z18*tmp_c_4*dsqrt(z1 + tmp_c_2)*dlog((z1 +                 &         
+        dsqrt(z1 + tmp_c_2))/tmp_c) + z9*tmp_c_6*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2))*(-c26*tmp_mu_2*(z2 - z1*tmp_c_2 + z2*(z1 +                                       &   
+        tmp_c_2)**2*dlog(tmp_c_2/(z1 + tmp_c_2)) + z2*dsqrt(z1 + tmp_c_2)*(z2 + z3*tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) - z3*tmp_c_4*dlog((z1 +                    &  
+        dsqrt(z1 + tmp_c_2))/tmp_c)**2)*(z4 + z9*tmp_c_2 + z9*tmp_c_4 - z18*tmp_c_4*dsqrt(z1 + tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) +                              & 
+        z9*tmp_c_6*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2) + (c27*tmp_c_2*tmp_mu_2*(z4 + z9*tmp_c_2 + z9*tmp_c_4 - z18*tmp_c_4*dsqrt(z1 + tmp_c_2)*dlog((z1 +              &         
+        dsqrt(z1 + tmp_c_2))/tmp_c) + z9*tmp_c_6*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)*(z1 + tmp_c_2 - z2*(z1 + tmp_c_2)**2*dlog(tmp_c_2/(z1 + tmp_c_2)) -               &         
+        z2*dsqrt(z1 + tmp_c_2)*(z2 + z3*tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z3*(tmp_c_2 + tmp_c_4)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2))/(z1 +            &         
+        tmp_c_2) - (c22*tmp_c*tmp_mu_2*(z2 - z1*tmp_c_2 + z2*(z1 + tmp_c_2)**2*dlog(tmp_c_2/(z1 + tmp_c_2)) + z2*dsqrt(z1 + tmp_c_2)*(z2 + z3*tmp_c_2)*dlog((z1 +             &         
+        dsqrt(z1 + tmp_c_2))/tmp_c) - z3*tmp_c_4*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)*(z1 + z4*tmp_c_2 + z3*tmp_c_4 - z2*tmp_c_2*dsqrt(z1 + tmp_c_2)*(z2 +              &         
+        z3*tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z3*(tmp_c_4 + tmp_c_6)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2))/(1/tmp_c + tmp_c) - (c17*tmp_c*(z4 +          &         
+        z9*tmp_c_2 + z9*tmp_c_4 - z18*tmp_c_4*dsqrt(z1 + tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z9*tmp_c_6*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)*(z1 +        &         
+        z4*tmp_c_2 + z3*tmp_c_4 - z2*tmp_c_2*dsqrt(z1 + tmp_c_2)*(z2 + z3*tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z3*(tmp_c_4 + tmp_c_6)*dlog((z1 +                 & 
+        dsqrt(z1 + tmp_c_2))/tmp_c)**2))/(1/tmp_c + tmp_c) - z1*tmp_mu*(z4 + z9*tmp_c_2 + z9*tmp_c_4 - z18*tmp_c_4*dsqrt(z1 + tmp_c_2)*dlog((z1 + dsqrt(z1 +                  &         
+        tmp_c_2))/tmp_c) + z9*tmp_c_6*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)*(z4 + z9*tmp_c_2 + z9*tmp_c_4 + z9*tmp_c_4*dlog((z1 + dsqrt(z1 +                             &         
+        tmp_c_2))/tmp_c)*(-z2*dsqrt(z1 + tmp_c_2) + tmp_c_2*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)) + (-z2 + tmp_c_2 + z2*(z1 + tmp_c_2)**2*dlog(z1 + tmp_c_m_2) -            &  
+        z2*dsqrt(z1 + tmp_c_2)*(z2 + z3*tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z3*tmp_c_4*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)**2) -                         &        
+        (z18*tmp_c_2*tmp_mu*(z1 + z4*tmp_c_2 + z3*tmp_c_4 - z2*tmp_c_2*dsqrt(z1 + tmp_c_2)*(z2 + z3*tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) +                         & 
+        z3*(tmp_c_4 + tmp_c_6)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)*(z4 + z9*tmp_c_2 + z9*tmp_c_4 + z9*tmp_c_4*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)*                  &         
+        (-z2*dsqrt(z1 + tmp_c_2) + tmp_c_2*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)) + (-z2 + tmp_c_2 + z2*(z1 + tmp_c_2)**2*dlog(z1 + tmp_c_m_2) - z2*dsqrt(z1 +               &         
+        tmp_c_2)*(z2 + z3*tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z3*tmp_c_4*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)**2))/(z1 + tmp_c_2) +                       &         
+        z36*tmp_mu_3*((-z2 + tmp_c_2 + z2*(z1 + tmp_c_2)**2*dlog(z1 + tmp_c_m_2) - z2*dsqrt(z1 + tmp_c_2)*(z2 + z3*tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) +          &         
+        z3*tmp_c_4*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)**3 + c28*(z4 + z9*tmp_c_2 + z9*tmp_c_4 - z18*tmp_c_4*dsqrt(z1 + tmp_c_2)*dlog((z1 + dsqrt(z1 +                  &         
+        tmp_c_2))/tmp_c) + z9*tmp_c_6*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2) + (-z2 + tmp_c_2 + z2*(z1 + tmp_c_2)**2*dlog(z1 + tmp_c_m_2) - z2*dsqrt(z1 +                 &         
+        tmp_c_2)*(z2 + z3*tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z3*tmp_c_4*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)*(z4 + z9*tmp_c_2 + z9*tmp_c_4 -             &         
+        z18*tmp_c_4*dsqrt(z1 + tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z9*tmp_c_6*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)) + tmp_c*tmp_mu*(z4 +                  & 
+        z9*tmp_c_2 + z9*tmp_c_4 - z18*tmp_c_4*dsqrt(z1 + tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z9*tmp_c_6*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)*(-           &         
+        z18*tmp_c - z36*tmp_c_3 + (z9*tmp_c_2*(-z2*dsqrt(z1 + tmp_c_2) + tmp_c_2*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)))/dsqrt(z1 + tmp_c_m_2) -                             & 
+        z36*tmp_c_3*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)*(-z2*dsqrt(z1 + tmp_c_2) + tmp_c_2*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)) - (z9*tmp_c_5*dlog((z1 +                &         
+        dsqrt(z1 + tmp_c_2))/tmp_c)*(-z3*dsqrt(z1 + tmp_c_2) + z2*(z1 + tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)))/(z1 + tmp_c_2) - (z8*(-z2 + tmp_c_2 +               &         
+        z2*(z1 + tmp_c_2)**2*dlog(z1 + tmp_c_m_2) - z2*dsqrt(z1 + tmp_c_2)*(z2 + z3*tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z3*tmp_c_4*dlog((z1 + dsqrt(z1 +        &         
+        tmp_c_2))/tmp_c)**2)*(z1 + tmp_c_2 + z2*(z1 + tmp_c_2)**2*dlog(z1 + tmp_c_m_2) - z2*dsqrt(z1 + tmp_c_2)*(z2 + z3*tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) +    &          
+        z3*(tmp_c_2 + tmp_c_4)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2))/(1/tmp_c + tmp_c)) - (z24*tmp_c_2*tmp_mu_3*(-z6*(-z2 + tmp_c_2 + z2*(z1 + tmp_c_2)**2*dlog(z1 +    &         
+        tmp_c_m_2) - z2*dsqrt(z1 + tmp_c_2)*(z2 + z3*tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z3*tmp_c_4*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)**2*(z1 +         & 
+        tmp_c_2 + z2*(z1 + tmp_c_2)**2*dlog(z1 + tmp_c_m_2) - z2*dsqrt(z1 + tmp_c_2)*(z2 + z3*tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z3*(tmp_c_2 +                 & 
+        tmp_c_4)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2) - z2*(z4 + z9*tmp_c_2 + z9*tmp_c_4 - z18*tmp_c_4*dsqrt(z1 + tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) +     &         
+        z9*tmp_c_6*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)*(z1 + tmp_c_2 + z2*(z1 + tmp_c_2)**2*dlog(z1 + tmp_c_m_2) - z2*dsqrt(z1 + tmp_c_2)*(z2 +                        &         
+        z3*tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z3*(tmp_c_2 + tmp_c_4)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2) - c25*(z1 + z4*tmp_c_2 + z3*tmp_c_4 -          & 
+        z2*tmp_c_2*dsqrt(z1 + tmp_c_2)*(z2 + z3*tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z3*(tmp_c_4 + tmp_c_6)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2) +         & 
+        z9*(z2 - z1*tmp_c_2 - z2*(z1 + tmp_c_2)**2*dlog(z1 + tmp_c_m_2) + z2*dsqrt(z1 + tmp_c_2)*(z2 + z3*tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) -                   & 
+        z3*tmp_c_4*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)*(z1 + z4*tmp_c_2 + z3*tmp_c_4 - z2*tmp_c_2*dsqrt(z1 + tmp_c_2)*(z2 + z3*tmp_c_2)*dlog((z1 +                     & 
+        dsqrt(z1 + tmp_c_2))/tmp_c) + z3*(tmp_c_4 + tmp_c_6)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)))/(z1 + tmp_c_2))))/(c17*tmp_mu_2*(z2 - z1*tmp_c_2 + z2*(z1 +         &         
+        tmp_c_2)**2*dlog(tmp_c_2/(z1 + tmp_c_2)) + z2*dsqrt(z1 + tmp_c_2)*(z2 + z3*tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) - z3*tmp_c_4*dlog((z1 + dsqrt(z1 +         &         
+        tmp_c_2))/tmp_c)**2)*(z4 + z9*tmp_c_2 + z9*tmp_c_4 - z18*tmp_c_4*dsqrt(z1 + tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z9*tmp_c_6*dlog((z1 + dsqrt(z1 +        &         
+        tmp_c_2))/tmp_c)**2) + c2ter*(z4 + z9*tmp_c_2 + z9*tmp_c_4 - z18*tmp_c_4*dsqrt(z1 + tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z9*tmp_c_6*dlog((z1 +           &         
+        dsqrt(z1 + tmp_c_2))/tmp_c)**2)**2 + z3*tmp_mu*(z4 + z9*tmp_c_2 + z9*tmp_c_4 - z18*tmp_c_4*dsqrt(z1 + tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) +               &         
+        z9*tmp_c_6*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)*(z4 + z9*tmp_c_2 + z9*tmp_c_4 - z18*tmp_c_4*dsqrt(z1 + tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) +        & 
+        z9*tmp_c_6*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2 + (-z2 + tmp_c_2 + z2*(z1 + tmp_c_2)**2*dlog(z1 + tmp_c_m_2) - z2*dsqrt(z1 + tmp_c_2)*(z2 +                      & 
+        z3*tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z3*tmp_c_4*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)**2) + z12*tmp_mu_3*(z3*(z2 - z1*tmp_c_2 - z2*(z1 +         &         
+        tmp_c_2)**2*dlog(z1 + tmp_c_m_2) + z2*dsqrt(z1 + tmp_c_2)*(z2 + z3*tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) - z3*tmp_c_4*dlog((z1 + dsqrt(z1 +                 & 
+        tmp_c_2))/tmp_c)**2)**3 - c22*(z4 + z9*tmp_c_2 + z9*tmp_c_4 - z18*tmp_c_4*dsqrt(z1 + tmp_c_2)*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c) + z9*tmp_c_6*dlog((z1 +          &         
+        dsqrt(z1 + tmp_c_2))/tmp_c)**2) + z3*(z2 - z1*tmp_c_2 - z2*(z1 + tmp_c_2)**2*dlog(z1 + tmp_c_m_2) + z2*dsqrt(z1 + tmp_c_2)*(z2 + z3*tmp_c_2)*dlog((z1 +               &         
+        dsqrt(z1 + tmp_c_2))/tmp_c) - z3*tmp_c_4*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)*(z4 + z9*tmp_c_2 + z9*tmp_c_4 - z18*tmp_c_4*dsqrt(z1 + tmp_c_2)*dlog((z1 +        &         
+        dsqrt(z1 + tmp_c_2))/tmp_c) + z9*tmp_c_6*dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)**2)))**2                                
 
     else
      print*, 'Exchange functional required does not exist ...'
@@ -350,7 +506,10 @@
   
     e_x = 0.d0
     v_x = 0.d0 
-    
+   
+
+
+ 
    endif 
   endif 
  endif
