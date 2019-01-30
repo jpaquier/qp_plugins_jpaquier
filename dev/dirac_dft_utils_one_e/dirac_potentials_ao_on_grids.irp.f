@@ -24,7 +24,7 @@
    call dirac_ex_LDA_sr(mu_erf,rho(istate),e_x,v_x)
 
 !  print*,r(1),r(2),r(3), rho(istate),e_x
-!  print*,r(1),r(2),r(3), rho(istate),e_x,v_x
+   print*,r(1),r(2),r(3), rho(istate),e_x,v_x
 
    dirac_energy_x_LDA(istate) += weight * e_x
    dirac_energy_c_LDA(istate) += weight * e_c

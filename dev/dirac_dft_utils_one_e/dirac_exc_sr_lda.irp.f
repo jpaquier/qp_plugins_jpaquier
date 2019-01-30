@@ -15,7 +15,7 @@
  double precision, intent(out) ::  v_x
  double precision, intent(in)  ::  rho,mu
  double precision :: kF, c, tmp_c, tmp_mu
- double precision :: kF_4,kF_6,tmp_c_2,tmp_c_4,tmp_c_m,tmp_c_m_2
+ double precision :: kF_4,kF_6,tmp_c_2,tmp_c_3,tmp_c_4,tmp_c_5,tmp_c_6,tmp_c_m,tmp_c_m_2
  double precision :: tmp_mu_2,tmp_mu_3,tmp_mu_4,tmp_mu_6,tmp_mu_8
  double precision :: tmp_mu_m,tmp_mu_m_2
  double precision :: z0,z1,z2,z3,z4,z5,z6,z7,z8,z9,z12,z13,z18,z20,z24,z25,z27
@@ -129,7 +129,10 @@
  c = speed_of_light
  tmp_c = c/kF
  tmp_c_2 = tmp_c*tmp_c
- tmp_c_4 = tmp_c_2*tmp_c_2
+ tmp_c_3 = tmp_c_2*tmp_c
+ tmp_c_4 = tmp_c_3*tmp_c
+ tmp_c_5 = tmp_c_4*tmp_c
+ tmp_c_6 = tmp_c_5*tmp_c
  tmp_c_m = z1/tmp_c
  tmp_c_m_2 = z1/tmp_c_2
  tmp_mu = mu/kF
@@ -201,8 +204,8 @@
         dsqrt(z1 + tmp_c_2)))))/(z1 + tmp_c_2) + c3*(c7 - tmp_mu)*tmp_mu)
 
    ! Medium values of tmp_mu
-   elseif (tmp_mu .le. 1d+1) then
- ! elseif (tmp_mu .le. 5d+1) then
+ ! elseif (tmp_mu .le. 1d+1) then
+   elseif (tmp_mu .le. 2.5d0) then
  
     if (dirac_approximant == "dirac_pade_order_2") then
 
