@@ -18,15 +18,16 @@
  double precision :: kF_4,kF_6,tmp_c_2,tmp_c_3,tmp_c_4,tmp_c_5,tmp_c_6,tmp_c_m,tmp_c_m_2
  double precision :: tmp_mu_2,tmp_mu_3,tmp_mu_4,tmp_mu_6,tmp_mu_8
  double precision :: tmp_mu_m,tmp_mu_m_2
- double precision :: z0,z1,z2,z3,z4,z5,z6,z7,z8,z9,z12,z13,z18,z20,z24,z25,z27
- double precision :: z30,z36,z45,z50,z56,z60,z70,z72,z105,z112,z120,z144,z149,z163,z175,z180
- double precision :: z313,z420,z492,z525,z540,z648,z672,z735,z756,z770,z906,z945
+ double precision :: z0,z1,z2,z3,z4,z5,z6,z7,z8,z9,z12,z13,z14,z15,z18,z20,z24,z25,z27
+ double precision :: z30,z32,z36,z44,z45,z50,z56,z60,z64,z70,z72,z105,z112,z120,z132,z144,z149,z160,z163,z175,z180
+ double precision :: z313,z320,z420,z492,z525,z540,z648,z672,z735,z756,z770,z906,z945
  double precision :: z960,z984,z1466,z1680,z1715,z2100,z2625,z3280,z6300,z8064
  double precision :: z8694,z13533,z14000,z19680,z28704
  double precision :: f13,f120,f23,f25,f43
  double precision :: ckf 
  double precision :: c0,c1,c2,c2bis,c2ter,c3,c4,c5,c6,c7,c8,c9,c10,c11,c12,c13,c14,c15
  double precision :: c16,c17,c18,c19,c20,c21,c22,c23,c24,c25,c26,c27,c28,c29,c30
+ double precision :: c31,c32,c33,c34,c35
 
  z1  = 1.d0
  z2  = 2.d0
@@ -39,28 +40,36 @@
  z9 = 9.d0
  z12 = 12.d0
  z13 = 13.d0
+ z14 = 14.d0
+ z15 = 15.d0
  z18 = 18.d0
  z20 = 20.d0
  z24 = 24.d0
  z25 = 25.d0
  z27 = 27.d0
  z30 = 30.d0
+ z32 = 32.d0
  z36 = 36.d0
+ z44 = 44.d0
  z45 = 45.d0
  z50 = 50.d0
  z56 = 56.d0
  z60 = 60.d0
+ z64 = 64.d0
  z70 = 70.d0
  z72 = 72.d0
  z105 = 105.d0
  z112 = 112.d0
  z120 = 120.d0
+ z132 = 132.d0
  z144 = 144.d0
  z149 = 149.d0
+ z160 = 160.d0
  z163 = 163.d0
  z175 = 175.d0
  z180 = 180.d0
  z313 = 313.d0
+ z320 = 320.d0       
  z420 = 420.d0
  z492 = 492.d0
  z525 = 525.d0
@@ -123,6 +132,10 @@
  c26 = 28.35926161448826d0
  c27 = 56.71852322897651d0 
  c28 = 16.75516081914556d0
+ c29 = 0.0000003499515454991264d0       
+ c30 = 0.0001119844945597204d0
+ c31 = 0.01326291192432461d0
+ c32 = 0.00008289319952702882d0
  kF = ckf*(rho**f13)
  kF_4 = kF*kF*kF*kF
  kF_6 = kF_4*kF*kF
@@ -497,12 +510,19 @@
    ! For very large values of tmp_mu
    elseif (tmp_mu .lt. 1.d+9) then
 
+   ! Inverse quadratic/quartic/hexuple for large values of tmp_mu
+   !e_x = (-c30*kF_4*(z4 + z9*(tmp_c_2 + tmp_c_4) + z9*tmp_c_4*dlog(dsqrt(z1 + tmp_c_m_2) + tmp_c_m)*(-z2*dsqrt(z1 + tmp_c_2) +  & 
+   !    tmp_c_2*dlog(dsqrt(z1 + tmp_c_m_2) + tmp_c_m))))/tmp_mu_2 +
+    e_x = (c29*kF_4*(z132 - z15*tmp_c_2*(-z32 + z9*tmp_c_2 + z45*tmp_c_4) - z320*(z4 + z9*(tmp_c_2 + tmp_c_4))*tmp_mu_2 + z45*tmp_c_4*(dlog(dsqrt(z1 + tmp_c_m_2) +     &
+        z1/tmp_c)*(dsqrt(z1 + tmp_c_2)*(-z6 + z15*tmp_c_2 + z64*tmp_mu_2) + tmp_c_2*(z15*tmp_c_2 + z64*tmp_mu_2)*(dlog(tmp_c) - z1*dlog(z1+ dsqrt(z1 + tmp_c_2)))) -    &
+        z1*dsqrt(z1 + tmp_c_2)*(-z6 + z15*tmp_c_2 + z64*tmp_mu_2)*(dlog(tmp_c) - z1*dlog(z1 + dsqrt(z1 + tmp_c_2))))))/tmp_mu_4
+ 
+  
+   ! Inverse quadratic/quartic/hexuple for large values of tmp_mu
+   !v_x = (-c31*kF*(z2 + z5*tmp_c_2 + z3*tmp_c_4 + z3*tmp_c_4*dsqrt(z1 + tmp_c_2)*dlog(tmp_c/(z1 + dsqrt(z1 + tmp_c_2)))))/((z1 + tmp_c_2)*tmp_mu_2) 
+    v_x = (c32*kF*(dsqrt(z1 + tmp_c_2)*(z44 + z120*tmp_c_2 - z45*tmp_c_4 - z160*(z2 + z3*tmp_c_2)*tmp_mu_2) + z15*tmp_c_4*(-z6 + z3*tmp_c_2 + z32*tmp_mu_2)*dlog((z1 +  & 
+        dsqrt(z1 + tmp_c_2))/tmp_c)))/(dsqrt(z1 + tmp_c_2)*tmp_mu_4)  
 
-    e_x =  (-0.0001119844945597204d0*kF**4*(z4 + z9*(tmp_c**2 + tmp_c**4) + z9*tmp_c**4*dlog(dsqrt(z1 + tmp_c**(-2)) + tmp_c_m)*(-z2*dsqrt(z1 + tmp_c**2) +  & 
-        tmp_c**2*dlog(dsqrt(z1 + tmp_c**(-2)) + tmp_c_m))))/tmp_mu**2
-   
-    v_x =  (-0.01326291192432461d0*kF*(z2 + 5.d0*tmp_c**2 + z3*tmp_c**4 + z3*tmp_c**4*dsqrt(z1 + tmp_c**2)*dlog(tmp_c/(z1 + dsqrt(z1 + tmp_c**2)))))/((z1 +    & 
-        tmp_c**2)*tmp_mu**2) 
 
    ! Limit for large tmp_mu 
    else
