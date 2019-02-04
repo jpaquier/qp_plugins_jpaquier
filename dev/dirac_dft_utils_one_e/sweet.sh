@@ -41,6 +41,10 @@ sed -i '1,229s/0.01326291192432461/c31/g' test.txt
 sed -i '1,229s/0.00008289319952702882/c32/g' test.txt
 sed -i '1,229s/0.000000004166089827370552/c33/g' test.txt
 sed -i '1,229s/0.0000001644706339822/c34/g' test.txt
+sed -i '1,229s/0.000006399113974841168/c35/g' test.txt
+sed -i '1,229s/0.01061032953945969/c36/g' test.txt
+sed -i '1,229s/0.0003789403406949889/c37/g' test.txt
+sed -i '1,229s/0.0353677651315323/c38/g' test.txt
 sed -i '1,229s/2.718281828459045\*\*/dexp/g' test.txt
 sed -i '1,229s/Log/dlog/g' test.txt
 sed -i '1,229s/Sqrt/dsqrt/g' test.txt
@@ -98,6 +102,9 @@ sed -i '1,229s/-18\./-z18/g' test.txt
 sed -i '1,229s/(20\./(z20/g' test.txt
 sed -i '1,229s/\ 20\./ z20/g' test.txt
 sed -i '1,229s/-20\./-z20/g' test.txt
+sed -i '1,229s/(21\./(z21/g' test.txt
+sed -i '1,229s/\ 21\./ z21/g' test.txt
+sed -i '1,229s/-21\./-z21/g' test.txt
 sed -i '1,229s/(24\./(z24/g' test.txt
 sed -i '1,229s/\ 24\./ z24/g' test.txt
 sed -i '1,229s/-24\./-z24/g' test.txt
@@ -107,6 +114,49 @@ sed -i '1,229s/-25\./-z25/g' test.txt
 sed -i '1,229s/(27\./(z27/g' test.txt
 sed -i '1,229s/\ 27\./ z27/g' test.txt
 sed -i '1,229s/-27\./-z27/g' test.txt
+sed -i '1,229s/(28\./(z28/g' test.txt
+sed -i '1,229s/\ 28\./ z28/g' test.txt
+sed -i '1,229s/-28\./-z28/g' test.txt
+sed -i '1,229s/(30\./(z30/g' test.txt
+sed -i '1,229s/\ 30\./ z30/g' test.txt
+sed -i '1,229s/-30\./-z30/g' test.txt
+sed -i '1,229s/(32\./(z32/g' test.txt
+sed -i '1,229s/\ 32\./ z32/g' test.txt
+sed -i '1,229s/-32\./-z32/g' test.txt
+sed -i '1,229s/(35\./(z35/g' test.txt
+sed -i '1,229s/\ 35\./ z35/g' test.txt
+sed -i '1,229s/-35\./-z35/g' test.txt
+sed -i '1,229s/(36\./(z36/g' test.txt
+sed -i '1,229s/\ 36\./ z36/g' test.txt
+sed -i '1,229s/-36\./-z36/g' test.txt
+sed -i '1,229s/(44\./(z44/g' test.txt
+sed -i '1,229s/\ 44\./ z44/g' test.txt
+sed -i '1,229s/-44\./-z44/g' test.txt
+sed -i '1,229s/(45\./(z45/g' test.txt
+sed -i '1,229s/\ 45\./ z45/g' test.txt
+sed -i '1,229s/-45\./-z45/g' test.txt
+sed -i '1,229s/(48\./(z48/g' test.txt
+sed -i '1,229s/\ 48\./ z48/g' test.txt
+sed -i '1,229s/-48\./-z48/g' test.txt
+sed -i '1,229s/(50\./(z50/g' test.txt
+sed -i '1,229s/\ 50\./ z50/g' test.txt
+sed -i '1,229s/-50\./-z50/g' test.txt
+sed -i '1,229s/(56\./(z56/g' test.txt
+sed -i '1,229s/\ 56\./ z56/g' test.txt
+sed -i '1,229s/-56\./-z56/g' test.txt
+sed -i '1,229s/(60\./(z60/g' test.txt
+sed -i '1,229s/\ 60\./ z60/g' test.txt
+sed -i '1,229s/-60\./-z60/g' test.txt
+sed -i '1,229s/(64\./(z64/g' test.txt
+sed -i '1,229s/\ 64\./ z64/g' test.txt
+sed -i '1,229s/-64\./-z64/g' test.txt
+sed -i '1,229s/(70\./(z70/g' test.txt
+sed -i '1,229s/\ 70\./ z70/g' test.txt
+sed -i '1,229s/-70\./-z70/g' test.txt
+sed -i '1,229s/(72\./(z72/g' test.txt
+sed -i '1,229s/\ 72\./ z72/g' test.txt
+sed -i '1,229s/-72\./-z72/g' test.txt
+sed -i '1,229s/(74\./(z74/g' test.txt
 sed -i '1,229s/(30\./(z30/g' test.txt
 sed -i '1,229s/\ 30\./ z30/g' test.txt
 sed -i '1,229s/-30\./-z30/g' test.txt
@@ -152,6 +202,9 @@ sed -i '1,229s/-74\./-z74/g' test.txt
 sed -i '1,229s/(80\./(z80/g' test.txt
 sed -i '1,229s/\ 80\./ z80/g' test.txt
 sed -i '1,229s/-80\./-z80/g' test.txt
+sed -i '1,229s/(96\./(z96/g' test.txt
+sed -i '1,229s/\ 96\./ z96/g' test.txt
+sed -i '1,229s/-96\./-z96/g' test.txt
 sed -i '1,229s/(105\./(z105/g' test.txt
 sed -i '1,229s/\ 105\./ z105/g' test.txt
 sed -i '1,229s/-105\./-z105/g' test.txt
@@ -164,6 +217,9 @@ sed -i '1,229s/-120\./-z120/g' test.txt
 sed -i '1,229s/(132\./(z132/g' test.txt
 sed -i '1,229s/\ 132\./ z132/g' test.txt
 sed -i '1,229s/-132\./-z132/g' test.txt
+sed -i '1,229s/(140\./(z140/g' test.txt
+sed -i '1,229s/\ 140\./ z140/g' test.txt
+sed -i '1,229s/-140\./-z140/g' test.txt
 sed -i '1,229s/(144\./(z144/g' test.txt
 sed -i '1,229s/\ 144\./ z144/g' test.txt
 sed -i '1,229s/-144\./-z144/g' test.txt
@@ -218,6 +274,9 @@ sed -i '1,229s/-525\./-z525/g' test.txt
 sed -i '1,229s/(540\./(z540/g' test.txt
 sed -i '1,229s/\ 540\./ z540/g' test.txt
 sed -i '1,229s/-540\./-z540/g' test.txt
+sed -i '1,229s/(559\./(z559/g' test.txt
+sed -i '1,229s/\ 559\./ z559/g' test.txt
+sed -i '1,229s/-559\./-z559/g' test.txt
 sed -i '1,229s/(592\./(z592/g' test.txt
 sed -i '1,229s/\ 592\./ z592/g' test.txt
 sed -i '1,229s/-592\./-z592/g' test.txt
@@ -242,6 +301,9 @@ sed -i '1,229s/-768\./-z768/g' test.txt
 sed -i '1,229s/(770\./(z770/g' test.txt
 sed -i '1,229s/\ 770\./ z770/g' test.txt
 sed -i '1,229s/-770\./-z770/g' test.txt
+sed -i '1,229s/(864\./(z864/g' test.txt
+sed -i '1,229s/\ 864\./ z864/g' test.txt
+sed -i '1,229s/-864\./-z864/g' test.txt
 sed -i '1,229s/(906\./(z906/g' test.txt
 sed -i '1,229s/\ 906\./ z906/g' test.txt
 sed -i '1,229s/-906\./-z906/g' test.txt

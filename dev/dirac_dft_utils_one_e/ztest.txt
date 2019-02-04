@@ -1,0 +1,250 @@
+(0.001473656880480512*kF*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+            9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*(4.*
+             (4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+               9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
+             (42.53889242173238*tmpmu**2*(2. - 1.*tmpc**2 + 2.*(1. + tmpc**2)**2*Log(tmpc**2/(1. + tmpc**2)) + 
+                  2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) - 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
+                (4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                  9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2) + 
+               3.544907701811032*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                   9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)**2 + 
+               3.*tmpmu*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                  9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
+                (4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                  9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2 + 
+                  (-2. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                     3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)**2) + 
+               12.*tmpmu**3*(3.*(2. - 1.*tmpc**2 - 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) + 
+                      2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) - 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)**3 - 
+                  50.26548245743669*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                     9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2) + 
+                  3.*(2. - 1.*tmpc**2 - 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) + 
+                     2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) - 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
+                   (4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                     9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)))*
+             (31.90416931629929*(-2. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 
+                  2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2) - 
+               (9.*tmpmu*(-3.*(-2. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 
+                        2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)**3 - 
+                    50.26548245743669*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                       9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2) - 
+                    3.*(-2. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 
+                       2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
+                     (4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                       9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)))/
+                (4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                  9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)) - 
+            (36.*tmpc*(1. + 4.*tmpc**2 + 3.*tmpc**4 - 2.*tmpc**2*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                 3.*(tmpc**4 + tmpc**6)*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
+               (42.53889242173238*tmpmu**2*(2. - 1.*tmpc**2 + 2.*(1. + tmpc**2)**2*Log(tmpc**2/(1. + tmpc**2)) + 
+                    2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) - 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
+                  (4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                    9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2) + 
+                 3.544907701811032*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                     9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)**2 + 
+                 3.*tmpmu*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                    9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
+                  (4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                    9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2 + 
+                    (-2. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                       3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)**2) + 
+                 12.*tmpmu**3*(3.*(2. - 1.*tmpc**2 - 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) + 
+                        2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) - 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)**3 - 
+                    50.26548245743669*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                       9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2) + 
+                    3.*(2. - 1.*tmpc**2 - 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) + 
+                       2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) - 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
+                     (4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                       9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)))*
+               (31.90416931629929*(-2. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 
+                    2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2) - 
+                 (9.*tmpmu*(-3.*(-2. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 
+                          2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)**3\
+                       - 50.26548245743669*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                         9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2) - 
+                      3.*(-2. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 
+                         2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
+                       (4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                         9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)))/
+                  (4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                    9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)))/(1/tmpc + tmpc) + 
+            9.*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+               9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
+             (42.53889242173238*tmpmu**2*(2. - 1.*tmpc**2 + 2.*(1. + tmpc**2)**2*Log(tmpc**2/(1. + tmpc**2)) + 
+                  2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) - 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
+                (4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                  9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2) + 
+               3.544907701811032*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                   9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)**2 + 
+               3.*tmpmu*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                  9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
+                (4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                  9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2 + 
+                  (-2. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                     3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)**2) + 
+               12.*tmpmu**3*(3.*(2. - 1.*tmpc**2 - 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) + 
+                      2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) - 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)**3 - 
+                  50.26548245743669*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                     9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2) + 
+                  3.*(2. - 1.*tmpc**2 - 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) + 
+                     2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) - 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
+                   (4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                     9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)))*
+             ((-14.17963080724413*tmpc*(1. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 
+                    2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 3.*(tmpc**2 + tmpc**4)*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2
+                    ))/(1/tmpc + tmpc) + (tmpmu*(-3.*(-2. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 
+                        2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)**3 - 
+                    50.26548245743669*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                       9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2) - 
+                    3.*(-2. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 
+                       2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
+                     (4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                       9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)))/
+                (4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                  9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2) - 
+               (18.*tmpc**2*tmpmu*(1. + 4.*tmpc**2 + 3.*tmpc**4 - 2.*tmpc**2*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                    3.*(tmpc**4 + tmpc**6)*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
+                  (-3.*(-2. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 
+                        2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)**3 - 
+                    50.26548245743669*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                       9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2) - 
+                    3.*(-2. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 
+                       2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
+                     (4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                       9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)))/
+                ((1. + tmpc**2)*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                     9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)**2) - 
+               (6.*tmpc**2*tmpmu*(6.*(-2. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 
+                        2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)**2*
+                     (1. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                       3.*(tmpc**2 + tmpc**4)*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2) + 
+                    2.*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                       9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
+                     (1. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                       3.*(tmpc**2 + tmpc**4)*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2) + 
+                    150.7964473723101*(1. + 4.*tmpc**2 + 3.*tmpc**4 - 2.*tmpc**2*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                       3.*(tmpc**4 + tmpc**6)*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2) - 
+                    9.*(2. - 1.*tmpc**2 - 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) + 
+                       2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) - 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
+                     (1. + 4.*tmpc**2 + 3.*tmpc**4 - 2.*tmpc**2*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                       3.*(tmpc**4 + tmpc**6)*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)))/
+                ((1. + tmpc**2)*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                    9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2))) - 
+            3.*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+               9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
+             (31.90416931629929*(-2. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 
+                  2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2) - 
+               (9.*tmpmu*(-3.*(-2. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 
+                        2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)**3 - 
+                    50.26548245743669*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                       9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2) - 
+                    3.*(-2. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 
+                       2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
+                     (4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                       9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)))/
+                (4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                  9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2))*
+             (-28.35926161448826*tmpmu**2*(2. - 1.*tmpc**2 + 2.*(1. + tmpc**2)**2*Log(tmpc**2/(1. + tmpc**2)) + 
+                  2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) - 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
+                (4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                  9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2) + 
+               (56.71852322897651*tmpc**2*tmpmu**2*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                    9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
+                  (1. + tmpc**2 - 2.*(1. + tmpc**2)**2*Log(tmpc**2/(1. + tmpc**2)) - 
+                    2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 3.*(tmpc**2 + tmpc**4)*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2
+                    ))/(1. + tmpc**2) - (255.2333545303943*tmpc*tmpmu**2*
+                  (2. - 1.*tmpc**2 + 2.*(1. + tmpc**2)**2*Log(tmpc**2/(1. + tmpc**2)) + 
+                    2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) - 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
+                  (1. + 4.*tmpc**2 + 3.*tmpc**4 - 2.*tmpc**2*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                    3.*(tmpc**4 + tmpc**6)*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2))/(1/tmpc + tmpc) - 
+               (42.53889242173238*tmpc*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                    9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
+                  (1. + 4.*tmpc**2 + 3.*tmpc**4 - 2.*tmpc**2*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                    3.*(tmpc**4 + tmpc**6)*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2))/(1/tmpc + tmpc) - 
+               1.*tmpmu*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                  9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
+                (4. + 9.*tmpc**2 + 9.*tmpc**4 + 9.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)*
+                   (-2.*Sqrt(1. + tmpc**2) + tmpc**2*Log((1. + Sqrt(1. + tmpc**2))/tmpc)) + 
+                  (-2. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                     3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)**2) - 
+               (18.*tmpc**2*tmpmu*(1. + 4.*tmpc**2 + 3.*tmpc**4 - 2.*tmpc**2*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                    3.*(tmpc**4 + tmpc**6)*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
+                  (4. + 9.*tmpc**2 + 9.*tmpc**4 + 9.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)*
+                     (-2.*Sqrt(1. + tmpc**2) + tmpc**2*Log((1. + Sqrt(1. + tmpc**2))/tmpc)) + 
+                    (-2. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                       3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)**2))/(1. + tmpc**2) + 
+               36.*tmpmu**3*((-2. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 
+                     2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)**3 + 
+                  16.75516081914556*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                     9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2) + 
+                  (-2. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                     3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
+                   (4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                     9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)) + 
+               tmpc*tmpmu*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                  9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
+                (-18.*tmpc - 36.*tmpc**3 + (9.*tmpc**2*(-2.*Sqrt(1. + tmpc**2) + tmpc**2*Log((1. + Sqrt(1. + tmpc**2))/tmpc)))/Sqrt(1. + tmpc**(-2)) - 
+                  36.*tmpc**3*Log((1. + Sqrt(1. + tmpc**2))/tmpc)*(-2.*Sqrt(1. + tmpc**2) + tmpc**2*Log((1. + Sqrt(1. + tmpc**2))/tmpc)) - 
+                  (9.*tmpc**5*Log((1. + Sqrt(1. + tmpc**2))/tmpc)*(-3.*Sqrt(1. + tmpc**2) + 2.*(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc)))/
+                   (1. + tmpc**2) - (8.*(-2. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 
+                       2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
+                     (1. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                       3.*(tmpc**2 + tmpc**4)*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2))/(1/tmpc + tmpc)) - 
+               (24.*tmpc**2*tmpmu**3*(-6.*(-2. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 
+                        2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)**2*
+                     (1. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                       3.*(tmpc**2 + tmpc**4)*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2) - 
+                    2.*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                       9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
+                     (1. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                       3.*(tmpc**2 + tmpc**4)*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2) - 
+                    150.7964473723101*(1. + 4.*tmpc**2 + 3.*tmpc**4 - 2.*tmpc**2*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                       3.*(tmpc**4 + tmpc**6)*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2) + 
+                    9.*(2. - 1.*tmpc**2 - 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) + 
+                       2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) - 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
+                     (1. + 4.*tmpc**2 + 3.*tmpc**4 - 2.*tmpc**2*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                       3.*(tmpc**4 + tmpc**6)*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)))/(1. + tmpc**2))))/
+        (42.53889242173238*tmpmu**2*(2. - 1.*tmpc**2 + 2.*(1. + tmpc**2)**2*Log(tmpc**2/(1. + tmpc**2)) + 
+              2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) - 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
+            (4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+              9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2) + 
+           3.544907701811032*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+               9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)**2 + 
+           3.*tmpmu*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+              9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
+            (4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+              9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2 + 
+              (-2. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)**2) + 
+           12.*tmpmu**3*(3.*(2. - 1.*tmpc**2 - 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) + 
+                  2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) - 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)**3 - 
+              50.26548245743669*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                 9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2) + 
+              3.*(2. - 1.*tmpc**2 - 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) + 2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) - 
+                 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
+               (4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
+                 9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)))**2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

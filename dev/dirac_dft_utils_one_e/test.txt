@@ -1,6 +1,13 @@
-   (c34*kF*((z1 + tmp_c_2)*
-             (-z5*(z592 + z7*tmp_c_2*(z328 + z45*tmp_c_2*(-z6 + tmp_c_2))) - 
-               z504*(-z44 - z120*tmp_c_2 + z45*tmp_c_4)*tmp_mu_2 - z80640*(z2 + z3*tmp_c_2)*tmp_mu_4)
-              + z105*tmp_c_4*dsqrt(z1 + tmp_c_2)*
-             (z48 - z80*tmp_c_2 + z15*tmp_c_4 + z216*(-z2 + tmp_c_2)*tmp_mu_2 + z2304*tmp_mu_4)*
-             dlog((z1 + dsqrt(z1 + tmp_c_2))/tmp_c)))/((z1 + tmp_c_2)*tmp_mu_6)
+0.002687627869433291d0*kF_4*(-3.d0 + 7.089815403622064d0*tmp_mu)
+
+0.3183098861837907d0*kF*(-1.d0 + 1.772453850905516d0*tmp_mu)
+
+
+
+
+
+
+
+
+
+
