@@ -1,250 +1,430 @@
-(0.001473656880480512*kF*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-            9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*(4.*
-             (4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-               9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
-             (42.53889242173238*tmpmu**2*(2. - 1.*tmpc**2 + 2.*(1. + tmpc**2)**2*Log(tmpc**2/(1. + tmpc**2)) + 
-                  2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) - 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
-                (4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                  9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2) + 
-               3.544907701811032*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                   9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)**2 + 
-               3.*tmpmu*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                  9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
-                (4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                  9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2 + 
-                  (-2. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                     3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)**2) + 
-               12.*tmpmu**3*(3.*(2. - 1.*tmpc**2 - 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) + 
-                      2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) - 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)**3 - 
-                  50.26548245743669*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                     9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2) + 
-                  3.*(2. - 1.*tmpc**2 - 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) + 
-                     2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) - 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
-                   (4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                     9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)))*
-             (31.90416931629929*(-2. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 
-                  2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2) - 
-               (9.*tmpmu*(-3.*(-2. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 
-                        2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)**3 - 
-                    50.26548245743669*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                       9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2) - 
-                    3.*(-2. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 
-                       2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
-                     (4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                       9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)))/
-                (4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                  9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)) - 
-            (36.*tmpc*(1. + 4.*tmpc**2 + 3.*tmpc**4 - 2.*tmpc**2*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                 3.*(tmpc**4 + tmpc**6)*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
-               (42.53889242173238*tmpmu**2*(2. - 1.*tmpc**2 + 2.*(1. + tmpc**2)**2*Log(tmpc**2/(1. + tmpc**2)) + 
-                    2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) - 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
-                  (4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                    9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2) + 
-                 3.544907701811032*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                     9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)**2 + 
-                 3.*tmpmu*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                    9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
-                  (4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                    9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2 + 
-                    (-2. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                       3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)**2) + 
-                 12.*tmpmu**3*(3.*(2. - 1.*tmpc**2 - 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) + 
-                        2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) - 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)**3 - 
-                    50.26548245743669*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                       9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2) + 
-                    3.*(2. - 1.*tmpc**2 - 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) + 
-                       2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) - 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
-                     (4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                       9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)))*
-               (31.90416931629929*(-2. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 
-                    2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2) - 
-                 (9.*tmpmu*(-3.*(-2. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 
-                          2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)**3\
-                       - 50.26548245743669*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                         9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2) - 
-                      3.*(-2. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 
-                         2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
-                       (4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                         9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)))/
-                  (4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                    9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)))/(1/tmpc + tmpc) + 
-            9.*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-               9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
-             (42.53889242173238*tmpmu**2*(2. - 1.*tmpc**2 + 2.*(1. + tmpc**2)**2*Log(tmpc**2/(1. + tmpc**2)) + 
-                  2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) - 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
-                (4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                  9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2) + 
-               3.544907701811032*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                   9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)**2 + 
-               3.*tmpmu*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                  9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
-                (4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                  9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2 + 
-                  (-2. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                     3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)**2) + 
-               12.*tmpmu**3*(3.*(2. - 1.*tmpc**2 - 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) + 
-                      2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) - 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)**3 - 
-                  50.26548245743669*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                     9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2) + 
-                  3.*(2. - 1.*tmpc**2 - 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) + 
-                     2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) - 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
-                   (4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                     9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)))*
-             ((-14.17963080724413*tmpc*(1. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 
-                    2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 3.*(tmpc**2 + tmpc**4)*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2
-                    ))/(1/tmpc + tmpc) + (tmpmu*(-3.*(-2. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 
-                        2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)**3 - 
-                    50.26548245743669*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                       9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2) - 
-                    3.*(-2. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 
-                       2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
-                     (4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                       9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)))/
-                (4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                  9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2) - 
-               (18.*tmpc**2*tmpmu*(1. + 4.*tmpc**2 + 3.*tmpc**4 - 2.*tmpc**2*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                    3.*(tmpc**4 + tmpc**6)*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
-                  (-3.*(-2. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 
-                        2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)**3 - 
-                    50.26548245743669*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                       9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2) - 
-                    3.*(-2. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 
-                       2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
-                     (4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                       9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)))/
-                ((1. + tmpc**2)*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                     9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)**2) - 
-               (6.*tmpc**2*tmpmu*(6.*(-2. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 
-                        2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)**2*
-                     (1. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                       3.*(tmpc**2 + tmpc**4)*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2) + 
-                    2.*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                       9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
-                     (1. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                       3.*(tmpc**2 + tmpc**4)*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2) + 
-                    150.7964473723101*(1. + 4.*tmpc**2 + 3.*tmpc**4 - 2.*tmpc**2*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                       3.*(tmpc**4 + tmpc**6)*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2) - 
-                    9.*(2. - 1.*tmpc**2 - 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) + 
-                       2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) - 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
-                     (1. + 4.*tmpc**2 + 3.*tmpc**4 - 2.*tmpc**2*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                       3.*(tmpc**4 + tmpc**6)*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)))/
-                ((1. + tmpc**2)*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                    9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2))) - 
-            3.*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-               9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
-             (31.90416931629929*(-2. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 
-                  2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2) - 
-               (9.*tmpmu*(-3.*(-2. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 
-                        2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)**3 - 
-                    50.26548245743669*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                       9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2) - 
-                    3.*(-2. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 
-                       2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
-                     (4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                       9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)))/
-                (4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                  9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2))*
-             (-28.35926161448826*tmpmu**2*(2. - 1.*tmpc**2 + 2.*(1. + tmpc**2)**2*Log(tmpc**2/(1. + tmpc**2)) + 
-                  2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) - 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
-                (4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                  9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2) + 
-               (56.71852322897651*tmpc**2*tmpmu**2*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                    9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
-                  (1. + tmpc**2 - 2.*(1. + tmpc**2)**2*Log(tmpc**2/(1. + tmpc**2)) - 
-                    2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 3.*(tmpc**2 + tmpc**4)*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2
-                    ))/(1. + tmpc**2) - (255.2333545303943*tmpc*tmpmu**2*
-                  (2. - 1.*tmpc**2 + 2.*(1. + tmpc**2)**2*Log(tmpc**2/(1. + tmpc**2)) + 
-                    2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) - 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
-                  (1. + 4.*tmpc**2 + 3.*tmpc**4 - 2.*tmpc**2*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                    3.*(tmpc**4 + tmpc**6)*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2))/(1/tmpc + tmpc) - 
-               (42.53889242173238*tmpc*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                    9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
-                  (1. + 4.*tmpc**2 + 3.*tmpc**4 - 2.*tmpc**2*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                    3.*(tmpc**4 + tmpc**6)*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2))/(1/tmpc + tmpc) - 
-               1.*tmpmu*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                  9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
-                (4. + 9.*tmpc**2 + 9.*tmpc**4 + 9.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)*
-                   (-2.*Sqrt(1. + tmpc**2) + tmpc**2*Log((1. + Sqrt(1. + tmpc**2))/tmpc)) + 
-                  (-2. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                     3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)**2) - 
-               (18.*tmpc**2*tmpmu*(1. + 4.*tmpc**2 + 3.*tmpc**4 - 2.*tmpc**2*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                    3.*(tmpc**4 + tmpc**6)*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
-                  (4. + 9.*tmpc**2 + 9.*tmpc**4 + 9.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)*
-                     (-2.*Sqrt(1. + tmpc**2) + tmpc**2*Log((1. + Sqrt(1. + tmpc**2))/tmpc)) + 
-                    (-2. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                       3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)**2))/(1. + tmpc**2) + 
-               36.*tmpmu**3*((-2. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 
-                     2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)**3 + 
-                  16.75516081914556*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                     9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2) + 
-                  (-2. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                     3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
-                   (4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                     9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)) + 
-               tmpc*tmpmu*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                  9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
-                (-18.*tmpc - 36.*tmpc**3 + (9.*tmpc**2*(-2.*Sqrt(1. + tmpc**2) + tmpc**2*Log((1. + Sqrt(1. + tmpc**2))/tmpc)))/Sqrt(1. + tmpc**(-2)) - 
-                  36.*tmpc**3*Log((1. + Sqrt(1. + tmpc**2))/tmpc)*(-2.*Sqrt(1. + tmpc**2) + tmpc**2*Log((1. + Sqrt(1. + tmpc**2))/tmpc)) - 
-                  (9.*tmpc**5*Log((1. + Sqrt(1. + tmpc**2))/tmpc)*(-3.*Sqrt(1. + tmpc**2) + 2.*(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc)))/
-                   (1. + tmpc**2) - (8.*(-2. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 
-                       2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
-                     (1. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                       3.*(tmpc**2 + tmpc**4)*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2))/(1/tmpc + tmpc)) - 
-               (24.*tmpc**2*tmpmu**3*(-6.*(-2. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 
-                        2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)**2*
-                     (1. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                       3.*(tmpc**2 + tmpc**4)*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2) - 
-                    2.*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                       9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
-                     (1. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                       3.*(tmpc**2 + tmpc**4)*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2) - 
-                    150.7964473723101*(1. + 4.*tmpc**2 + 3.*tmpc**4 - 2.*tmpc**2*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                       3.*(tmpc**4 + tmpc**6)*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2) + 
-                    9.*(2. - 1.*tmpc**2 - 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) + 
-                       2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) - 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
-                     (1. + 4.*tmpc**2 + 3.*tmpc**4 - 2.*tmpc**2*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                       3.*(tmpc**4 + tmpc**6)*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)))/(1. + tmpc**2))))/
-        (42.53889242173238*tmpmu**2*(2. - 1.*tmpc**2 + 2.*(1. + tmpc**2)**2*Log(tmpc**2/(1. + tmpc**2)) + 
-              2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) - 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
-            (4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-              9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2) + 
-           3.544907701811032*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-               9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)**2 + 
-           3.*tmpmu*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-              9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
-            (4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-              9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2 + 
-              (-2. + tmpc**2 + 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) - 2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)**2) + 
-           12.*tmpmu**3*(3.*(2. - 1.*tmpc**2 - 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) + 
-                  2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) - 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)**3 - 
-              50.26548245743669*(4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                 9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2) + 
-              3.*(2. - 1.*tmpc**2 - 2.*(1. + tmpc**2)**2*Log(1. + tmpc**(-2)) + 2.*Sqrt(1. + tmpc**2)*(2. + 3.*tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) - 
-                 3.*tmpc**4*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)*
-               (4. + 9.*tmpc**2 + 9.*tmpc**4 - 18.*tmpc**4*Sqrt(1. + tmpc**2)*Log((1. + Sqrt(1. + tmpc**2))/tmpc) + 
-                 9.*tmpc**6*Log((1. + Sqrt(1. + tmpc**2))/tmpc)**2)))**2
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ (5.016210808718423e-8*((-176267.3384363221*kF*
+               (12.*(60.*tmpmu**4*(-25. - 313.*tmpmu**2 - 906.*tmpmu**4 + 984.*tmpmu**6) + 
+                     2.718281828459045**(1/tmpmu**2)*
+                      (163. - 120.*tmpmu**4*(-105. - 770.*tmpmu**2 - 945.*tmpmu**4 + 492.*tmpmu**6)) - 
+                     53.17361552716548*2.718281828459045**(1/tmpmu**2)*tmpmu**3*(50. + 756.*tmpmu**2 + 2625.*tmpmu**4)*
+                      Erf(1/tmpmu))**2 - 175.*(24.*tmpmu**4*(4. + 13.*tmpmu**2 - 27.*tmpmu**4) + 
+                    2.718281828459045**(1/tmpmu**2)*(-13. - 540.*tmpmu**4 - 960.*tmpmu**6 + 648.*tmpmu**8) + 
+                    21.26944621086619*2.718281828459045**(1/tmpmu**2)*tmpmu**3*(8. + 45.*tmpmu**2)*Erf(1/tmpmu))*
+                  (30.*tmpmu**4*(56. + 1466.*tmpmu**2 + 13533.*tmpmu**4 + 28704.*tmpmu**6 - 19680.*tmpmu**8) + 
+                    2.718281828459045**(1/tmpmu**2)*
+                     (-149. + 180.*tmpmu**4*(-105. - 1680.*tmpmu**2 - 8694.*tmpmu**4 - 8064.*tmpmu**6 + 
+                          3280.*tmpmu**8)) + 26.58680776358274*2.718281828459045**(1/tmpmu**2)*tmpmu**3*
+                     (112. + 45.*tmpmu**2*(72. + 672.*tmpmu**2 + 1715.*tmpmu**4))*Erf(1/tmpmu)) + 
+                 525.*tmpc**4*(7.*(24.*tmpmu**4*(4. + 13.*tmpmu**2 - 27.*tmpmu**4) + 
+                        2.718281828459045**(1/tmpmu**2)*(-13. - 540.*tmpmu**4 - 960.*tmpmu**6 + 648.*tmpmu**8) + 
+                        21.26944621086619*2.718281828459045**(1/tmpmu**2)*tmpmu**3*(8. + 45.*tmpmu**2)*Erf(1/tmpmu))**2
+                      - 8.*2.718281828459045**(1/tmpmu**2)*
+                     (1. + 6.*tmpmu**4*(3. - 2.*tmpmu**2 + (-1. + 2.*tmpmu**2)/2.718281828459045**(1./tmpmu**2)) - 
+                       10.6347231054331*tmpmu**3*Erf(1/tmpmu))*
+                     (60.*tmpmu**4*(-25. - 313.*tmpmu**2 - 906.*tmpmu**4 + 984.*tmpmu**6) + 
+                       2.718281828459045**(1/tmpmu**2)*
+                        (163. - 120.*tmpmu**4*(-105. - 770.*tmpmu**2 - 945.*tmpmu**4 + 492.*tmpmu**6)) - 
+                       53.17361552716548*2.718281828459045**(1/tmpmu**2)*tmpmu**3*
+                        (50. + 756.*tmpmu**2 + 2625.*tmpmu**4)*Erf(1/tmpmu))) - 
+                 70.*tmpc**2*(3.*(24.*tmpmu**4*(4. + 13.*tmpmu**2 - 27.*tmpmu**4) + 
+                       2.718281828459045**(1/tmpmu**2)*(-13. - 540.*tmpmu**4 - 960.*tmpmu**6 + 648.*tmpmu**8) + 
+                       21.26944621086619*2.718281828459045**(1/tmpmu**2)*tmpmu**3*(8. + 45.*tmpmu**2)*Erf(1/tmpmu))*
+                     (60.*tmpmu**4*(-25. - 313.*tmpmu**2 - 906.*tmpmu**4 + 984.*tmpmu**6) + 
+                       2.718281828459045**(1/tmpmu**2)*
+                        (163. - 120.*tmpmu**4*(-105. - 770.*tmpmu**2 - 945.*tmpmu**4 + 492.*tmpmu**6)) - 
+                       53.17361552716548*2.718281828459045**(1/tmpmu**2)*tmpmu**3*
+                        (50. + 756.*tmpmu**2 + 2625.*tmpmu**4)*Erf(1/tmpmu)) - 
+                    50.*2.718281828459045**(1/tmpmu**2)*
+                     (1. + 6.*tmpmu**4*(3. - 2.*tmpmu**2 + (-1. + 2.*tmpmu**2)/2.718281828459045**(1./tmpmu**2)) - 
+                       10.6347231054331*tmpmu**3*Erf(1/tmpmu))*
+                     (30.*tmpmu**4*(56. + 1466.*tmpmu**2 + 13533.*tmpmu**4 + 28704.*tmpmu**6 - 19680.*tmpmu**8) + 
+                       2.718281828459045**(1/tmpmu**2)*
+                        (-149. + 180.*tmpmu**4*(-105. - 1680.*tmpmu**2 - 8694.*tmpmu**4 - 8064.*tmpmu**6 + 
+                             3280.*tmpmu**8)) + 
+                       26.58680776358274*2.718281828459045**(1/tmpmu**2)*tmpmu**3*
+                        (112. + 45.*tmpmu**2*(72. + 672.*tmpmu**2 + 1715.*tmpmu**4))*Erf(1/tmpmu))))*
+               (4320.*tmpmu**10*(13600. + 1.706072e6*tmpmu**2 + 2.8534952e7*tmpmu**4 + 5.7391306e7*tmpmu**6 - 
+                    2.07750436e8*tmpmu**8 + 4.05588137e8*tmpmu**10 + 1.304278563e9*tmpmu**12 - 
+                    7.58674464e8*tmpmu**14 - 1.853448e7*tmpmu**16 + 
+                    420.*tmpc**4*(104. + 4582.*tmpmu**2 + 3726.*tmpmu**4 - 84355.*tmpmu**6 + 318724.*tmpmu**8 - 
+                       324246.*tmpmu**10 + 94740.*tmpmu**12) + 
+                    35.*tmpc**2*(1600. + 117904.*tmpmu**2 + 1.21908e6*tmpmu**4 - 2.001602e6*tmpmu**6 - 
+                       6.472181e6*tmpmu**8 + 4.6210218e7*tmpmu**10 - 4.4546664e7*tmpmu**12 + 1.102992e7*tmpmu**14)) + 
+                 180.*2.718281828459045**(1/tmpmu**2)*tmpmu**6*
+                  (-16.*(7620. + 589499.*tmpmu**2) + 
+                    tmpmu**4*(-2.02949448e8 + tmpmu**2*
+                        (-1.14715329e9 + tmpmu**2*
+                           (-7.121960687e9 + 12.*tmpmu**2*
+                              (-5.19410809e8 + 4.322121126e9*tmpmu**2 - 8.751055192e9*tmpmu**4 - 
+                                8.187831852e9*tmpmu**6 + 4.440839904e9*tmpmu**8 + 1.1120688e8*tmpmu**10)))) - 
+                    840.*tmpc**4*(392. + tmpmu**2*
+                        (13664. + tmpmu**2*(129211. + 
+                             2.*tmpmu**2*(91871. + 
+                                6.*tmpmu**2*(-32157. - 280292.*tmpmu**2 + 1.424544e6*tmpmu**4 - 1.256958e6*tmpmu**6 + 
+                                   284220.*tmpmu**8))))) - 
+                    84.*tmpc**2*(5168. + tmpmu**2*
+                        (280988. + tmpmu**2*(4.82065e6 + 
+                             tmpmu**2*(2.3184549e7 + 
+                                20.*tmpmu**2*(2.684689e6 + 
+                                   3.*tmpmu**2*(-3.853162e6 + 241153.*tmpmu**2 + 3.241087e7*tmpmu**4 - 
+                                      2.7788292e7*tmpmu**6 + 5.51496e6*tmpmu**8))))))) - 
+                 6.*2.718281828459045**(2./tmpmu**2)*tmpmu**2*
+                  (-161176. - 1050.*tmpc**4*(484. + 
+                       tmpmu**2*(6693. + 2.*tmpmu**2*
+                           (176359. + 12.*tmpmu**2*
+                              (174151. + tmpmu**2*
+                                 (136575. + 2.*tmpmu**2*
+                                    (382873. + 6.*tmpmu**2*
+                                       (-315101. - 271525.*tmpmu**2 + 2.177136e6*tmpmu**4 - 1.541178e6*tmpmu**6 + 
+                                         284220.*tmpmu**8))))))) - 
+                    70.*tmpc**2*(8744. + tmpmu**2*
+                        (121960. + tmpmu**2*(9.927611e6 + 
+                             6.*tmpmu**2*(3.4792175e7 + 
+                                tmpmu**2*(1.67872201e8 + 
+                                   4.*tmpmu**2*(8.4718337e7 + 
+                                      15.*tmpmu**2*
+                                       (8.631239e6 + 
+                                         3.*tmpmu**2*
+                                          (-2.971644e7 + 1.4760413e7*tmpmu**2 + 9.4463182e7*tmpmu**4 - 
+                                            6.6606504e7*tmpmu**6 + 1.102992e7*tmpmu**8)))))))) + 
+                    tmpmu**2*(-2.130534e6 + 5.*tmpmu**2*
+                        (-4.8151313e7 + tmpmu**2*
+                           (-1.331854738e9 + 3.*tmpmu**2*
+                              (-2.846479687e9 + 
+                                2.*tmpmu**2*(-4.629688747e9 + 
+                                   tmpmu**2*(-2.7950463725e10 + 
+                                      12.*tmpmu**2*
+                                       (2.502393951e9 + 
+                                         2.*tmpmu**2*
+                                          (5.939208622e9 - 9.448153699e9*tmpmu**2 - 4.219392723e9*tmpmu**4 + 
+                                            2.164816512e9*tmpmu**6 + 5.560344e7*tmpmu**8))))))))) - 
+                 1.*2.718281828459045**(3./tmpmu**2)*
+                  (584417. + 6300.*tmpc**4*(363. + 
+                       tmpmu**2*(726. + tmpmu**2*
+                           (77371. + 2.*tmpmu**2*
+                              (862357. + 12.*tmpmu**2*
+                                 (122181. + 4.*tmpmu**2*
+                                    (57485. + tmpmu**2*
+                                       (3583. + 
+                                         6.*tmpmu**2*
+                                          (-229669. - 85164.*tmpmu**2 + 535658.*tmpmu**4 - 304233.*tmpmu**6 + 
+                                            47370.*tmpmu**8)))))))) + 
+                    210.*tmpc**2*(11906. + tmpmu**2*
+                        (32185. + 2.*tmpmu**2*(1.796618e6 + 
+                             tmpmu**2*(6.5993831e7 + 
+                                12.*tmpmu**2*(4.0116891e7 + 
+                                   2.*tmpmu**2*(3.3802349e7 + 
+                                      4.*tmpmu**2*
+                                       (2.9278334e7 + 
+                                         15.*tmpmu**2*
+                                          (-3.419139e6 - 2.5322678e7*tmpmu**2 + 6.333055e6*tmpmu**4 + 
+                                            3.3783636e7*tmpmu**6 - 1.9409106e7*tmpmu**8 + 2.75748e6*tmpmu**10))))))))\
+                     + tmpmu**2*(2.035001e6 - 24.*tmpmu**2*
+                        (-9.449101e6 + 5.*tmpmu**2*
+                           (-9.0936608e7 + tmpmu**2*
+                              (-9.00714773e8 + 3.*tmpmu**2*
+                                 (-8.35070569e8 + 
+                                   24.*tmpmu**2*
+                                    (-1.74924872e8 + 
+                                      tmpmu**2*(-4.85635668e8 + 
+                                         tmpmu**2*
+                                          (1.838107009e9 + 
+                                            tmpmu**2*
+                                             (2.661083593e9 + 
+                                              8.*tmpmu**2*
+                                              (-3.43546795e8 - 8.935971e7*tmpmu**2 + 4.3941939e7*tmpmu**4 + 
+                                              1.158405e6*tmpmu**6))))))))))) + 
+                 5.317361552716548*2.718281828459045**(1/tmpmu**2)*tmpmu*Erf(1/tmpmu)*
+                  (2160.*tmpmu**8*(27200. + 3.436944e6*tmpmu**2 + 
+                       tmpmu**4*(5.9485936e7 + 1.64924132e8*tmpmu**2 - 3.87808028e8*tmpmu**4 - 3.4035404e7*tmpmu**6 + 
+                          2.530904115e9*tmpmu**8 - 6.89047145e8*tmpmu**10) - 
+                       420.*tmpc**4*(-208. - 9348.*tmpmu**2 - 13376.*tmpmu**4 + 160330.*tmpmu**6 - 419415.*tmpmu**8 + 
+                          215492.*tmpmu**10) - 35.*tmpc**2*
+                        (-3200. - 238688.*tmpmu**2 - 2.593952e6*tmpmu**4 + 2.116336e6*tmpmu**6 + 
+                          1.8574112e7*tmpmu**8 - 6.7310355e7*tmpmu**10 + 3.1450102e7*tmpmu**12)) + 
+                    30.*2.718281828459045**(1/tmpmu**2)*tmpmu**4*
+                     (-487680. + 840.*tmpc**4*(-1568. + 
+                          tmpmu**2*(-56136. + tmpmu**2*
+                              (-549634. + 9.*tmpmu**2*
+                                 (-114337. + 73108.*tmpmu**2 + 2.199848e6*tmpmu**4 - 5.079256e6*tmpmu**6 + 
+                                   1.723936e6*tmpmu**8)))) + 
+                       tmpmu**2*(-3.8230496e7 + 
+                          tmpmu**2*(-8.33569312e8 + 
+                             tmpmu**2*(-5.029510172e9 + 
+                                3.*tmpmu**2*(-1.0783285216e10 + 
+                                   3.*tmpmu**2*(-5.295192793e9 + 2.9560295084e10*tmpmu**2 - 7.160940136e9*tmpmu**4 - 
+                                      5.151922016e10*tmpmu**6 + 1.102475432e10*tmpmu**8))))) + 
+                       84.*tmpc**2*(-20672. + tmpmu**2*
+                           (-1.144328e6 + tmpmu**2*
+                              (-1.9941696e7 + tmpmu**2*
+                                 (-1.03283384e8 + 
+                                   5.*tmpmu**2*(-5.7403003e7 + 
+                                      4.*tmpmu**2*
+                                       (4.1051518e7 + 8.7309294e7*tmpmu**2 - 2.96281371e8*tmpmu**4 + 
+                                         9.4350306e7*tmpmu**6)))))) + 
+                       127.6166772651972*tmpmu**3*
+                        (27200. + 3.461744e6*tmpmu**2 + 6.1919968e7*tmpmu**4 + 2.16617448e8*tmpmu**6 - 
+                          3.249299e8*tmpmu**8 - 9.09549095e8*tmpmu**10 + 1.678510925e9*tmpmu**12 + 
+                          420.*tmpc**4*(208. + 9532.*tmpmu**2 + 19432.*tmpmu**4 - 148397.*tmpmu**6 + 
+                             206255.*tmpmu**8) + 
+                          70.*tmpc**2*(1600. + 120784.*tmpmu**2 + 1.375912e6*tmpmu**4 - 66954.*tmpmu**6 - 
+                             1.1481791e7*tmpmu**8 + 1.8126605e7*tmpmu**10))*Erf(1/tmpmu)) + 
+                    2.718281828459045**(2./tmpmu**2)*
+                     (322352. - 2100.*tmpc**4*(-484. + 
+                          tmpmu**2*(-6935. + 6.*tmpmu**2*
+                              (-60378. + tmpmu**2*
+                                 (-734209. + 2.*tmpmu**2*
+                                    (-451456. + 
+                                      9.*tmpmu**2*
+                                       (-207729. + 887064.*tmpmu**2 + 2.420496e6*tmpmu**4 - 3.401596e6*tmpmu**6 + 
+                                         861968.*tmpmu**8)))))) - 
+                       70.*tmpc**2*(-17488. + tmpmu**2*
+                           (-252664. + 3.*tmpmu**2*
+                              (-6.739917e6 + 2.*tmpmu**2*
+                                 (-7.1704624e7 + 
+                                   tmpmu**2*(-3.71974837e8 + 
+                                      3.*tmpmu**2*
+                                       (-2.93982813e8 + 
+                                         20.*tmpmu**2*
+                                          (-2.7297085e7 + 2.14511177e8*tmpmu**2 + 2.13246558e8*tmpmu**4 - 
+                                            3.90631677e8*tmpmu**6 + 9.4350306e7*tmpmu**8))))))) + 
+                       tmpmu**2*(4.422244e6 + 5.*tmpmu**2*
+                           (9.763766e7 - 3.*tmpmu**2*
+                              (-9.08401907e8 + 3.*tmpmu**2*
+                                 (-2.052668356e9 + 
+                                   tmpmu**2*(-7.326673971e9 + 
+                                      2.*tmpmu**2*
+                                       (-2.1723419441e10 + 
+                                         3.*tmpmu**2*
+                                          (4.296097885e9 + 5.441057038e10*tmpmu**2 - 1.920846208e9*tmpmu**4 - 
+                                            3.127198724e10*tmpmu**6 + 5.51237716e9*tmpmu**8))))))) - 
+                       212.6944621086619*tmpmu**3*
+                        (60960. + 4.841632e6*tmpmu**2 + 
+                          420.*tmpc**4*(392. + 14404.*tmpmu**2 + 145878.*tmpmu**4 + 335382.*tmpmu**6 + 
+                             95517.*tmpmu**8 - 6.383736e6*tmpmu**10 + 3.71259e6*tmpmu**12) + 
+                          42.*tmpc**2*(5168. + tmpmu**2*
+                              (291176. + 5.*tmpmu**2*
+                                 (1.0308e6 + 5.709832e6*tmpmu**2 + 1.8243958e7*tmpmu**4 - 3.3471963e7*tmpmu**6 - 
+                                   1.77650376e8*tmpmu**8 + 1.0875963e8*tmpmu**10))) + 
+                          tmpmu**4*(1.06965184e8 + 
+                             3.*tmpmu**2*(2.28437e8 + 
+                                tmpmu**2*(1.51864306e9 + 
+                                   tmpmu**2*(3.044150278e9 + 
+                                      15.*tmpmu**2*(-8.64890837e8 + 182.*tmpmu**2*(-5.688044e6 + 3.689035e6*tmpmu**2)))
+                                   ))))*Erf(1/tmpmu) - 
+                       2261.946710584651*tmpmu**6*
+                        (-320.*(85. + 350.*tmpc**2 + 273.*tmpc**4) - 
+                          16.*(217909. + 534730.*tmpc**2 + 255045.*tmpc**4)*tmpmu**2 - 
+                          560.*(114950. + 21.*tmpc**2*(8666. + 915.*tmpc**2))*tmpmu**4 + 
+                          8820.*(-30598. - 7720.*tmpc**2 + 6325.*tmpc**4)*tmpmu**6 + 
+                          2.0727e6*(109. + 440.*tmpc**2)*tmpmu**8 + 1.793050875e9*tmpmu**10)*Erf(1/tmpmu)**2))))/
+             (2.718281828459045**(1./tmpmu**2)*tmpmu**2) - 
+            (44066.83460908053*kF*tmpc**4*(7.*(24.*tmpmu**4*(4. + 13.*tmpmu**2 - 27.*tmpmu**4) + 
+                     2.718281828459045**(1/tmpmu**2)*(-13. - 540.*tmpmu**4 - 960.*tmpmu**6 + 648.*tmpmu**8) + 
+                     21.26944621086619*2.718281828459045**(1/tmpmu**2)*tmpmu**3*(8. + 45.*tmpmu**2)*Erf(1/tmpmu))**2 - 
+                 8.*2.718281828459045**(1/tmpmu**2)*
+                  (1. + 6.*tmpmu**4*(3. - 2.*tmpmu**2 + (-1. + 2.*tmpmu**2)/2.718281828459045**(1./tmpmu**2)) - 
+                    10.6347231054331*tmpmu**3*Erf(1/tmpmu))*
+                  (60.*tmpmu**4*(-25. - 313.*tmpmu**2 - 906.*tmpmu**4 + 984.*tmpmu**6) + 
+                    2.718281828459045**(1/tmpmu**2)*
+                     (163. - 120.*tmpmu**4*(-105. - 770.*tmpmu**2 - 945.*tmpmu**4 + 492.*tmpmu**6)) - 
+                    53.17361552716548*2.718281828459045**(1/tmpmu**2)*tmpmu**3*(50. + 756.*tmpmu**2 + 2625.*tmpmu**4)*
+                     Erf(1/tmpmu)))*(3600.*tmpmu**8*
+                  (-40.*(34. + 4283.*tmpmu**2) + 
+                    84.*tmpc**4*(-52. - 2278.*tmpmu**2 - 1241.*tmpmu**4 + 46744.*tmpmu**6 - 163188.*tmpmu**8 + 
+                       94740.*tmpmu**10) + 7.*tmpc**2*
+                     (-800. - 59064.*tmpmu**2 - 607806.*tmpmu**4 + 1.238083e6*tmpmu**6 + 4.233018e6*tmpmu**8 - 
+                       2.6642736e7*tmpmu**10 + 1.330368e7*tmpmu**12) + 
+                    tmpmu**4*(-2.929678e6 + 3.*tmpmu**2*
+                        (-2.134269e6 + 9.680447e6*tmpmu**2 - 1.2378083e7*tmpmu**4 - 8.8101504e7*tmpmu**6 + 
+                          4.652352e7*tmpmu**8))) - 
+                 90.*2.718281828459045**(1/tmpmu**2)*tmpmu**4*
+                  (-8.*(2540. + 193693.*tmpmu**2) + 
+                    280.*tmpc**4*(-196. + tmpmu**2*
+                        (-6315. + 2.*tmpmu**2*(-20497. + 
+                             6.*tmpmu**2*(132. - 2573.*tmpmu**2 + 190244.*tmpmu**4 - 515856.*tmpmu**6 + 
+                                189480.*tmpmu**8)))) + 
+                    tmpmu**4*(-3.0203038e7 + tmpmu**2*
+                        (-1.12404623e8 + 20.*tmpmu**2*
+                           (-3.5057434e7 + 3.*tmpmu**2*
+                              (-1.8630495e7 + 1.65465892e8*tmpmu**2 - 7.9315526e7*tmpmu**4 - 5.38500096e8*tmpmu**6 + 
+                                1.8609408e8*tmpmu**8)))) + 
+                    28.*tmpc**2*(-2584. + tmpmu**2*
+                        (-135348. + tmpmu**2*(-1.969613e6 + 
+                             5.*tmpmu**2*(-1.059055e6 + 
+                                2.*tmpmu**2*(-1.660448e6 + 8.864969e6*tmpmu**2 + 1.6220058e7*tmpmu**4 - 
+                                   7.9892832e7*tmpmu**6 + 2.660736e7*tmpmu**8)))))) + 
+                 4.*2.718281828459045**(2./tmpmu**2)*
+                  (-20147. + 240.*tmpmu**4*(-32445. + 
+                       tmpmu**2*(-1.432235e6 + 6.*tmpmu**2*
+                           (-1.703695e6 + 2.*tmpmu**2*
+                              (-479931. + 5.*tmpmu**2*
+                                 (-2.784577e6 + 3.000585e6*tmpmu**2 + 3.3010425e7*tmpmu**4 + 3.60822e6*tmpmu**6 - 
+                                   3.3965352e7*tmpmu**8 + 8.72316e6*tmpmu**10))))) + 
+                    525.*tmpc**4*(-121. + tmpmu**2*
+                        (121. + 24.*tmpmu**2*(-1083. + 
+                             2.*tmpmu**2*(-10351. + 
+                                tmpmu**2*(11953. + 
+                                   12.*tmpmu**2*
+                                    (-3422. + 16275.*tmpmu**2 + 59560.*tmpmu**4 - 88167.*tmpmu**6 + 23685.*tmpmu**8))))
+                          )) + 35.*tmpc**2*(-2186. + 
+                       tmpmu**2*(1093. + 24.*tmpmu**2*
+                           (-26970. + tmpmu**2*(-872675. + 
+                                4.*tmpmu**2*(-1.017149e6 + 
+                                   15.*tmpmu**2*
+                                    (37671. - 448576.*tmpmu**2 + 3.31445e6*tmpmu**4 + 3.16134e6*tmpmu**6 - 
+                                      6.656262e6*tmpmu**8 + 1.66296e6*tmpmu**10))))))) + 
+                 79.76042329074822*2.718281828459045**(1/tmpmu**2)*tmpmu**3*Erf(1/tmpmu)*
+                  (40.*tmpmu**4*(-160.*(34. + 4321.*tmpmu**2) - 
+                       84.*tmpc**4*(208. + 9336.*tmpmu**2 + 11426.*tmpmu**4 - 180045.*tmpmu**6 + 324360.*tmpmu**8) - 
+                       3.*tmpmu**4*(4.091644e6 + 1.2674668e7*tmpmu**2 - 3.8216237e7*tmpmu**4 - 6.3015855e7*tmpmu**6 + 
+                          2.37628125e8*tmpmu**8) - 
+                       7.*tmpc**2*(3200. + 239776.*tmpmu**2 + 2.605652e6*tmpmu**4 - 2.760948e6*tmpmu**6 - 
+                          2.6320425e7*tmpmu**8 + 5.883513e7*tmpmu**10)) + 
+                    2.718281828459045**(1/tmpmu**2)*
+                     (40640. + 280.*tmpc**4*(392. + 13174.*tmpmu**2 + 89655.*tmpmu**4 + 31770.*tmpmu**6 + 
+                          186612.*tmpmu**8 - 6.05286e6*tmpmu**10 + 3.89232e6*tmpmu**12) + 
+                       28.*tmpc**2*(5168. + 5.*tmpmu**2*
+                           (55660. + 821754.*tmpmu**2 + 2.515625e6*tmpmu**4 + 8.546585e6*tmpmu**6 - 
+                             3.0755916e7*tmpmu**8 - 1.7031111e8*tmpmu**10 + 1.1767026e8*tmpmu**12)) + 
+                       tmpmu**2*(3.162528e6 + 5.*tmpmu**2*
+                           (1.2473748e7 + tmpmu**2*
+                              (5.126422e7 + 3.*tmpmu**2*
+                                 (1.07186415e8 + 
+                                   4.*tmpmu**2*(6.289758e7 - 4.38217639e8*tmpmu**2 - 6.0128796e8*tmpmu**4 + 
+                                      4.7525625e8*tmpmu**6))))) + 
+                       70.89815403622064*tmpmu**3*
+                        (-32.*(85. + 350.*tmpc**2 + 273.*tmpc**4) - 
+                          16.*(21795. + 53221.*tmpc**2 + 25095.*tmpc**4)*tmpmu**2 - 
+                          504.*(12734. + 19325.*tmpc**2 + 1505.*tmpc**4)*tmpmu**4 + 
+                          1260.*(-20166. + 1267.*tmpc**2 + 5635.*tmpc**4)*tmpmu**6 + 
+                          110250.*(471. + 1085.*tmpc**2)*tmpmu**8 + 2.72041875e8*tmpmu**10)*Erf(1/tmpmu))))*
+               (6300.*(-3. + 2.*tmpmu**2*(-3. + tmpmu**2 - (1.*(-2. + tmpmu**2))/2.718281828459045**(1./tmpmu**2)) + 
+                    7.089815403622064*tmpmu*Erf(1/tmpmu)) + 
+                 (2100.*(1. + (18. - 6./2.718281828459045**(1./tmpmu**2))*tmpmu**4 + 
+                      12.*(-1. + 2.718281828459045**(-1./tmpmu**2))*tmpmu**6 - 
+                      10.6347231054331*tmpmu**3*Erf(1/tmpmu) - 
+                      (0.4*(-2.*tmpmu**2*(-2. + tmpmu**2) + 
+                           2.718281828459045**(1/tmpmu**2)*
+                            (-3. - 6.*tmpmu**2 + 2.*tmpmu**4 + 7.089815403622064*tmpmu*Erf(1/tmpmu)))*
+                         (-3.*(24.*tmpmu**4*(4. + 13.*tmpmu**2 - 27.*tmpmu**4) + 
+                              2.718281828459045**(1/tmpmu**2)*(-13. - 540.*tmpmu**4 - 960.*tmpmu**6 + 648.*tmpmu**8) + 
+                              21.26944621086619*2.718281828459045**(1/tmpmu**2)*tmpmu**3*(8. + 45.*tmpmu**2)*
+                               Erf(1/tmpmu))*(-60.*tmpmu**4*(-25. - 313.*tmpmu**2 - 906.*tmpmu**4 + 984.*tmpmu**6) + 
+                              2.718281828459045**(1/tmpmu**2)*
+                               (-163. + 120.*tmpmu**4*(-105. - 770.*tmpmu**2 - 945.*tmpmu**4 + 492.*tmpmu**6)) + 
+                              53.17361552716548*2.718281828459045**(1/tmpmu**2)*tmpmu**3*
+                               (50. + 756.*tmpmu**2 + 2625.*tmpmu**4)*Erf(1/tmpmu)) - 
+                           50.*2.718281828459045**(1/tmpmu**2)*
+                            (1. + 6.*tmpmu**4*(3. - 2.*tmpmu**2 + 
+                                 (-1. + 2.*tmpmu**2)/2.718281828459045**(1./tmpmu**2)) - 
+                              10.6347231054331*tmpmu**3*Erf(1/tmpmu))*
+                            (30.*tmpmu**4*(56. + 1466.*tmpmu**2 + 13533.*tmpmu**4 + 28704.*tmpmu**6 - 
+                                 19680.*tmpmu**8) + 
+                              2.718281828459045**(1/tmpmu**2)*
+                               (-149. + 180.*tmpmu**4*
+                                  (-105. - 1680.*tmpmu**2 - 8694.*tmpmu**4 - 8064.*tmpmu**6 + 3280.*tmpmu**8)) + 
+                              26.58680776358274*2.718281828459045**(1/tmpmu**2)*tmpmu**3*
+                               (112. + 45.*tmpmu**2*(72. + 672.*tmpmu**2 + 1715.*tmpmu**4))*Erf(1/tmpmu))))/
+                       (2.718281828459045**(1./tmpmu**2)*
+                         (7.*(24.*tmpmu**4*(4. + 13.*tmpmu**2 - 27.*tmpmu**4) + 
+                               2.718281828459045**(1/tmpmu**2)*
+                                (-13. - 540.*tmpmu**4 - 960.*tmpmu**6 + 648.*tmpmu**8) + 
+                               21.26944621086619*2.718281828459045**(1/tmpmu**2)*tmpmu**3*(8. + 45.*tmpmu**2)*
+                                Erf(1/tmpmu))**2 + 
+                           8.*2.718281828459045**(1/tmpmu**2)*
+                            (1. + 6.*tmpmu**4*(3. - 2.*tmpmu**2 + 
+                                 (-1. + 2.*tmpmu**2)/2.718281828459045**(1./tmpmu**2)) - 
+                              10.6347231054331*tmpmu**3*Erf(1/tmpmu))*
+                            (-60.*tmpmu**4*(-25. - 313.*tmpmu**2 - 906.*tmpmu**4 + 984.*tmpmu**6) + 
+                              2.718281828459045**(1/tmpmu**2)*
+                               (-163. + 120.*tmpmu**4*(-105. - 770.*tmpmu**2 - 945.*tmpmu**4 + 492.*tmpmu**6)) + 
+                              53.17361552716548*2.718281828459045**(1/tmpmu**2)*tmpmu**3*
+                               (50. + 756.*tmpmu**2 + 2625.*tmpmu**4)*Erf(1/tmpmu))))))/tmpc**2 + 
+                 (735.*(24.*tmpmu**4*(4. + 13.*tmpmu**2 - 27.*tmpmu**4) + 
+                        2.718281828459045**(1/tmpmu**2)*(-13. - 540.*tmpmu**4 - 960.*tmpmu**6 + 648.*tmpmu**8) + 
+                        21.26944621086619*2.718281828459045**(1/tmpmu**2)*tmpmu**3*(8. + 45.*tmpmu**2)*Erf(1/tmpmu))**3
+                      + 14000.*2.718281828459045**(2./tmpmu**2)*
+                     (1. + 6.*tmpmu**4*(3. - 2.*tmpmu**2 + (-1. + 2.*tmpmu**2)/2.718281828459045**(1./tmpmu**2)) - 
+                        10.6347231054331*tmpmu**3*Erf(1/tmpmu))**2*
+                     (30.*tmpmu**4*(56. + 1466.*tmpmu**2 + 13533.*tmpmu**4 + 28704.*tmpmu**6 - 19680.*tmpmu**8) + 
+                       2.718281828459045**(1/tmpmu**2)*
+                        (-149. + 180.*tmpmu**4*(-105. - 1680.*tmpmu**2 - 8694.*tmpmu**4 - 8064.*tmpmu**6 + 
+                             3280.*tmpmu**8)) + 
+                       26.58680776358274*2.718281828459045**(1/tmpmu**2)*tmpmu**3*
+                        (112. + 45.*tmpmu**2*(72. + 672.*tmpmu**2 + 1715.*tmpmu**4))*Erf(1/tmpmu)) + 
+                    144.*(-60.*tmpmu**4*(-25. - 313.*tmpmu**2 - 906.*tmpmu**4 + 984.*tmpmu**6) + 
+                        2.718281828459045**(1/tmpmu**2)*
+                         (-163. + 120.*tmpmu**4*(-105. - 770.*tmpmu**2 - 945.*tmpmu**4 + 492.*tmpmu**6)) + 
+                        53.17361552716548*2.718281828459045**(1/tmpmu**2)*tmpmu**3*
+                         (50. + 756.*tmpmu**2 + 2625.*tmpmu**4)*Erf(1/tmpmu))**2*
+                     (-2.*tmpmu**2*(-2. + tmpmu**2) + 
+                       2.718281828459045**(1/tmpmu**2)*
+                        (-3. - 6.*tmpmu**2 + 2.*tmpmu**4 + 7.089815403622064*tmpmu*Erf(1/tmpmu))) - 
+                    420.*(24.*tmpmu**4*(4. + 13.*tmpmu**2 - 27.*tmpmu**4) + 
+                       2.718281828459045**(1/tmpmu**2)*(-13. - 540.*tmpmu**4 - 960.*tmpmu**6 + 648.*tmpmu**8) + 
+                       21.26944621086619*2.718281828459045**(1/tmpmu**2)*tmpmu**3*(8. + 45.*tmpmu**2)*Erf(1/tmpmu))*
+                     (4.*2.718281828459045**(1/tmpmu**2)*
+                        (1. + 6.*tmpmu**4*(3. - 2.*tmpmu**2 + (-1. + 2.*tmpmu**2)/2.718281828459045**(1./tmpmu**2)) - 
+                          10.6347231054331*tmpmu**3*Erf(1/tmpmu))*
+                        (60.*tmpmu**4*(-25. - 313.*tmpmu**2 - 906.*tmpmu**4 + 984.*tmpmu**6) + 
+                          2.718281828459045**(1/tmpmu**2)*
+                           (163. - 120.*tmpmu**4*(-105. - 770.*tmpmu**2 - 945.*tmpmu**4 + 492.*tmpmu**6)) - 
+                          53.17361552716548*2.718281828459045**(1/tmpmu**2)*tmpmu**3*
+                           (50. + 756.*tmpmu**2 + 2625.*tmpmu**4)*Erf(1/tmpmu)) - 
+                       5.*(30.*tmpmu**4*(56. + 1466.*tmpmu**2 + 13533.*tmpmu**4 + 28704.*tmpmu**6 - 19680.*tmpmu**8) + 
+                          2.718281828459045**(1/tmpmu**2)*
+                           (-149. + 180.*tmpmu**4*
+                              (-105. - 1680.*tmpmu**2 - 8694.*tmpmu**4 - 8064.*tmpmu**6 + 3280.*tmpmu**8)) + 
+                          26.58680776358274*2.718281828459045**(1/tmpmu**2)*tmpmu**3*
+                           (112. + 45.*tmpmu**2*(72. + 672.*tmpmu**2 + 1715.*tmpmu**4))*Erf(1/tmpmu))*
+                        (2.*tmpmu**2*(-2. + tmpmu**2) + 
+                          2.718281828459045**(1/tmpmu**2)*
+                           (3. + 6.*tmpmu**2 - 2.*tmpmu**4 - 7.089815403622064*tmpmu*Erf(1/tmpmu)))))/
+                  (2.718281828459045**(1./tmpmu**2)*tmpc**4*
+                    (7.*(24.*tmpmu**4*(4. + 13.*tmpmu**2 - 27.*tmpmu**4) + 
+                          2.718281828459045**(1/tmpmu**2)*(-13. - 540.*tmpmu**4 - 960.*tmpmu**6 + 648.*tmpmu**8) + 
+                          21.26944621086619*2.718281828459045**(1/tmpmu**2)*tmpmu**3*(8. + 45.*tmpmu**2)*Erf(1/tmpmu))\
+                         **2 + 8.*2.718281828459045**(1/tmpmu**2)*
+                       (1. + 6.*tmpmu**4*(3. - 2.*tmpmu**2 + (-1. + 2.*tmpmu**2)/2.718281828459045**(1./tmpmu**2)) - 
+                         10.6347231054331*tmpmu**3*Erf(1/tmpmu))*
+                       (-60.*tmpmu**4*(-25. - 313.*tmpmu**2 - 906.*tmpmu**4 + 984.*tmpmu**6) + 
+                         2.718281828459045**(1/tmpmu**2)*
+                          (-163. + 120.*tmpmu**4*(-105. - 770.*tmpmu**2 - 945.*tmpmu**4 + 492.*tmpmu**6)) + 
+                         53.17361552716548*2.718281828459045**(1/tmpmu**2)*tmpmu**3*
+                          (50. + 756.*tmpmu**2 + 2625.*tmpmu**4)*Erf(1/tmpmu))))))/tmpmu**2))/
+        (12.*(60.*tmpmu**4*(-25. - 313.*tmpmu**2 - 906.*tmpmu**4 + 984.*tmpmu**6) + 
+               2.718281828459045**(1/tmpmu**2)*(163. - 
+                  120.*tmpmu**4*(-105. - 770.*tmpmu**2 - 945.*tmpmu**4 + 492.*tmpmu**6)) - 
+               53.17361552716548*2.718281828459045**(1/tmpmu**2)*tmpmu**3*(50. + 756.*tmpmu**2 + 2625.*tmpmu**4)*
+                Erf(1/tmpmu))**2 - 175.*(24.*tmpmu**4*(4. + 13.*tmpmu**2 - 27.*tmpmu**4) + 
+              2.718281828459045**(1/tmpmu**2)*(-13. - 540.*tmpmu**4 - 960.*tmpmu**6 + 648.*tmpmu**8) + 
+              21.26944621086619*2.718281828459045**(1/tmpmu**2)*tmpmu**3*(8. + 45.*tmpmu**2)*Erf(1/tmpmu))*
+            (30.*tmpmu**4*(56. + 1466.*tmpmu**2 + 13533.*tmpmu**4 + 28704.*tmpmu**6 - 19680.*tmpmu**8) + 
+              2.718281828459045**(1/tmpmu**2)*(-149. + 
+                 180.*tmpmu**4*(-105. - 1680.*tmpmu**2 - 8694.*tmpmu**4 - 8064.*tmpmu**6 + 3280.*tmpmu**8)) + 
+              26.58680776358274*2.718281828459045**(1/tmpmu**2)*tmpmu**3*
+               (112. + 45.*tmpmu**2*(72. + 672.*tmpmu**2 + 1715.*tmpmu**4))*Erf(1/tmpmu)) + 
+           525.*tmpc**4*(7.*(24.*tmpmu**4*(4. + 13.*tmpmu**2 - 27.*tmpmu**4) + 
+                  2.718281828459045**(1/tmpmu**2)*(-13. - 540.*tmpmu**4 - 960.*tmpmu**6 + 648.*tmpmu**8) + 
+                  21.26944621086619*2.718281828459045**(1/tmpmu**2)*tmpmu**3*(8. + 45.*tmpmu**2)*Erf(1/tmpmu))**2 - 
+              8.*2.718281828459045**(1/tmpmu**2)*
+               (1. + 6.*tmpmu**4*(3. - 2.*tmpmu**2 + (-1. + 2.*tmpmu**2)/2.718281828459045**(1./tmpmu**2)) - 
+                 10.6347231054331*tmpmu**3*Erf(1/tmpmu))*
+               (60.*tmpmu**4*(-25. - 313.*tmpmu**2 - 906.*tmpmu**4 + 984.*tmpmu**6) + 
+                 2.718281828459045**(1/tmpmu**2)*
+                  (163. - 120.*tmpmu**4*(-105. - 770.*tmpmu**2 - 945.*tmpmu**4 + 492.*tmpmu**6)) - 
+                 53.17361552716548*2.718281828459045**(1/tmpmu**2)*tmpmu**3*(50. + 756.*tmpmu**2 + 2625.*tmpmu**4)*
+                  Erf(1/tmpmu))) - 70.*tmpc**2*(3.*
+               (24.*tmpmu**4*(4. + 13.*tmpmu**2 - 27.*tmpmu**4) + 
+                 2.718281828459045**(1/tmpmu**2)*(-13. - 540.*tmpmu**4 - 960.*tmpmu**6 + 648.*tmpmu**8) + 
+                 21.26944621086619*2.718281828459045**(1/tmpmu**2)*tmpmu**3*(8. + 45.*tmpmu**2)*Erf(1/tmpmu))*
+               (60.*tmpmu**4*(-25. - 313.*tmpmu**2 - 906.*tmpmu**4 + 984.*tmpmu**6) + 
+                 2.718281828459045**(1/tmpmu**2)*
+                  (163. - 120.*tmpmu**4*(-105. - 770.*tmpmu**2 - 945.*tmpmu**4 + 492.*tmpmu**6)) - 
+                 53.17361552716548*2.718281828459045**(1/tmpmu**2)*tmpmu**3*(50. + 756.*tmpmu**2 + 2625.*tmpmu**4)*
+                  Erf(1/tmpmu)) - 50.*2.718281828459045**(1/tmpmu**2)*
+               (1. + 6.*tmpmu**4*(3. - 2.*tmpmu**2 + (-1. + 2.*tmpmu**2)/2.718281828459045**(1./tmpmu**2)) - 
+                 10.6347231054331*tmpmu**3*Erf(1/tmpmu))*
+               (30.*tmpmu**4*(56. + 1466.*tmpmu**2 + 13533.*tmpmu**4 + 28704.*tmpmu**6 - 19680.*tmpmu**8) + 
+                 2.718281828459045**(1/tmpmu**2)*
+                  (-149. + 180.*tmpmu**4*(-105. - 1680.*tmpmu**2 - 8694.*tmpmu**4 - 8064.*tmpmu**6 + 3280.*tmpmu**8))\
+                  + 26.58680776358274*2.718281828459045**(1/tmpmu**2)*tmpmu**3*
+                  (112. + 45.*tmpmu**2*(72. + 672.*tmpmu**2 + 1715.*tmpmu**4))*Erf(1/tmpmu))))**2
 
