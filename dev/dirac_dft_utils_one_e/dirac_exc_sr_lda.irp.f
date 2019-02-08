@@ -195,9 +195,9 @@
 
 
  ! Non-relativistic equations
-!if (tmp_c .gt. 500.d0) then
- if (tmp_c .gt. 1d+1) then
-!if (tmp_c .gt. 0.d0) then
+!if (tmp_c .gt. 1d+2) then
+ ! To test the non-relativistic fonctional with the relativistic DHF density
+ if (tmp_c .gt. 0.d0) then
 
   ! Linear/quadratic range-separation for very low values of tmp_mu
   if (tmp_mu .lt. 1.d-2) then
@@ -208,12 +208,6 @@
 
   !v_x = 0.3183098861837907d0*kF*(-1.d0 + 1.772453850905516d0*tmp_mu)
    v_x = 0.3183098861837907d0*kF*(-1.d0 + (1.772453850905516d0 - 1.d0*tmp_mu)*tmp_mu)
-  
-  !e_x = (-c1 + c2*tmp_mu)*(kF_4)
-  !e_x = (-c1 + c2bis*(c2ter - z3*tmp_mu)*tmp_mu)*(kF_4)
-
-  !v_x = (-c3 + c4*tmp_mu)*kF
-  !v_x = (-c3 + c3*(c7 - tmp_mu)*tmp_mu)*kF  
   
   ! Medium values of tmp_mu
   elseif (tmp_mu .le. 1.d+2) then
@@ -1076,10 +1070,10 @@
 
  
    else
-     print*, 'Exchange functional required does not exist ...'
-     print*,'dirac_exchange_functional',dirac_exchange_functional
-     stop
-    endif
+    print*, 'Exchange functional required does not exist ...'
+    print*,'dirac_exchange_functional',dirac_exchange_functional
+    stop
+   endif
 
    ! For very large values of tmp_mu
    elseif (tmp_mu .lt. 1.d+9) then
@@ -1121,10 +1115,168 @@
     e_x = 0.d0
     v_x = 0.d0 
    
-
-
- 
    endif 
+   ! For the Coulomb_Gaunt ee interaction
+  elseif (dirac_interaction == "Coulomb_Gaunt") then
+
+   ! quadratic range-separation for very low values of tmp_mu
+   if (tmp_mu .lt. 1.d-1) then
+
+    e_x = 0.002687627869433291d0*kF_4*(4.d0 + tmp_c_2 + 7.089815403622064d0*tmp_mu - 6.d0*tmp_mu_2 -            &                                     
+          2.d0*dsqrt(1.d0 + tmp_c_2)*(2.d0 + 9.d0*tmp_c_2)*dlog(dsqrt(1.d0 + tmp_c_m_2) + 1.d0/tmp_c) +         &   
+          9.d0*tmp_c_4*dlog(dsqrt(1.d0 + tmp_c_m_2) + 1.d0/tmp_c)**2 -                                          & 
+          4.d0*(1.d0 + 5.d0*tmp_c_2 + 4.d0*tmp_c_4)*dlog(tmp_c) +                                               & 
+          2.d0*(1.d0 + 5.d0*tmp_c_2 + 4.d0*tmp_c_4)*dlog(1.d0 + tmp_c_2))                                         
+                                                                                                                  
+    v_x = (0.1061032953945969d0*kF*((1.d0 + tmp_c_2)*(4.d0 + 3.d0*(1.772453850905516d0 - 1.d0*tmp_mu)*tmp_mu) - &  
+           2.d0*(2.d0 + 7.d0*tmp_c_2 + 5.d0*tmp_c_4)*dlog(tmp_c) +                                              & 
+           (2.d0 + 7.d0*tmp_c_2 + 5.d0*tmp_c_4)*dlog(1.d0 + tmp_c_2) +                                          & 
+           4.d0*dsqrt(1.d0 + tmp_c_2)*(1.d0 + 3.d0*tmp_c_2)*dlog(tmp_c/(1.d0 + dsqrt(1.d0 + tmp_c_2)))))/       & 
+           (1.d0 + tmp_c_2)
+
+   ! Medium values of tmp_mu
+   !elseif (tmp_mu .le. 1d+1) then
+   elseif (tmp_mu .le. 1.25d0) then
+    if (dirac_approximant == "dirac_pade_order_2") then
+     e_x = (0.00002559645589936467d0*kF_4*(105.d0*(-2.d0*tmp_mu_2*(-2.d0 + tmp_mu_2) +                                                  &  
+               dexp(z1/tmp_mu_2)*(-3.d0 - 6.d0*tmp_mu_2 + 2.d0*tmp_mu_4 + 7.089815403622064d0*tmp_mu*derf(z1/tmp_mu))) +                & 
+            (-7.d0*(6.d0*tmp_mu_2*(6.d0 + 17.d0*tmp_mu_2 - 28.d0*tmp_mu_4) +                                                            & 
+                   dexp(z1/tmp_mu_2)*(-35.d0 - 90.d0*tmp_mu_2 - 270.d0*tmp_mu_4 + 168.d0*tmp_mu_6) +                                    & 
+                   21.26944621086619d0*dexp(z1/tmp_mu_2)*tmp_mu*(3.d0 + 10.d0*tmp_mu_2)*derf(z1/tmp_mu))**2 +                           & 
+               15.d0*(6.d0*tmp_mu_2*(30.d0 + 167.d0*tmp_mu_2 + 404.d0*tmp_mu_4 - 576.d0*tmp_mu_6) +                                     & 
+                  dexp(z1/tmp_mu_2)*(-161.d0 + 6.d0*tmp_mu_2*(-105.d0 - 735.d0*tmp_mu_2 - 980.d0*tmp_mu_4 + 576.d0*tmp_mu_6)) +         & 
+                  21.26944621086619d0*dexp(z1/tmp_mu_2)*tmp_mu*(15.d0 + 91.d0*tmp_mu_2 + 315.d0*tmp_mu_4)*derf(z1/tmp_mu))*             & 
+                (-2.d0*tmp_mu_2*(-2.d0 + tmp_mu_2) + dexp(z1/tmp_mu_2)*                                                                 & 
+                   (-3.d0 - 6.d0*tmp_mu_2 + 2.d0*tmp_mu_4 + 7.089815403622064d0*tmp_mu*derf(z1/tmp_mu))))/                              & 
+             (tmp_c_2*(6.d0*tmp_mu_2*(6.d0 + 17.d0*tmp_mu_2 - 28.d0*tmp_mu_4) +                                                         & 
+                 dexp(z1/tmp_mu_2)*(-35.d0 - 90.d0*tmp_mu_2 - 270.d0*tmp_mu_4 + 168.d0*tmp_mu_6 +                                       & 
+                    21.26944621086619d0*tmp_mu*(3.d0 + 10.d0*tmp_mu_2)*derf(z1/tmp_mu))))))/                                            & 
+             (dexp(z1/tmp_mu_2)*(1.d0 + (0.1428571428571429d0*                                                                          & 
+               (6.d0*tmp_mu_2*(30.d0 + 167.d0*tmp_mu_2 + 404.d0*tmp_mu_4 - 576.d0*tmp_mu_6) +                                           & 
+                 dexp(z1/tmp_mu_2)*(-161.d0 + 6.d0*tmp_mu_2*(-105.d0 - 735.d0*tmp_mu_2 - 980.d0*tmp_mu_4 + 576.d0*tmp_mu_6) +           & 
+                    21.26944621086619d0*tmp_mu*(15.d0 + 91.d0*tmp_mu_2 + 315.d0*tmp_mu_4)*derf(z1/tmp_mu))))/                           & 
+             (tmp_c_2*(6.d0*tmp_mu_2*(6.d0 + 17.d0*tmp_mu_2 - 28.d0*tmp_mu_4) +                                                         & 
+                 dexp(z1/tmp_mu_2)*(-35.d0 - 90.d0*tmp_mu_2 - 270.d0*tmp_mu_4 + 168.d0*tmp_mu_6 +                                       & 
+                    21.26944621086619d0*tmp_mu*(3.d0 + 10.d0*tmp_mu_2)*derf(z1/tmp_mu))))))
+
+     v_x = (6.551785546081206d-10*((-110167.0865227013d0*kF*                                                                                                                    &
+               (-180.d0*tmp_mu_4*(-36.d0 - 258.d0*tmp_mu_2 + 223.d0*tmp_mu_4 + 1712.d0*tmp_mu_6 + 304.d0*tmp_mu_8) -                                                            &
+                 12.d0*dexp(z1/tmp_mu_2)*tmp_mu_2*                                                                                                                              &
+                  (987.d0 + 5854.d0*tmp_mu_2 + 2494.d0*tmp_mu_4 + 5040.d0*tmp_mu_6 - 97320.d0*tmp_mu_8 - 9120.d0*tmp_mu_10 +                                                    &
+                    26.58680776358274d0*tmp_mu*(-72.d0 - 498.d0*tmp_mu_2 + 233.d0*tmp_mu_4 + 1781.d0*tmp_mu_6 + 1836.d0*tmp_mu_8)*derf(z1/tmp_mu)) -                            &
+                 1.d0*dexp(z2/tmp_mu_2)*(-5635.d0 +                                                                                                                             &
+                    12.d0*tmp_mu_2*(-2415.d0 - 2730.d0*tmp_mu_2 + 14966.d0*tmp_mu_4 - 58905.d0*tmp_mu_6 + 71640.d0*tmp_mu_8 + 4560.d0*tmp_mu_10) +                              &
+                    10.6347231054331d0*tmp_mu*(1974.d0 + 5.d0*tmp_mu_2*                                                                                                         &
+                        (2161.d0 + 207.d0*tmp_mu_2 + 3780.d0*tmp_mu_4 + 330.d0*tmp_mu_6 - 11016.d0*tmp_mu_8))*derf(z1/tmp_mu) +                                                 &
+                    2261.946710584651d0*tmp_mu_2*(-9.d0 - 60.d0*tmp_mu_2 + 7.d0*tmp_mu_4)*derf(z1/tmp_mu)**2))*                                                                 &
+               (105.d0*(-2.d0*tmp_mu_2*(-2.d0 + tmp_mu_2) + dexp(z1/tmp_mu_2)*                                                                                                  &
+                     (-3.d0 - 6.d0*tmp_mu_2 + 2.d0*tmp_mu_4 + 7.089815403622064d0*tmp_mu*derf(z1/tmp_mu))) +                                                                    &
+                 (-7.d0*(6.d0*tmp_mu_2*(6.d0 + 17.d0*tmp_mu_2 - 28.d0*tmp_mu_4) +                                                                                               &
+                        dexp(z1/tmp_mu_2)*(-35.d0 - 90.d0*tmp_mu_2 - 270.d0*tmp_mu_4 + 168.d0*tmp_mu_6) +                                                                       &
+                        21.26944621086619d0*dexp(z1/tmp_mu_2)*tmp_mu*(3.d0 + 10.d0*tmp_mu_2)*derf(z1/tmp_mu))**2 +                                                              &
+                    15.d0*(6.d0*tmp_mu_2*(30.d0 + 167.d0*tmp_mu_2 + 404.d0*tmp_mu_4 - 576.d0*tmp_mu_6) +                                                                        &
+                       dexp(z1/tmp_mu_2)*(-161.d0 + 6.d0*tmp_mu_2*(-105.d0 - 735.d0*tmp_mu_2 - 980.d0*tmp_mu_4 + 576.d0*tmp_mu_6)) +                                            &
+                       21.26944621086619d0*dexp(z1/tmp_mu_2)*tmp_mu*(15.d0 + 91.d0*tmp_mu_2 + 315.d0*tmp_mu_4)*derf(z1/tmp_mu))*                                                &
+                     (-2.d0*tmp_mu_2*(-2.d0 + tmp_mu_2) + dexp(z1/tmp_mu_2)*                                                                                                    &
+                        (-3.d0 - 6.d0*tmp_mu_2 + 2.d0*tmp_mu_4 + 7.089815403622064d0*tmp_mu*derf(z1/tmp_mu))))/                                                                 &
+                  (tmp_c_2*(6.d0*tmp_mu_2*(6.d0 + 17.d0*tmp_mu_2 - 28.d0*tmp_mu_4) +                                                                                            &
+                      dexp(z1/tmp_mu_2)*(-35.d0 - 90.d0*tmp_mu_2 - 270.d0*tmp_mu_4 + 168.d0*tmp_mu_6 +                                                                          &
+                         21.26944621086619d0*tmp_mu*(3.d0 + 10.d0*tmp_mu_2)*derf(z1/tmp_mu))))))/                                                                               &
+             (dexp(z1/tmp_mu_2)*(6.d0*tmp_c*tmp_mu_2*(6.d0 + 17.d0*tmp_mu_2 - 28.d0*tmp_mu_4) +                                                                                 &
+                  dexp(z1/tmp_mu_2)*tmp_c*                                                                                                                                      &
+                   (-35.d0 - 90.d0*tmp_mu_2 - 270.d0*tmp_mu_4 + 168.d0*tmp_mu_6 + 21.26944621086619d0*tmp_mu*(3.d0 + 10.d0*tmp_mu_2)*derf(z1/tmp_mu)))**2)                      &
+              + (2.313508816976728d+7*kF*(1.d0 + (0.1428571428571429d0*                                                                                                         &
+                    (6.d0*tmp_mu_2*(30.d0 + 167.d0*tmp_mu_2 + 404.d0*tmp_mu_4 - 576.d0*tmp_mu_6) +                                                                              &
+                      dexp(z1/tmp_mu_2)*(-161.d0 + 6.d0*tmp_mu_2*(-105.d0 - 735.d0*tmp_mu_2 - 980.d0*tmp_mu_4 + 576.d0*tmp_mu_6) +                                              &
+                         21.26944621086619d0*tmp_mu*(15.d0 + 91.d0*tmp_mu_2 + 315.d0*tmp_mu_4)*derf(z1/tmp_mu))))/                                                              &
+                  (tmp_c_2*(6.d0*tmp_mu_2*(6.d0 + 17.d0*tmp_mu_2 - 28.d0*tmp_mu_4) +                                                                                            &
+                      dexp(z1/tmp_mu_2)*(-35.d0 - 90.d0*tmp_mu_2 - 270.d0*tmp_mu_4 + 168.d0*tmp_mu_6 +                                                                          &
+                         21.26944621086619d0*tmp_mu*(3.d0 + 10.d0*tmp_mu_2)*derf(z1/tmp_mu)))))*                                                                                &
+               (36.d0*tmp_mu_6*(21.d0*tmp_c_2*(6.d0 + 17.d0*tmp_mu_2 - 28.d0*tmp_mu_4)**2 +                                                                                     &
+                    4.d0*(36.d0 + 96.d0*tmp_mu_2 - 529.d0*tmp_mu_4 + 789.d0*tmp_mu_6 - 3570.d0*tmp_mu_8 + 128.d0*tmp_mu_10)) -                                                  &
+                 12.d0*dexp(z1/tmp_mu_2)*tmp_mu_4*                                                                                                                              &
+                  (372.d0 - 628.d0*tmp_mu_2 + tmp_mu_4*(17371.d0 + 85208.d0*tmp_mu_2 - 281094.d0*tmp_mu_4 + 14688.d0*tmp_mu_6 + 4608.d0*tmp_mu_8) +                             &
+                    21.d0*tmp_c_2*(1.d0 + 4.d0*tmp_mu_2)*(-6.d0 + 7.d0*tmp_mu_2)*(-53.d0 + 3.d0*tmp_mu_2*(-53.d0 - 79.d0*tmp_mu_2 + 84.d0*tmp_mu_4))) +                         &
+                 dexp(z2/tmp_mu_2)*tmp_mu_2*                                                                                                                                    &
+                  (21.d0*tmp_c_2*(-35.d0 - 90.d0*tmp_mu_2 - 270.d0*tmp_mu_4 + 168.d0*tmp_mu_6)*                                                                                 &
+                     (-107.d0 + 6.d0*(-1.d0 + tmp_mu)*tmp_mu_2*(1.d0 + tmp_mu)*(61.d0 + 84.d0*tmp_mu_2)) +                                                                      &
+                    4.d0*(-1309.d0 + 4.d0*tmp_mu_2*(-2422.d0 +                                                                                                                  &
+                          3.d0*tmp_mu_2*(5023.d0 + 24067.d0*tmp_mu_2 + 94798.d0*tmp_mu_4 - 220404.d0*tmp_mu_6 + 39474.d0*tmp_mu_8 + 1152.d0*tmp_mu_10)                          &
+                          ))) + dexp(z3/tmp_mu_2)*                                                                                                                              &
+                  (4655.d0 - 21.d0*tmp_c_2*(1.d0 + tmp_mu_2)*(35.d0 + 90.d0*tmp_mu_2 + 270.d0*tmp_mu_4 - 168.d0*tmp_mu_6)**2 -                                                  &
+                    2.d0*tmp_mu_2*(-9450.d0 + tmp_mu_2*(175.d0 +                                                                                                                &
+                          6.d0*tmp_mu_2*(30604.d0 + 242655.d0*tmp_mu_2 + 433916.d0*tmp_mu_4 - 591054.d0*tmp_mu_6 + 100368.d0*tmp_mu_8 +                                         &
+                             1536.d0*tmp_mu_10)))) + 1.772453850905516d0*dexp(z1/tmp_mu_2)*tmp_mu*derf(z1/tmp_mu)*                                                              &
+                  (108.d0*tmp_mu_4*(144.d0 + 564.d0*tmp_mu_2 - 388.d0*tmp_mu_4 + 5657.d0*tmp_mu_6 - 23069.d0*tmp_mu_8 + 8212.d0*tmp_mu_10 +                                     &
+                       7.d0*tmp_c_2*(1.d0 + 4.d0*tmp_mu_2)*(-6.d0 + 7.d0*tmp_mu_2)*(-18.d0 - 57.d0*tmp_mu_2 + 28.d0*tmp_mu_4)) -                                                &
+                    12.d0*dexp(z1/tmp_mu_2)*tmp_mu_2*                                                                                                                           &
+                     (744.d0 + 1114.d0*tmp_mu_2 + 21.d0*tmp_c_2*                                                                                                                &
+                        (636.d0 + 3923.d0*tmp_mu_2 + 7954.d0*tmp_mu_4 + 3126.d0*tmp_mu_6 - 17136.d0*tmp_mu_8 + 4704.d0*tmp_mu_10) +                                             &
+                       tmp_mu_4*(46993.d0 + 9.d0*tmp_mu_2*(29155.d0 - 12736.d0*tmp_mu_2 - 62562.d0*tmp_mu_4 + 16424.d0*tmp_mu_6)) +                                             &
+                       63.80833863259858d0*tmp_mu*(-36.d0 - 186.d0*tmp_mu_2 - 371.d0*tmp_mu_4 - 2893.d0*tmp_mu_6 + 4900.d0*tmp_mu_8 +                                           &
+                          7.d0*tmp_c_2*(3.d0 + 10.d0*tmp_mu_2)*(-9.d0 - 27.d0*tmp_mu_2 + 28.d0*tmp_mu_4))*derf(z1/tmp_mu)) +                                                    &
+                    dexp(z2/tmp_mu_2)*(-5236.d0 +                                                                                                                               &
+                       21.d0*tmp_c_2*(-35.d0 - 90.d0*tmp_mu_2 - 270.d0*tmp_mu_4 + 168.d0*tmp_mu_6)*                                                                             &
+                        (-107.d0 + 6.d0*tmp_mu_2*(-67.d0 - 85.d0*tmp_mu_2 + 28.d0*tmp_mu_4)) +                                                                                  &
+                       3.d0*tmp_mu_2*(-9415.d0 + tmp_mu_2*(76707.d0 +                                                                                                           &
+                             4.d0*tmp_mu_2*(143302.d0 + 9.d0*tmp_mu_2*(76662.d0 - 10181.d0*tmp_mu_2 - 39493.d0*tmp_mu_4 + 8212.d0*tmp_mu_6)))) +                                &
+                       42.53889242173238d0*tmp_mu*derf(z1/tmp_mu)*                                                                                                              &
+                        (-186.d0 - 871.d0*tmp_mu_2 + 21.d0*tmp_c_2*(3.d0 + 10.d0*tmp_mu_2)*                                                                                     &
+                           (-53.d0 + 6.d0*tmp_mu_2*(-28.d0 - 55.d0*tmp_mu_2 + 28.d0*tmp_mu_4)) +                                                                                &
+                          3.d0*tmp_mu_4*(-5119.d0 + 6.d0*tmp_mu_2*(-5528.d0 - 7793.d0*tmp_mu_2 + 4900.d0*tmp_mu_4)) +                                                           &
+                          10.6347231054331d0*tmp_mu*(36.d0 + 21.d0*tmp_c_2*(3.d0 + 10.d0*tmp_mu_2)**2 +                                                                         &
+                             7.d0*tmp_mu_2*(33.d0 + 125.d0*(tmp_mu_2 + 6.d0*tmp_mu_4)))*derf(z1/tmp_mu))))))/                                                                   &
+             (dexp(z1/tmp_mu_2)*tmp_c_2*                                                                                                                                        &
+               (6.d0*tmp_mu_2*(6.d0 + 17.d0*tmp_mu_2 - 28.d0*tmp_mu_4) +                                                                                                        &
+                  dexp(z1/tmp_mu_2)*(-35.d0 - 90.d0*tmp_mu_2 - 270.d0*tmp_mu_4 + 168.d0*tmp_mu_6 +                                                                              &
+                     21.26944621086619d0*tmp_mu*(3.d0 + 10.d0*tmp_mu_2)*derf(z1/tmp_mu)))**2)))/                                                                                &
+        (1.d0 + (0.1428571428571429d0*(6.d0*tmp_mu_2*(30.d0 + 167.d0*tmp_mu_2 + 404.d0*tmp_mu_4 - 576.d0*tmp_mu_6) +                                                            &
+                dexp(z1/tmp_mu_2)*(-161.d0 + 6.d0*tmp_mu_2*(-105.d0 - 735.d0*tmp_mu_2 - 980.d0*tmp_mu_4 + 576.d0*tmp_mu_6) +                                                    &
+                   21.26944621086619d0*tmp_mu*(15.d0 + 91.d0*tmp_mu_2 + 315.d0*tmp_mu_4)*derf(z1/tmp_mu))))/                                                                    &
+            (tmp_c_2*(6.d0*tmp_mu_2*(6.d0 + 17.d0*tmp_mu_2 - 28.d0*tmp_mu_4) +                                                                                                  &
+                dexp(z1/tmp_mu_2)*(-35.d0 - 90.d0*tmp_mu_2 - 270.d0*tmp_mu_4 + 168.d0*tmp_mu_6 +                                                                                &
+                   21.26944621086619d0*tmp_mu*(3.d0 + 10.d0*tmp_mu_2)*derf(z1/tmp_mu)))))**2                                                                                    
+
+  
+    else
+     print*, 'Exchange functional required does not exist ...'
+     print*,'dirac_exchange_functional',dirac_exchange_functional
+     stop
+    endif
+
+   ! For very large values of tmp_mu
+   elseif (tmp_mu .lt. 1.d+9) then
+
+   ! Inverse hexuple for large values of tmp_mu
+    e_x = (3.332871861896442d-8*kF_4*(856.d0 - 5292.d0*tmp_mu_2 +                                                            &            
+          35.d0*(-68.d0*tmp_c_2 + 74.d0*tmp_c_4 + 15.d0*tmp_c_6 - 135.d0*tmp_c_8 -                                           & 
+             9.d0*tmp_c_2*(-56.d0 + 21.d0*tmp_c_2 + 81.d0*tmp_c_4)*tmp_mu_2 -                                                & 
+             384.d0*(-2.d0 + 9.d0*(tmp_c_2 + tmp_c_4))*tmp_mu_4) +                                                           & 
+          105.d0*tmp_c_4*(dlog(dsqrt(1.d0 + tmp_c_m_2) + 1.d0/tmp_c)*                                                        & 
+              (dsqrt(1.d0 + tmp_c_2)*(6.d0 + 45.d0*tmp_c_4 - 90.d0*tmp_mu_2 + 1152.d0*tmp_mu_4 +                             & 
+                   tmp_c_2*(-25.d0 + 243.d0*tmp_mu_2)) +                                                                     & 
+                9.d0*tmp_c_2*(5.d0*tmp_c_4 + 27.d0*tmp_c_2*tmp_mu_2 + 128.d0*tmp_mu_4)*                                      & 
+                 (dlog(tmp_c) - 1.d0*dlog(1.d0 + dsqrt(1.d0 + tmp_c_2)))) -                                                  & 
+             1.d0*dsqrt(1.d0 + tmp_c_2)*(6.d0 + 45.d0*tmp_c_4 - 90.d0*tmp_mu_2 + 1152.d0*tmp_mu_4 +                          & 
+                tmp_c_2*(-25.d0 + 243.d0*tmp_mu_2))*(dlog(tmp_c) - 1.d0*dlog(1.d0 + dsqrt(1.d0 + tmp_c_2))))))/tmp_mu_6
+
+   ! Inverse hexuple for large values of tmp_mu
+    v_x = (-6.578825359288002d-7*kF*((1.d0 + tmp_c_2)*(1.d0 + dsqrt(1.d0 + tmp_c_2))*                             & 
+             (5.d0*(-856.d0 + 7.d0*tmp_c_2*(272.d0 - 240.d0*tmp_c_2 + 45.d0*tmp_c_4)) +                           & 
+               1512.d0*(14.d0 - 35.d0*tmp_c_2 + 15.d0*tmp_c_4)*tmp_mu_2 +                                         & 
+               80640.d0*(-1.d0 + 3.d0*tmp_c_2)*tmp_mu_4) -                                                        & 
+            105.d0*tmp_c_4*(1.d0 + tmp_c_2 + dsqrt(1.d0 + tmp_c_2))*                                              & 
+             (36.d0 - 70.d0*tmp_c_2 + 15.d0*tmp_c_4 + 72.d0*(-5.d0 + 3.d0*tmp_c_2)*tmp_mu_2 + 2304.d0*tmp_mu_4)*  & 
+             dlog((1.d0 + dsqrt(1.d0 + tmp_c_2))/tmp_c)))/                                                        & 
+          ((1.d0 + tmp_c_2)*(1.d0 + dsqrt(1.d0 + tmp_c_2))*tmp_mu_6)
+
+   ! Limit for large tmp_mu 
+   else
+  
+    e_x = 0.d0
+    v_x = 0.d0 
+ 
+   endif
   endif 
- endif
+ endif 
  end

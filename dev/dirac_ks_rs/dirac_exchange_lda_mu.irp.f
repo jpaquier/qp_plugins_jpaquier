@@ -19,9 +19,11 @@ program dirac_exchange_lda_mu
    print*, mu_erf, dirac_energy_x_lda(1)
    open (10, file='exchange_lda_X_B.dat',position ='append') 
    write(10,*) mu_erf, dirac_energy_x_lda(1)
- !elseif (dirac_interaction == "Coulomb_Gaunt") then
- ! print*,'**********'
- ! print*,'Short-range Coulomb-Gaunt interaction'
+  elseif (dirac_interaction == "Coulomb_Gaunt") then
+   print*,'**********'
+   print*,'Short-range Coulomb-Gaunt interaction'
+   open (10, file='exchange_lda_X_B_CG.dat',position ='append')
+   write(10,*) mu_erf, dirac_energy_x_lda(1)
   else
    print *,  'Unrecognized dirac_interaction : '//dirac_interaction
    stop 1
@@ -53,17 +55,17 @@ program dirac_exchange_lda_mu
  !endif
 
  !For argon
- !if (mu_erf .lt. 5) then
- ! mu_erf += 0.5d0
- !elseif (mu_erf .lt. 20) then
- ! mu_erf+=1.d0
- !elseif (mu_erf .lt. 100) then
- ! mu_erf+=5.d0
- !elseif (mu_erf .lt. 200) then
- ! mu_erf+=10.0d0
- !else
- ! mu_erf+=20.d0
- !endif
+  if (mu_erf .lt. 5) then
+   mu_erf += 0.5d0
+  elseif (mu_erf .lt. 20) then
+   mu_erf+=1.d0
+  elseif (mu_erf .lt. 100) then
+   mu_erf+=5.d0
+  elseif (mu_erf .lt. 200) then
+   mu_erf+=10.0d0
+  else
+   mu_erf+=20.d0
+  endif
 
  !For Krypton
  !if (mu_erf .lt. 10) then
@@ -96,19 +98,19 @@ program dirac_exchange_lda_mu
  !endif
 
  !For Radon
-  if (mu_erf .lt. 40) then
-   mu_erf += 4d0
-  elseif (mu_erf .lt. 160) then
-   mu_erf+=8.d0
-  elseif (mu_erf .lt. 800) then
-   mu_erf+=40.d0
-  elseif (mu_erf .lt. 1600) then
-   mu_erf+=80.0d0
-  elseif (mu_erf .lt. 4800) then
-   mu_erf+=160.d0
-  else
-   mu_erf+=320.d0
-  endif
+ !if (mu_erf .lt. 40) then
+ ! mu_erf += 4d0
+ !elseif (mu_erf .lt. 160) then
+ ! mu_erf+=8.d0
+ !elseif (mu_erf .lt. 800) then
+ ! mu_erf+=40.d0
+ !elseif (mu_erf .lt. 1600) then
+ ! mu_erf+=80.0d0
+ !elseif (mu_erf .lt. 4800) then
+ ! mu_erf+=160.d0
+ !else
+ ! mu_erf+=320.d0
+ !endif
 
  !For Oganesson
  !if (mu_erf .lt. 80) then

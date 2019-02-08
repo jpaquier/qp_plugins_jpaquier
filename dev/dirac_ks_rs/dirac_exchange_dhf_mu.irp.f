@@ -18,33 +18,21 @@ program dirac_exchange_dhf_mu
    print*,'Short-range Coulomb interaction'   
    print*, 'mu_erf =',mu_erf
    print*, 'dirac_HF_two_electron_C_Exchange_energy=', dirac_C_Exchange_Energy - dirac_HF_two_electron_C_Exchange_energy
- ! print*, 'dirac_HF_two_electron_C_Hartree_energy=', dirac_C_Hartree_Energy - dirac_HF_two_electron_C_Hartree_energy
    open (10, file='exchange_dhf_X.dat',position ='append') 
    write(10,*) mu_erf, dirac_C_Exchange_Energy - dirac_HF_two_electron_C_Exchange_energy
- ! open (11, file='Energy_DHF_SRH_C.dat',position ='append')
- ! write(11,*) mu_erf, dirac_C_Hartree_Energy - dirac_HF_two_electron_C_Hartree_energy
- !elseif (dirac_interaction == "Coulomb_Gaunt") then
- ! print*,'**********'
- ! print*,'Short-range Coulomb-Gaunt interaction'
- ! print*, 'mu_erf =',mu_erf
+  elseif (dirac_interaction == "Coulomb_Gaunt") then
+   print*,'**********'
+   print*,'Short-range Coulomb-Gaunt interaction'
+   print*, 'mu_erf =',mu_erf
  ! print*, 'dirac_HF_two_electron_C_Exchange_energy=', dirac_C_Exchange_Energy - dirac_HF_two_electron_C_Exchange_energy
- ! print*, 'dirac_HF_two_electron_C_Hartree_energy=', dirac_C_Hartree_Energy - dirac_HF_two_electron_C_Hartree_energy
  ! print*, 'dirac_HF_two_electron_G_Exchange_energy=', dirac_G_Exchange_Energy - dirac_HF_two_electron_G_Exchange_energy
- ! print*, 'dirac_HF_two_electron_G_Hartree_energy=', dirac_G_Hartree_Energy - dirac_HF_two_electron_G_Hartree_energy
- ! print*, 'dirac_HF_two_electron_C_G_Exchange_energy=', dirac_C_G_Hartree_Energy - dirac_HF_two_electron_C_G_Exchange_energy
- ! print*, 'dirac_HF_two_electron_C_G_Hartree_energy=', dirac_C_G_Hartree_Energy - dirac_HF_two_electron_C_G_Hartree_energy
+   print*, 'dirac_HF_two_electron_C_G_Exchange_energy=', dirac_C_G_Exchange_Energy - dirac_HF_two_electron_C_G_Exchange_energy
  ! open (10, file='Energy_DHF_SRX_C.dat',position ='append')
  ! write(10,*) mu_erf, dirac_C_Exchange_Energy - dirac_HF_two_electron_C_Exchange_energy
- ! open (11, file='Energy_DHF_SRH_C.dat',position ='append')
- ! write(11,*) mu_erf, dirac_C_Hartree_Energy - dirac_HF_two_electron_C_Hartree_energy
  ! open (12, file='Energy_DHF_SRX_G.dat',position ='append')
  ! write(12,*) mu_erf, dirac_G_Exchange_Energy - dirac_HF_two_electron_G_Exchange_energy
- ! open (13, file='Energy_DHF_SRH_G.dat',position ='append')
- ! write(13,*) mu_erf, dirac_G_Hartree_Energy - dirac_HF_two_electron_G_Hartree_energy
- ! open (14, file='Energy_DHF_SRX_C_G.dat',position ='append')
- ! write(14,*) mu_erf, dirac_C_G_Exchange_Energy - dirac_HF_two_electron_C_G_Exchange_energy
- ! open (20, file='Energy_DHF_SRH_C_G.dat',position ='append')
- ! write(20,*) mu_erf, dirac_C_G_Hartree_Energy - dirac_HF_two_electron_C_G_Hartree_energy
+   open (14, file='exchange_dhf_X_CG.dat',position ='append')
+   write(14,*) mu_erf, dirac_C_G_Exchange_Energy - dirac_HF_two_electron_C_G_Exchange_energy
  else
    print *,  'Unrecognized dirac_interaction : '//dirac_interaction
    stop 1
@@ -75,17 +63,17 @@ program dirac_exchange_dhf_mu
  !endif
 
  !For argon
- !if (mu_erf .lt. 5) then
- ! mu_erf += 0.5d0
- !elseif (mu_erf .lt. 20) then
- ! mu_erf+=1.d0
- !elseif (mu_erf .lt. 100) then
- ! mu_erf+=5.d0
- !elseif (mu_erf .lt. 200) then
- ! mu_erf+=10.0d0
- !else
- ! mu_erf+=20.d0
- !endif
+  if (mu_erf .lt. 5) then
+   mu_erf += 0.5d0
+  elseif (mu_erf .lt. 20) then
+   mu_erf+=1.d0
+  elseif (mu_erf .lt. 100) then
+   mu_erf+=5.d0
+  elseif (mu_erf .lt. 200) then
+   mu_erf+=10.0d0
+  else
+   mu_erf+=20.d0
+  endif
 
  !For Krypton
  !if (mu_erf .lt. 10) then
@@ -133,19 +121,19 @@ program dirac_exchange_dhf_mu
  !endif
 
  !For Oganesson
-  if (mu_erf .lt. 80) then
-   mu_erf += 8d0
-  elseif (mu_erf .lt. 320) then
-   mu_erf+=16.d0
-  elseif (mu_erf .lt. 1600) then
-   mu_erf+=80.d0
-  elseif (mu_erf .lt. 3200) then
-   mu_erf+=160.0d0
-  elseif (mu_erf .lt. 9600) then
-   mu_erf+=320.d0
-  else
-   mu_erf+=640.d0
-  endif
+ !if (mu_erf .lt. 80) then
+ ! mu_erf += 8d0
+ !elseif (mu_erf .lt. 320) then
+ ! mu_erf+=16.d0
+ !elseif (mu_erf .lt. 1600) then
+ ! mu_erf+=80.d0
+ !elseif (mu_erf .lt. 3200) then
+ ! mu_erf+=160.0d0
+ !elseif (mu_erf .lt. 9600) then
+ ! mu_erf+=320.d0
+ !else
+ ! mu_erf+=640.d0
+ !endif
  
   call ezfio_set_ao_two_e_erf_ints_mu_erf(mu_erf)
 

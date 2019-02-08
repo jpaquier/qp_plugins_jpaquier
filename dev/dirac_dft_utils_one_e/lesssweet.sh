@@ -1,6 +1,13 @@
 #!/bin/bash
-
+ sed -i '1,500s/e-2/d-2p/g' test.txt
+ sed -i '1,500s/e-3/d-3p/g' test.txt
+ sed -i '1,500s/e-4/d-4p/g' test.txt
+ sed -i '1,500s/e-5/d-5p/g' test.txt
+ sed -i '1,500s/e-6/d-6p/g' test.txt
+ sed -i '1,500s/e-7/d-7p/g' test.txt
  sed -i '1,500s/e-8/d-8p/g' test.txt
+ sed -i '1,500s/e-9/d-9p/g' test.txt
+ sed -i '1,500s/e-10/d-10p/g' test.txt
  sed -i '1,500s/e2/d+2p/g' test.txt
  sed -i '1,500s/e3/d+3p/g' test.txt
  sed -i '1,500s/e4/d+4p/g' test.txt
@@ -138,7 +145,15 @@
  sed -i '1,500s/tmpmu\*\*2/tmp_mu_2/g' test.txt
  sed -i '1,500s/tmpmu/tmp_mu/g' test.txt
   
+ sed -i '1,500s/d-2p/d-2/g' test.txt
+ sed -i '1,500s/d-3p/d-3/g' test.txt
+ sed -i '1,500s/d-4p/d-4/g' test.txt
+ sed -i '1,500s/d-5p/d-5/g' test.txt
+ sed -i '1,500s/d-6p/d-6/g' test.txt
+ sed -i '1,500s/d-7p/d-7/g' test.txt
  sed -i '1,500s/d-8p/d-8/g' test.txt
+ sed -i '1,500s/d-9p/d-9/g' test.txt
+ sed -i '1,500s/d-10p/d-10/g' test.txt
  sed -i '1,500s/d+2p/d+2/g' test.txt
  sed -i '1,500s/d+3p/d+3/g' test.txt
  sed -i '1,500s/d+4p/d+4/g' test.txt
