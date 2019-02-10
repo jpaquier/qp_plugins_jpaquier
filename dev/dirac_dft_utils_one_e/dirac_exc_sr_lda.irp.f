@@ -195,9 +195,9 @@
 
 
  ! Non-relativistic equations
-!if (tmp_c .gt. 1d+2) then
+ if (tmp_c .gt. 1d+2) then
  ! To test the non-relativistic fonctional with the relativistic DHF density
- if (tmp_c .gt. 0.d0) then
+!if (tmp_c .gt. 0.d0) then
 
   ! Linear/quadratic range-separation for very low values of tmp_mu
   if (tmp_mu .lt. 1.d-2) then
@@ -1122,18 +1122,31 @@
    ! quadratic range-separation for very low values of tmp_mu
    if (tmp_mu .lt. 1.d-1) then
 
-    e_x = 0.002687627869433291d0*kF_4*(4.d0 + tmp_c_2 + 7.089815403622064d0*tmp_mu - 6.d0*tmp_mu_2 -            &                                     
-          2.d0*dsqrt(1.d0 + tmp_c_2)*(2.d0 + 9.d0*tmp_c_2)*dlog(dsqrt(1.d0 + tmp_c_m_2) + 1.d0/tmp_c) +         &   
-          9.d0*tmp_c_4*dlog(dsqrt(1.d0 + tmp_c_m_2) + 1.d0/tmp_c)**2 -                                          & 
-          4.d0*(1.d0 + 5.d0*tmp_c_2 + 4.d0*tmp_c_4)*dlog(tmp_c) +                                               & 
-          2.d0*(1.d0 + 5.d0*tmp_c_2 + 4.d0*tmp_c_4)*dlog(1.d0 + tmp_c_2))                                         
-                                                                                                                  
-    v_x = (0.1061032953945969d0*kF*((1.d0 + tmp_c_2)*(4.d0 + 3.d0*(1.772453850905516d0 - 1.d0*tmp_mu)*tmp_mu) - &  
-           2.d0*(2.d0 + 7.d0*tmp_c_2 + 5.d0*tmp_c_4)*dlog(tmp_c) +                                              & 
-           (2.d0 + 7.d0*tmp_c_2 + 5.d0*tmp_c_4)*dlog(1.d0 + tmp_c_2) +                                          & 
-           4.d0*dsqrt(1.d0 + tmp_c_2)*(1.d0 + 3.d0*tmp_c_2)*dlog(tmp_c/(1.d0 + dsqrt(1.d0 + tmp_c_2)))))/       & 
-           (1.d0 + tmp_c_2)
+    e_x = (0.002687627869433291d0*kF_4*                                                    & 
+          (-6.d0*tmp_c_2*tmp_mu_2 -                                                        & 
+          21.26944621086619d0*tmp_c_2*(1.d0 + tmp_c_2)*tmp_mu*                             & 
+          (-1.d0 + tmp_c*datan(z1/tmp_c)) -                                                & 
+          4.d0*dsqrt(1.d0 + tmp_c_2)*dlog(dsqrt(1.d0 + tmp_c_m_2) + 1.d0/tmp_c) -          & 
+          22.d0*tmp_c_2*dsqrt(1.d0 + tmp_c_2)*                                             & 
+          dlog(dsqrt(1.d0 + tmp_c_m_2) + 1.d0/tmp_c) -                                     & 
+          18.d0*tmp_c_4*dsqrt(1.d0 + tmp_c_2)*                                             & 
+          dlog(dsqrt(1.d0 + tmp_c_m_2) + 1.d0/tmp_c) +                                     & 
+          (1.d0 + tmp_c_2)*(4.d0 + tmp_c_2 +                                               & 
+          (1.d0 + tmp_c_2)**2*dlog(1.d0 + tmp_c_m_2) +                                     & 
+          9.d0*tmp_c_4*dlog(dsqrt(1.d0 + tmp_c_m_2) + 1.d0/tmp_c)**2 -                     & 
+          2.d0*dlog(tmp_c) + dlog(1.d0 + tmp_c_2) +                                        & 
+          tmp_c_2*(8.d0 + 7.d0*tmp_c_2)*(-2.d0*dlog(tmp_c) + dlog(1.d0 + tmp_c_2)))))/     & 
+          (1.d0 + tmp_c_2)
 
+
+    v_x = (0.1061032953945969d0*kF*(4.d0*(1.d0 + tmp_c_2)**2 +                             & 
+           5.317361552716548d0*tmp_c_2*(1.d0 + tmp_c_2)*tmp_mu -                           &
+           3.d0*tmp_c_4*tmp_mu_2 -                                                         &
+           2.d0*(1.d0 + tmp_c_2)**2*(2.d0 + 5.d0*tmp_c_2)*dlog(tmp_c) +                    &
+           (1.d0 + tmp_c_2)**2*(2.d0 + 5.d0*tmp_c_2)*dlog(1.d0 + tmp_c_2) +                &
+           4.d0*dsqrt(1.d0 + tmp_c_2)*(1.d0 + 4.d0*tmp_c_2 + 3.d0*tmp_c_4)*                &
+           dlog(tmp_c/(1.d0 + dsqrt(1.d0 + tmp_c_2)))))/(1.d0 + tmp_c_2)**2
+ 
    ! Medium values of tmp_mu
    !elseif (tmp_mu .le. 1d+1) then
    elseif (tmp_mu .le. 1.25d0) then

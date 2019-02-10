@@ -19,6 +19,7 @@
  sed -i '1,500s/e10/d+10p/g' test.txt
  
  sed -i '1,500s/2.718281828459045\*\*/dexp/g' test.txt
+ sed -i '1,500s/ArcTan/datan/g' test.txt
  sed -i '1,500s/Erf/derf/g' test.txt
  sed -i '1,500s/Log/dlog/g' test.txt
  sed -i '1,500s/Sqrt/dsqrt/g' test.txt
@@ -168,6 +169,7 @@
  sed -i '1,500s/dexp(2\.d0/dexp(z2/g' test.txt
  sed -i '1,500s/dexp(3\.d0/dexp(z3/g' test.txt
  sed -i '1,500s/derf(1\.d0/derf(z1/g' test.txt
+ sed -i '1,500s/datan(1\.d0/datan(z1/g' test.txt
  
   
   
