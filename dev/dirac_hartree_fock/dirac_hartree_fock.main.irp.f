@@ -6,12 +6,6 @@ program dirac_hartree_fock
  print*, "small_ao_num =",small_ao_num
  print*, "large_ao_num =",large_ao_num
 
- do i=1,2*dirac_mo_tot_num
-  print*,i,eigenvalues_dirac_fock_matrix_C_G_mo(i)
- enddo
-
-
-
  !! Print the positive energy molecular orbitals
  do j= 2*small_ao_num+1, 2*small_ao_num + elec_num
   do i= 1, 2*dirac_ao_num
@@ -28,13 +22,13 @@ program dirac_hartree_fock
   print*,'************'
  enddo
 
- print*,'************************************************************************'
- do j =1,2*dirac_ao_num
-  do i = 1,2*dirac_ao_num 
-   print*, i, j, dirac_SCF_density_matrix_ao(i,j)
-  enddo
-  print*, '***************'
- enddo
+!print*,'************************************************************************'
+!do j =1,2*dirac_ao_num
+! do i = 1,2*dirac_ao_num 
+!  print*, i, j, dirac_SCF_density_matrix_ao(i,j)
+! enddo
+! print*, '***************'
+!enddo
  
 
 end
