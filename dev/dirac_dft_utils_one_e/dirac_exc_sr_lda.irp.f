@@ -195,9 +195,9 @@
 
 
  ! Non-relativistic equations
-!if (tmp_c .gt. 1d+2) then
+ if (tmp_c .gt. 1d+2) then
  ! To test the non-relativistic fonctional with the relativistic DHF density
- if (tmp_c .gt. 0.d0) then
+!if (tmp_c .gt. 0.d0) then
 
   ! Linear/quadratic range-separation for very low values of tmp_mu
   if (tmp_mu .lt. 1.d-2) then
