@@ -103,34 +103,34 @@ program dirac_exchange_dhf_mu
  !endif
 
  !For Xenon
- !if (mu_erf .lt. 20) then
- ! mu_erf += 2d0
- !elseif (mu_erf .lt. 80) then
- ! mu_erf+=4.d0
- !elseif (mu_erf .lt. 400) then
- ! mu_erf+=20.d0
- !elseif (mu_erf .lt. 800) then
- ! mu_erf+=40.0d0
- !elseif (mu_erf .lt. 2400) then
- ! mu_erf+=80.d0
- !else
- ! mu_erf+=160.d0
- !endif
+  if (mu_erf .lt. 20) then
+   mu_erf += 2d0
+  elseif (mu_erf .lt. 80) then
+   mu_erf+=4.d0
+  elseif (mu_erf .lt. 400) then
+   mu_erf+=20.d0
+  elseif (mu_erf .lt. 800) then
+   mu_erf+=40.0d0
+  elseif (mu_erf .lt. 2400) then
+   mu_erf+=80.d0
+  else
+   mu_erf+=160.d0
+  endif
 
  !For Radon
-  if (mu_erf .lt. 40) then
-   mu_erf += 4d0
-  elseif (mu_erf .lt. 160) then
-   mu_erf+=8.d0
-  elseif (mu_erf .lt. 800) then
-   mu_erf+=40.d0
-  elseif (mu_erf .lt. 1600) then
-   mu_erf+=80.0d0
-  elseif (mu_erf .lt. 4800) then
-   mu_erf+=160.d0
-  else
-   mu_erf+=320.d0
-  endif
+ !if (mu_erf .lt. 40) then
+ ! mu_erf += 4d0
+ !elseif (mu_erf .lt. 160) then
+ ! mu_erf+=8.d0
+ !elseif (mu_erf .lt. 800) then
+ ! mu_erf+=40.d0
+ !elseif (mu_erf .lt. 1600) then
+ ! mu_erf+=80.0d0
+ !elseif (mu_erf .lt. 4800) then
+ ! mu_erf+=160.d0
+ !else
+ ! mu_erf+=320.d0
+ !endif
 
  !For Oganesson
  !if (mu_erf .lt. 80) then
