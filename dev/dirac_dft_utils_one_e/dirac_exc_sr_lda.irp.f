@@ -11,6 +11,7 @@
  subroutine dirac_ex_lda_sr(mu,rho,e_x,v_x)
  include 'constants.include.F'
  implicit none 
+ integer :: N2,N4
  double precision, intent(out) ::  e_x
  double precision, intent(out) ::  v_x
  double precision, intent(in)  ::  rho,mu
@@ -24,12 +25,15 @@
  double precision :: z313,z315,z320,z328,z420,z492,z504,z525,z540,z559,z592,z648,z672,z693,z735,z756,z768,z770,z86,z864,z906,z945
  double precision :: z960,z984,z1466,z1680,z1715,z2100,z2304,z2625,z3280,z6300,z8064
  double precision :: z8694,z13533,z14000,z19680,z28704,z80640
- double precision :: f13,f120,f23,f25,f43
+ double precision :: f16,f13,f120,f23,f25,f43
  double precision :: ckf 
  double precision :: c0,c1,c2,c2bis,c2ter,c3,c4,c5,c6,c7,c8,c9,c10,c11,c12,c13,c14,c15
  double precision :: c16,c17,c18,c19,c20,c21,c22,c23,c24,c25,c26,c27,c28,c29,c30
- double precision :: c31,c32,c33,c34,c35,c36,c37,c38,c39,c40
-
+ double precision :: c31,c32,c33,c34,c35,c36,c37,c38,c39,c40,c41,c42,c43,c44
+ double precision :: c45,c46,c47,c48,c49,c50,c51,c52
+ 
+ N2 = 2
+ N4 = 4
  z1  = 1.d0
  z2  = 2.d0
  z3 = 3.d0
@@ -120,6 +124,7 @@
  z19680 = 19680.d0
  z28704 = 28704.d0
  z80640 = 80640.d0
+ f16 = 0.16666666666666666d0
  f13 = 0.3333333333333333d0
  f120 = 0.05d0
  f23 = 0.6666666666666667d0
@@ -166,7 +171,22 @@
  c36 = 0.01061032953945969d0
  c37 = 0.0003789403406949889d0
  c38 = 0.0353677651315323d0
- kF = ckf*(rho**f13)
+ c39 = 9.384732821581892d0
+ c40 = 3.371549979772564d+9
+ c41 = 1.719237205899231d+6
+ c42 = 389.6363641360097d0
+ c43 = 3.52275361d+8
+ c44 = 5.152090145859064d0
+ c45 = 27069.58218509975d0
+ c46 = 13.80345334341147d0
+ c47 = 18769.d0
+ c48 = 0.0005099248761589486d0
+ c49 = 0.02258151625021997d0
+ !To use the RHEG with the same electronic density 
+!kF = ckf*(rho**f13)
+ !To use the RHEG with the same pair density for 2-electrons systems
+ kF = c39*(rho**N4/(c40*rho**f23 + c41*rho**f43 + c42*rho**N2 - c43*(c44*dsqrt(c45 +c46*rho**f23)*rho**f13 - c47*dlog(dsqrt(z1 +c48*rho**f23) +c49*rho**f13))*dlog(dsqrt(z1 + c48*rho**f23) + c49*rho**f13)))**f16
+
  kF_4 = kF*kF*kF*kF
  kF_6 = kF_4*kF*kF
  c = speed_of_light
@@ -193,11 +213,10 @@
  tmp_mu_m = 1.d0/tmp_mu
  tmp_mu_m_2 = 1.d0/tmp_mu_2
 
-
  ! Non-relativistic equations
-!if (tmp_c .gt. 1d+2) then
+ if (tmp_c .gt. 1d+2) then
  ! To test the non-relativistic fonctional with the relativistic DHF density
- if (tmp_c .gt. 0.d0) then
+!if (tmp_c .gt. 0.d0) then
 
   ! Linear/quadratic range-separation for very low values of tmp_mu
   if (tmp_mu .lt. 1.d-2) then
