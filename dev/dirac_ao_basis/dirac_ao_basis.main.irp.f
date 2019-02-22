@@ -3,6 +3,8 @@ program dirac_ao_basis
   integer :: i,j
   double precision :: r(3)
   complex*16 :: dirac_aos_array(2*dirac_ao_num)
+  complex*16 :: large_aos_array(large_ao_num)
+  complex*16 :: small_aos_array(small_ao_num)
   integer :: dirac_power_ao(3)
   r= 0.d0
  do i=1, dirac_ao_num
@@ -18,12 +20,20 @@ program dirac_ao_basis
  !print*,'******************'
  enddo
 
+ call give_all_large_aos_at_r(r,large_aos_array)
+ call give_all_small_aos_at_r(r,small_aos_array)
  call give_all_dirac_aos_at_r(r,dirac_aos_array)
- do i = 1,dirac_ao_num
- enddo
  print*,'**********************************************'
  do i = 1,2*dirac_ao_num
   print*,i,dirac_aos_array(i)
+ enddo
+ print*,'****************************'
+ do i = 1,large_ao_num
+  print*,i,large_aos_array(i)
+ enddo
+ print*,'****************************'
+ do i = 1,small_ao_num
+  print*,i,small_aos_array(i)
  enddo
 
 end

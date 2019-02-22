@@ -8,6 +8,19 @@
      v_c = 0.d0
  end
 
+ subroutine dirac_n2x_sr(mu,tr_gamma_2,e_x,v_x)
+ include 'constants.include.F'
+ implicit none
+ double precision, intent(out) ::  e_x
+ double precision, intent(out) ::  v_x
+ double precision, intent(in)  ::  tr_gamma_2,mu
+
+ e_x = -1.5708d0*tr_gamma_2/mu**2
+ 
+ v_x = 0.d0
+
+ end
+
  subroutine dirac_ex_lda_sr(mu,rho,e_x,v_x)
  include 'constants.include.F'
  implicit none 

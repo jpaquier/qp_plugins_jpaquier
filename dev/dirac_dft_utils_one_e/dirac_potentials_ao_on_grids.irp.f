@@ -8,8 +8,8 @@
  double precision :: r(3)
  double precision :: mu,weight
  double precision :: e_c,v_c,e_x,v_x
- double precision, allocatable :: rho(:)
- allocate(rho(N_states))
+ double precision, allocatable :: rho(:),tr_gamma_2(:)
+ allocate(rho(N_states),tr_gamma_2(N_states))
  dirac_energy_x_LDA = 0.d0
  dirac_energy_c_LDA = 0.d0
  do istate = 1, N_states
@@ -19,9 +19,15 @@
    r(2) = final_grid_points(2,i)
    r(3) = final_grid_points(3,i)
    weight=final_weight_at_r_vector(i) 
-   rho(istate) = dirac_one_body_dm_at_r(i,istate)
-   call dirac_ec_LDA_sr(mu_erf,rho(istate),e_c,v_c)
-   call dirac_ex_LDA_sr(mu_erf,rho(istate),e_x,v_x)
+   if (dirac_approximant == "n2x") then
+    tr_gamma_2(istate) = dirac_one_body_tr_dm_at_r(i,istate)
+    call dirac_n2x_sr(mu_erf,tr_gamma_2,e_x,v_x)
+   else
+    rho(istate) = dirac_one_body_dm_at_r(i,istate)
+    call dirac_ec_LDA_sr(mu_erf,rho(istate),e_c,v_c)
+    call dirac_ex_LDA_sr(mu_erf,rho(istate),e_x,v_x)
+   endif
+
 
 !  print*,r(1),r(2),r(3), rho(istate)
 !  print*,r(1),r(2),r(3), rho(istate),e_x,v_x
