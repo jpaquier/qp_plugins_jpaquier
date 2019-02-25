@@ -6,7 +6,7 @@ program dirac_ao_basis
   complex*16 :: large_aos_array(large_ao_num)
   complex*16 :: small_aos_array(small_ao_num)
   integer :: dirac_power_ao(3)
-  r= 0.d0
+  r= 0.01d0
  do i=1, dirac_ao_num
  !print*, dirac_ao_nucl(i)
  enddo
