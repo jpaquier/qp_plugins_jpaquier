@@ -16,26 +16,26 @@ program dirac_ks_rs
 ! enddo
 !enddo
 
- r =0.1d0
- call dirac_tr_dm_dft_at_r(r,tr_dm)
- print*,tr_dm(1)
+!r =0.1d0
+!call dirac_tr_dm_dft_at_r(r,tr_dm)
+!print*,tr_dm(1)
 
- do j = 1, elec_num
-  do i = 1,2*dirac_ao_num
-   write(33,*),i,j,dirac_mo_coef_electronic_for_dft(i,j)
-  enddo
-  write(33,*),'******************'
- enddo
+!do j = 1, elec_num
+! do i = 1,2*dirac_ao_num
+!  write(33,*),i,j,dirac_mo_coef_electronic_for_dft(i,j)
+! enddo
+! write(33,*),'******************'
+!enddo
 
- do j = 1,2*dirac_ao_num
-  do i = 1, 2*dirac_ao_num
-   write(34,*),i,j,dirac_one_body_dm_ao_for_dft(i,j,1)
-  enddo
-  write(34,*),'******************'
- enddo
+!do j = 1,2*dirac_ao_num
+! do i = 1, 2*dirac_ao_num
+!  write(34,*),i,j,dirac_one_body_dm_ao_for_dft(i,j,1)
+! enddo
+! write(34,*),'******************'
+!enddo
 
  do istate = 1, N_states
-  do i = 1, 5000 
+  do i = 1, 6000
    r(1) = final_grid_points(1,i)
    r(2) = final_grid_points(2,i)
    r(3) = final_grid_points(3,i)

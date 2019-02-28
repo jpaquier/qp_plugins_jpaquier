@@ -91,294 +91,366 @@
  do istate = 1, N_states
   large_aos_array_bis = large_aos_array
   small_aos_array_bis = small_aos_array
- !!L_alpha L_alpha* x L_alpha L_alpha*
- !do j = 1, large_ao_num
- ! do i = 1, large_ao_num
- !  LL_one_body_dm_ao_for_dft_tmp(i,j,istate) = dirac_one_body_dm_ao_for_dft(i,j,istate)
- ! enddo
- !enddo
- ! large_aos_array_bis = (0.d0,0.d0)
- !!do j = 1, large_ao_num
- !! do i  = 1, large_ao_num 
- !!  large_aos_array_bis(i) += LL_one_body_dm_ao_for_dft_tmp(i,j,istate)*large_aos_array(j)
- !! enddo
- !!enddo
- ! call zgemv('N',large_ao_num,large_ao_num,(1.d0,0.d0),LL_one_body_dm_ao_for_dft_tmp(1,1,istate),large_ao_num,large_aos_array,1,(0.d0,0.d0),large_aos_array_bis,1)
- !tr_dm_complex_tmp_part1(istate) = u_dotc_v(large_aos_array,large_aos_array_bis,large_ao_num)
- !do j = 1, large_ao_num
- ! do i = 1, large_ao_num
- !  LL_one_body_dm_ao_for_dft_tmp(i,j,istate) = dirac_one_body_dm_ao_for_dft(i,j,istate)
- ! enddo
- !enddo
- ! large_aos_array_bis = (0.d0,0.d0)
- !!do j = 1, large_ao_num
- !! do i  = 1, large_ao_num 
- !!  large_aos_array_bis(i) += LL_one_body_dm_ao_for_dft_tmp(i,j,istate)*large_aos_array(j)
- !! enddo
- !!enddo
- ! call zgemv('N',large_ao_num,large_ao_num,(1.d0,0.d0),LL_one_body_dm_ao_for_dft_tmp(1,1,istate),large_ao_num,large_aos_array,1,(0.d0,0.d0),large_aos_array_bis,1)
- !tr_dm_complex_tmp_part2(istate) = u_dotc_v(large_aos_array,large_aos_array_bis,large_ao_num) 
- !tr_dm_complex += tr_dm_complex_tmp_part1*tr_dm_complex_tmp_part2
- !!L_beta L_beta* x L_beta L_beta*
- !do j = 1, large_ao_num
- ! do i = 1, large_ao_num
- !  LL_one_body_dm_ao_for_dft_tmp(i,j,istate) = dirac_one_body_dm_ao_for_dft(large_ao_num+i,large_ao_num+j,istate)
- ! enddo
- !enddo
- ! large_aos_array_bis = (0.d0,0.d0)
- !!do j = 1, large_ao_num
- !! do i  = 1, large_ao_num 
- !!  large_aos_array_bis(i) += LL_one_body_dm_ao_for_dft_tmp(i,j,istate)*large_aos_array(j)
- !! enddo
- !!enddo
- ! call zgemv('N',large_ao_num,large_ao_num,(1.d0,0.d0),LL_one_body_dm_ao_for_dft_tmp(1,1,istate),large_ao_num,large_aos_array,1,(0.d0,0.d0),large_aos_array_bis,1)
- !tr_dm_complex_tmp_part1(istate) = u_dotc_v(large_aos_array,large_aos_array_bis,large_ao_num)
- !do j = 1, large_ao_num
- ! do i = 1, large_ao_num
- !  LL_one_body_dm_ao_for_dft_tmp(i,j,istate) = dirac_one_body_dm_ao_for_dft(large_ao_num+i,large_ao_num+j,istate)
- ! enddo
- !enddo
- ! large_aos_array_bis = (0.d0,0.d0)
- !!do j = 1, large_ao_num
- !! do i  = 1, large_ao_num 
- !!  large_aos_array_bis(i) += LL_one_body_dm_ao_for_dft_tmp(i,j,istate)*large_aos_array(j)
- !! enddo
- !!enddo
- ! call zgemv('N',large_ao_num,large_ao_num,(1.d0,0.d0),LL_one_body_dm_ao_for_dft_tmp(1,1,istate),large_ao_num,large_aos_array,1,(0.d0,0.d0),large_aos_array_bis,1)
- !tr_dm_complex_tmp_part2(istate) = u_dotc_v(large_aos_array,large_aos_array_bis,large_ao_num) 
- !tr_dm_complex += tr_dm_complex_tmp_part1*tr_dm_complex_tmp_part2
- !!S_alpha S_alpha* x S_alpha S_alpha*
- !do j = 1, small_ao_num
- ! do i = 1, small_ao_num
- !  SS_one_body_dm_ao_for_dft_tmp(i,j,istate) = dirac_one_body_dm_ao_for_dft(2*large_ao_num+i,2*large_ao_num+j,istate)
- ! enddo
- !enddo
- !!small_aos_array_bis = (0.d0,0.d0)
- !!do j = 1, small_ao_num
- !! do i  = 1, small_ao_num 
- !!  small_aos_array_bis(i) += SS_one_body_dm_ao_for_dft_tmp(i,j,istate)*small_aos_array(j)
- !! enddo
- !!enddo
- ! call zgemv('N',small_ao_num,small_ao_num,(1.d0,0.d0),SS_one_body_dm_ao_for_dft_tmp(1,1,istate),small_ao_num,small_aos_array,1,(0.d0,0.d0),small_aos_array_bis,1)
- !tr_dm_complex_tmp_part1(istate) = u_dotc_v(small_aos_array,small_aos_array_bis,small_ao_num)
- !do j = 1, small_ao_num
- ! do i = 1, small_ao_num
- !  SS_one_body_dm_ao_for_dft_tmp(i,j,istate) =dirac_one_body_dm_ao_for_dft(2*large_ao_num+i,2*large_ao_num+j,istate)
- ! enddo
- !enddo
- ! small_aos_array_bis = (0.d0,0.d0)
- !!do j = 1, small_ao_num
- !! do i  = 1, small_ao_num 
- !!  small_aos_array_bis(i) += SS_one_body_dm_ao_for_dft_tmp(i,j,istate)*small_aos_array(j)
- !! enddo
- !!enddo
- ! call zgemv('N',small_ao_num,small_ao_num,(1.d0,0.d0),SS_one_body_dm_ao_for_dft_tmp(1,1,istate),small_ao_num,small_aos_array,1,(0.d0,0.d0),small_aos_array_bis,1)
- !tr_dm_complex_tmp_part2(istate) = u_dotc_v(small_aos_array,small_aos_array_bis,small_ao_num)
- !tr_dm_complex += tr_dm_complex_tmp_part1*tr_dm_complex_tmp_part2
- !!S_beta S_beta* x S_beta S_beta*
- !do j = 1, small_ao_num
- ! do i = 1, small_ao_num
- !  SS_one_body_dm_ao_for_dft_tmp(i,j,istate) =dirac_one_body_dm_ao_for_dft(2*large_ao_num+small_ao_num+i,2*large_ao_num+small_ao_num+j,istate)
- ! enddo
- !enddo
- !!small_aos_array_bis = (0.d0,0.d0)
- !!do j = 1, small_ao_num
- !! do i  = 1, small_ao_num 
- !!  small_aos_array_bis(i) += SS_one_body_dm_ao_for_dft_tmp(i,j,istate)*small_aos_array(j)
- !! enddo
- !!enddo
- ! call zgemv('N',small_ao_num,small_ao_num,(1.d0,0.d0),SS_one_body_dm_ao_for_dft_tmp(1,1,istate),small_ao_num,small_aos_array,1,(0.d0,0.d0),small_aos_array_bis,1)
- !tr_dm_complex_tmp_part1(istate) = u_dotc_v(small_aos_array,small_aos_array_bis,small_ao_num)
- !do j = 1, small_ao_num
- ! do i = 1, small_ao_num
- !  SS_one_body_dm_ao_for_dft_tmp(i,j,istate) =dirac_one_body_dm_ao_for_dft(2*large_ao_num+small_ao_num+i,2*large_ao_num+small_ao_num+j,istate)
- ! enddo
- !enddo
- !!small_aos_array_bis = (0.d0,0.d0)
- !!do j = 1, small_ao_num
- !! do i  = 1, small_ao_num 
- !!  small_aos_array_bis(i) += SS_one_body_dm_ao_for_dft_tmp(i,j,istate)*small_aos_array(j)
- !! enddo
- !!enddo
- ! call zgemv('N',small_ao_num,small_ao_num,(1.d0,0.d0),SS_one_body_dm_ao_for_dft_tmp(1,1,istate),small_ao_num,small_aos_array,1,(0.d0,0.d0),small_aos_array_bis,1)
- !tr_dm_complex_tmp_part2(istate) = u_dotc_v(small_aos_array,small_aos_array_bis,small_ao_num)
- !tr_dm_complex += tr_dm_complex_tmp_part1*tr_dm_complex_tmp_part2
- !!L_alpha L_beta* x L_beta L_alpha*
- !do j = 1, large_ao_num
- ! do i = 1, large_ao_num
- !  LL_one_body_dm_ao_for_dft_tmp(i,j,istate) = dirac_one_body_dm_ao_for_dft(i,large_ao_num+j,istate)
- ! enddo
- !enddo
- ! large_aos_array_bis = (0.d0,0.d0)
- !!do j = 1, large_ao_num
- !! do i  = 1, large_ao_num 
- !!  large_aos_array_bis(i) += LL_one_body_dm_ao_for_dft_tmp(i,j,istate)*large_aos_array(j)
- !! enddo
- !!enddo
- ! call zgemv('N',large_ao_num,large_ao_num,(1.d0,0.d0),LL_one_body_dm_ao_for_dft_tmp(1,1,istate),large_ao_num,large_aos_array,1,(0.d0,0.d0),large_aos_array_bis,1)
- !tr_dm_complex_tmp_part1(istate) = u_dotc_v(large_aos_array,large_aos_array_bis,large_ao_num)
- !do j = 1, large_ao_num
- ! do i = 1, large_ao_num
- !  LL_one_body_dm_ao_for_dft_tmp(i,j,istate) = dirac_one_body_dm_ao_for_dft(large_ao_num+i,j,istate)
- ! enddo
- !enddo
- !!large_aos_array_bis = (0.d0,0.d0)
- !!do j = 1, large_ao_num
- !! do i  = 1, large_ao_num 
- !!  large_aos_array_bis(i) += LL_one_body_dm_ao_for_dft_tmp(i,j,istate)*large_aos_array(j)
- !! enddo
- !!enddo
- ! call zgemv('N',large_ao_num,large_ao_num,(1.d0,0.d0),LL_one_body_dm_ao_for_dft_tmp(1,1,istate),large_ao_num,large_aos_array,1,(0.d0,0.d0),large_aos_array_bis,1)
- !tr_dm_complex_tmp_part2(istate) = u_dotc_v(large_aos_array,large_aos_array_bis,large_ao_num) 
- !tr_dm_complex += 2*tr_dm_complex_tmp_part1*tr_dm_complex_tmp_part2
- !!S_alpha S_beta* x S_beta S_alpha*
- !do j = 1, small_ao_num
- ! do i = 1, small_ao_num
- !  SS_one_body_dm_ao_for_dft_tmp(i,j,istate) = dirac_one_body_dm_ao_for_dft(2*large_ao_num+i,2*large_ao_num+small_ao_num+j,istate)
- ! enddo
- !enddo
- !!small_aos_array_bis = (0.d0,0.d0)
- !!do j = 1, small_ao_num
- !! do i  = 1, small_ao_num 
- !!  small_aos_array_bis(i) += SS_one_body_dm_ao_for_dft_tmp(i,j,istate)*small_aos_array(j)
- !! enddo
- !!enddo
- ! call zgemv('N',small_ao_num,small_ao_num,(1.d0,0.d0),SS_one_body_dm_ao_for_dft_tmp(1,1,istate),small_ao_num,small_aos_array,1,(0.d0,0.d0),small_aos_array_bis,1)
- !tr_dm_complex_tmp_part1(istate) = u_dotc_v(small_aos_array,small_aos_array_bis,small_ao_num)
- !do j = 1, small_ao_num
- ! do i = 1, small_ao_num
- !  SS_one_body_dm_ao_for_dft_tmp(i,j,istate) = dirac_one_body_dm_ao_for_dft(2*large_ao_num+small_ao_num+i,2*large_ao_num+j,istate)
- ! enddo
- !enddo
- !!small_aos_array_bis = (0.d0,0.d0)
- !!do j = 1, small_ao_num
- !! do i  = 1, small_ao_num 
- !!  small_aos_array_bis(i) += SS_one_body_dm_ao_for_dft_tmp(i,j,istate)*small_aos_array(j)
- !! enddo
- !!enddo
- ! call zgemv('N',small_ao_num,small_ao_num,(1.d0,0.d0),SS_one_body_dm_ao_for_dft_tmp(1,1,istate),small_ao_num,small_aos_array,1,(0.d0,0.d0),small_aos_array_bis,1)
- !tr_dm_complex_tmp_part2(istate) = u_dotc_v(small_aos_array,small_aos_array_bis,small_ao_num) 
- !tr_dm_complex += 2*tr_dm_complex_tmp_part1*tr_dm_complex_tmp_part2
- !!L_alpha S_alpha* x S_alpha L_alpha*
- !do j = 1, small_ao_num
- ! do i = 1, large_ao_num
- !  LS_one_body_dm_ao_for_dft_tmp(i,j,istate) = dirac_one_body_dm_ao_for_dft(i,2*large_ao_num+j,istate)
- ! enddo
- !enddo
- ! large_aos_array_bis = (0.d0,0.d0)
- ! do j = 1, small_ao_num
- !  do i  = 1, large_ao_num 
- !   large_aos_array_bis(i) = LS_one_body_dm_ao_for_dft_tmp(i,j,istate)*small_aos_array(j)
- !  enddo
- ! enddo
- !!call zgemv('N',large_ao_num,small_ao_num,(1.d0,0.d0),LS_one_body_dm_ao_for_dft_tmp(1,1,istate),size(LS_one_body_dm_ao_for_dft_tmp,1),small_aos_array,1,(0.d0,0.d0),large_aos_array_bis,1)
- ! tr_dm_complex_tmp_part1 =(0.d0,0.d0)
- !!do i  = 1, large_ao_num
- !! tr_dm_complex_tmp_part1(istate) += large_aos_array(i)*large_aos_array_bis(i)
- !!enddo
- ! tr_dm_complex_tmp_part1(istate) = u_dotc_v(large_aos_array,large_aos_array_bis,large_ao_num)
- !do j = 1, large_ao_num
- ! do i = 1, small_ao_num
- !  SL_one_body_dm_ao_for_dft_tmp(i,j,istate) = dirac_one_body_dm_ao_for_dft(2*large_ao_num+i,j,istate)
- ! enddo
- !enddo
- ! small_aos_array_bis = (0.d0,0.d0)
- ! do j = 1, large_ao_num
- !  do i  = 1, small_ao_num
- !   small_aos_array_bis(i) = SL_one_body_dm_ao_for_dft_tmp(i,j,istate)*large_aos_array(j)
- !  enddo
- ! enddo
- !!call zgemv('N',small_ao_num,large_ao_num,(1.d0,0.d0),SL_one_body_dm_ao_for_dft_tmp(1,1,istate),size(SL_one_body_dm_ao_for_dft_tmp,1),large_aos_array,1,(0.d0,0.d0),small_aos_array_bis,1)
- ! tr_dm_complex_tmp_part2 =(0.d0,0.d0)
- !!do i  = 1, small_ao_num
- !! tr_dm_complex_tmp_part2(istate) += small_aos_array(i)*small_aos_array_bis(i)
- !!enddo
- ! tr_dm_complex_tmp_part2(istate) = u_dotc_v(small_aos_array,small_aos_array_bis,small_ao_num)
- !tr_dm_complex += 2*tr_dm_complex_tmp_part1*tr_dm_complex_tmp_part2
- !!L_beta S_beta* x S_beta L_beta*
- !do j = 1, small_ao_num
- ! do i = 1, large_ao_num
- !  LS_one_body_dm_ao_for_dft_tmp(i,j,istate) = dirac_one_body_dm_ao_for_dft(i+large_ao_num,2*large_ao_num+small_ao_num+j,istate)
- ! enddo
- !enddo
- ! large_aos_array_bis = (0.d0,0.d0)
- ! do j = 1, small_ao_num
- !  do i  = 1, large_ao_num 
- !   large_aos_array_bis(i) = LS_one_body_dm_ao_for_dft_tmp(i,j,istate)*small_aos_array(j)
- !  enddo
- ! enddo
- !!call zgemv('N',large_ao_num,small_ao_num,(1.d0,0.d0),LS_one_body_dm_ao_for_dft_tmp(1,1,istate),size(LS_one_body_dm_ao_for_dft_tmp,1),small_aos_array,1,(0.d0,0.d0),large_aos_array_bis,1)
- !tr_dm_complex_tmp_part1(istate) = u_dotc_v(large_aos_array,large_aos_array_bis,large_ao_num)
- !do j = 1, large_ao_num
- ! do i = 1, small_ao_num
- !  SL_one_body_dm_ao_for_dft_tmp(i,j,istate) = dirac_one_body_dm_ao_for_dft(2*large_ao_num+small_ao_num+i,large_ao_num+j,istate)
- ! enddo
- !enddo
- ! small_aos_array_bis = (0.d0,0.d0)
- ! do j = 1, large_ao_num
- !  do i  = 1, small_ao_num
- !   small_aos_array_bis(i) = SL_one_body_dm_ao_for_dft_tmp(i,j,istate)*large_aos_array(j)
- !  enddo
- ! enddo
- !!call zgemv('N',small_ao_num,large_ao_num,(1.d0,0.d0),SL_one_body_dm_ao_for_dft_tmp(1,1,istate),size(SL_one_body_dm_ao_for_dft_tmp,1),large_aos_array,1,(0.d0,0.d0),small_aos_array_bis,1)
- !tr_dm_complex_tmp_part2(istate) = u_dotc_v(small_aos_array,small_aos_array_bis,large_ao_num) 
- !tr_dm_complex += 2*tr_dm_complex_tmp_part1*tr_dm_complex_tmp_part2
-  !L_alpha S_beta* x S_beta L_alpha*
+  !L_alpha L_alpha* x L_alpha L_alpha*
+  do j = 1, large_ao_num
+   do i = 1, large_ao_num
+    LL_one_body_dm_ao_for_dft_tmp(i,j,istate) = dirac_one_body_dm_ao_for_dft(i,j,istate)
+   enddo
+  enddo
+   large_aos_array_bis = (0.d0,0.d0)
+   do j = 1, large_ao_num
+    do i  = 1, large_ao_num 
+     large_aos_array_bis(i) += LL_one_body_dm_ao_for_dft_tmp(i,j,istate)*large_aos_array(j)
+    enddo
+   enddo
+  !call zgemv('N',large_ao_num,large_ao_num,(1.d0,0.d0),LL_one_body_dm_ao_for_dft_tmp(1,1,istate),large_ao_num,large_aos_array,1,(0.d0,0.d0),large_aos_array_bis,1)
+   tr_dm_complex_tmp_part1 =(0.d0,0.d0)
+   do i  = 1, large_ao_num
+    tr_dm_complex_tmp_part1(istate) += large_aos_array(i)*large_aos_array_bis(i)
+   enddo  
+  !tr_dm_complex_tmp_part1(istate) = u_dotc_v(large_aos_array,large_aos_array_bis,large_ao_num)
+  do j = 1, large_ao_num
+   do i = 1, large_ao_num
+    LL_one_body_dm_ao_for_dft_tmp(i,j,istate) = dirac_one_body_dm_ao_for_dft(i,j,istate)
+   enddo
+  enddo
+   large_aos_array_bis = (0.d0,0.d0)
+   do j = 1, large_ao_num
+    do i  = 1, large_ao_num 
+     large_aos_array_bis(i) += LL_one_body_dm_ao_for_dft_tmp(i,j,istate)*large_aos_array(j)
+    enddo
+   enddo
+  !call zgemv('N',large_ao_num,large_ao_num,(1.d0,0.d0),LL_one_body_dm_ao_for_dft_tmp(1,1,istate),large_ao_num,large_aos_array,1,(0.d0,0.d0),large_aos_array_bis,1)
+   tr_dm_complex_tmp_part2 =(0.d0,0.d0)
+   do i  = 1, large_ao_num
+    tr_dm_complex_tmp_part2(istate) += large_aos_array(i)*large_aos_array_bis(i)
+   enddo  
+  !tr_dm_complex_tmp_part2(istate) = u_dotc_v(large_aos_array,large_aos_array_bis,large_ao_num) 
+  tr_dm_complex += tr_dm_complex_tmp_part1*tr_dm_complex_tmp_part2
+  !L_beta L_beta* x L_beta L_beta*
+  do j = 1, large_ao_num
+   do i = 1, large_ao_num
+    LL_one_body_dm_ao_for_dft_tmp(i,j,istate) = dirac_one_body_dm_ao_for_dft(large_ao_num+i,large_ao_num+j,istate)
+   enddo
+  enddo
+   large_aos_array_bis = (0.d0,0.d0)
+   do j = 1, large_ao_num
+    do i  = 1, large_ao_num 
+     large_aos_array_bis(i) += LL_one_body_dm_ao_for_dft_tmp(i,j,istate)*large_aos_array(j)
+    enddo
+   enddo
+  !call zgemv('N',large_ao_num,large_ao_num,(1.d0,0.d0),LL_one_body_dm_ao_for_dft_tmp(1,1,istate),large_ao_num,large_aos_array,1,(0.d0,0.d0),large_aos_array_bis,1)
+   tr_dm_complex_tmp_part1 =(0.d0,0.d0)
+   do i  = 1, large_ao_num
+    tr_dm_complex_tmp_part1(istate) += large_aos_array(i)*large_aos_array_bis(i)
+   enddo  
+  !tr_dm_complex_tmp_part1(istate) = u_dotc_v(large_aos_array,large_aos_array_bis,large_ao_num)
+  do j = 1, large_ao_num
+   do i = 1, large_ao_num
+    LL_one_body_dm_ao_for_dft_tmp(i,j,istate) = dirac_one_body_dm_ao_for_dft(large_ao_num+i,large_ao_num+j,istate)
+   enddo
+  enddo
+   large_aos_array_bis = (0.d0,0.d0)
+   do j = 1, large_ao_num
+    do i  = 1, large_ao_num 
+     large_aos_array_bis(i) += LL_one_body_dm_ao_for_dft_tmp(i,j,istate)*large_aos_array(j)
+    enddo
+   enddo
+  !call zgemv('N',large_ao_num,large_ao_num,(1.d0,0.d0),LL_one_body_dm_ao_for_dft_tmp(1,1,istate),large_ao_num,large_aos_array,1,(0.d0,0.d0),large_aos_array_bis,1)
+   tr_dm_complex_tmp_part2 =(0.d0,0.d0)
+   do i  = 1, large_ao_num
+    tr_dm_complex_tmp_part2(istate) += large_aos_array(i)*large_aos_array_bis(i)
+   enddo  
+  !tr_dm_complex_tmp_part2(istate) = u_dotc_v(large_aos_array,large_aos_array_bis,large_ao_num) 
+  tr_dm_complex += tr_dm_complex_tmp_part1*tr_dm_complex_tmp_part2
+  !S_alpha S_alpha* x S_alpha S_alpha*
+  do j = 1, small_ao_num
+   do i = 1, small_ao_num
+    SS_one_body_dm_ao_for_dft_tmp(i,j,istate) = dirac_one_body_dm_ao_for_dft(2*large_ao_num+i,2*large_ao_num+j,istate)
+   enddo
+  enddo
+   small_aos_array_bis = (0.d0,0.d0)
+   do j = 1, small_ao_num
+    do i  = 1, small_ao_num 
+     small_aos_array_bis(i) += SS_one_body_dm_ao_for_dft_tmp(i,j,istate)*small_aos_array(j)
+    enddo
+   enddo
+  !call zgemv('N',small_ao_num,small_ao_num,(1.d0,0.d0),SS_one_body_dm_ao_for_dft_tmp(1,1,istate),small_ao_num,small_aos_array,1,(0.d0,0.d0),small_aos_array_bis,1)
+   tr_dm_complex_tmp_part1 =(0.d0,0.d0)
+   do i  = 1, small_ao_num
+    tr_dm_complex_tmp_part1(istate) += small_aos_array(i)*small_aos_array_bis(i)
+   enddo
+  !tr_dm_complex_tmp_part1(istate) = u_dotc_v(small_aos_array,small_aos_array_bis,small_ao_num)
+  do j = 1, small_ao_num
+   do i = 1, small_ao_num
+    SS_one_body_dm_ao_for_dft_tmp(i,j,istate) =dirac_one_body_dm_ao_for_dft(2*large_ao_num+i,2*large_ao_num+j,istate)
+   enddo
+  enddo
+   small_aos_array_bis = (0.d0,0.d0)
+   do j = 1, small_ao_num
+    do i  = 1, small_ao_num 
+     small_aos_array_bis(i) += SS_one_body_dm_ao_for_dft_tmp(i,j,istate)*small_aos_array(j)
+    enddo
+   enddo
+  !call zgemv('N',small_ao_num,small_ao_num,(1.d0,0.d0),SS_one_body_dm_ao_for_dft_tmp(1,1,istate),small_ao_num,small_aos_array,1,(0.d0,0.d0),small_aos_array_bis,1)
+   tr_dm_complex_tmp_part2 =(0.d0,0.d0)
+   do i  = 1, small_ao_num
+    tr_dm_complex_tmp_part2(istate) += small_aos_array(i)*small_aos_array_bis(i)
+   enddo
+  !tr_dm_complex_tmp_part2(istate) = u_dotc_v(small_aos_array,small_aos_array_bis,small_ao_num)
+  tr_dm_complex += tr_dm_complex_tmp_part1*tr_dm_complex_tmp_part2
+  !S_beta S_beta* x S_beta S_beta*
+  do j = 1, small_ao_num
+   do i = 1, small_ao_num
+    SS_one_body_dm_ao_for_dft_tmp(i,j,istate) =dirac_one_body_dm_ao_for_dft(2*large_ao_num+small_ao_num+i,2*large_ao_num+small_ao_num+j,istate)
+   enddo
+  enddo
+   small_aos_array_bis = (0.d0,0.d0)
+   do j = 1, small_ao_num
+    do i  = 1, small_ao_num 
+     small_aos_array_bis(i) += SS_one_body_dm_ao_for_dft_tmp(i,j,istate)*small_aos_array(j)
+    enddo
+   enddo
+  !call zgemv('N',small_ao_num,small_ao_num,(1.d0,0.d0),SS_one_body_dm_ao_for_dft_tmp(1,1,istate),small_ao_num,small_aos_array,1,(0.d0,0.d0),small_aos_array_bis,1)
+   tr_dm_complex_tmp_part1 =(0.d0,0.d0)
+   do i  = 1, small_ao_num
+    tr_dm_complex_tmp_part1(istate) += small_aos_array(i)*small_aos_array_bis(i)
+   enddo
+  !tr_dm_complex_tmp_part1(istate) = u_dotc_v(small_aos_array,small_aos_array_bis,small_ao_num)
+  do j = 1, small_ao_num
+   do i = 1, small_ao_num
+    SS_one_body_dm_ao_for_dft_tmp(i,j,istate) =dirac_one_body_dm_ao_for_dft(2*large_ao_num+small_ao_num+i,2*large_ao_num+small_ao_num+j,istate)
+   enddo
+  enddo
+   small_aos_array_bis = (0.d0,0.d0)
+   do j = 1, small_ao_num
+    do i  = 1, small_ao_num 
+     small_aos_array_bis(i) += SS_one_body_dm_ao_for_dft_tmp(i,j,istate)*small_aos_array(j)
+    enddo
+   enddo
+  !call zgemv('N',small_ao_num,small_ao_num,(1.d0,0.d0),SS_one_body_dm_ao_for_dft_tmp(1,1,istate),small_ao_num,small_aos_array,1,(0.d0,0.d0),small_aos_array_bis,1)
+   tr_dm_complex_tmp_part2 =(0.d0,0.d0)
+   do i  = 1, small_ao_num
+    tr_dm_complex_tmp_part2(istate) += small_aos_array(i)*small_aos_array_bis(i)
+   enddo
+  !tr_dm_complex_tmp_part2(istate) = u_dotc_v(small_aos_array,small_aos_array_bis,small_ao_num)
+  tr_dm_complex += tr_dm_complex_tmp_part1*tr_dm_complex_tmp_part2
+  !L_alpha L_beta* x L_beta L_alpha*
+  do j = 1, large_ao_num
+   do i = 1, large_ao_num
+    LL_one_body_dm_ao_for_dft_tmp(i,j,istate) = dirac_one_body_dm_ao_for_dft(i,large_ao_num+j,istate)
+   enddo
+  enddo
+   large_aos_array_bis = (0.d0,0.d0)
+   do j = 1, large_ao_num
+    do i  = 1, large_ao_num 
+     large_aos_array_bis(i) += LL_one_body_dm_ao_for_dft_tmp(i,j,istate)*large_aos_array(j)
+    enddo
+   enddo
+  !call zgemv('N',large_ao_num,large_ao_num,(1.d0,0.d0),LL_one_body_dm_ao_for_dft_tmp(1,1,istate),large_ao_num,large_aos_array,1,(0.d0,0.d0),large_aos_array_bis,1)
+   tr_dm_complex_tmp_part1 =(0.d0,0.d0)
+   do i  = 1, large_ao_num
+    tr_dm_complex_tmp_part1(istate) += large_aos_array(i)*large_aos_array_bis(i)
+   enddo 
+  !tr_dm_complex_tmp_part1(istate) = u_dotc_v(large_aos_array,large_aos_array_bis,large_ao_num)
+  do j = 1, large_ao_num
+   do i = 1, large_ao_num
+    LL_one_body_dm_ao_for_dft_tmp(i,j,istate) = dirac_one_body_dm_ao_for_dft(large_ao_num+i,j,istate)
+   enddo
+  enddo
+   large_aos_array_bis = (0.d0,0.d0)
+   do j = 1, large_ao_num
+    do i  = 1, large_ao_num 
+     large_aos_array_bis(i) += LL_one_body_dm_ao_for_dft_tmp(i,j,istate)*large_aos_array(j)
+    enddo
+   enddo
+  !call zgemv('N',large_ao_num,large_ao_num,(1.d0,0.d0),LL_one_body_dm_ao_for_dft_tmp(1,1,istate),large_ao_num,large_aos_array,1,(0.d0,0.d0),large_aos_array_bis,1)
+   tr_dm_complex_tmp_part2 =(0.d0,0.d0)
+   do i  = 1, large_ao_num
+    tr_dm_complex_tmp_part2(istate) += large_aos_array(i)*large_aos_array_bis(i)
+   enddo 
+  !tr_d2m_complex_tmp_part(istate) = u_dotc_v(large_aos_array,large_aos_array_bis,large_ao_num) 
+  tr_dm_complex += 2*tr_dm_complex_tmp_part1*tr_dm_complex_tmp_part2
+  !S_alpha S_beta* x S_beta S_alpha*
+  do j = 1, small_ao_num
+   do i = 1, small_ao_num
+    SS_one_body_dm_ao_for_dft_tmp(i,j,istate) = dirac_one_body_dm_ao_for_dft(2*large_ao_num+i,2*large_ao_num+small_ao_num+j,istate)
+   enddo
+  enddo
+   small_aos_array_bis = (0.d0,0.d0)
+   do j = 1, small_ao_num
+    do i  = 1, small_ao_num 
+     small_aos_array_bis(i) += SS_one_body_dm_ao_for_dft_tmp(i,j,istate)*small_aos_array(j)
+    enddo
+   enddo
+  !call zgemv('N',small_ao_num,small_ao_num,(1.d0,0.d0),SS_one_body_dm_ao_for_dft_tmp(1,1,istate),small_ao_num,small_aos_array,1,(0.d0,0.d0),small_aos_array_bis,1)
+   tr_dm_complex_tmp_part1 =(0.d0,0.d0)
+   do i  = 1, small_ao_num
+    tr_dm_complex_tmp_part1(istate) += small_aos_array(i)*small_aos_array_bis(i)
+   enddo
+  !tr_dm_complex_tmp_part1(istate) = u_dotc_v(small_aos_array,small_aos_array_bis,small_ao_num)
+  do j = 1, small_ao_num
+   do i = 1, small_ao_num
+    SS_one_body_dm_ao_for_dft_tmp(i,j,istate) = dirac_one_body_dm_ao_for_dft(2*large_ao_num+small_ao_num+i,2*large_ao_num+j,istate)
+   enddo
+  enddo
+   small_aos_array_bis = (0.d0,0.d0)
+   do j = 1, small_ao_num
+    do i  = 1, small_ao_num 
+     small_aos_array_bis(i) += SS_one_body_dm_ao_for_dft_tmp(i,j,istate)*small_aos_array(j)
+    enddo
+   enddo
+  !call zgemv('N',small_ao_num,small_ao_num,(1.d0,0.d0),SS_one_body_dm_ao_for_dft_tmp(1,1,istate),small_ao_num,small_aos_array,1,(0.d0,0.d0),small_aos_array_bis,1)
+   tr_dm_complex_tmp_part2 =(0.d0,0.d0)
+   do i  = 1, small_ao_num
+    tr_dm_complex_tmp_part2(istate) += small_aos_array(i)*small_aos_array_bis(i)
+   enddo
+  !tr_dm_complex_tmp_part2(istate) = u_dotc_v(small_aos_array,small_aos_array_bis,small_ao_num) 
+  tr_dm_complex += 2*tr_dm_complex_tmp_part1*tr_dm_complex_tmp_part2
+  !L_alpha S_alpha* x S_alpha L_alpha*
   do j = 1, small_ao_num
    do i = 1, large_ao_num
-    LS_one_body_dm_ao_for_dft_tmp(i,j,istate) = dirac_one_body_dm_ao_for_dft(i,2*large_ao_num+large_ao_num+j,istate)
+    LS_one_body_dm_ao_for_dft_tmp(i,j,istate) = dirac_one_body_dm_ao_for_dft(i,2*large_ao_num+j,istate)
    enddo
   enddo
    large_aos_array_bis = (0.d0,0.d0)
    do j = 1, small_ao_num
     do i  = 1, large_ao_num 
-     large_aos_array_bis(i) = LS_one_body_dm_ao_for_dft_tmp(i,j,istate)*small_aos_array(j)
+     large_aos_array_bis(i) += LS_one_body_dm_ao_for_dft_tmp(i,j,istate)*small_aos_array(j)
     enddo
    enddo
   !call zgemv('N',large_ao_num,small_ao_num,(1.d0,0.d0),LS_one_body_dm_ao_for_dft_tmp(1,1,istate),size(LS_one_body_dm_ao_for_dft_tmp,1),small_aos_array,1,(0.d0,0.d0),large_aos_array_bis,1)
-  tr_dm_complex_tmp_part1(istate) = u_dotc_v(large_aos_array,large_aos_array_bis,large_ao_num)
+   tr_dm_complex_tmp_part1 =(0.d0,0.d0)
+   do i  = 1, large_ao_num
+    tr_dm_complex_tmp_part1(istate) += large_aos_array(i)*large_aos_array_bis(i)
+   enddo
+  !tr_dm_complex_tmp_part1(istate) = u_dotc_v(large_aos_array,large_aos_array_bis,large_ao_num)
   do j = 1, large_ao_num
    do i = 1, small_ao_num
-    SL_one_body_dm_ao_for_dft_tmp(i,j,istate) = dirac_one_body_dm_ao_for_dft(2*large_ao_num+large_ao_num+i,j,istate)
+    SL_one_body_dm_ao_for_dft_tmp(i,j,istate) = dirac_one_body_dm_ao_for_dft(2*large_ao_num+i,j,istate)
    enddo
   enddo
    small_aos_array_bis = (0.d0,0.d0)
    do j = 1, large_ao_num
     do i  = 1, small_ao_num
-     small_aos_array_bis(i) = SL_one_body_dm_ao_for_dft_tmp(i,j,istate)*large_aos_array(j)
+     small_aos_array_bis(i) += SL_one_body_dm_ao_for_dft_tmp(i,j,istate)*large_aos_array(j)
     enddo
    enddo
   !call zgemv('N',small_ao_num,large_ao_num,(1.d0,0.d0),SL_one_body_dm_ao_for_dft_tmp(1,1,istate),size(SL_one_body_dm_ao_for_dft_tmp,1),large_aos_array,1,(0.d0,0.d0),small_aos_array_bis,1)
-  tr_dm_complex_tmp_part2(istate) = u_dotc_v(small_aos_array,small_aos_array_bis,small_ao_num) 
+   tr_dm_complex_tmp_part2 =(0.d0,0.d0)
+   do i  = 1, small_ao_num
+    tr_dm_complex_tmp_part2(istate) += small_aos_array(i)*small_aos_array_bis(i)
+   enddo
+  !tr_dm_complex_tmp_part2(istate) = u_dotc_v(small_aos_array,small_aos_array_bis,small_ao_num)
   tr_dm_complex += 2*tr_dm_complex_tmp_part1*tr_dm_complex_tmp_part2
- !!L_beta S_alpha* x S_alpha L_beta*
- !do j = 1, small_ao_num
- ! do i = 1, large_ao_num
- !  LS_one_body_dm_ao_for_dft_tmp(i,j,istate) = dirac_one_body_dm_ao_for_dft(i+large_ao_num,2*large_ao_num+j,istate)
- ! enddo
- !enddo
- ! large_aos_array_bis = (0.d0,0.d0)
- ! do j = 1, small_ao_num
- !  do i  = 1, large_ao_num 
- !   large_aos_array_bis(i) = LS_one_body_dm_ao_for_dft_tmp(i,j,istate)*small_aos_array(j)
- !  enddo
- ! enddo
- !!call zgemv('N',large_ao_num,small_ao_num,(1.d0,0.d0),LS_one_body_dm_ao_for_dft_tmp(1,1,istate),size(LS_one_body_dm_ao_for_dft_tmp,1),small_aos_array,1,(0.d0,0.d0),large_aos_array_bis,1)
- !tr_dm_complex_tmp_part1(istate) = u_dotc_v(large_aos_array,large_aos_array_bis,large_ao_num)
- !do j = 1, large_ao_num
- ! do i = 1, small_ao_num
- !  SL_one_body_dm_ao_for_dft_tmp(i,j,istate) = dirac_one_body_dm_ao_for_dft(2*large_ao_num+i,large_ao_num+j,istate)
- ! enddo
- !enddo
- ! small_aos_array_bis = (0.d0,0.d0)
- ! do j = 1, large_ao_num
- !  do i  = 1, small_ao_num
- !   small_aos_array_bis(i) = SL_one_body_dm_ao_for_dft_tmp(i,j,istate)*large_aos_array(j)
- !  enddo
- ! enddo
- !!call zgemv('N',small_ao_num,large_ao_num,(1.d0,0.d0),SL_one_body_dm_ao_for_dft_tmp(1,1,istate),size(SL_one_body_dm_ao_for_dft_tmp,1),large_aos_array,1,(0.d0,0.d0),small_aos_array_bis,1)
- !tr_dm_complex_tmp_part2(istate) = u_dotc_v(small_aos_array,small_aos_array_bis,small_ao_num) 
- !tr_dm_complex += 2*tr_dm_complex_tmp_part1*tr_dm_complex_tmp_part2
+  !L_beta S_beta* x S_beta L_beta*
+  do j = 1, small_ao_num
+   do i = 1, large_ao_num
+    LS_one_body_dm_ao_for_dft_tmp(i,j,istate) = dirac_one_body_dm_ao_for_dft(i+large_ao_num,2*large_ao_num+small_ao_num+j,istate)
+   enddo
+  enddo
+   large_aos_array_bis = (0.d0,0.d0)
+   do j = 1, small_ao_num
+    do i  = 1, large_ao_num 
+     large_aos_array_bis(i) += LS_one_body_dm_ao_for_dft_tmp(i,j,istate)*small_aos_array(j)
+    enddo
+   enddo
+  !call zgemv('N',large_ao_num,small_ao_num,(1.d0,0.d0),LS_one_body_dm_ao_for_dft_tmp(1,1,istate),size(LS_one_body_dm_ao_for_dft_tmp,1),small_aos_array,1,(0.d0,0.d0),large_aos_array_bis,1)
+   tr_dm_complex_tmp_part1 =(0.d0,0.d0)
+   do i  = 1, large_ao_num
+    tr_dm_complex_tmp_part1(istate) += large_aos_array(i)*large_aos_array_bis(i)
+   enddo
+  !tr_dm_complex_tmp_part1(istate) = u_dotc_v(large_aos_array,large_aos_array_bis,large_ao_num)
+  do j = 1, large_ao_num
+   do i = 1, small_ao_num
+    SL_one_body_dm_ao_for_dft_tmp(i,j,istate) = dirac_one_body_dm_ao_for_dft(2*large_ao_num+small_ao_num+i,large_ao_num+j,istate)
+   enddo
+  enddo
+   small_aos_array_bis = (0.d0,0.d0)
+   do j = 1, large_ao_num
+    do i  = 1, small_ao_num
+     small_aos_array_bis(i) += SL_one_body_dm_ao_for_dft_tmp(i,j,istate)*large_aos_array(j)
+    enddo
+   enddo
+  !call zgemv('N',small_ao_num,large_ao_num,(1.d0,0.d0),SL_one_body_dm_ao_for_dft_tmp(1,1,istate),size(SL_one_body_dm_ao_for_dft_tmp,1),large_aos_array,1,(0.d0,0.d0),small_aos_array_bis,1)
+   tr_dm_complex_tmp_part2 =(0.d0,0.d0)
+   do i  = 1, small_ao_num
+    tr_dm_complex_tmp_part2(istate) += small_aos_array(i)*small_aos_array_bis(i)
+   enddo
+  !tr_dm_complex_tmp_part2(istate) = u_dotc_v(small_aos_array,small_aos_array_bis,small_ao_num) 
+  tr_dm_complex += 2*tr_dm_complex_tmp_part1*tr_dm_complex_tmp_part2
+  !L_alpha S_beta* x S_beta L_alpha*
+  do j = 1, small_ao_num
+   do i = 1, large_ao_num
+    LS_one_body_dm_ao_for_dft_tmp(i,j,istate) = dirac_one_body_dm_ao_for_dft(i,2*large_ao_num+small_ao_num+j,istate)
+   enddo
+  enddo
+   large_aos_array_bis = (0.d0,0.d0)
+   do j = 1, small_ao_num
+    do i  = 1, large_ao_num 
+     large_aos_array_bis(i) += LS_one_body_dm_ao_for_dft_tmp(i,j,istate)*small_aos_array(j)
+    enddo
+   enddo
+  !call zgemv('N',large_ao_num,small_ao_num,(1.d0,0.d0),LS_one_body_dm_ao_for_dft_tmp(1,1,istate),size(LS_one_body_dm_ao_for_dft_tmp,1),small_aos_array,1,(0.d0,0.d0),large_aos_array_bis,1)
+   tr_dm_complex_tmp_part1 =(0.d0,0.d0)
+   do i  = 1, large_ao_num
+    tr_dm_complex_tmp_part1(istate) += large_aos_array(i)*large_aos_array_bis(i)
+   enddo
+  !tr_dm_complex_tmp_part1(istate) = u_dotc_v(large_aos_array,large_aos_array_bis,large_ao_num)
+  do j = 1, large_ao_num
+   do i = 1, small_ao_num
+    SL_one_body_dm_ao_for_dft_tmp(i,j,istate) = dirac_one_body_dm_ao_for_dft(2*large_ao_num+small_ao_num+i,j,istate)
+   enddo
+  enddo
+   small_aos_array_bis = (0.d0,0.d0)
+   do j = 1, large_ao_num
+    do i  = 1, small_ao_num
+     small_aos_array_bis(i) += SL_one_body_dm_ao_for_dft_tmp(i,j,istate)*large_aos_array(j)
+    enddo
+   enddo
+  !call zgemv('N',small_ao_num,large_ao_num,(1.d0,0.d0),SL_one_body_dm_ao_for_dft_tmp(1,1,istate),size(SL_one_body_dm_ao_for_dft_tmp,1),large_aos_array,1,(0.d0,0.d0),small_aos_array_bis,1)
+   tr_dm_complex_tmp_part2 =(0.d0,0.d0)
+   do i  = 1, small_ao_num
+    tr_dm_complex_tmp_part2(istate) += small_aos_array(i)*small_aos_array_bis(i)
+   enddo
+  !tr_dm_complex_tmp_part2(istate) = u_dotc_v(small_aos_array,small_aos_array_bis,small_ao_num) 
+  tr_dm_complex += 2*tr_dm_complex_tmp_part1*tr_dm_complex_tmp_part2
+  !L_beta S_alpha* x S_alpha L_beta*
+  do j = 1, small_ao_num
+   do i = 1, large_ao_num
+    LS_one_body_dm_ao_for_dft_tmp(i,j,istate) = dirac_one_body_dm_ao_for_dft(i+large_ao_num,2*large_ao_num+j,istate)
+   enddo
+  enddo
+   large_aos_array_bis = (0.d0,0.d0)
+   do j = 1, small_ao_num
+    do i  = 1, large_ao_num 
+     large_aos_array_bis(i) += LS_one_body_dm_ao_for_dft_tmp(i,j,istate)*small_aos_array(j)
+    enddo
+   enddo
+  !call zgemv('N',large_ao_num,small_ao_num,(1.d0,0.d0),LS_one_body_dm_ao_for_dft_tmp(1,1,istate),size(LS_one_body_dm_ao_for_dft_tmp,1),small_aos_array,1,(0.d0,0.d0),large_aos_array_bis,1)
+   tr_dm_complex_tmp_part1 =(0.d0,0.d0)
+   do i  = 1, large_ao_num
+    tr_dm_complex_tmp_part1(istate) += large_aos_array(i)*large_aos_array_bis(i)
+   enddo
+  !tr_dm_complex_tmp_part1(istate) = u_dotc_v(large_aos_array,large_aos_array_bis,large_ao_num)
+  do j = 1, large_ao_num
+   do i = 1, small_ao_num
+    SL_one_body_dm_ao_for_dft_tmp(i,j,istate) = dirac_one_body_dm_ao_for_dft(2*large_ao_num+i,large_ao_num+j,istate)
+   enddo
+  enddo
+   small_aos_array_bis = (0.d0,0.d0)
+   do j = 1, large_ao_num
+    do i  = 1, small_ao_num
+     small_aos_array_bis(i) += SL_one_body_dm_ao_for_dft_tmp(i,j,istate)*large_aos_array(j)
+    enddo
+   enddo
+  !call zgemv('N',small_ao_num,large_ao_num,(1.d0,0.d0),SL_one_body_dm_ao_for_dft_tmp(1,1,istate),size(SL_one_body_dm_ao_for_dft_tmp,1),large_aos_array,1,(0.d0,0.d0),small_aos_array_bis,1)
+   tr_dm_complex_tmp_part2 =(0.d0,0.d0)
+   do i  = 1, small_ao_num
+    tr_dm_complex_tmp_part2(istate) += small_aos_array(i)*small_aos_array_bis(i)
+   enddo
+  !tr_dm_complex_tmp_part2(istate) = u_dotc_v(small_aos_array,small_aos_array_bis,small_ao_num) 
+  tr_dm_complex += 2*tr_dm_complex_tmp_part1*tr_dm_complex_tmp_part2
   tr_dm = real(tr_dm_complex)
   tr_dm_im = aimag(tr_dm_complex(1))/tr_dm(1)
   if (tr_dm(1) .gt. 1.d0) then
