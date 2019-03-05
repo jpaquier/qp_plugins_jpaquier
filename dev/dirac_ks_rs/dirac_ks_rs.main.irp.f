@@ -35,14 +35,15 @@ program dirac_ks_rs
 !enddo
 
  do istate = 1, N_states
-  do i = 1, 6000
+  do i = 1, 20000
    r(1) = final_grid_points(1,i)
    r(2) = final_grid_points(2,i)
    r(3) = final_grid_points(3,i)
    tr_gamma_2(istate) = dirac_one_body_tr_dm_at_r(i,istate)
-   rho(istate) = dirac_one_body_dm_at_r(i,istate)
-   call dirac_n2x_sr(mu_erf,tr_gamma_2,e_x,v_x)
-   write(35,*),r(1),r(2),r(3),rho(istate),tr_gamma_2(istate)
+
+  !rho(istate) = dirac_one_body_dm_at_r(i,istate)
+  !call dirac_n2x_sr(mu_erf,tr_gamma_2,e_x,v_x)
+  !write(35,*),r(1),r(2),r(3),rho(istate),tr_gamma_2(istate)
   
   !call give_all_large_aos_at_r(r,large_aos_array)
   !call give_all_small_aos_at_r(r,small_aos_array)

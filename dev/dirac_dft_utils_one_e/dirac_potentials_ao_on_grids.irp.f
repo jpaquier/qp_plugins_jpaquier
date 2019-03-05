@@ -20,7 +20,8 @@
    r(3) = final_grid_points(3,i)
    weight=final_weight_at_r_vector(i) 
    tr_gamma_2(istate) = dirac_one_body_tr_dm_at_r(i,istate)
-   call dirac_n2x_sr(mu_erf,tr_gamma_2,e_x,v_x)
+  !call dirac_n2x_sr(mu_erf,tr_gamma_2,e_x,v_x)
+   call dirac_ex_LDA_sr(mu_erf,tr_gamma_2(istate),e_x,v_x)
     
   !rho(istate) = dirac_one_body_dm_at_r(i,istate)
   !call dirac_ex_LDA_sr(mu_erf,rho(istate),e_x,v_x)
