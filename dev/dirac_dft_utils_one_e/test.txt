@@ -1,25 +1,21 @@
-        (0.002687627869433291d0*kF_4*
-          (-6.d0*tmp_c_2*tmp_mu_2 - 
-            21.26944621086619d0*tmp_c_2*(1.d0 + tmp_c_2)*tmp_mu*
-             (-1.d0 + tmp_c*datan(z1/tmp_c)) - 
-            4.d0*dsqrt(1.d0 + tmp_c_2)*dlog(dsqrt(1.d0 + tmp_c_m_2) + 1.d0/tmp_c) - 
-            22.d0*tmp_c_2*dsqrt(1.d0 + tmp_c_2)*
-             dlog(dsqrt(1.d0 + tmp_c_m_2) + 1.d0/tmp_c) - 
-            18.d0*tmp_c_4*dsqrt(1.d0 + tmp_c_2)*
-             dlog(dsqrt(1.d0 + tmp_c_m_2) + 1.d0/tmp_c) + 
-            (1.d0 + tmp_c_2)*(4.d0 + tmp_c_2 + 
-               (1.d0 + tmp_c_2)**2*dlog(1.d0 + tmp_c_m_2) + 
-               9.d0*tmp_c_4*dlog(dsqrt(1.d0 + tmp_c_m_2) + 1.d0/tmp_c)**2 - 
-               2.d0*dlog(tmp_c) + dlog(1.d0 + tmp_c_2) + 
-               tmp_c_2*(8.d0 + 7.d0*tmp_c_2)*(-2.d0*dlog(tmp_c) + dlog(1.d0 + tmp_c_2)))))/
-        (1.d0 + tmp_c_2)
+(1.084919225877748d-11*kF_4*
+          (46816.d0 - 454656.d0*tmp_mu_2 + 
+            21.d0*(tmp_c_2*(13248.d0 + 5.d0*tmp_c_2*
+                   (-3564.d0 + 35.d0*tmp_c_2*(44.d0 + 51.d0*tmp_c_2 - 189.d0*tmp_c_4))) - 
+               640.d0*tmp_c_2*(164.d0 - 164.d0*tmp_c_2 - 45.d0*tmp_c_4 + 315.d0*tmp_c_6)*tmp_mu_2 - 
+               4608.d0*(-44.d0 + 5.d0*tmp_c_2*(-32.d0 + 9.d0*tmp_c_2 + 45.d0*tmp_c_4))*tmp_mu_4 - 
+               491520.d0*(4.d0 + 9.d0*(tmp_c_2 + tmp_c_4))*tmp_mu_6) + 
+            315.d0*tmp_c_4*(dlog(dsqrt(1.d0 + tmp_c_m_2) + 1.d0/tmp_c)*
+                (dsqrt(1.d0 + tmp_c_2)*(2205.d0*tmp_c_6 + 280.d0*tmp_c_4*(-5.d0 + 48.d0*tmp_mu_2) + 
+                     20.d0*tmp_c_2*(35.d0 - 384.d0*tmp_mu_2 + 3456.d0*tmp_mu_4) + 
+                     8.d0*(-15.d0 + 128.d0*tmp_mu_2*(2.d0 - 27.d0*tmp_mu_2 + 288.d0*tmp_mu_4))) + 
+                  3.d0*tmp_c_2*(735.d0*tmp_c_6 + 4480.d0*tmp_c_4*tmp_mu_2 + 
+                     23040.d0*tmp_c_2*tmp_mu_4 + 98304.d0*tmp_mu_6)*
+                   (dlog(tmp_c) - 1.d0*dlog(1.d0 + dsqrt(1.d0 + tmp_c_2)))) - 
+               1.d0*dsqrt(1.d0 + tmp_c_2)*
+                (2205.d0*tmp_c_6 + 280.d0*tmp_c_4*(-5.d0 + 48.d0*tmp_mu_2) + 
+                  20.d0*tmp_c_2*(35.d0 - 384.d0*tmp_mu_2 + 3456.d0*tmp_mu_4) + 
+                  8.d0*(-15.d0 + 128.d0*tmp_mu_2*(2.d0 - 27.d0*tmp_mu_2 + 288.d0*tmp_mu_4)))*
+                (dlog(tmp_c) - 1.d0*dlog(1.d0 + dsqrt(1.d0 + tmp_c_2))))))/tmp_mu_8
 
 
-
-        (0.1061032953945969d0*kF*(4.d0*(1.d0 + tmp_c_2)**2 + 
-            5.317361552716548d0*tmp_c_2*(1.d0 + tmp_c_2)*tmp_mu - 
-            3.d0*tmp_c_4*tmp_mu_2 - 
-            2.d0*(1.d0 + tmp_c_2)**2*(2.d0 + 5.d0*tmp_c_2)*dlog(tmp_c) + 
-            (1.d0 + tmp_c_2)**2*(2.d0 + 5.d0*tmp_c_2)*dlog(1.d0 + tmp_c_2) + 
-            4.d0*dsqrt(1.d0 + tmp_c_2)*(1.d0 + 4.d0*tmp_c_2 + 3.d0*tmp_c_4)*
-             dlog(tmp_c/(1.d0 + dsqrt(1.d0 + tmp_c_2)))))/(1.d0 + tmp_c_2)**2

@@ -30,7 +30,7 @@ program dirac_density
     rho_lda(istate) = dsqrt(2.d0*tr_gamma_2(istate))
     kF_bis(istate) = ckf*(rho_lda(istate)**f13)
     tmp_c(istate) = c/kF_bis(istate)
-   if (tr_gamma_2(istate) .gt. 1d-10) then
+   if (tr_gamma_2(istate) .gt. 1d-5) then
     do j = 1, 4
      tmp_kF = 4.375106855981304d0*(rho_lda*dsqrt(-1.d0/(-4.d0 - 9.d0*tmp_c**2 - 9.d0*tmp_c**4 + 9.d0*tmp_c**4*dlog(dsqrt(1.d0 + tmp_c**(-2)) + 1.d0/tmp_c)* (2.d0*dsqrt(1.d0 + tmp_c**2) - tmp_c**2*dlog(dsqrt(1.d0 + tmp_c**(-2)) + 1.d0/tmp_c)))))**f13
      tmp_c = c/tmp_kF

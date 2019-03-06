@@ -194,18 +194,21 @@
  c47 = 18769.d0
  c48 = 0.0005099248761589486d0
  c49 = 0.02258151625021997d0
- !To use the RHEG with the same pair density 
+ !To use the electronic density obtained from the on-top pair density 
+ c = speed_of_light
  rho_lda = dsqrt(2.d0*tr_gamma_2)
- tmp_kF = ckf*(rho_lda*f13)
- c = speed_of_light 
- tmp_c = c/tmp_kF
- do j = 1, 4
-  tmp_kF = 4.375106855981304d0*(rho_lda*dsqrt(-1.d0/(-4.d0 - 9.d0*tmp_c**2 -       &    
-      9.d0*tmp_c**4 + 9.d0*tmp_c**4*dlog(dsqrt(1.d0 + tmp_c**(-2)) + 1.d0/tmp_c)*  &     
-      (2.d0*dsqrt(1.d0 + tmp_c**2) - tmp_c**2*dlog(dsqrt(1.d0 + tmp_c**(-2)) +     &
-      1.d0/tmp_c)))))**f13
-  tmp_c = c/tmp_kF
- enddo
+ tmp_kF = ckf*(rho_lda**f13)
+ !To use the effective electronic density
+  if (tr_gamma_2 .gt. 1d-5) then
+   tmp_c = c/tmp_kF
+   do j = 1, 4
+    tmp_kF = 4.375106855981304d0*(rho_lda*dsqrt(-1.d0/(-4.d0 - 9.d0*tmp_c**2 -       &    
+        9.d0*tmp_c**4 + 9.d0*tmp_c**4*dlog(dsqrt(1.d0 + tmp_c**(-2)) + 1.d0/tmp_c)*  &     
+        (2.d0*dsqrt(1.d0 + tmp_c**2) - tmp_c**2*dlog(dsqrt(1.d0 + tmp_c**(-2)) +     &
+        1.d0/tmp_c)))))**f13
+    tmp_c = c/tmp_kF
+   enddo
+  endif
  kF = tmp_kF 
  kF_4 = kF*kF*kF*kF
  kF_6 = kF_4*kF*kF
@@ -232,10 +235,11 @@
  tmp_mu_m = 1.d0/tmp_mu
  tmp_mu_m_2 = 1.d0/tmp_mu_2
 
- ! Non-relativistic equations
- if (tmp_c .gt. 1d+2) then
+
  ! To test the non-relativistic fonctional with the relativistic DHF density
 !if (tmp_c .gt. 0.d0) then
+ ! Non-relativistic equations
+ if (tmp_c .gt. 1d+2) then
 
   ! Linear/quadratic range-separation for very low values of tmp_mu
   if (tmp_mu .lt. 1.d-2) then
@@ -1298,7 +1302,7 @@
    ! For very large values of tmp_mu
    elseif (tmp_mu .lt. 1.d+9) then
 
-   ! Inverse hexuple for large values of tmp_mu
+    !Inverse hexuple for large values of tmp_mu
     e_x = (3.332871861896442d-8*kF_4*(856.d0 - 5292.d0*tmp_mu_2 +                                                            &            
           35.d0*(-68.d0*tmp_c_2 + 74.d0*tmp_c_4 + 15.d0*tmp_c_6 - 135.d0*tmp_c_8 -                                           & 
              9.d0*tmp_c_2*(-56.d0 + 21.d0*tmp_c_2 + 81.d0*tmp_c_4)*tmp_mu_2 -                                                & 
@@ -1310,6 +1314,27 @@
                  (dlog(tmp_c) - 1.d0*dlog(1.d0 + dsqrt(1.d0 + tmp_c_2)))) -                                                  & 
              1.d0*dsqrt(1.d0 + tmp_c_2)*(6.d0 + 45.d0*tmp_c_4 - 90.d0*tmp_mu_2 + 1152.d0*tmp_mu_4 +                          & 
                 tmp_c_2*(-25.d0 + 243.d0*tmp_mu_2))*(dlog(tmp_c) - 1.d0*dlog(1.d0 + dsqrt(1.d0 + tmp_c_2))))))/tmp_mu_6
+
+   ! Inverse octuple for large values of tmp_mu
+   !e_x = (1.084919225877748d-11*kF_4*                                                                 &   
+   !      (46816.d0 - 454656.d0*tmp_mu_2 +                                                             &   
+   !        21.d0*(tmp_c_2*(13248.d0 + 5.d0*tmp_c_2*                                                   &   
+   !               (-3564.d0 + 35.d0*tmp_c_2*(44.d0 + 51.d0*tmp_c_2 - 189.d0*tmp_c_4))) -              &   
+   !           640.d0*tmp_c_2*(164.d0 - 164.d0*tmp_c_2 - 45.d0*tmp_c_4 + 315.d0*tmp_c_6)*tmp_mu_2 -    &   
+   !           4608.d0*(-44.d0 + 5.d0*tmp_c_2*(-32.d0 + 9.d0*tmp_c_2 + 45.d0*tmp_c_4))*tmp_mu_4 -      &   
+   !           491520.d0*(4.d0 + 9.d0*(tmp_c_2 + tmp_c_4))*tmp_mu_6) +                                 &   
+   !        315.d0*tmp_c_4*(dlog(dsqrt(1.d0 + tmp_c_m_2) + 1.d0/tmp_c)*                                &   
+   !            (dsqrt(1.d0 + tmp_c_2)*(2205.d0*tmp_c_6 + 280.d0*tmp_c_4*(-5.d0 + 48.d0*tmp_mu_2) +    &   
+   !                 20.d0*tmp_c_2*(35.d0 - 384.d0*tmp_mu_2 + 3456.d0*tmp_mu_4) +                      &   
+   !                 8.d0*(-15.d0 + 128.d0*tmp_mu_2*(2.d0 - 27.d0*tmp_mu_2 + 288.d0*tmp_mu_4))) +      &   
+   !              3.d0*tmp_c_2*(735.d0*tmp_c_6 + 4480.d0*tmp_c_4*tmp_mu_2 +                            &   
+   !                 23040.d0*tmp_c_2*tmp_mu_4 + 98304.d0*tmp_mu_6)*                                   &   
+   !               (dlog(tmp_c) - 1.d0*dlog(1.d0 + dsqrt(1.d0 + tmp_c_2)))) -                          &   
+   !           1.d0*dsqrt(1.d0 + tmp_c_2)*                                                             &   
+   !            (2205.d0*tmp_c_6 + 280.d0*tmp_c_4*(-5.d0 + 48.d0*tmp_mu_2) +                           &   
+   !              20.d0*tmp_c_2*(35.d0 - 384.d0*tmp_mu_2 + 3456.d0*tmp_mu_4) +                         &   
+   !              8.d0*(-15.d0 + 128.d0*tmp_mu_2*(2.d0 - 27.d0*tmp_mu_2 + 288.d0*tmp_mu_4)))*          &   
+   !            (dlog(tmp_c) - 1.d0*dlog(1.d0 + dsqrt(1.d0 + tmp_c_2))))))/tmp_mu_8                        
 
    ! Inverse hexuple for large values of tmp_mu
     v_x = (-6.578825359288002d-7*kF*((1.d0 + tmp_c_2)*(1.d0 + dsqrt(1.d0 + tmp_c_2))*                             & 

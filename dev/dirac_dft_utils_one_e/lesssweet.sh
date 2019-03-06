@@ -8,6 +8,7 @@
  sed -i '1,500s/e-8/d-8p/g' test.txt
  sed -i '1,500s/e-9/d-9p/g' test.txt
  sed -i '1,500s/e-10/d-10p/g' test.txt
+ sed -i '1,500s/e-11/d-11p/g' test.txt
  sed -i '1,500s/e2/d+2p/g' test.txt
  sed -i '1,500s/e3/d+3p/g' test.txt
  sed -i '1,500s/e4/d+4p/g' test.txt
@@ -155,6 +156,7 @@
  sed -i '1,500s/d-8p/d-8/g' test.txt
  sed -i '1,500s/d-9p/d-9/g' test.txt
  sed -i '1,500s/d-10p/d-10/g' test.txt
+ sed -i '1,500s/d-11p/d-11/g' test.txt
  sed -i '1,500s/d+2p/d+2/g' test.txt
  sed -i '1,500s/d+3p/d+3/g' test.txt
  sed -i '1,500s/d+4p/d+4/g' test.txt
