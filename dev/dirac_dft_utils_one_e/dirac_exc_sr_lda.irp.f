@@ -196,16 +196,16 @@
  c49 = 0.02258151625021997d0
  !To use the RHEG with the same pair density 
  rho_lda = dsqrt(2.d0*tr_gamma_2)
- tmp_kF = ckf*(rho_lda*f13)
+ tmp_kF = ckf*(rho_lda**f13)
  c = speed_of_light 
  tmp_c = c/tmp_kF
- do j = 1, 4
-  tmp_kF = 4.375106855981304d0*(rho_lda*dsqrt(-1.d0/(-4.d0 - 9.d0*tmp_c**2 -       &    
-      9.d0*tmp_c**4 + 9.d0*tmp_c**4*dlog(dsqrt(1.d0 + tmp_c**(-2)) + 1.d0/tmp_c)*  &     
-      (2.d0*dsqrt(1.d0 + tmp_c**2) - tmp_c**2*dlog(dsqrt(1.d0 + tmp_c**(-2)) +     &
-      1.d0/tmp_c)))))**f13
-  tmp_c = c/tmp_kF
- enddo
+!do j = 1, 4
+! tmp_kF = 4.375106855981304d0*(rho_lda*dsqrt(-1.d0/(-4.d0 - 9.d0*tmp_c**2 -       &    
+!     9.d0*tmp_c**4 + 9.d0*tmp_c**4*dlog(dsqrt(1.d0 + tmp_c**(-2)) + 1.d0/tmp_c)*  &     
+!     (2.d0*dsqrt(1.d0 + tmp_c**2) - tmp_c**2*dlog(dsqrt(1.d0 + tmp_c**(-2)) +     &
+!     1.d0/tmp_c)))))**f13
+! tmp_c = c/tmp_kF
+!enddo
  kF = tmp_kF 
  kF_4 = kF*kF*kF*kF
  kF_6 = kF_4*kF*kF
@@ -233,9 +233,9 @@
  tmp_mu_m_2 = 1.d0/tmp_mu_2
 
  ! Non-relativistic equations
- if (tmp_c .gt. 1d+2) then
+!if (tmp_c .gt. 1d+2) then
  ! To test the non-relativistic fonctional with the relativistic DHF density
-!if (tmp_c .gt. 0.d0) then
+ if (tmp_c .gt. 0.d0) then
 
   ! Linear/quadratic range-separation for very low values of tmp_mu
   if (tmp_mu .lt. 1.d-2) then
