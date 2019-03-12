@@ -34,6 +34,7 @@ program dirac_ks_rs
    else
     tmp_kF = kF_bis
    endif
+   open (10, file='exchange_energy_density')
    write(10,*) r(1),r(2),r(3), tmp_kF(istate),e_x
   enddo
  enddo
