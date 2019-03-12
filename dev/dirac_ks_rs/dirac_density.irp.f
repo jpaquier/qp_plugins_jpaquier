@@ -24,12 +24,10 @@ program dirac_density
    weight=final_weight_at_r_vector(i)
    rho(istate) = dirac_one_body_dm_at_r(i,istate)
    kF(istate) = ckf*(rho(istate)**f13)
-  !call dirac_ex_LDA_sr(mu_erf,rho(istate),e_x,v_x)
-  !print*,r(1),r(2),r(3), rho(istate)
-   tr_gamma_2(istate) = dirac_one_body_tr_dm_at_r(i,istate)
-    rho_lda(istate) = dsqrt(2.d0*tr_gamma_2(istate))
-    kF_bis(istate) = ckf*(rho_lda(istate)**f13)
-    tmp_c(istate) = c/kF_bis(istate)
+   tr_gamma_2(istate) = dirac_one_body_tr_dm_2_at_r(i,istate)
+   rho_lda(istate) = dsqrt(2.d0*tr_gamma_2(istate))
+   kF_bis(istate) = ckf*(rho_lda(istate)**f13)
+   tmp_c(istate) = c/kF_bis(istate)
    if (tr_gamma_2(istate) .gt. 1d-5) then
     do j = 1, 4
      tmp_kF = 4.375106855981304d0*(rho_lda*dsqrt(-1.d0/(-4.d0 - 9.d0*tmp_c**2 - 9.d0*tmp_c**4 + 9.d0*tmp_c**4*dlog(dsqrt(1.d0 + tmp_c**(-2)) + 1.d0/tmp_c)* (2.d0*dsqrt(1.d0 + tmp_c**2) - tmp_c**2*dlog(dsqrt(1.d0 + tmp_c**(-2)) + 1.d0/tmp_c)))))**f13

@@ -17,12 +17,12 @@ program dirac_exchange_lda_mu
    print*,'**********'
    print*,'short-range coulomb interaction'   
    print*, mu_erf, dirac_energy_x_lda(1)
-   open (10, file='exchange_lda_X_B.dat',position ='append') 
+   open (10, file='exchange_lda_Z.dat',position ='append') 
    write(10,*) mu_erf, dirac_energy_x_lda(1)
   elseif (dirac_interaction == "Coulomb_Gaunt") then
    print*,'**********'
    print*,'Short-range Coulomb-Gaunt interaction'
-   open (10, file='exchange_lda_X_B_CG.dat',position ='append')
+   open (10, file='exchange_lda_Z_CG.dat',position ='append')
    write(10,*) mu_erf, dirac_energy_x_lda(1)
   else
    print *,  'Unrecognized dirac_interaction : '//dirac_interaction

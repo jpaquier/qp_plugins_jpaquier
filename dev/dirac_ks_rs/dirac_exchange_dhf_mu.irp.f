@@ -18,7 +18,7 @@ program dirac_exchange_dhf_mu
    print*,'Short-range Coulomb interaction'   
    print*, 'mu_erf =',mu_erf
    print*, 'dirac_HF_two_electron_C_Exchange_energy=', dirac_C_Exchange_Energy - dirac_HF_two_electron_C_Exchange_energy
-   open (10, file='exchange_dhf_X.dat',position ='append') 
+   open (10, file='exchange_dhf_Z.dat',position ='append') 
    write(10,*) mu_erf, dirac_C_Exchange_Energy - dirac_HF_two_electron_C_Exchange_energy
   elseif (dirac_interaction == "Coulomb_Gaunt") then
    print*,'**********'
@@ -31,7 +31,7 @@ program dirac_exchange_dhf_mu
  ! write(10,*) mu_erf, dirac_C_Exchange_Energy - dirac_HF_two_electron_C_Exchange_energy
  ! open (12, file='Energy_DHF_SRX_G.dat',position ='append')
  ! write(12,*) mu_erf, dirac_G_Exchange_Energy - dirac_HF_two_electron_G_Exchange_energy
-   open (14, file='exchange_dhf_X_CG.dat',position ='append')
+   open (14, file='exchange_dhf_Z_CG.dat',position ='append')
    write(14,*) mu_erf, dirac_C_G_Exchange_Energy - dirac_HF_two_electron_C_G_Exchange_energy
  else
    print *,  'Unrecognized dirac_interaction : '//dirac_interaction
