@@ -200,7 +200,7 @@
  !!! To use the electronic density obtained from the on-top pair density 
  rho_lda = dsqrt(2.d0*tr_gamma_2)
  kF = ckf*(rho_lda**f13)
- !!! To use the effective electronic density obtained from the on-top pair density
+  !!! To use the effective electronic density obtained from the on-top pair density
   if (tr_gamma_2 .gt. 1d-5) then
    tmp_c = c/kF
    do j = 1, 4
