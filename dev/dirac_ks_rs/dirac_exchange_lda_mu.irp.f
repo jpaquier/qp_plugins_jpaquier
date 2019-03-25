@@ -53,17 +53,17 @@ program dirac_exchange_lda_mu
  !endif
 
  !For Neon
- !if (mu_erf .lt. 2.5) then
- ! mu_erf += 0.25d0
- !elseif (mu_erf .lt. 10) then
- ! mu_erf+=0.5d0
- !elseif (mu_erf .lt. 50) then
- ! mu_erf+=2.5d0
- !elseif (mu_erf .lt. 100) then
- ! mu_erf+=5.0d0
- !else
- ! mu_erf+=10.d0
- !endif
+  if (mu_erf .lt. 2.5) then
+   mu_erf += 0.25d0
+  elseif (mu_erf .lt. 10) then
+   mu_erf+=0.5d0
+  elseif (mu_erf .lt. 50) then
+   mu_erf+=2.5d0
+  elseif (mu_erf .lt. 100) then
+   mu_erf+=5.0d0
+  else
+   mu_erf+=10.d0
+  endif
 
  !For argon
  !if (mu_erf .lt. 5) then
@@ -79,19 +79,19 @@ program dirac_exchange_lda_mu
  !endif
 
  !For Krypton
-  if (mu_erf .lt. 10) then
-   mu_erf += 1d0
-  elseif (mu_erf .lt. 40) then
-   mu_erf+=2.d0
-  elseif (mu_erf .lt. 200) then
-   mu_erf+=10.d0
-  elseif (mu_erf .lt. 400) then
-   mu_erf+=20.0d0
-  elseif (mu_erf .lt. 1200) then
-   mu_erf+=40.d0
-  else
-   mu_erf+=80.d0
-  endif
+ !if (mu_erf .lt. 10) then
+ ! mu_erf += 1d0
+ !elseif (mu_erf .lt. 40) then
+ ! mu_erf+=2.d0
+ !elseif (mu_erf .lt. 200) then
+ ! mu_erf+=10.d0
+ !elseif (mu_erf .lt. 400) then
+ ! mu_erf+=20.0d0
+ !elseif (mu_erf .lt. 1200) then
+ ! mu_erf+=40.d0
+ !else
+ ! mu_erf+=80.d0
+ !endif
 
  !For Xenon
  !if (mu_erf .lt. 20) then
