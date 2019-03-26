@@ -197,7 +197,7 @@
  c = speed_of_light
  !!! To use the electronic density
  kF = ckf*(rho**f13)
-!!!! To use the electronic density obtained from the on-top pair density 
+ !!! To use the electronic density obtained from the on-top pair density 
 !rho_lda = dsqrt(2.d0*tr_gamma_2)
 !kF = ckf*(rho_lda**f13)
 ! !!! To use the effective electronic density obtained from the on-top pair density
