@@ -243,7 +243,8 @@
   END_DOC
   integer, intent(in)            :: LDA_ao,LDA_mo
   complex*16, intent(in)         :: A_ao(LDA_ao,2*dirac_ao_num)
-  double precision, intent(out)  :: A_mo(LDA_mo,2*dirac_mo_tot_num)
+  complex*16, intent(out)        :: A_mo(LDA_mo,2*dirac_mo_tot_num)
+ !double precision, intent(out)  :: A_mo(LDA_mo,2*dirac_mo_tot_num)
   complex*16, allocatable        :: T(:,:)
   allocate ( T(2*(dirac_ao_num),2*(dirac_mo_tot_num)) )
   call zgemm('N','N', 2*(dirac_ao_num), 2*(dirac_mo_tot_num), 2*(dirac_ao_num), &
@@ -307,7 +308,7 @@
   lmax = (2*dirac_ao_num/4) * 4
   do j=1,2*dirac_mo_tot_num
    do i= 1,2*dirac_mo_tot_num
-    dirac_mo_overlap_bis(i,j) = 0.d0
+    dirac_mo_overlap_bis(i,j) = (0.d0,0.d0)
     do n = 1, lmax,4
      do l = 1, 2*dirac_ao_num
       dirac_mo_overlap_bis(i,j) += dirac_mo_coef(l,i) * &
