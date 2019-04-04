@@ -74,8 +74,8 @@
    r(2) = final_grid_points(2,i_point)
    r(3) = final_grid_points(3,i_point)
    call give_all_dirac_aos_at_r(r,dirac_aos_array)
-   dirac_ao_erf_mu_of_r_integral += 0.5d0 * dirac_aos_array(i) * dirac_aos_array(j) *NAI_pol_mult_erf_ao(k,l,mu_of_r_for_ints_vector(i_point),r) *final_weight_at_r_vector(i_point)
-   dirac_ao_erf_mu_of_r_integral += 0.5d0 * dirac_aos_array(k) * dirac_aos_array(l) *NAI_pol_mult_erf_ao(j,i,mu_of_r_for_ints_vector(i_point),r) *final_weight_at_r_vector(i_point)
+   dirac_ao_erf_mu_of_r_integral += 0.5d0 * dirac_aos_array(i) * dirac_aos_array(j) *NAI_pol_mult_erf_dirac_ao(k,l,mu_of_r_for_ints_vector(i_point),r) *final_weight_at_r_vector(i_point)
+   dirac_ao_erf_mu_of_r_integral += 0.5d0 * dirac_aos_array(k) * dirac_aos_array(l) *NAI_pol_mult_erf_dirac_ao(j,i,mu_of_r_for_ints_vector(i_point),r) *final_weight_at_r_vector(i_point)
   enddo
   deallocate(dirac_aos_array)
  endif 

@@ -1,4 +1,4 @@
-program dirac_mu_of_r_ints.main
+program dirac_mu_of_r_integrals
   implicit none
   BEGIN_DOC
 ! TODO : Put the documentation of the program here
