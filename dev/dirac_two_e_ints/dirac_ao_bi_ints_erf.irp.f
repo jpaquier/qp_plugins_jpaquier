@@ -130,7 +130,7 @@
   num_l = dirac_ao_nucl(l)
   dirac_ao_bielec_integral_schwartz_accel_erf = 0.d0
   double precision               :: thr
-  thr = ao_integrals_threshold*ao_integrals_threshold
+  thr = dirac_ao_integrals_threshold*dirac_ao_integrals_threshold
   allocate(schwartz_kl(0:dirac_ao_prim_num(l),0:dirac_ao_prim_num(k)))
   if (num_i /= num_j .or. num_k /= num_l .or. num_j /= num_k)then
    do p = 1, 3

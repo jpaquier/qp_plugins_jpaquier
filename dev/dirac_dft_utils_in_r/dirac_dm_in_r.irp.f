@@ -21,12 +21,12 @@
  double precision :: dm_im
  double precision, intent(out) :: dm(N_states)
  integer :: istate
- complex*16  :: dirac_aos_array(2*dirac_ao_num),dirac_aos_array_bis(2*dirac_ao_num),u_dotc_v
- call give_all_dirac_aos_at_r(r,dirac_aos_array)
+ complex*16  :: two_dirac_aos_array(2*dirac_ao_num),two_dirac_aos_array_bis(2*dirac_ao_num),u_dotc_v
+ call give_all_two_dirac_aos_at_r(r,two_dirac_aos_array)
  do istate = 1, N_states
-  dirac_aos_array_bis = dirac_aos_array
-  call zgemv('N',2*dirac_ao_num,2*dirac_ao_num,(1.d0,0.d0),dirac_one_body_dm_ao_for_dft(1,1,istate),2*dirac_ao_num,dirac_aos_array,1,(0.d0,0.d0),dirac_aos_array_bis,1)
-  dm_complex(istate) = u_dotc_v(dirac_aos_array,dirac_aos_array_bis,2*dirac_ao_num)
+  two_dirac_aos_array_bis = two_dirac_aos_array
+  call zgemv('N',2*dirac_ao_num,2*dirac_ao_num,(1.d0,0.d0),dirac_one_body_dm_ao_for_dft(1,1,istate),2*dirac_ao_num,two_dirac_aos_array,1,(0.d0,0.d0),two_dirac_aos_array_bis,1)
+  dm_complex(istate) = u_dotc_v(two_dirac_aos_array,two_dirac_aos_array_bis,2*dirac_ao_num)
   dm = real(dm_complex)
   dm_im = aimag(dm_complex(1))/dm(1)
   if (dm(1) .gt. 1.d0) then

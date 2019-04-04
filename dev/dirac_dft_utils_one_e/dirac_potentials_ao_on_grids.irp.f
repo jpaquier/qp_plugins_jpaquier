@@ -50,8 +50,8 @@
    call dirac_ec_LDA_sr(mu_erf,rho(istate),e_c,v_c)
    call dirac_ex_LDA_sr(mu_erf,rho(istate),e_x,v_x)
    do j =1, 2*dirac_ao_num
-    dirac_aos_vc_LDA_w(i,j,istate) = (1.d0,0.d0)* v_c * dirac_aos_in_r_array(j,i)*weight
-    dirac_aos_vx_LDA_w(i,j,istate) = (1.d0,0.d0)* v_x * dirac_aos_in_r_array(j,i)*weight
+    dirac_aos_vc_LDA_w(i,j,istate) = (1.d0,0.d0)* v_c * two_dirac_aos_in_r_array(j,i)*weight
+    dirac_aos_vx_LDA_w(i,j,istate) = (1.d0,0.d0)* v_x * two_dirac_aos_in_r_array(j,i)*weight
    enddo
   enddo
  enddo
@@ -68,8 +68,8 @@
  double precision :: wall_1,wall_2
 !call wall_time(wall_1)
  do istate = 1, N_states 
-  call zgemm('C','N',2*dirac_ao_num,2*dirac_ao_num,n_points_final_grid,(1.d0,0.d0),dirac_aos_in_r_array_transp,2*dirac_ao_num,dirac_aos_vc_LDA_w(1,1,istate),n_points_final_grid,(0.d0,0.d0),dirac_potential_c_ao_LDA(1,1,istate),2*dirac_ao_num)
-  call zgemm('C','N',2*dirac_ao_num,2*dirac_ao_num,n_points_final_grid,(1.d0,0.d0),dirac_aos_in_r_array_transp,2*dirac_ao_num,dirac_aos_vx_LDA_w(1,1,istate),n_points_final_grid,(0.d0,0.d0),dirac_potential_x_ao_LDA(1,1,istate),2*dirac_ao_num)
+  call zgemm('C','N',2*dirac_ao_num,2*dirac_ao_num,n_points_final_grid,(1.d0,0.d0),two_dirac_aos_in_r_array_transp,2*dirac_ao_num,dirac_aos_vc_LDA_w(1,1,istate),n_points_final_grid,(0.d0,0.d0),dirac_potential_c_ao_LDA(1,1,istate),2*dirac_ao_num)
+  call zgemm('C','N',2*dirac_ao_num,2*dirac_ao_num,n_points_final_grid,(1.d0,0.d0),two_dirac_aos_in_r_array_transp,2*dirac_ao_num,dirac_aos_vx_LDA_w(1,1,istate),n_points_final_grid,(0.d0,0.d0),dirac_potential_x_ao_LDA(1,1,istate),2*dirac_ao_num)
  enddo
 !call wall_time(wall_2)
 !print*,'time to provide dirac_potential_x/c_ao_LDA = ',wall_2 - wall_1
