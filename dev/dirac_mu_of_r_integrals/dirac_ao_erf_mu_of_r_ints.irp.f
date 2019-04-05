@@ -7,7 +7,7 @@
  integer :: i_atom,k,l
  double precision :: r(3)
  do i_point = 1, n_points_final_grid
-  mu_of_r_for_ints_vector(i_point) = 5.d0
+  mu_of_r_for_ints_vector(i_point) = mu_erf
  enddo
  END_PROVIDER
 
@@ -28,10 +28,11 @@
   r(3) = final_grid_points(3,i_point)
   v_vector(i_point) = NAI_pol_mult_erf_dirac_ao(k,l,mu_of_r_for_ints_vector(i_point),r)
  enddo
+ ! use DGEMM!!!
  do i_point = 1, n_points_final_grid
   do i = 1, dirac_ao_num
    do j = 1, dirac_ao_num
-    ints(j,i) += v_vector(i_point) * dirac_aos_in_r_array(i,i_point) * dirac_aos_in_r_array(j,i_point) * final_weight_at_r_vector(i_point)
+     ints(j,i) += v_vector(i_point) * dirac_aos_in_r_array(i,i_point) * dirac_aos_in_r_array(j,i_point) * final_weight_at_r_vector(i_point)
    enddo
   enddo
  enddo
@@ -100,10 +101,10 @@
    r(2) = final_grid_points(2,i_point)
    r(3) = final_grid_points(3,i_point)
    call give_all_dirac_aos_at_r(r,dirac_aos_array)
-   do i = 1, 5
-    do j = 1, 5
-     do k = 1, 5
-      do l = 1, 5
+   do i = 15, 20
+    do j = 15, 20
+     do k = 15, 20
+      do l = 15, 20
        erf_mu_of_r_dirac_ao_test(i,j,k,l) += 0.5d0 * dirac_aos_array(i) * dirac_aos_array(j) * final_weight_at_r_vector(i_point) *NAI_pol_mult_erf_dirac_ao(k,l,mu_of_r_for_ints_vector(i_point),r) 
        erf_mu_of_r_dirac_ao_test(i,j,k,l) += 0.5d0 * dirac_aos_array(k) * dirac_aos_array(l) * final_weight_at_r_vector(i_point) *NAI_pol_mult_erf_dirac_ao(j,i,mu_of_r_for_ints_vector(i_point),r) 
       enddo
