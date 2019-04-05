@@ -53,14 +53,14 @@
  END_DOC
  double precision, intent(in) :: r(3)
  double precision :: dirac_aos_array_tmp(dirac_ao_num)
- complex*16, intent(out) ::  dirac_aos_array(dirac_ao_num)
+ double precision, intent(out) ::  dirac_aos_array(dirac_ao_num)
  integer :: dirac_power_ao(3) 
  integer :: i,j,k,l,m
  double precision :: dx,dy,dz,r2
  double precision :: dx2,dy2,dz2
  double precision :: center_ao(3)
  double precision :: beta
- dirac_aos_array = (0.d0,0.d0) 
+ dirac_aos_array = 0.d0
  do i = 1, nucl_num
   center_ao(1:3) = nucl_coord(i,1:3)
   dx = (r(1) - center_ao(1)) 
@@ -82,7 +82,7 @@
   enddo
  enddo
  do m =1, dirac_ao_num
-  dirac_aos_array(m) = (1.d0,0.d0)* dirac_aos_array_tmp(m)
+  dirac_aos_array(m) = dirac_aos_array_tmp(m)
  enddo
  end
 
