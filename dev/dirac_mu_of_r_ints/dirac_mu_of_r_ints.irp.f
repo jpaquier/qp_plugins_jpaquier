@@ -23,23 +23,21 @@ program dirac_mu_of_r_ints
  double precision :: get_dirac_ao_bielec_integral_erf
  allocate(ints(dirac_ao_num))
  accu = 0.d0
- do i = 1, 20
-  do j = 1, 20
-   do k = 1, 20
-     !                                        1 2 1
-    call get_dirac_ao_bielec_ints_erf_mu_of_r(i,j,k,dirac_ao_num,ints)
-    do l = 1, 20
+ do i = 10, 30
+  do j = 10, 30
+   do k = 10, 30
+    do l = 10, 30
      !                                                   1 2 1 2
      integral = get_dirac_ao_bielec_integral_erf_mu_of_r(i,j,k,l,dirac_ao_ints_erf_mu_of_r_map)
      integral_2 = get_dirac_ao_bielec_integral_erf(i,j,k,l,dirac_ao_integrals_erf_map)
-     if(dabs(integral - integral_2).gt.1.d-6)then
+    !if(dabs(integral - integral_2).gt.1.d-6)then
       print*,i,j,k,l
-      print*,dabs(integral - integral_2)
-      print*, integral , integral_2 
-      pause
-     endif
+    ! print*,dabs(integral - integral_2)
+      print*, integral , integral_2
+      print*,'*******************************************' 
+    ! pause
+    !endif
      accu += dabs(integral - integral_2)
-!    print*,i,j,k,l,integral
     enddo
    enddo
   enddo

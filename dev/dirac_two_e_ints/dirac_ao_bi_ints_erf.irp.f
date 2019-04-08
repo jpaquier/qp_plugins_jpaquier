@@ -16,16 +16,16 @@
   integer                        :: iorder_p(3), iorder_q(3)
   double precision               :: dirac_ao_bielec_integral_schwartz_accel_erf
   !First, remove from the start the integrals that have no physical meaning
-  if ((i .le. large_ao_num .and. j .le. large_ao_num .and. k .le. large_ao_num .and. l .gt. large_ao_num) .or.  &
-      (i .le. large_ao_num .and. j .le. large_ao_num .and. k .gt. large_ao_num .and. l .le. large_ao_num) .or.  &
-      (i .le. large_ao_num .and. j .gt. large_ao_num .and. k .le. large_ao_num .and. l .le. large_ao_num) .or.  &
-      (i .gt. large_ao_num .and. j .le. large_ao_num .and. k .le. large_ao_num .and. l .le. large_ao_num) .or.  &
-      (i .le. large_ao_num .and. j .gt. large_ao_num .and. k .gt. large_ao_num .and. l .gt. large_ao_num) .or.  &
-      (i .gt. large_ao_num .and. j .le. large_ao_num .and. k .gt. large_ao_num .and. l .gt. large_ao_num) .or.  &
-      (i .gt. large_ao_num .and. j .gt. large_ao_num .and. k .le. large_ao_num .and. l .gt. large_ao_num) .or.  &
-      (i .gt. large_ao_num .and. j .gt. large_ao_num .and. k .gt. large_ao_num .and. l .le. large_ao_num)) then
-   dirac_ao_bielec_integral_erf = 0.d0
-  else 
+ !if ((i .le. large_ao_num .and. j .le. large_ao_num .and. k .le. large_ao_num .and. l .gt. large_ao_num) .or.  &
+ !    (i .le. large_ao_num .and. j .le. large_ao_num .and. k .gt. large_ao_num .and. l .le. large_ao_num) .or.  &
+ !    (i .le. large_ao_num .and. j .gt. large_ao_num .and. k .le. large_ao_num .and. l .le. large_ao_num) .or.  &
+ !    (i .gt. large_ao_num .and. j .le. large_ao_num .and. k .le. large_ao_num .and. l .le. large_ao_num) .or.  &
+ !    (i .le. large_ao_num .and. j .gt. large_ao_num .and. k .gt. large_ao_num .and. l .gt. large_ao_num) .or.  &
+ !    (i .gt. large_ao_num .and. j .le. large_ao_num .and. k .gt. large_ao_num .and. l .gt. large_ao_num) .or.  &
+ !    (i .gt. large_ao_num .and. j .gt. large_ao_num .and. k .le. large_ao_num .and. l .gt. large_ao_num) .or.  &
+ !    (i .gt. large_ao_num .and. j .gt. large_ao_num .and. k .gt. large_ao_num .and. l .le. large_ao_num)) then
+ ! dirac_ao_bielec_integral_erf = 0.d0
+ !else 
    if (dirac_ao_prim_num(i) * dirac_ao_prim_num(j) * dirac_ao_prim_num(k) * dirac_ao_prim_num(l) > 1024 ) then
     dirac_ao_bielec_integral_erf = dirac_ao_bielec_integral_schwartz_accel_erf(i,j,k,l)
     return
@@ -101,7 +101,7 @@
      enddo   ! q
     enddo    ! p
    endif
-  endif
+ !endif
  end
 
 

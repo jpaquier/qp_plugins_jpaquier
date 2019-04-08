@@ -172,34 +172,28 @@ double precision function get_dirac_ao_bielec_integral_erf_mu_of_r(i,j,k,l,map) 
   integer                        :: ii
   real(integral_kind)            :: tmp,tmp1,tmp2
   PROVIDE dirac_ao_bielec_ints_erf_mu_of_r_in_map dirac_ao_ints_erf_mu_of_r_cache_min
-! PROVIDE dirac_ao_ints_erf_mu_of_r_cache 
   !DIR$ FORCEINLINE
   if (dirac_ao_overlap_abs(i,k)*dirac_ao_overlap_abs(j,l) < dirac_ao_integrals_threshold ) then
-    tmp = 0.d0
-! else if (dirac_ao_bielec_integral_erf_mu_of_r_schwartz(i,k)*dirac_ao_bielec_integral_erf_mu_of_r_schwartz(j,l) < dirac_ao_integrals_threshold) then
-!   tmp = 0.d0
-  else
-   !ii = l-dirac_ao_ints_erf_mu_of_r_cache_min
-   !ii = ior(ii, k-dirac_ao_ints_erf_mu_of_r_cache_min)
-   !ii = ior(ii, j-dirac_ao_ints_erf_mu_of_r_cache_min)
-   !ii = ior(ii, i-dirac_ao_ints_erf_mu_of_r_cache_min)
-   !if (iand(ii, -64) /= 0) then
-      !DIR$ FORCEINLINE
-      call index_two_e_no_sym(i,j,k,l,dirac_ao_num,idx1)
-      !DIR$ FORCEINLINE
-      call map_get(map,idx1,tmp1)
-      !DIR$ FORCEINLINE
-      call index_two_e_no_sym(j,i,l,k,dirac_ao_num,idx2)
-      !DIR$ FORCEINLINE
-      call map_get(map,idx2,tmp2)
-      tmp = 0.5d0 * (tmp1 + tmp2)
-   !else
-   !  ii = l-dirac_ao_ints_erf_mu_of_r_cache_min
-   !  ii = ior( ishft(ii,6), k-dirac_ao_ints_erf_mu_of_r_cache_min)
-   !  ii = ior( ishft(ii,6), j-dirac_ao_ints_erf_mu_of_r_cache_min)
-   !  ii = ior( ishft(ii,6), i-dirac_ao_ints_erf_mu_of_r_cache_min)
-   !  tmp = dirac_ao_ints_erf_mu_of_r_cache(ii)
-   !endif
+   tmp = 0.d0
+ !elseif ((i .le. large_ao_num .and. j .le. large_ao_num .and. k .le. large_ao_num .and. l .gt. large_ao_num) .or.  &
+ !    (i .le. large_ao_num .and. j .le. large_ao_num .and. k .gt. large_ao_num .and. l .le. large_ao_num) .or.  &
+ !    (i .le. large_ao_num .and. j .gt. large_ao_num .and. k .le. large_ao_num .and. l .le. large_ao_num) .or.  &
+ !    (i .gt. large_ao_num .and. j .le. large_ao_num .and. k .le. large_ao_num .and. l .le. large_ao_num) .or.  &
+ !    (i .le. large_ao_num .and. j .gt. large_ao_num .and. k .gt. large_ao_num .and. l .gt. large_ao_num) .or.  &
+ !    (i .gt. large_ao_num .and. j .le. large_ao_num .and. k .gt. large_ao_num .and. l .gt. large_ao_num) .or.  &
+ !    (i .gt. large_ao_num .and. j .gt. large_ao_num .and. k .le. large_ao_num .and. l .gt. large_ao_num) .or.  &
+ !    (i .gt. large_ao_num .and. j .gt. large_ao_num .and. k .gt. large_ao_num .and. l .le. large_ao_num)) then
+ ! tmp = 0.d0
+ !else
+   !DIR$ FORCEINLINE
+   call index_two_e_no_sym(i,j,k,l,dirac_ao_num,idx1)
+   !DIR$ FORCEINLINE
+   call map_get(map,idx1,tmp1)
+   !DIR$ FORCEINLINE
+   call index_two_e_no_sym(j,i,l,k,dirac_ao_num,idx2)
+   !DIR$ FORCEINLINE
+   call map_get(map,idx2,tmp2)
+   tmp = 0.5d0 * (tmp1 + tmp2)
   endif
   result = tmp
 end

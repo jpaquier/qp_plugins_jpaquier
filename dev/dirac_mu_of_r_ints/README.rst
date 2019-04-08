@@ -1,4 +1,4 @@
 =======================
-dirac_mu_of_r_integrals
+dirac_mu_of_r_ints
 =======================
 
