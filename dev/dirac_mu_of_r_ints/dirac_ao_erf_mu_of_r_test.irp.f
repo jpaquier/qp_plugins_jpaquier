@@ -1,43 +1,3 @@
- BEGIN_PROVIDER [double precision, mu_of_r_for_ints_vector, (n_points_final_grid)]
- implicit none
- BEGIN_DOC
- ! value of mu(r) in each point in space
- END_DOC
- integer :: i_point
- integer :: i_atom,k,l
- double precision :: r(3)
- do i_point = 1, n_points_final_grid
-  mu_of_r_for_ints_vector(i_point) = mu_erf
- enddo
- END_PROVIDER
-
-
- subroutine give_all_dirac_erf_mu_of_r_kl(k,l,ints)
- implicit none
- include 'utils/constants.include.F'
- integer, intent(in) :: k,l
- double precision, intent(out) :: ints(dirac_ao_num,dirac_ao_num)
- integer :: i_point,i,j
- double precision :: ints_kl_of_r(n_points_final_grid),r(3),NAI_pol_mult_erf_dirac_ao,tmp
- double precision,allocatable :: v_vector(:)
- allocate(v_vector(n_points_final_grid))
- ints = 0.d0
- do i_point = 1, n_points_final_grid
-  r(1) = final_grid_points(1,i_point)
-  r(2) = final_grid_points(2,i_point)
-  r(3) = final_grid_points(3,i_point)
-  v_vector(i_point) = NAI_pol_mult_erf_dirac_ao(k,l,mu_of_r_for_ints_vector(i_point),r)
- enddo
- ! use DGEMM!!!
- do i_point = 1, n_points_final_grid
-  do i = 1, dirac_ao_num
-   do j = 1, dirac_ao_num
-     ints(j,i) += v_vector(i_point) * dirac_aos_in_r_array(i,i_point) * dirac_aos_in_r_array(j,i_point) * final_weight_at_r_vector(i_point)
-   enddo
-  enddo
- enddo
- end
- 
  double precision function erf_mu_of_r_dirac_ao(i,j,k,l)
  implicit none
  BEGIN_DOC
@@ -114,5 +74,4 @@
   enddo
   deallocate(dirac_aos_array)
  endif 
-
  END_PROVIDER

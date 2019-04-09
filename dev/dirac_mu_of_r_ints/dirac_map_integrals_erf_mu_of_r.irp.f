@@ -1,4 +1,4 @@
-use map_module
+!use map_module
 
 !subroutine dump_$dirac_ao_ints_erf_mu_of_r(filename)
 ! use map_module
@@ -130,19 +130,19 @@ use map_module
 ! stop 'Problem reading $dirac_ao_ints_erf_mu_of_r_map file in work/'
 !end
 
- subroutine insert_into_dirac_ao_ints_erf_mu_of_r_map(n_ints,buffer_i, buffer_values)
-  use map_module
-  implicit none
-  BEGIN_DOC
-  ! Create new entry into AO map
-  END_DOC
-  
-  integer, intent(in)                :: n_ints
-  integer(key_kind), intent(inout)   :: buffer_i(n_ints)
-  real(integral_kind), intent(inout) :: buffer_values(n_ints)
-  
-  call map_append(dirac_ao_ints_erf_mu_of_r_map, buffer_i, buffer_values, n_ints)
- end
+!subroutine insert_into_dirac_ao_ints_erf_mu_of_r_map(n_ints,buffer_i, buffer_values)
+! use map_module
+! implicit none
+! BEGIN_DOC
+! ! Create new entry into AO map
+! END_DOC
+! 
+! integer, intent(in)                :: n_ints
+! integer(key_kind), intent(inout)   :: buffer_i(n_ints)
+! real(integral_kind), intent(inout) :: buffer_values(n_ints)
+! 
+! call map_append(dirac_ao_ints_erf_mu_of_r_map, buffer_i, buffer_values, n_ints)
+!end
 
 
 
