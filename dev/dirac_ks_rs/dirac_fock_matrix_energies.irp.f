@@ -130,6 +130,9 @@
 !!$OMP  dirac_ao_integrals_map, dirac_ao_bi_elec_C_Exchange_integral) 
   call get_cache_map_n_elements_max(dirac_ao_integrals_erf_map,n_elements_max)
   allocate(keys(n_elements_max), values(n_elements_max))
+
+  write(33,*), "n_element_max=", n_elements_max
+
   allocate(dirac_ao_bi_elec_C_Exchange_integral_tmp(2*dirac_ao_num,2*dirac_ao_num))
   dirac_ao_bi_elec_C_Exchange_integral_tmp = (0.d0,0.d0)
 !!$OMP DO SCHEDULE(dynamic,64)
@@ -150,7 +153,10 @@
      ! values(k1) = (ij|kl) <=> <ik|jl>
      integral = values (k1)
 
-     print*,i,j,k,l,integral
+
+     double precision :: get_dirac_ao_bielec_integral_erf
+     !         1 2 1 2                                             
+     write(33,*),i,k,j,l, get_dirac_ao_bielec_integral_erf(i,k,j,l,dirac_ao_integrals_erf_map), integral
 
 !    if ((i .le. large_ao_num .and. j .le. large_ao_num .and. k .le. large_ao_num .and. l .le. large_ao_num) .or.  &
 !        (i .gt. large_ao_num .and. j .gt. large_ao_num .and. k .gt. large_ao_num .and. l .gt. large_ao_num)) then

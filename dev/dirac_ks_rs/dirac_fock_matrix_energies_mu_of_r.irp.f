@@ -10,7 +10,7 @@
   double precision               :: integral
   complex*16, allocatable        :: dirac_HF_two_electron_c_ex_int_mu_of_r_tmp(:,:)
   integer*8                      :: i8
-  integer                        :: ii(8), jj(8), kk(8), ll(8), k2
+  integer                        :: ii(4), jj(4), kk(4), ll(4), k2
   integer(cache_map_size_kind)   :: n_elements_max, n_elements
   integer(key_kind), allocatable :: keys(:)
   double precision, allocatable  :: values(:)
@@ -21,6 +21,9 @@
 !!$OMP SHARED(dirac_ao_num,dirac_SCF_density_matrix_ao,&
 !!$OMP dirac_ao_ints_erf_mu_of_r_map, dirac_HF_two_electron_c_ex_int_mu_of_r) 
   call get_cache_map_n_elements_max(dirac_ao_ints_erf_mu_of_r_map,n_elements_max)
+  
+  write(34,*), "n_elements_max=", n_elements_max 
+  
   allocate(keys(n_elements_max), values(n_elements_max))
   allocate(dirac_HF_two_electron_c_ex_int_mu_of_r_tmp(2*dirac_ao_num,2*dirac_ao_num))
   dirac_HF_two_electron_c_ex_int_mu_of_r_tmp = (0.d0,0.d0) 
@@ -30,8 +33,11 @@
    n_elements = n_elements_max
    call get_cache_map(dirac_ao_ints_erf_mu_of_r_map,i8,keys,values,n_elements)
    do k1=1,n_elements
-    call two_e_integrals_index_reverse(kk,ii,ll,jj,keys(k1))
-    do k2=1,8
+   
+    print*,"keys(k1) =",keys(k1)
+   
+    call two_e_integrals_index_reverse_no_sym(kk,ii,ll,jj,keys(k1))
+    do k2=1,4
      if (kk(k2)==0) then
       cycle
      endif
@@ -42,7 +48,9 @@
      ! values(k1) = (ij|kl) <=> <ik|jl>
      integral = values (k1)
  
-     print*,i,j,k,l, integral
+     double precision :: get_dirac_ao_bielec_integral_erf_mu_of_r
+     !      1 2 1 2                                                     
+     write(34,*),i,k,j,l, get_dirac_ao_bielec_integral_erf_mu_of_r(i,k,j,l,dirac_ao_ints_erf_mu_of_r_map), integral
 
 !    if ((i .le. large_ao_num .and. j .le. large_ao_num .and. k .le. large_ao_num .and. l .le. large_ao_num) .or.  &
 !        (i .gt. large_ao_num .and. j .gt. large_ao_num .and. k .gt. large_ao_num .and. l .gt. large_ao_num)) then
