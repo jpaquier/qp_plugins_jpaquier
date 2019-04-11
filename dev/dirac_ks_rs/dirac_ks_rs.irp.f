@@ -55,7 +55,7 @@ program dirac_ks_rs
  do j = 1,1
   do i = 1,1
    print*, i,j,dirac_ao_bi_elec_C_Exchange_integral(i,j)
-   print*, i,j,dirac_HF_two_electron_c_ex_int_mu_of_r(i,j)
+  !print*, i,j,dirac_HF_two_electron_c_ex_int_mu_of_r(i,j)
   enddo
  enddo
 

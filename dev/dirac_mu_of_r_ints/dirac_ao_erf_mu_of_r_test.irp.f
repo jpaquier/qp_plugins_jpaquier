@@ -9,16 +9,16 @@
  double precision, allocatable :: dirac_aos_array(:)
  double precision :: r(3),NAI_pol_mult_erf_dirac_ao
  !First, remove from the start the ints that have no physical meaning
- if ((i .le. large_ao_num .and. j .le. large_ao_num .and. k .le. large_ao_num .and. l .gt. large_ao_num) .or.  &
-     (i .le. large_ao_num .and. j .le. large_ao_num .and. k .gt. large_ao_num .and. l .le. large_ao_num) .or.  &
-     (i .le. large_ao_num .and. j .gt. large_ao_num .and. k .le. large_ao_num .and. l .le. large_ao_num) .or.  &
-     (i .gt. large_ao_num .and. j .le. large_ao_num .and. k .le. large_ao_num .and. l .le. large_ao_num) .or.  &
-     (i .le. large_ao_num .and. j .gt. large_ao_num .and. k .gt. large_ao_num .and. l .gt. large_ao_num) .or.  &
-     (i .gt. large_ao_num .and. j .le. large_ao_num .and. k .gt. large_ao_num .and. l .gt. large_ao_num) .or.  &
-     (i .gt. large_ao_num .and. j .gt. large_ao_num .and. k .le. large_ao_num .and. l .gt. large_ao_num) .or.  &
-     (i .gt. large_ao_num .and. j .gt. large_ao_num .and. k .gt. large_ao_num .and. l .le. large_ao_num)) then
-  erf_mu_of_r_dirac_ao = 0.d0
- else 
+!if ((i .le. large_ao_num .and. j .le. large_ao_num .and. k .le. large_ao_num .and. l .gt. large_ao_num) .or.  &
+!    (i .le. large_ao_num .and. j .le. large_ao_num .and. k .gt. large_ao_num .and. l .le. large_ao_num) .or.  &
+!    (i .le. large_ao_num .and. j .gt. large_ao_num .and. k .le. large_ao_num .and. l .le. large_ao_num) .or.  &
+!    (i .gt. large_ao_num .and. j .le. large_ao_num .and. k .le. large_ao_num .and. l .le. large_ao_num) .or.  &
+!    (i .le. large_ao_num .and. j .gt. large_ao_num .and. k .gt. large_ao_num .and. l .gt. large_ao_num) .or.  &
+!    (i .gt. large_ao_num .and. j .le. large_ao_num .and. k .gt. large_ao_num .and. l .gt. large_ao_num) .or.  &
+!    (i .gt. large_ao_num .and. j .gt. large_ao_num .and. k .le. large_ao_num .and. l .gt. large_ao_num) .or.  &
+!    (i .gt. large_ao_num .and. j .gt. large_ao_num .and. k .gt. large_ao_num .and. l .le. large_ao_num)) then
+! erf_mu_of_r_dirac_ao = 0.d0
+!else 
   allocate(dirac_aos_array(dirac_ao_num))
   erf_mu_of_r_dirac_ao = 0.d0
   do i_point = 1, n_points_final_grid
@@ -30,7 +30,7 @@
    erf_mu_of_r_dirac_ao += 0.5d0 * dirac_aos_array(k) * dirac_aos_array(l) *NAI_pol_mult_erf_dirac_ao(j,i,mu_of_r_for_ints_vector(i_point),r) *final_weight_at_r_vector(i_point)
   enddo
   deallocate(dirac_aos_array)
- endif 
+!endif 
  end
 
  BEGIN_PROVIDER [ double precision, erf_mu_of_r_dirac_ao_test, (dirac_ao_num,dirac_ao_num,dirac_ao_num,dirac_ao_num) ]

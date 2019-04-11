@@ -245,7 +245,7 @@
   double precision :: A_center(3), B_center(3)
   integer :: power_A(3), power_B(3)
   double precision :: lower_exp_val, dx
-  dim1=500
+  dim1=100
   lower_exp_val = 40.d0
   c = 1
   do j=1, dirac_ao_num
@@ -262,6 +262,7 @@
     power_B(1)  = dirac_ao_power( i, 1 )
     power_B(2)  = dirac_ao_power( i, 2 )
     power_B(3)  = dirac_ao_power( i, 3 )
+    dirac_ao_overlap_abs(i,j) = 0.d0
     do n = 1,dirac_ao_prim_num(j)
      alpha  = dirac_ao_expo_ordered_transp(n,j)
      do l = 1, dirac_ao_prim_num(i)
@@ -270,6 +271,7 @@
       call overlap_x_abs(A_center(2),B_center(2),alpha,beta,power_A(2),power_B(2),dirac_overlap_y,lower_exp_val,dx,dim1)
       call overlap_x_abs(A_center(3),B_center(3),alpha,beta,power_A(3),power_B(3),dirac_overlap_z,lower_exp_val,dx,dim1)
       c = dirac_ao_coef_normalized_ordered_transp(n,j) * dirac_ao_coef_normalized_ordered_transp(l,i)
+     !write(29,*),j,i,dirac_overlap_x,dirac_overlap_y,dirac_overlap_z, abs(c) * dirac_overlap_x*dirac_overlap_y*dirac_overlap_z
       dirac_ao_overlap_abs(i,j) += abs(c) * dirac_overlap_x * dirac_overlap_y * dirac_overlap_z
      enddo
     enddo

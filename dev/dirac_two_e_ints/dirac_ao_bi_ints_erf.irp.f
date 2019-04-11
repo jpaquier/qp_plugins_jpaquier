@@ -673,11 +673,11 @@ double precision function get_dirac_ao_bielec_integral_erf(i,j,k,l,map) result(r
   real(integral_kind)            :: tmp
   PROVIDE dirac_ao_bielec_integrals_erf_in_map dirac_ao_integrals_erf_cache dirac_ao_integrals_erf_cache_min
   !DIR$ FORCEINLINE
-  if (dirac_ao_overlap_abs(i,k)*dirac_ao_overlap_abs(j,l) < dirac_ao_integrals_threshold ) then
-    tmp = 0.d0
-  else if (dirac_ao_bielec_integral_erf_schwartz(i,k)*dirac_ao_bielec_integral_erf_schwartz(j,l) < dirac_ao_integrals_threshold) then
-    tmp = 0.d0
-  else
+ !if (dirac_ao_overlap_abs(i,k)*dirac_ao_overlap_abs(j,l) < dirac_ao_integrals_threshold ) then
+ ! tmp = 0.d0
+ !else if (dirac_ao_bielec_integral_erf_schwartz(i,k)*dirac_ao_bielec_integral_erf_schwartz(j,l) < dirac_ao_integrals_threshold) then
+ !  tmp = 0.d0
+ !else
     ii = l-dirac_ao_integrals_erf_cache_min
     ii = ior(ii, k-dirac_ao_integrals_erf_cache_min)
     ii = ior(ii, j-dirac_ao_integrals_erf_cache_min)
@@ -694,7 +694,7 @@ double precision function get_dirac_ao_bielec_integral_erf(i,j,k,l,map) result(r
       ii = ior( ishft(ii,6), i-dirac_ao_integrals_erf_cache_min)
       tmp = dirac_ao_integrals_erf_cache(ii)
     endif
-  endif
+ !endif
   result = tmp
 end
 
