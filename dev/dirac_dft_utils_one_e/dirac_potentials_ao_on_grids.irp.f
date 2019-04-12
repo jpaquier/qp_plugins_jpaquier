@@ -6,10 +6,12 @@
  END_DOC
  integer :: istate,i,j
  double precision :: r(3)
- double precision :: mu,weight
+ double precision :: mu,weight,f13,ckf
  double precision :: e_c,v_c,e_x,v_x
- double precision, allocatable :: rho(:),tr_gamma_2(:)
- allocate(rho(N_states),tr_gamma_2(N_states))
+ double precision, allocatable :: rho(:),tr_gamma_2(:),kF(:),mu_of_r(:)
+ f13 = 0.3333333333333333d0
+ ckf = 3.0936677262801355d0
+ allocate(rho(N_states),tr_gamma_2(N_states),kF(N_states),mu_of_r(istate))
  dirac_energy_x_LDA = 0.d0
  dirac_energy_c_LDA = 0.d0
  do istate = 1, N_states
@@ -20,8 +22,11 @@
    weight=final_weight_at_r_vector(i) 
    rho(istate) = dirac_one_body_dm_at_r(i,istate)
    tr_gamma_2(istate) = dirac_one_body_tr_dm_2_at_r(i,istate)
-   call dirac_ex_LDA_sr(mu_erf,rho(istate),tr_gamma_2(istate),e_x,v_x)
-
+   kF(istate) = ckf*(rho(istate)**f13)
+   mu_of_r(istate) = 0.5*kF(istate)
+   write(41,*),r(1),r(2),r(3), mu_of_r(istate)
+  !call dirac_ex_LDA_sr(mu_erf,rho(istate),tr_gamma_2(istate),e_x,v_x)
+   call dirac_ex_LDA_sr(mu_of_r(istate),rho(istate),tr_gamma_2(istate),e_x,v_x)
    dirac_energy_x_LDA(istate) += weight * e_x
    dirac_energy_c_LDA(istate) += weight * e_c
   enddo

@@ -3,11 +3,23 @@
  BEGIN_DOC
  ! value of mu(r) in each point in space
  END_DOC
- integer :: i_point
- integer :: i_atom,k,l
+ integer :: i, istate
+ double precision :: f13,ckf
  double precision :: r(3)
- do i_point = 1, n_points_final_grid
-  mu_of_r_for_ints_vector(i_point) = mu_erf
+ double precision :: rho(N_states),kF(N_states)
+ f13 = 0.3333333333333333d0
+ ckf = 3.0936677262801355d0 
+ do istate = 1, N_states
+  do i = 1, n_points_final_grid
+  !mu_of_r_for_ints_vector(i) = mu_erf
+   r(1) = final_grid_points(1,i)
+   r(2) = final_grid_points(2,i)
+   r(3) = final_grid_points(3,i) 
+   rho(istate) = dirac_one_body_dm_at_r(i,istate)
+   kF(istate) = ckf*(rho(istate)**f13)   
+   mu_of_r_for_ints_vector(i) = 0.5*kF(istate) 
+   write(40,*),r(1),r(2),r(3), mu_of_r_for_ints_vector(i)
+  enddo 
  enddo
  END_PROVIDER
 

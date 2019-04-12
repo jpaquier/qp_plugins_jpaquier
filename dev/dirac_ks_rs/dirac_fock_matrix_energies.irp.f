@@ -130,9 +130,6 @@
 !!$OMP  dirac_ao_integrals_map, dirac_ao_bi_elec_C_Exchange_integral) 
   call get_cache_map_n_elements_max(dirac_ao_integrals_erf_map,n_elements_max)
   allocate(keys(n_elements_max), values(n_elements_max))
-
- !write(33,*), "n_element_max=", n_elements_max
-
   allocate(dirac_ao_bi_elec_C_Exchange_integral_tmp(2*dirac_ao_num,2*dirac_ao_num))
   dirac_ao_bi_elec_C_Exchange_integral_tmp = (0.d0,0.d0)
 !!$OMP DO SCHEDULE(dynamic,64)
@@ -153,31 +150,31 @@
      ! values(k1) = (ij|kl) <=> <ik|jl>
      integral = values (k1)
 
+    !double precision :: get_dirac_ao_bielec_integral_erf
+    !!           1 2 1 2                                             
+    !write(24,*),i,k,j,l, integral!,get_dirac_ao_bielec_integral_erf(i,k,j,l,dirac_ao_integrals_erf_map)
 
-     double precision :: get_dirac_ao_bielec_integral_erf
-     !           1 2 1 2                                             
-     write(33,*),i,k,j,l, get_dirac_ao_bielec_integral_erf(i,k,j,l,dirac_ao_integrals_erf_map), integral
-!    if ((i .le. large_ao_num .and. j .le. large_ao_num .and. k .le. large_ao_num .and. l .le. large_ao_num) .or.  &
-!        (i .gt. large_ao_num .and. j .gt. large_ao_num .and. k .gt. large_ao_num .and. l .gt. large_ao_num)) then
-!     !L_alpha L_alpha .or. S_alpha S_alpha
-!     dirac_ao_bi_elec_C_Exchange_integral_tmp(dirac_inverse_list(i,1),dirac_inverse_list(l,1)) -= (dirac_SCF_density_matrix_ao(dirac_inverse_list(j,1),dirac_inverse_list(k,1))) * integral
-!     !L_beta L_beta .or. S_beta S_beta
-!     dirac_ao_bi_elec_C_Exchange_integral_tmp(dirac_inverse_list(i,2),dirac_inverse_list(l,2)) -= (dirac_SCF_density_matrix_ao(dirac_inverse_list(j,2),dirac_inverse_list(k,2))) * integral   
-!     !L_beta L_alpha .or. S_beta S_alpha
-!     dirac_ao_bi_elec_C_Exchange_integral_tmp(dirac_inverse_list(i,2),dirac_inverse_list(l,1)) -= (dirac_SCF_density_matrix_ao(dirac_inverse_list(j,2),dirac_inverse_list(k,1))) * integral
-!     !L_alpha L_beta .or. S_alpha S_beta
-!     dirac_ao_bi_elec_C_Exchange_integral_tmp(dirac_inverse_list(i,1),dirac_inverse_list(l,2)) -= (dirac_SCF_density_matrix_ao(dirac_inverse_list(j,1),dirac_inverse_list(k,2))) * integral
-!    elseif((i .le. large_ao_num .and. j .le. large_ao_num .and. k .gt. large_ao_num .and. l .gt. large_ao_num) .or. &
-!           (i .gt. large_ao_num .and. j .gt. large_ao_num .and. k .le. large_ao_num .and. l .le. large_ao_num))then
-!     !L_alpha S_alpha .or S_alpha L_alpha
-!     dirac_ao_bi_elec_C_Exchange_integral_tmp(dirac_inverse_list(i,1),dirac_inverse_list(l,1)) -= (dirac_SCF_density_matrix_ao(dirac_inverse_list(j,1),dirac_inverse_list(k,1))) * integral
-!     !L_beta S_beta .or. S_beta L_beta
-!     dirac_ao_bi_elec_C_Exchange_integral_tmp(dirac_inverse_list(i,2),dirac_inverse_list(l,2)) -= (dirac_SCF_density_matrix_ao(dirac_inverse_list(j,2),dirac_inverse_list(k,2))) * integral
-!     !L_beta S_alpha .or. S_beta L_alpha
-!     dirac_ao_bi_elec_C_Exchange_integral_tmp(dirac_inverse_list(i,2),dirac_inverse_list(l,1)) -= (dirac_SCF_density_matrix_ao(dirac_inverse_list(j,2),dirac_inverse_list(k,1))) * integral
-!     !L_alpha S_beta .or. S_alpha L_beta
-!     dirac_ao_bi_elec_C_Exchange_integral_tmp(dirac_inverse_list(i,1),dirac_inverse_list(l,2)) -= (dirac_SCF_density_matrix_ao(dirac_inverse_list(j,1),dirac_inverse_list(k,2))) * integral
-!    endif
+     if ((i .le. large_ao_num .and. j .le. large_ao_num .and. k .le. large_ao_num .and. l .le. large_ao_num) .or.  &
+         (i .gt. large_ao_num .and. j .gt. large_ao_num .and. k .gt. large_ao_num .and. l .gt. large_ao_num)) then
+      !L_alpha L_alpha .or. S_alpha S_alpha
+      dirac_ao_bi_elec_C_Exchange_integral_tmp(dirac_inverse_list(i,1),dirac_inverse_list(l,1)) -= (dirac_SCF_density_matrix_ao(dirac_inverse_list(j,1),dirac_inverse_list(k,1))) * integral
+      !L_beta L_beta .or. S_beta S_beta
+      dirac_ao_bi_elec_C_Exchange_integral_tmp(dirac_inverse_list(i,2),dirac_inverse_list(l,2)) -= (dirac_SCF_density_matrix_ao(dirac_inverse_list(j,2),dirac_inverse_list(k,2))) * integral   
+      !L_beta L_alpha .or. S_beta S_alpha
+      dirac_ao_bi_elec_C_Exchange_integral_tmp(dirac_inverse_list(i,2),dirac_inverse_list(l,1)) -= (dirac_SCF_density_matrix_ao(dirac_inverse_list(j,2),dirac_inverse_list(k,1))) * integral
+      !L_alpha L_beta .or. S_alpha S_beta
+      dirac_ao_bi_elec_C_Exchange_integral_tmp(dirac_inverse_list(i,1),dirac_inverse_list(l,2)) -= (dirac_SCF_density_matrix_ao(dirac_inverse_list(j,1),dirac_inverse_list(k,2))) * integral
+     elseif((i .le. large_ao_num .and. j .le. large_ao_num .and. k .gt. large_ao_num .and. l .gt. large_ao_num) .or. &
+            (i .gt. large_ao_num .and. j .gt. large_ao_num .and. k .le. large_ao_num .and. l .le. large_ao_num))then
+      !L_alpha S_alpha .or S_alpha L_alpha
+      dirac_ao_bi_elec_C_Exchange_integral_tmp(dirac_inverse_list(i,1),dirac_inverse_list(l,1)) -= (dirac_SCF_density_matrix_ao(dirac_inverse_list(j,1),dirac_inverse_list(k,1))) * integral
+      !L_beta S_beta .or. S_beta L_beta
+      dirac_ao_bi_elec_C_Exchange_integral_tmp(dirac_inverse_list(i,2),dirac_inverse_list(l,2)) -= (dirac_SCF_density_matrix_ao(dirac_inverse_list(j,2),dirac_inverse_list(k,2))) * integral
+      !L_beta S_alpha .or. S_beta L_alpha
+      dirac_ao_bi_elec_C_Exchange_integral_tmp(dirac_inverse_list(i,2),dirac_inverse_list(l,1)) -= (dirac_SCF_density_matrix_ao(dirac_inverse_list(j,2),dirac_inverse_list(k,1))) * integral
+      !L_alpha S_beta .or. S_alpha L_beta
+      dirac_ao_bi_elec_C_Exchange_integral_tmp(dirac_inverse_list(i,1),dirac_inverse_list(l,2)) -= (dirac_SCF_density_matrix_ao(dirac_inverse_list(j,1),dirac_inverse_list(k,2))) * integral
+     endif
     enddo
    enddo
   enddo
@@ -202,6 +199,7 @@
   do j=1, 2*dirac_ao_num
    do i=1, 2*dirac_ao_num
     dirac_HF_two_electron_C_Exchange_energy_complex += 0.5d0* (dirac_ao_bi_elec_C_Exchange_integral(i,j)) * dirac_SCF_density_matrix_ao(j,i)
+    write(26,*),j,i,dirac_SCF_density_matrix_ao(j,i)
    enddo
   enddo
   dirac_HF_two_electron_C_Exchange_energy = real(dirac_HF_two_electron_C_Exchange_energy_complex)

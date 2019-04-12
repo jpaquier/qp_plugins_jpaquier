@@ -52,12 +52,11 @@ program dirac_ks_rs
 ! write(11,*) "kF_moyen_bis=", kF_bis_moyen(istate), kF_bis_moyen(istate)/n_moyen(istate)
 !enddo
 
- do j = 1,1
-  do i = 1,1
-   print*, i,j,dirac_ao_bi_elec_C_Exchange_integral(i,j)
-  !print*, i,j,dirac_HF_two_electron_c_ex_int_mu_of_r(i,j)
+ do j = 1,2*dirac_ao_num
+  do i = 1,2*dirac_ao_num
+   write(25,*), i,j,dirac_ao_bi_elec_C_Exchange_integral(i,j)
+   write(35,*), i,j,dirac_HF_two_electron_c_ex_int_mu_of_r(i,j)
   enddo
  enddo
-
-
+ 
 end

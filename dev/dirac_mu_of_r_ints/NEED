@@ -5,3 +5,7 @@ becke_numerical_grid
 dirac_dft_utils_in_r
 dirac_one_e_ints
 dirac_two_e_ints
+dirac_dft_utils_one_e
+dft_utils_one_e
+kohn_sham_rs
+
