@@ -20,13 +20,16 @@
  complex*16 :: dm_complex(N_states)
  double precision :: dm_im
  double precision, intent(out) :: dm(N_states)
- integer :: istate
+ integer :: i,istate
  complex*16  :: two_dirac_aos_array(2*dirac_ao_num),two_dirac_aos_array_bis(2*dirac_ao_num),u_dotc_v
  call give_all_two_dirac_aos_at_r(r,two_dirac_aos_array)
  do istate = 1, N_states
   two_dirac_aos_array_bis = two_dirac_aos_array
   call zgemv('N',2*dirac_ao_num,2*dirac_ao_num,(1.d0,0.d0),dirac_one_body_dm_ao_for_dft(1,1,istate),2*dirac_ao_num,two_dirac_aos_array,1,(0.d0,0.d0),two_dirac_aos_array_bis,1)
-  dm_complex(istate) = u_dotc_v(two_dirac_aos_array,two_dirac_aos_array_bis,2*dirac_ao_num)
+ !dm_complex(istate) = u_dotc_v(two_dirac_aos_array,two_dirac_aos_array_bis,2*dirac_ao_num)
+  do i = 1, 2*dirac_ao_num
+   dm_complex(istate) += two_dirac_aos_array(i)*two_dirac_aos_array_bis(i)
+  enddo
   dm = real(dm_complex)
   dm_im = aimag(dm_complex(1))/dm(1)
   if (dm(1) .gt. 1.d0) then
@@ -495,38 +498,85 @@
  enddo
  END_PROVIDER 
 
-
- BEGIN_PROVIDER [double precision, dirac_dm_and_grad_at_r, (4,n_points_final_grid,N_states) ]
- &BEGIN_PROVIDER [double precision, dirac_grad_2_dm_at_r, (n_points_final_grid,N_states) ]
- BEGIN_DOC
- ! dirac_dm_and_grad_at_r(1,i,i_state) = d\dx n(r_i,istate)
- ! dirac_dm_and_grad_at_r(2,i,i_state) = d\dy n(r_i,istate)
- ! dirac_dm_and_grad_at_r(3,i,i_state) = d\dz n(r_i,istate)
- ! dirac_dm_and_grad_at_r(4,i,i_state) = n(r_i,istate)
- ! dirac_grad_2_dm_at_r(i,istate)      = d\dx n(r_i,istate)^2 + d\dy n(r_i,istate)^2 + d\dz n(r_i,istate)^2
- ! where r_i is the ith point of the grid and istate is the state number
- END_DOC
+ subroutine dirac_grad_dm_dft_at_r(r,grad_dm,grad_dm_complex)
  implicit none
- integer :: i,j,k,l,m,istate
- double precision :: contrib
- double precision :: r(3)
- double precision, allocatable :: aos_array(:),grad_aos_array(:,:)
- double precision, allocatable :: dm_a(:),dm_b(:), dm_a_grad(:,:), dm_b_grad(:,:)
- allocate(dm_a(N_states),dm_b(N_states), dm_a_grad(3,N_states), dm_b_grad(3,N_states))
- allocate(aos_array(ao_num),grad_aos_array(3,ao_num))
+ BEGIN_DOC
+ ! input:
+ ! * r(1) ==> r(1) = x, r(2) = y, r(3) = z
+ ! output:
+ ! * grad_dm(1) = X gradient of the density evaluated at r
+ END_DOC
+ double precision, intent(in)  :: r(3)
+ double precision, intent(out) :: grad_dm(3,N_states)
+ complex*16, intent(out) :: grad_dm_complex(3,N_states) 
+!complex*16 :: grad_dm_complex(3,N_states)
+ double precision :: grad_dm_im(3)
+ integer :: i,j,istate
+ complex*16  :: two_dirac_aos_array(2*dirac_ao_num),two_dirac_aos_array_bis(2*dirac_ao_num),u_dotc_v
+ complex*16  :: two_dirac_aos_grad_array(3,dirac_ao_num)
+ call give_all_two_dirac_aos_at_r(r,two_dirac_aos_array)
+ call give_all_grad_two_dirac_aos_at_r(r,two_dirac_aos_grad_array)
  do istate = 1, N_states
-  do i = 1, n_points_final_grid
-  r(1) = final_grid_points(1,i)
-  r(2) = final_grid_points(2,i)
-  r(3) = final_grid_points(3,i)
- !!!! Works also with the ao basis
-   call density_and_grad_alpha_beta_and_all_aos_and_grad_aos_at_r(r,dm_a,dm_b,  dm_a_grad, dm_b_grad, aos_array, grad_aos_array)
-   dirac_dm_and_grad_at_r(1,i,istate)  =  dm_a_grad(1,istate)
-   dirac_dm_and_grad_at_r(2,i,istate)  =  dm_a_grad(2,istate)
-   dirac_dm_and_grad_at_r(3,i,istate)  =  dm_a_grad(3,istate)
-   dirac_dm_and_grad_at_r(4,i,istate)  =  dm_a(istate)
-   dirac_grad_2_dm_at_r(i,istate) = dm_a_grad(1,istate) * dm_a_grad(1,istate) + dm_a_grad(2,istate) * dm_a_grad(2,istate) + dm_a_grad(3,istate) * dm_a_grad(3,istate)
-  enddo
+  two_dirac_aos_array_bis = two_dirac_aos_array
+  call zgemv('N',2*dirac_ao_num,2*dirac_ao_num,(1.d0,0.d0),dirac_one_body_dm_ao_for_dft(1,1,istate),2*dirac_ao_num,two_dirac_aos_array,1,(0.d0,0.d0),two_dirac_aos_array_bis,1)
+ grad_dm_complex = (0.d0,0.d0)
+  grad_dm_complex(1,istate) = u_dotc_v(two_dirac_aos_grad_array(1,1),two_dirac_aos_array_bis,2*dirac_ao_num)
+  grad_dm_complex(2,istate) = u_dotc_v(two_dirac_aos_grad_array(2,1),two_dirac_aos_array_bis,2*dirac_ao_num)
+  grad_dm_complex(3,istate) = u_dotc_v(two_dirac_aos_grad_array(3,1),two_dirac_aos_array_bis,2*dirac_ao_num)
+ !do j = 1,3
+ ! do i = 1, 2*dirac_ao_num
+ !  grad_dm_complex(j,istate) += two_dirac_aos_grad_array(j,i)*two_dirac_aos_array_bis(i)
+ ! enddo
+ !enddo
+  grad_dm = real(grad_dm_complex)
+ !grad_dm_im = aimag(grad_dm_complex(1))/grad_dm(1)
+ !if (dm(1) .gt. 1.d0) then
+ ! if (dm_im .gt. 1.d-10) then
+ !  print*, 'Warning! The electronic density is not real'
+ !  print*, 'dm_complex =',dm_complex
+ !  stop
+ ! endif
+ !else
+ ! if (aimag(dm_complex(1)) .gt. 1.d-10) then
+ !  print*, 'Warning! The electronic density is not real'
+ !  print*, 'dm_complex =',dm_complex
+ !  stop
+ ! endif
+ !endif
  enddo
- END_PROVIDER
+ grad_dm *= 2.d0
+ end
+
+!BEGIN_PROVIDER [double precision, dirac_dm_and_grad_at_r, (4,n_points_final_grid,N_states) ]
+!&BEGIN_PROVIDER [double precision, dirac_grad_2_dm_at_r, (n_points_final_grid,N_states) ]
+!BEGIN_DOC
+!! dirac_dm_and_grad_at_r(1,i,i_state) = d\dx n(r_i,istate)
+!! dirac_dm_and_grad_at_r(2,i,i_state) = d\dy n(r_i,istate)
+!! dirac_dm_and_grad_at_r(3,i,i_state) = d\dz n(r_i,istate)
+!! dirac_dm_and_grad_at_r(4,i,i_state) = n(r_i,istate)
+!! dirac_grad_2_dm_at_r(i,istate)      = d\dx n(r_i,istate)^2 + d\dy n(r_i,istate)^2 + d\dz n(r_i,istate)^2
+!! where r_i is the ith point of the grid and istate is the state number
+!END_DOC
+!implicit none
+!integer :: i,j,k,l,m,istate
+!double precision :: contrib
+!double precision :: r(3)
+!double precision, allocatable :: aos_array(:),grad_aos_array(:,:)
+!double precision, allocatable :: dm_a(:),dm_b(:), dm_a_grad(:,:), dm_b_grad(:,:)
+!allocate(dm_a(N_states),dm_b(N_states), dm_a_grad(3,N_states), dm_b_grad(3,N_states))
+!allocate(aos_array(ao_num),grad_aos_array(3,ao_num))
+!do istate = 1, N_states
+! do i = 1, n_points_final_grid
+!  r(1) = final_grid_points(1,i)
+!  r(2) = final_grid_points(2,i)
+!  r(3) = final_grid_points(3,i)
+!  call density_and_grad_alpha_beta_and_all_aos_and_grad_aos_at_r(r,dm_a,dm_b,  dm_a_grad, dm_b_grad, aos_array, grad_aos_array)
+!  dirac_dm_and_grad_at_r(1,i,istate)  =  dirac_dm_grad(1,istate)
+!  dirac_dm_and_grad_at_r(2,i,istate)  =  dirac_dm_grad(2,istate)
+!  dirac_dm_and_grad_at_r(3,i,istate)  =  dirac_dm_grad(3,istate)
+!  dirac_dm_and_grad_at_r(4,i,istate)  =  dirac_dm(istate)
+!  dirac_grad_2_dm_at_r(i,istate) = dm_a_grad(1,istate) * dm_a_grad(1,istate) + dm_a_grad(2,istate) * dm_a_grad(2,istate) + dm_a_grad(3,istate) * dm_a_grad(3,istate)
+! enddo
+!enddo
+!END_PROVIDER
 

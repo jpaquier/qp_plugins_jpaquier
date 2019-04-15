@@ -1,7 +1,8 @@
 program dirac_ao_basis
   implicit none
   integer :: i,j
-  double precision :: r(3)
+  double precision :: r(3),aos_array(ao_num),aos_grad_array(3,ao_num)
+  complex*16 :: two_dirac_aos_grad_array(3,2*dirac_ao_num)
   complex*16 :: two_dirac_aos_array(2*dirac_ao_num),dirac_aos_array(dirac_ao_num)
   complex*16 :: large_aos_array(large_ao_num)
   complex*16 :: small_aos_array(small_ao_num)
@@ -24,21 +25,33 @@ program dirac_ao_basis
  call give_all_small_aos_at_r(r,small_aos_array)
  call give_all_dirac_aos_at_r(r,dirac_aos_array)
  call give_all_two_dirac_aos_at_r(r,two_dirac_aos_array)
- print*,'**********************************************'
+!print*,'**********************************************'
+!do i = 1,2*dirac_ao_num
+! print*,i,two_dirac_aos_array(i)
+!enddo
+!print*,'****************************'
+!do i = 1,dirac_ao_num
+! print*,i,dirac_aos_array(i)
+!enddo
+!print*,'****************************'
+!do i = 1,large_ao_num
+! print*,i,large_aos_array(i)
+!enddo
+!print*,'****************************'
+!do i = 1,small_ao_num
+! print*,i,small_aos_array(i)
+!enddo
+
+ call give_all_grad_two_dirac_aos_at_r(r,two_dirac_aos_grad_array)
+  print*,'***************************'
  do i = 1,2*dirac_ao_num
-  print*,i,two_dirac_aos_array(i)
+  print*,i,two_dirac_aos_array(i),two_dirac_aos_grad_array(1,i),two_dirac_aos_grad_array(2,i),two_dirac_aos_grad_array(3,i)
  enddo
+ print*,'************************************************************'
+ call give_all_aos_and_grad_at_r(r,aos_array,aos_grad_array)
  print*,'****************************'
- do i = 1,dirac_ao_num
-  print*,i,dirac_aos_array(i)
- enddo
- print*,'****************************'
- do i = 1,large_ao_num
-  print*,i,large_aos_array(i)
- enddo
- print*,'****************************'
- do i = 1,small_ao_num
-  print*,i,small_aos_array(i)
+ do i = 1,ao_num
+  print*,i,aos_array(i),aos_grad_array(1,i),aos_grad_array(2,i),aos_grad_array(3,i)
  enddo
 
 end
