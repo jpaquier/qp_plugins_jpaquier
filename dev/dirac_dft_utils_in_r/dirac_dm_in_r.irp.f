@@ -22,6 +22,7 @@
  double precision, intent(out) :: dm(N_states)
  integer :: i,istate
  complex*16  :: two_dirac_aos_array(2*dirac_ao_num),two_dirac_aos_array_bis(2*dirac_ao_num),u_dotc_v
+ dm_complex = (0.d0,0.d0)
  call give_all_two_dirac_aos_at_r(r,two_dirac_aos_array)
  do istate = 1, N_states
   two_dirac_aos_array_bis = two_dirac_aos_array
@@ -509,25 +510,44 @@
  double precision, intent(in)  :: r(3)
  double precision, intent(out) :: grad_dm(3,N_states)
  complex*16, intent(out) :: grad_dm_complex(3,N_states) 
-!complex*16 :: grad_dm_complex(3,N_states)
+ complex*16 :: grad_dm_complex_1(3,N_states),grad_dm_complex_2(3,N_states)
  double precision :: grad_dm_im(3)
- integer :: i,j,istate
+ integer :: i,j,k,istate
  complex*16  :: two_dirac_aos_array(2*dirac_ao_num),two_dirac_aos_array_bis(2*dirac_ao_num),u_dotc_v
- complex*16  :: two_dirac_aos_grad_array(3,dirac_ao_num)
+ complex*16  :: two_dirac_aos_grad_array(3,2*dirac_ao_num),two_dirac_aos_grad_array_bis(3,2*dirac_ao_num)
  call give_all_two_dirac_aos_at_r(r,two_dirac_aos_array)
  call give_all_grad_two_dirac_aos_at_r(r,two_dirac_aos_grad_array)
  do istate = 1, N_states
-  two_dirac_aos_array_bis = two_dirac_aos_array
-  call zgemv('N',2*dirac_ao_num,2*dirac_ao_num,(1.d0,0.d0),dirac_one_body_dm_ao_for_dft(1,1,istate),2*dirac_ao_num,two_dirac_aos_array,1,(0.d0,0.d0),two_dirac_aos_array_bis,1)
- grad_dm_complex = (0.d0,0.d0)
-  grad_dm_complex(1,istate) = u_dotc_v(two_dirac_aos_grad_array(1,1),two_dirac_aos_array_bis,2*dirac_ao_num)
-  grad_dm_complex(2,istate) = u_dotc_v(two_dirac_aos_grad_array(2,1),two_dirac_aos_array_bis,2*dirac_ao_num)
-  grad_dm_complex(3,istate) = u_dotc_v(two_dirac_aos_grad_array(3,1),two_dirac_aos_array_bis,2*dirac_ao_num)
- !do j = 1,3
- ! do i = 1, 2*dirac_ao_num
- !  grad_dm_complex(j,istate) += two_dirac_aos_grad_array(j,i)*two_dirac_aos_array_bis(i)
- ! enddo
- !enddo
+  two_dirac_aos_array_bis = (0.d0,0.d0)
+  do j = 1, 2*dirac_ao_num
+   do i  = 1, 2*dirac_ao_num
+    two_dirac_aos_array_bis(i) += dirac_one_body_dm_ao_for_dft(i,j,istate)*two_dirac_aos_array(j)
+   enddo
+  enddo
+  !call zgemv('N',2*dirac_ao_num,2*dirac_ao_num,(1.d0,0.d0),dirac_one_body_dm_ao_for_dft(1,1,istate),2*dirac_ao_num,two_dirac_aos_array,1,(0.d0,0.d0),two_dirac_aos_array_bis,1)
+  grad_dm_complex_1 = (0.d0,0.d0)
+  do k =1,3
+   do i = 1, 2*dirac_ao_num
+    grad_dm_complex_1(k,istate) += two_dirac_aos_grad_array(k,i)*two_dirac_aos_array_bis(i)
+   enddo
+  !grad_dm_complex_1(k,istate) = u_dotc_v(two_dirac_aos_grad_array(k,1),two_dirac_aos_array_bis,2*dirac_ao_num)
+  enddo
+  two_dirac_aos_grad_array_bis = (0.d0,0.d0)
+  do k = 1,3
+   do j = 1, 2*dirac_ao_num
+    do i  = 1, 2*dirac_ao_num
+     two_dirac_aos_grad_array_bis(k,i) += dirac_one_body_dm_ao_for_dft(i,j,istate)*two_dirac_aos_grad_array(k,j)
+    enddo
+   enddo
+  enddo  
+  grad_dm_complex_2 = (0.d0,0.d0)
+  do k =1,3
+   do i = 1, 2*dirac_ao_num
+    grad_dm_complex_2(k,istate) += two_dirac_aos_array(i)*two_dirac_aos_grad_array_bis(k,i)
+   enddo
+  !grad_dm_complex_2(k,istate) = u_dotc_v(two_dirac_aos_array,two_dirac_aos_grad_array_bis(k,1),2*dirac_ao_num)
+  enddo
+  grad_dm_complex = grad_dm_complex_1 + grad_dm_complex_2
   grad_dm = real(grad_dm_complex)
  !grad_dm_im = aimag(grad_dm_complex(1))/grad_dm(1)
  !if (dm(1) .gt. 1.d0) then
@@ -544,7 +564,6 @@
  ! endif
  !endif
  enddo
- grad_dm *= 2.d0
  end
 
 !BEGIN_PROVIDER [double precision, dirac_dm_and_grad_at_r, (4,n_points_final_grid,N_states) ]
