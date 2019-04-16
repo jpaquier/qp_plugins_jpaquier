@@ -1,26 +1,38 @@
+ subroutine  dirac_mu_of_r (r,mu_of_r)
+ implicit none
+ BEGIN_DOC
+ ! input:
+ ! * r(1) ==> r(1) = x, r(2) = y, r(3) = z
+ ! output:
+ ! * mu_of_r = value of the local range separation parameter
+ END_DOC
+ double precision, intent(in)  :: r(3)
+ double precision, intent(out) :: mu_of_r
+ integer :: istate
+ double precision :: dm(N_states),grad_dm(3,N_states),grad_dm_2(N_states),grad_dm_abs(N_states)
+ do istate = 1, N_states
+  call dirac_dm_dft_at_r(r,dm)
+  call dirac_grad_dm_dft_at_r(r,grad_dm,grad_dm_2,grad_dm_abs)
+  mu_of_r = 0.135d0 * grad_dm_abs(istate) / dm(istate)
+ enddo
+ end
+
  BEGIN_PROVIDER [double precision, mu_of_r_for_ints_vector, (n_points_final_grid)]
  implicit none
  BEGIN_DOC
  ! value of mu(r) in each point in space
  END_DOC
  integer :: i, istate
- double precision :: f13,ckf
+ double precision :: mu_of_r
  double precision :: r(3)
- double precision :: rho(N_states),kF(N_states)
- f13 = 0.3333333333333333d0
- ckf = 3.0936677262801355d0 
- do istate = 1, N_states
-  do i = 1, n_points_final_grid
-  !mu_of_r_for_ints_vector(i) = mu_erf
-   r(1) = final_grid_points(1,i)
-   r(2) = final_grid_points(2,i)
-   r(3) = final_grid_points(3,i) 
-   rho(istate) = dirac_one_body_dm_at_r(i,istate)
-   kF(istate) = ckf*(rho(istate)**f13)   
-   mu_of_r_for_ints_vector(i) = 0.5*kF(istate) 
-   write(40,*),r(1),r(2),r(3), mu_of_r_for_ints_vector(i)
-  enddo 
- enddo
+ do i = 1, n_points_final_grid
+  r(1) = final_grid_points(1,i)
+  r(2) = final_grid_points(2,i)
+  r(3) = final_grid_points(3,i)
+  call dirac_mu_of_r (r,mu_of_r) 
+ !mu_of_r_for_ints_vector(i) = mu_of_r
+  mu_of_r_for_ints_vector(i) = r(1)
+ enddo 
  END_PROVIDER
 
  subroutine give_all_dirac_erf_mu_of_r_kl(k,l,ints)

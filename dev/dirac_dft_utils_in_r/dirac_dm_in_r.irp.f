@@ -499,7 +499,9 @@
  enddo
  END_PROVIDER 
 
- subroutine dirac_grad_dm_dft_at_r(r,grad_dm,grad_dm_complex)
+
+
+ subroutine dirac_grad_dm_dft_at_r(r,grad_dm,grad_dm_2,grad_dm_abs)
  implicit none
  BEGIN_DOC
  ! input:
@@ -508,10 +510,10 @@
  ! * grad_dm(1) = X gradient of the density evaluated at r
  END_DOC
  double precision, intent(in)  :: r(3)
- double precision, intent(out) :: grad_dm(3,N_states)
- complex*16, intent(out) :: grad_dm_complex(3,N_states) 
+ double precision, intent(out) :: grad_dm(3,N_states),grad_dm_2(N_states),grad_dm_abs(N_states)
+ complex*16 :: grad_dm_complex(3,N_states)
  complex*16 :: grad_dm_complex_1(3,N_states),grad_dm_complex_2(3,N_states)
- double precision :: grad_dm_im(3)
+ double precision :: grad_dm_im(3,N_states),grad_dm_ratio
  integer :: i,j,k,istate
  complex*16  :: two_dirac_aos_array(2*dirac_ao_num),two_dirac_aos_array_bis(2*dirac_ao_num),u_dotc_v
  complex*16  :: two_dirac_aos_grad_array(3,2*dirac_ao_num),two_dirac_aos_grad_array_bis(3,2*dirac_ao_num)
@@ -549,53 +551,61 @@
   enddo
   grad_dm_complex = grad_dm_complex_1 + grad_dm_complex_2
   grad_dm = real(grad_dm_complex)
- !grad_dm_im = aimag(grad_dm_complex(1))/grad_dm(1)
- !if (dm(1) .gt. 1.d0) then
- ! if (dm_im .gt. 1.d-10) then
- !  print*, 'Warning! The electronic density is not real'
- !  print*, 'dm_complex =',dm_complex
- !  stop
- ! endif
- !else
- ! if (aimag(dm_complex(1)) .gt. 1.d-10) then
- !  print*, 'Warning! The electronic density is not real'
- !  print*, 'dm_complex =',dm_complex
- !  stop
- ! endif
- !endif
+  grad_dm_2(istate)   = grad_dm(1,istate) * grad_dm(1,istate) + grad_dm(2,istate) * grad_dm(2,istate) + grad_dm(3,istate) * grad_dm(3,istate)
+  grad_dm_abs(istate) = dsqrt(grad_dm_2(istate))
+  grad_dm_im = aimag(grad_dm_complex)
+  grad_dm_ratio = dsqrt(grad_dm_im(1,1)**2+grad_dm_im(2,1)**2+grad_dm_im(3,1)**2)/dsqrt((grad_dm(1,1)**2+grad_dm(2,1)**2+grad_dm(3,1))**2)
+  if (dsqrt((grad_dm(1,1)**2+grad_dm(2,1)**2+grad_dm(3,1))**2).gt. 1.d0) then
+   if (grad_dm_ratio .gt. 1.d-10) then
+   !print*, 'Warning! The gradient of the electronic density is not real'
+   !print*, 'grad_dm_complex =', grad_dm_complex(1,1), grad_dm_complex(2,1),grad_dm_complex(3,1)
+   !write(31,*),'Warning! The gradient of the electronic density is not real (first case)'
+   !write(31,*), 'grad_dm_complex =', grad_dm_complex(1,1), grad_dm_complex(2,1),grad_dm_complex(3,1)
+   !stop
+   endif
+  else
+   if (grad_dm_ratio .gt. 1.d-10) then
+   !print*, 'Warning! The gradient of the electronic density is not real'
+   !print*, 'grad_dm_complex =', grad_dm_complex(1,1), grad_dm_complex(2,1),grad_dm_complex(3,1)
+   !write(31,*),'Warning! The gradient of the electronic density is not real (second case)'
+   !write(31,*), 'grad_dm_complex =', grad_dm_complex(1,1), grad_dm_complex(2,1),grad_dm_complex(3,1)
+   !stop
+   endif
+  endif
  enddo
  end
 
-!BEGIN_PROVIDER [double precision, dirac_dm_and_grad_at_r, (4,n_points_final_grid,N_states) ]
-!&BEGIN_PROVIDER [double precision, dirac_grad_2_dm_at_r, (n_points_final_grid,N_states) ]
-!BEGIN_DOC
-!! dirac_dm_and_grad_at_r(1,i,i_state) = d\dx n(r_i,istate)
-!! dirac_dm_and_grad_at_r(2,i,i_state) = d\dy n(r_i,istate)
-!! dirac_dm_and_grad_at_r(3,i,i_state) = d\dz n(r_i,istate)
-!! dirac_dm_and_grad_at_r(4,i,i_state) = n(r_i,istate)
-!! dirac_grad_2_dm_at_r(i,istate)      = d\dx n(r_i,istate)^2 + d\dy n(r_i,istate)^2 + d\dz n(r_i,istate)^2
-!! where r_i is the ith point of the grid and istate is the state number
-!END_DOC
-!implicit none
-!integer :: i,j,k,l,m,istate
-!double precision :: contrib
-!double precision :: r(3)
-!double precision, allocatable :: aos_array(:),grad_aos_array(:,:)
-!double precision, allocatable :: dm_a(:),dm_b(:), dm_a_grad(:,:), dm_b_grad(:,:)
-!allocate(dm_a(N_states),dm_b(N_states), dm_a_grad(3,N_states), dm_b_grad(3,N_states))
-!allocate(aos_array(ao_num),grad_aos_array(3,ao_num))
-!do istate = 1, N_states
-! do i = 1, n_points_final_grid
-!  r(1) = final_grid_points(1,i)
-!  r(2) = final_grid_points(2,i)
-!  r(3) = final_grid_points(3,i)
-!  call density_and_grad_alpha_beta_and_all_aos_and_grad_aos_at_r(r,dm_a,dm_b,  dm_a_grad, dm_b_grad, aos_array, grad_aos_array)
-!  dirac_dm_and_grad_at_r(1,i,istate)  =  dirac_dm_grad(1,istate)
-!  dirac_dm_and_grad_at_r(2,i,istate)  =  dirac_dm_grad(2,istate)
-!  dirac_dm_and_grad_at_r(3,i,istate)  =  dirac_dm_grad(3,istate)
-!  dirac_dm_and_grad_at_r(4,i,istate)  =  dirac_dm(istate)
-!  dirac_grad_2_dm_at_r(i,istate) = dm_a_grad(1,istate) * dm_a_grad(1,istate) + dm_a_grad(2,istate) * dm_a_grad(2,istate) + dm_a_grad(3,istate) * dm_a_grad(3,istate)
-! enddo
-!enddo
-!END_PROVIDER
+
+ BEGIN_PROVIDER [double precision, dirac_grad_dm_at_r, (3,n_points_final_grid,N_states) ]
+ &BEGIN_PROVIDER [double precision, dirac_grad_dm_2_at_r, (n_points_final_grid,N_states) ]
+ &BEGIN_PROVIDER [double precision, dirac_grad_dm_abs_at_r,(n_points_final_grid,N_states) ]
+ BEGIN_DOC
+ ! dirac_dm_and_grad_at_r(1,i,i_state) = d\dx n(r_i,istate)
+ ! dirac_dm_and_grad_at_r(2,i,i_state) = d\dy n(r_i,istate)
+ ! dirac_dm_and_grad_at_r(3,i,i_state) = d\dz n(r_i,istate)
+ ! dirac_dm_and_grad_at_r(4,i,i_state) = n(r_i,istate)
+ ! dirac_grad_dm_2_at_r(i,istate)      = d\dx n(r_i,istate)^2 + d\dy n(r_i,istate)^2 + d\dz n(r_i,istate)^2
+ ! dirac_grad_dm_abs_at_r(i,istate)    = dsqrt(dirac_grad_dm_2_at_r(i,istate)) 
+ ! where r_i is the ith point of the grid and istate is the state number
+ END_DOC
+ implicit none
+ integer :: i,istate
+ double precision :: r(3)
+ double precision, allocatable :: grad_dm(:,:),grad_dm_2(:),grad_dm_abs(:)
+ allocate(grad_dm(3,N_states),grad_dm_2(N_states),grad_dm_abs(N_states))
+ do istate = 1, N_states
+  do i = 1, n_points_final_grid
+   r(1) = final_grid_points(1,i)
+   r(2) = final_grid_points(2,i)
+   r(3) = final_grid_points(3,i)
+   call dirac_grad_dm_dft_at_r(r,grad_dm,grad_dm_2,grad_dm_abs)
+   dirac_grad_dm_at_r (1,i,istate)  = grad_dm(1,istate)
+   dirac_grad_dm_at_r (2,i,istate)  = grad_dm(2,istate)
+   dirac_grad_dm_at_r (3,i,istate)  = grad_dm(3,istate)
+   dirac_grad_dm_2_at_r(i,istate)   = grad_dm_2(istate) 
+   dirac_grad_dm_abs_at_r(i,istate) = grad_dm_abs(istate)
+  enddo
+ enddo
+ deallocate(grad_dm)
+ END_PROVIDER
 
