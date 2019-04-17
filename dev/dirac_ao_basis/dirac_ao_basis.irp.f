@@ -7,10 +7,9 @@ program dirac_ao_basis
   complex*16 :: large_aos_array(large_ao_num)
   complex*16 :: small_aos_array(small_ao_num)
   integer :: dirac_power_ao(3)
-  r= 0.01d0
- do i=1, dirac_ao_num
- !print*, dirac_ao_nucl(i)
- enddo
+!do i=1, dirac_ao_num
+!!print*, dirac_ao_nucl(i)
+!enddo
  
  print*,large_ao_num,small_ao_num
  
@@ -42,16 +41,20 @@ program dirac_ao_basis
 ! print*,i,small_aos_array(i)
 !enddo
 
+ r= 0.d0 
+ r(1) = 0.3372d0
+ do j = 1,100 
  call give_all_grad_two_dirac_aos_at_r(r,two_dirac_aos_grad_array)
   print*,'***************************'
  do i = 1,2*dirac_ao_num
   print*,i,two_dirac_aos_array(i),two_dirac_aos_grad_array(1,i),two_dirac_aos_grad_array(2,i),two_dirac_aos_grad_array(3,i)
  enddo
  print*,'************************************************************'
- call give_all_aos_and_grad_at_r(r,aos_array,aos_grad_array)
- print*,'****************************'
- do i = 1,ao_num
-  print*,i,aos_array(i),aos_grad_array(1,i),aos_grad_array(2,i),aos_grad_array(3,i)
+ r(1)+=0.000001
+!call give_all_aos_and_grad_at_r(r,aos_array,aos_grad_array)
+!print*,'****************************'
+!do i = 1,ao_num
+! print*,i,aos_array(i),aos_grad_array(1,i),aos_grad_array(2,i),aos_grad_array(3,i)
  enddo
 
 end

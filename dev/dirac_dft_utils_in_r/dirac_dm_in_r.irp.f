@@ -531,47 +531,49 @@
   do k =1,3
    do i = 1, 2*dirac_ao_num
     grad_dm_complex_1(k,istate) += two_dirac_aos_grad_array(k,i)*two_dirac_aos_array_bis(i)
+    if (k == 1) then
+     write(26,*),i,two_dirac_aos_grad_array(1,i),two_dirac_aos_array_bis(i)
+    endif 
    enddo
   !grad_dm_complex_1(k,istate) = u_dotc_v(two_dirac_aos_grad_array(k,1),two_dirac_aos_array_bis,2*dirac_ao_num)
   enddo
-  two_dirac_aos_grad_array_bis = (0.d0,0.d0)
-  do k = 1,3
-   do j = 1, 2*dirac_ao_num
-    do i  = 1, 2*dirac_ao_num
-     two_dirac_aos_grad_array_bis(k,i) += dirac_one_body_dm_ao_for_dft(i,j,istate)*two_dirac_aos_grad_array(k,j)
-    enddo
-   enddo
-  enddo  
-  grad_dm_complex_2 = (0.d0,0.d0)
-  do k =1,3
-   do i = 1, 2*dirac_ao_num
-    grad_dm_complex_2(k,istate) += two_dirac_aos_array(i)*two_dirac_aos_grad_array_bis(k,i)
-   enddo
-  !grad_dm_complex_2(k,istate) = u_dotc_v(two_dirac_aos_array,two_dirac_aos_grad_array_bis(k,1),2*dirac_ao_num)
-  enddo
-  grad_dm_complex = grad_dm_complex_1 + grad_dm_complex_2
-  grad_dm = real(grad_dm_complex)
+ !! If one wants to use only the real  
+  grad_dm = 2.d0*real(grad_dm_complex_1)
+ !! If one wants to check if the other term is indeed the conjugate
+ !two_dirac_aos_grad_array_bis = (0.d0,0.d0)
+ !do k = 1,3
+ ! do j = 1, 2*dirac_ao_num
+ !  do i  = 1, 2*dirac_ao_num
+ !   two_dirac_aos_grad_array_bis(k,i) += dirac_one_body_dm_ao_for_dft(i,j,istate)*two_dirac_aos_grad_array(k,j)
+ !  enddo
+ ! enddo
+ !enddo  
+ !grad_dm_complex_2 = (0.d0,0.d0)
+ !do k =1,3
+ ! do i = 1, 2*dirac_ao_num
+ !  grad_dm_complex_2(k,istate) += two_dirac_aos_array(i)*two_dirac_aos_grad_array_bis(k,i)
+ ! enddo
+ !enddo
+ !grad_dm_complex = grad_dm_complex_1 + grad_dm_complex_2
+ !grad_dm = real(grad_dm_complex)
   grad_dm_2(istate)   = grad_dm(1,istate) * grad_dm(1,istate) + grad_dm(2,istate) * grad_dm(2,istate) + grad_dm(3,istate) * grad_dm(3,istate)
   grad_dm_abs(istate) = dsqrt(grad_dm_2(istate))
-  grad_dm_im = aimag(grad_dm_complex)
-  grad_dm_ratio = dsqrt(grad_dm_im(1,1)**2+grad_dm_im(2,1)**2+grad_dm_im(3,1)**2)/dsqrt((grad_dm(1,1)**2+grad_dm(2,1)**2+grad_dm(3,1))**2)
-  if (dsqrt((grad_dm(1,1)**2+grad_dm(2,1)**2+grad_dm(3,1))**2).gt. 1.d0) then
-   if (grad_dm_ratio .gt. 1.d-10) then
-   !print*, 'Warning! The gradient of the electronic density is not real'
-   !print*, 'grad_dm_complex =', grad_dm_complex(1,1), grad_dm_complex(2,1),grad_dm_complex(3,1)
-   !write(31,*),'Warning! The gradient of the electronic density is not real (first case)'
-   !write(31,*), 'grad_dm_complex =', grad_dm_complex(1,1), grad_dm_complex(2,1),grad_dm_complex(3,1)
-   !stop
-   endif
-  else
-   if (grad_dm_ratio .gt. 1.d-10) then
-   !print*, 'Warning! The gradient of the electronic density is not real'
-   !print*, 'grad_dm_complex =', grad_dm_complex(1,1), grad_dm_complex(2,1),grad_dm_complex(3,1)
-   !write(31,*),'Warning! The gradient of the electronic density is not real (second case)'
-   !write(31,*), 'grad_dm_complex =', grad_dm_complex(1,1), grad_dm_complex(2,1),grad_dm_complex(3,1)
-   !stop
-   endif
-  endif
+ !! Tests to check if the complex part of grad_dm_complex is indeed negligible
+ !grad_dm_im = aimag(grad_dm_complex)
+ !grad_dm_ratio = dsqrt(grad_dm_im(1,1)**2+grad_dm_im(2,1)**2+grad_dm_im(3,1)**2)/dsqrt((grad_dm(1,1)**2+grad_dm(2,1)**2+grad_dm(3,1))**2)
+ !if (dsqrt((grad_dm(1,1)**2+grad_dm(2,1)**2+grad_dm(3,1))**2).gt. 1.d0) then
+ ! if (grad_dm_ratio .gt. 1.d-10) then
+ !  print*, 'Warning! The gradient of the electronic density is not real'
+ !  print*, 'grad_dm_complex =', grad_dm_complex(1,1), grad_dm_complex(2,1),grad_dm_complex(3,1)
+ !  stop
+ ! endif
+ !else
+ ! if (grad_dm_ratio .gt. 1.d-10) then
+ !  print*, 'Warning! The gradient of the electronic density is not real'
+ !  print*, 'grad_dm_complex =', grad_dm_complex(1,1), grad_dm_complex(2,1),grad_dm_complex(3,1)
+ !  stop
+ ! endif
+ !endif
  enddo
  end
 
