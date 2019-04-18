@@ -36,6 +36,8 @@ program dirac_dft_utils_one_body
    write(32,*) "grad_y =",grad_dm(2,1)
    write(32,*) "grad_z =",grad_dm(3,1)
    Write(32,*) "mu_of_r_for_ints_vector =",mu_of_r
+   open (28, file='density_of_r_Z.dat')
+   write(28,*) r(1),dm(1)
    open (29, file='mu_of_r_Z.dat')
    write(29,*) r(1), mu_of_r
   !r(1)+=0.0000005d0
