@@ -15,7 +15,7 @@ program dirac_ao_basis
  
  do j=1,nucl_num
   do i =1, Nucl_N_dirac_aos(j)
-   print*,i,j!,Nucl_dirac_Aos_transposed(i,j)!,dirac_ao_coef_normalized_ordered_transp_per_nucl(1,i,j),dirac_ao_expo_ordered_transp_per_nucl(1,i,j), dirac_ao_power_ordered_transp_per_nucl(1,i,j),dirac_ao_power_ordered_transp_per_nucl(2,i,j),dirac_ao_power_ordered_transp_per_nucl(3,i,j)
+   print*,i,j,Nucl_dirac_Aos_transposed(i,j),dirac_ao_coef_normalized_ordered_transp_per_nucl(1,i,j),dirac_ao_expo_ordered_transp_per_nucl(1,i,j), dirac_ao_power_ordered_transp_per_nucl(1,i,j),dirac_ao_power_ordered_transp_per_nucl(2,i,j),dirac_ao_power_ordered_transp_per_nucl(3,i,j)
   enddo
   print*,'******************'
  enddo

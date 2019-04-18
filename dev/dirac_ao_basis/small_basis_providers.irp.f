@@ -270,7 +270,7 @@
    do j = 1, number_of_small_component_ao_per_shell_per_atom(l_type,i)  
     j_count += 1
     small_ao_l(j_count) = l_type
-    small_ao_nucl(j_count) = i 
+    small_ao_nucl(j_count) = i
    enddo
    do k = 1, number_of_small_component_expo_per_shell_per_atom(l_type,i)
     do l =1, (l_type+1)*(l_type+2)/2

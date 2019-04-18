@@ -70,11 +70,11 @@
  do i = 1, nucl_num
  !do some test on the type of the nucleus i
    ! S type function
-   even_large_expo_shell_nucl_num(0,i)+=6
+   even_large_expo_shell_nucl_num(0,i)+=10
    ! P type function
-   even_large_expo_shell_nucl_num(1,i)+=3
+   even_large_expo_shell_nucl_num(1,i)+=1
    ! D type function
-   even_large_expo_shell_nucl_num(2,i)+=2
+   even_large_expo_shell_nucl_num(2,i)+=0
    ! F type function
    even_large_expo_shell_nucl_num(3,i)+=0
    ! G type function

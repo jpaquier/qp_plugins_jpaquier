@@ -130,7 +130,7 @@
      dirac_ao_power(i,l) = large_ao_power(i,l)
     enddo
    elseif (i .gt. large_ao_num) then
-    i_minus = i - ao_num
+    i_minus = i - large_ao_num
     dirac_ao_nucl(i) = small_ao_nucl(i_minus)
     dirac_ao_l(i) = small_ao_l(i_minus)
     do k = 1, small_ao_prim_num(i_minus)
