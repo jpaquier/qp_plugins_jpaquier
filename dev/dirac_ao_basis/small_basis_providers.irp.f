@@ -1,4 +1,4 @@
- BEGIN_PROVIDER [ integer, Nucl_list_l_type_Aos, (ao_num,0:7,nucl_num)]
+ BEGIN_PROVIDER [ integer, Nucl_list_l_type_Aos, (large_ao_num,0:7,nucl_num)]
  &BEGIN_PROVIDER [ integer, Nucl_num_l_type_Aos, (0:7,nucl_num)]
  implicit none
  integer :: i,j,k
@@ -7,57 +7,111 @@
  END_DOC
  Nucl_list_l_type_Aos(:,:,:) = 0
  Nucl_num_l_type_Aos(:,:) = 0
- do i = 1, nucl_num
-  do j = 1, Nucl_N_Aos(i)
-   if(ao_l(Nucl_Aos(i,j))==0)then
-   ! S type function
-   Nucl_num_l_type_Aos(0,i)+=1
-   Nucl_list_l_type_Aos(Nucl_num_l_type_Aos(0,i),0,i)=Nucl_Aos(i,j)
-   elseif(ao_l(Nucl_Aos(i,j))==1)then
-   ! P type function
-    if(ao_power(Nucl_Aos(i,j),1)==1)then
-     Nucl_num_l_type_Aos(1,i)+=1
-     Nucl_list_l_type_Aos(Nucl_num_l_type_Aos(1,i),1,i)=Nucl_Aos(i,j)
+ if (even_tempered_basis_set == "yes") then
+  do i = 1, nucl_num
+   do j = 1, even_Nucl_N_Aos(i)
+    if(even_large_ao_l(even_Nucl_Aos(i,j))==0)then
+    ! S type function
+    Nucl_num_l_type_Aos(0,i)+=1
+    Nucl_list_l_type_Aos(Nucl_num_l_type_Aos(0,i),0,i)=even_Nucl_Aos(i,j)
+    elseif(even_large_ao_l(even_Nucl_Aos(i,j))==1)then
+    ! P type function
+     if(even_large_ao_power(even_Nucl_Aos(i,j),1)==1)then
+      Nucl_num_l_type_Aos(1,i)+=1
+      Nucl_list_l_type_Aos(Nucl_num_l_type_Aos(1,i),1,i)=even_Nucl_Aos(i,j)
+     endif
+    elseif(even_large_ao_l(even_Nucl_Aos(i,j))==2)then
+    ! D type function
+     if(even_large_ao_power(even_Nucl_Aos(i,j),1)==2)then
+      Nucl_num_l_type_Aos(2,i)+=1
+      Nucl_list_l_type_Aos(Nucl_num_l_type_Aos(2,i),2,i)=even_Nucl_Aos(i,j)
+     endif
+    elseif(even_large_ao_l(even_Nucl_Aos(i,j))==3)then
+    ! F type function
+     if(even_large_ao_power(even_Nucl_Aos(i,j),1)==3)then
+      Nucl_num_l_type_Aos(3,i)+=1
+      Nucl_list_l_type_Aos(Nucl_num_l_type_Aos(3,i),3,i)=even_Nucl_Aos(i,j)
+     endif
+    elseif(even_large_ao_l(even_Nucl_Aos(i,j))==4)then
+    ! G type function
+     if(even_large_ao_power(even_Nucl_Aos(i,j),1)==4)then
+      Nucl_num_l_type_Aos(4,i)+=1
+      Nucl_list_l_type_Aos(Nucl_num_l_type_Aos(4,i),4,i)=even_Nucl_Aos(i,j)
+     endif
+    elseif(even_large_ao_l(even_Nucl_Aos(i,j))==5)then
+    ! H type function
+     if(even_large_ao_power(even_Nucl_Aos(i,j),1)==5)then
+      Nucl_num_l_type_Aos(5,i)+=1
+      Nucl_list_l_type_Aos(Nucl_num_l_type_Aos(5,i),5,i)=even_Nucl_Aos(i,j)
+     endif 
+    elseif(even_large_ao_l(even_Nucl_Aos(i,j))==6)then
+    ! I type function
+     if(even_large_ao_power(even_Nucl_Aos(i,j),1)==6)then
+      Nucl_num_l_type_Aos(6,i)+=1
+      Nucl_list_l_type_Aos(Nucl_num_l_type_Aos(6,i),6,i)=even_Nucl_Aos(i,j)
+     endif
+    elseif(even_large_ao_l(even_Nucl_Aos(i,j))==7)then
+    ! J type function
+     if(even_large_ao_power(even_Nucl_Aos(i,j),1)==7)then
+      Nucl_num_l_type_Aos(7,i)+=1
+      Nucl_list_l_type_Aos(Nucl_num_l_type_Aos(7,i),7,i)=even_Nucl_Aos(i,j)
+     endif
     endif
-   elseif(ao_l(Nucl_Aos(i,j))==2)then
-   ! D type function
-    if(ao_power(Nucl_Aos(i,j),1)==2)then
-     Nucl_num_l_type_Aos(2,i)+=1
-     Nucl_list_l_type_Aos(Nucl_num_l_type_Aos(2,i),2,i)=Nucl_Aos(i,j)
-    endif
-   elseif(ao_l(Nucl_Aos(i,j))==3)then
-   ! F type function
-    if(ao_power(Nucl_Aos(i,j),1)==3)then
-     Nucl_num_l_type_Aos(3,i)+=1
-     Nucl_list_l_type_Aos(Nucl_num_l_type_Aos(3,i),3,i)=Nucl_Aos(i,j)
-    endif
-   elseif(ao_l(Nucl_Aos(i,j))==4)then
-   ! G type function
-    if(ao_power(Nucl_Aos(i,j),1)==4)then
-     Nucl_num_l_type_Aos(4,i)+=1
-     Nucl_list_l_type_Aos(Nucl_num_l_type_Aos(4,i),4,i)=Nucl_Aos(i,j)
-    endif
-   elseif(ao_l(Nucl_Aos(i,j))==5)then
-   ! H type function
-    if(ao_power(Nucl_Aos(i,j),1)==5)then
-     Nucl_num_l_type_Aos(5,i)+=1
-     Nucl_list_l_type_Aos(Nucl_num_l_type_Aos(5,i),5,i)=Nucl_Aos(i,j)
-    endif 
-   elseif(ao_l(Nucl_Aos(i,j))==6)then
-   ! I type function
-    if(ao_power(Nucl_Aos(i,j),1)==6)then
-     Nucl_num_l_type_Aos(6,i)+=1
-     Nucl_list_l_type_Aos(Nucl_num_l_type_Aos(6,i),6,i)=Nucl_Aos(i,j)
-    endif
-   elseif(ao_l(Nucl_Aos(i,j))==7)then
-   ! J type function
-    if(ao_power(Nucl_Aos(i,j),1)==7)then
-     Nucl_num_l_type_Aos(7,i)+=1
-     Nucl_list_l_type_Aos(Nucl_num_l_type_Aos(7,i),7,i)=Nucl_Aos(i,j)
-    endif
-   endif
+   enddo
   enddo
- enddo
+ else
+  do i = 1, nucl_num
+   do j = 1, Nucl_N_Aos(i)
+    if(ao_l(Nucl_Aos(i,j))==0)then
+    ! S type function
+    Nucl_num_l_type_Aos(0,i)+=1
+    Nucl_list_l_type_Aos(Nucl_num_l_type_Aos(0,i),0,i)=Nucl_Aos(i,j)
+    elseif(ao_l(Nucl_Aos(i,j))==1)then
+    ! P type function
+     if(ao_power(Nucl_Aos(i,j),1)==1)then
+      Nucl_num_l_type_Aos(1,i)+=1
+      Nucl_list_l_type_Aos(Nucl_num_l_type_Aos(1,i),1,i)=Nucl_Aos(i,j)
+     endif
+    elseif(ao_l(Nucl_Aos(i,j))==2)then
+    ! D type function
+     if(ao_power(Nucl_Aos(i,j),1)==2)then
+      Nucl_num_l_type_Aos(2,i)+=1
+      Nucl_list_l_type_Aos(Nucl_num_l_type_Aos(2,i),2,i)=Nucl_Aos(i,j)
+     endif
+    elseif(ao_l(Nucl_Aos(i,j))==3)then
+    ! F type function
+     if(ao_power(Nucl_Aos(i,j),1)==3)then
+      Nucl_num_l_type_Aos(3,i)+=1
+      Nucl_list_l_type_Aos(Nucl_num_l_type_Aos(3,i),3,i)=Nucl_Aos(i,j)
+     endif
+    elseif(ao_l(Nucl_Aos(i,j))==4)then
+    ! G type function
+     if(ao_power(Nucl_Aos(i,j),1)==4)then
+      Nucl_num_l_type_Aos(4,i)+=1
+      Nucl_list_l_type_Aos(Nucl_num_l_type_Aos(4,i),4,i)=Nucl_Aos(i,j)
+     endif
+    elseif(ao_l(Nucl_Aos(i,j))==5)then
+    ! H type function
+     if(ao_power(Nucl_Aos(i,j),1)==5)then
+      Nucl_num_l_type_Aos(5,i)+=1
+      Nucl_list_l_type_Aos(Nucl_num_l_type_Aos(5,i),5,i)=Nucl_Aos(i,j)
+     endif 
+    elseif(ao_l(Nucl_Aos(i,j))==6)then
+    ! I type function
+     if(ao_power(Nucl_Aos(i,j),1)==6)then
+      Nucl_num_l_type_Aos(6,i)+=1
+      Nucl_list_l_type_Aos(Nucl_num_l_type_Aos(6,i),6,i)=Nucl_Aos(i,j)
+     endif
+    elseif(ao_l(Nucl_Aos(i,j))==7)then
+    ! J type function
+     if(ao_power(Nucl_Aos(i,j),1)==7)then
+      Nucl_num_l_type_Aos(7,i)+=1
+      Nucl_list_l_type_Aos(Nucl_num_l_type_Aos(7,i),7,i)=Nucl_Aos(i,j)
+     endif
+    endif
+   enddo
+  enddo
+ endif
  END_PROVIDER
 
  BEGIN_PROVIDER [ integer, number_of_small_component_expo_per_shell_per_atom,(0:7,nucl_num)] 
@@ -71,7 +125,7 @@
  ! the shell "i" of the nucleus "j" for the small component basis in the 
  ! unrestricted kinetic balance scheme
  END_DOC                                                                                                 
- integer :: i,i_count,l_type,j,index_ao_previous,index_ao,k,l,l_count                                                      
+ integer :: i,i_count,l_type,j,index_ao_previous,index_ao,k,l                                                      
  integer :: imax
  index_ao_previous = 0 
  index_ao = 0
@@ -94,7 +148,7 @@
      if (j == 1) then
       number_of_small_component_expo_per_shell_per_atom(l_type-1,i) += 1
       number_of_small_component_expo_per_shell_per_atom(l_type+1,i) += 1
-     elseif ( j /= 1 .and. ao_expo_ordered_transp(1,index_ao) /= ao_expo_ordered_transp(1,index_ao_previous)) then
+     elseif ( j /= 1 .and. large_ao_expo_ordered_transp(1,index_ao) /= large_ao_expo_ordered_transp(1,index_ao_previous)) then
       number_of_small_component_expo_per_shell_per_atom(l_type-1,i) += 1
       number_of_small_component_expo_per_shell_per_atom(l_type+1,i) += 1
      endif                                  
@@ -121,7 +175,7 @@
  !Arrays containing the values of the exponents for the small component in the
  ! unrestricted kinetic balance scheme
  END_DOC                                                                       
- integer :: i,l_type,j,index_ao_previous,index_ao,k,l,l_count
+ integer :: i,l_type,j,index_ao_previous,index_ao,k,l
  integer :: expo_count(0:7) 
  integer :: iorder(nmax_of_small_component_expo)
  double precision :: small_component_expo_per_shell(nmax_of_small_component_expo,0:7)
@@ -149,7 +203,7 @@
       small_component_expo_per_shell(expo_count(l_type-1),l_type-1) = ao_expo_ordered_transp(1,index_ao) 
       expo_count(l_type+1) += 1
       small_component_expo_per_shell(expo_count(l_type+1),l_type+1) = ao_expo_ordered_transp(1,index_ao) 
-     elseif ( j /= 1 .and. ao_expo_ordered_transp(1,index_ao) /=ao_expo_ordered_transp(1,index_ao_previous)) then
+     elseif ( j /= 1 .and. large_ao_expo_ordered_transp(1,index_ao) /= large_ao_expo_ordered_transp(1,index_ao_previous)) then
       expo_count(l_type-1) += 1
       small_component_expo_per_shell(expo_count(l_type-1),l_type-1) = ao_expo_ordered_transp(1,index_ao)
       expo_count(l_type+1) += 1
@@ -239,7 +293,7 @@
  !small_ao_power is the AO power for x,y,z for the AOs of 
  ! the small component ao basis
  END_DOC
- integer :: i,j,j_count,k,k_count,k_j,l,l_type,l_count
+ integer :: i,j,j_count,k,k_count,k_j,l,l_type
  small_ao_power(:,:) = 0
  k_count = 0
  k_j = 0
@@ -254,7 +308,6 @@
      else
       do l = 1, j
        k_count += 1
-       l_count += 1  
        small_ao_power(k_count,1) = small_ao_power(k_j,1) - j +1
        small_ao_power(k_count,2) = small_ao_power(k_j,2) + j -l 
        small_ao_power(k_count,3) = small_ao_power(k_j,3) +l -1 

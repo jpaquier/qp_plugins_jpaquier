@@ -14,16 +14,24 @@
  implicit none
   BEGIN_DOC
   !Number of large component primitives
-  END_DOC  
+  END_DOC 
+ if (even_tempered_basis_set == "yes") then
+  large_ao_prim_num = even_large_ao_prim_num
+ else
   large_ao_prim_num = 1
+ endif
  END_PROVIDER
 
  BEGIN_PROVIDER [ integer, large_ao_prim_num_max ]
  implicit none
   BEGIN_DOC
   !max number of primitives of the large component
-  END_DOC  
+  END_DOC
+ if (even_tempered_basis_set == "yes") then
+  large_ao_prim_num_max = even_large_ao_prim_num_max
+ else  
   large_ao_prim_num_max = maxval(large_ao_prim_num)
+ endif
  END_PROVIDER
 
  BEGIN_PROVIDER [ integer, large_ao_power, (large_ao_num,3) ]
@@ -41,10 +49,17 @@
  !large_ao_expo_ordered_transp is the transposed ordered large_ao_expo (which
  ! are not defined given that they are the non-relativistic  ao_expo ) 
  END_DOC  
+ if (even_tempered_basis_set == "yes") then
+  large_ao_nucl = even_large_ao_nucl
+  large_ao_power = even_large_ao_power
+  large_ao_l = even_large_ao_l
+  large_ao_expo_ordered_transp = even_large_ao_expo_ordered_transp
+ else
   large_ao_nucl = ao_nucl
   large_ao_power = ao_power
   large_ao_l = ao_l
   large_ao_expo_ordered_transp = ao_expo_ordered_transp
+ endif
  END_PROVIDER
 
 
