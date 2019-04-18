@@ -18,6 +18,10 @@
   even_large_expo_coef(0,1) = 0.25d0
  ! P type function
   even_large_expo_seed(1,1) = 1.272284d0
+  even_large_expo_coef(1,1) = 0.25d0
+ ! D type function
+  even_large_expo_seed(2,1) = 0.272284d0
+  even_large_expo_coef(2,1) = 0.25d0
 !!! Radon
 !! S type function
 ! even_large_expo_seed(0,86) = 5.68476598d+07
@@ -66,11 +70,11 @@
  do i = 1, nucl_num
  !do some test on the type of the nucleus i
    ! S type function
-   even_large_expo_shell_nucl_num(0,i)+=10
+   even_large_expo_shell_nucl_num(0,i)+=6
    ! P type function
-   even_large_expo_shell_nucl_num(1,i)+=6
+   even_large_expo_shell_nucl_num(1,i)+=3
    ! D type function
-   even_large_expo_shell_nucl_num(2,i)+=1
+   even_large_expo_shell_nucl_num(2,i)+=2
    ! F type function
    even_large_expo_shell_nucl_num(3,i)+=0
    ! G type function

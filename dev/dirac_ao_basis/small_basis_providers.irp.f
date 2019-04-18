@@ -196,18 +196,18 @@
     index_ao = Nucl_list_l_type_Aos(j,l_type,i)
     if (l_type == 0) then
      expo_count(l_type+1) += 1
-     small_component_expo_per_shell(expo_count(l_type+1),l_type+1) = ao_expo_ordered_transp(1,index_ao)
+     small_component_expo_per_shell(expo_count(l_type+1),l_type+1) = large_ao_expo_ordered_transp(1,index_ao)
     else
      if (j == 1) then
       expo_count(l_type-1) += 1                              
-      small_component_expo_per_shell(expo_count(l_type-1),l_type-1) = ao_expo_ordered_transp(1,index_ao) 
+      small_component_expo_per_shell(expo_count(l_type-1),l_type-1) = large_ao_expo_ordered_transp(1,index_ao) 
       expo_count(l_type+1) += 1
-      small_component_expo_per_shell(expo_count(l_type+1),l_type+1) = ao_expo_ordered_transp(1,index_ao) 
+      small_component_expo_per_shell(expo_count(l_type+1),l_type+1) = large_ao_expo_ordered_transp(1,index_ao) 
      elseif ( j /= 1 .and. large_ao_expo_ordered_transp(1,index_ao) /= large_ao_expo_ordered_transp(1,index_ao_previous)) then
       expo_count(l_type-1) += 1
-      small_component_expo_per_shell(expo_count(l_type-1),l_type-1) = ao_expo_ordered_transp(1,index_ao)
+      small_component_expo_per_shell(expo_count(l_type-1),l_type-1) = large_ao_expo_ordered_transp(1,index_ao)
       expo_count(l_type+1) += 1
-      small_component_expo_per_shell(expo_count(l_type+1),l_type+1) = ao_expo_ordered_transp(1,index_ao) 
+      small_component_expo_per_shell(expo_count(l_type+1),l_type+1) = large_ao_expo_ordered_transp(1,index_ao) 
      endif
     endif
    enddo
