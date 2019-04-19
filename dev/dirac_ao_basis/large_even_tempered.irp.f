@@ -14,23 +14,24 @@
  END_DOC
  !! Hydrogen
  ! S type function
-  even_large_expo_seed(0,1) = 234.522333d0
-  even_large_expo_coef(0,1) = 0.25d0
+  even_large_expo_seed(0,1) = 2400.72588d0
+  even_large_expo_coef(0,1) = 0.3d0
  ! P type function
-  even_large_expo_seed(1,1) = 1.272284d0
+  even_large_expo_seed(1,1) = 3.12853138d0
   even_large_expo_coef(1,1) = 0.25d0
  ! D type function
-  even_large_expo_seed(2,1) = 0.272284d0
-  even_large_expo_coef(2,1) = 0.25d0
-!!! Radon
-!! S type function
-! even_large_expo_seed(0,86) = 5.68476598d+07
-! even_large_expo_coef(0,86) = 0.25d0
-!! P type function
-! even_large_expo_seed(1,86) = 1.72824122d+07
-! even_large_expo_coef(1,86) = 0.25d0
-!! D type function
-! even_large_expo_seed(2,86) = 1.41613025d+04
+  even_large_expo_seed(2,1) = 1.95612906d0
+  even_large_expo_coef(2,1) = 0.2d0
+ !! Radon
+ ! S type function
+  even_large_expo_seed(0,86) = 5.68476598d+07
+  even_large_expo_coef(0,86) = 0.25d0
+ ! P type function
+  even_large_expo_seed(1,86) = 1.72824122d+06
+  even_large_expo_coef(1,86) = 0.25d0
+ ! D type function
+  even_large_expo_seed(2,86) = 1.41613025d+04
+  even_large_expo_coef(2,86) = 0.2d0
  END_PROVIDER
 
 
@@ -72,9 +73,9 @@
    ! S type function
    even_large_expo_shell_nucl_num(0,i)+=10
    ! P type function
-   even_large_expo_shell_nucl_num(1,i)+=1
+   even_large_expo_shell_nucl_num(1,i)+=6
    ! D type function
-   even_large_expo_shell_nucl_num(2,i)+=0
+   even_large_expo_shell_nucl_num(2,i)+=1
    ! F type function
    even_large_expo_shell_nucl_num(3,i)+=0
    ! G type function
@@ -113,8 +114,8 @@
    do k = 1, even_large_expo_shell_nucl_num(l_type,i)
     do l =1, (l_type+1)*(l_type+2)/2
      k_count += 1
-    !even_large_ao_expo(k_count) = even_large_expo_seed(l_type,86)*(even_large_expo_coef(l_type,86)**(k-1))  
-     even_large_ao_expo(k_count) = even_large_expo_seed(l_type,1)*(even_large_expo_coef(l_type,1)**(k-1))  
+     even_large_ao_expo(k_count) = even_large_expo_seed(l_type,86)*(even_large_expo_coef(l_type,86)**(k-1))  
+    !even_large_ao_expo(k_count) = even_large_expo_seed(l_type,1)*(even_large_expo_coef(l_type,1)**(k-1))  
     enddo
    enddo
   enddo

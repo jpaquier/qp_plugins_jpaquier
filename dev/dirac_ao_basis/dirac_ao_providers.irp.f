@@ -141,9 +141,6 @@
      dirac_ao_power(i,l) = small_ao_power(i_minus,l)
     enddo
    endif
- 
-   print*, i, dirac_ao_nucl(i)
-
   enddo
  END_PROVIDER
 

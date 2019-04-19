@@ -28,7 +28,7 @@
    power_A(1)  = small_ao_power( i, 1 )
    power_A(2)  = small_ao_power( i, 2 )
    power_A(3)  = small_ao_power( i, 3 )
-   do j=1,ao_num
+   do j=1, large_ao_num
     B_center(1) = nucl_coord( large_ao_nucl(j), 1 )
     B_center(2) = nucl_coord( large_ao_nucl(j), 2 )
     B_center(3) = nucl_coord( large_ao_nucl(j), 3 )
