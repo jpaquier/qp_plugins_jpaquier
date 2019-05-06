@@ -16,7 +16,6 @@
  call dirac_dm_dft_at_r(r,dm)
  call dirac_grad_dm_dft_at_r(r,grad_dm,grad_dm_2,grad_dm_abs)
  mu_of_r = 0.135d0 * grad_dm_abs(1) / dm(1)
- write(10,*), r(1),r(2),r(3), grad_dm(1,1),grad_dm(2,1),grad_dm(3,1), grad_dm_abs(1), dm(1), mu_of_r
  end
 
  BEGIN_PROVIDER [double precision, mu_of_r_for_ints_vector, (n_points_final_grid)]

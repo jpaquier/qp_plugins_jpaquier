@@ -131,6 +131,7 @@
   !Dirac-Hartree-Fock energy for the Coulomb ee interaction
   END_DOC
   dirac_HF_C_energy = nuclear_repulsion + dirac_HF_two_electron_C_energy + dirac_HF_one_electron_energy
+ !write(12,*),dirac_HF_one_electron_energy,dirac_HF_two_electron_C_energy
  END_PROVIDER
 
  BEGIN_PROVIDER [ double precision, dirac_SCF_C_energy]
