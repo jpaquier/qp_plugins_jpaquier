@@ -8,12 +8,13 @@
 
  BEGIN_PROVIDER [ double precision, even_large_expo_seed,(0:7,118) ]
  &BEGIN_PROVIDER [ double precision, even_large_expo_coef,(0:7,118) ]
+ &BEGIN_PROVIDER [ Integer, even_large_expo_number ]
  implicit none
  BEGIN_DOC
  !even_large_expo :: exponents seed for each shell
  END_DOC
- !! 4-electrons even-tempered basis sets
- !! Berylium
+!!! 4-electrons even-tempered basis sets
+!!! Berylium
 !! S type function
 ! even_large_expo_seed(0,4) = 6.40943779d+03
 ! even_large_expo_coef(0,4) = 0.25d0
@@ -63,16 +64,90 @@
 !! D type function
 ! even_large_expo_seed(2,54) = 1.95959651d+03
 ! even_large_expo_coef(2,54) = 0.25d0
- !! Radon
+!!! Radon
+!! S type function
+! even_large_expo_seed(0,86) = 14679405.900000d0
+! even_large_expo_coef(0,86) = 0.25d0
+!! P type function
+! even_large_expo_seed(1,86) = 1.72824122d+07
+! even_large_expo_coef(1,86) = 0.25d0
+!! D type function
+! even_large_expo_seed(2,86) = 1253.856580d0
+! even_large_expo_coef(2,86) = 0.25d0
+!!! Oganesson
+!! S type function
+! even_large_expo_seed(0,118) = 5.24543434d+07
+! even_large_expo_coef(0,118) = 0.245d0
+!! P type function
+! even_large_expo_seed(1,118) = 4.56226785d+07
+! even_large_expo_coef(1,118) = 0.25d0
+!! D type function
+! even_large_expo_seed(2,118) = 6.92742965d+03
+! even_large_expo_coef(2,118) = 0.25d0
+!!! 10-electrons even-tempered basis sets
+!!! Neon
+!! S type function
+! even_large_expo_seed(0,10) = 2.63937466d+04
+! even_large_expo_coef(0,10) = 0.30d0
+!! P type function
+! even_large_expo_seed(1,10) = 1.01356529d+02
+! even_large_expo_coef(1,10) = 0.30d0
+!! D type function
+! even_large_expo_seed(2,10) = 2.16640868d+00
+! even_large_expo_coef(2,10) = 0.25d0
+ !! Argon
  ! S type function
-  even_large_expo_seed(0,86) = 14679405.900000d0
-  even_large_expo_coef(0,86) = 0.25d0
+  even_large_expo_seed(0,18) = 2.16279421d+05
+  even_large_expo_coef(0,18) = 0.29d0
  ! P type function
-  even_large_expo_seed(1,86) = 1.72824122d+07
-  even_large_expo_coef(1,86) = 0.25d0
+  even_large_expo_seed(1,18) = 4.94782136d+02
+  even_large_expo_coef(1,18) = 0.32d0
  ! D type function
-  even_large_expo_seed(2,86) = 1253.856580d0
-  even_large_expo_coef(2,86) = 0.25d0
+  even_large_expo_seed(2,18) = 1.13941141d+01
+  even_large_expo_coef(2,18) = 0.25d0
+!!! Krypton
+!! S type function
+! even_large_expo_seed(0,36) = 4.14098736d+06
+! even_large_expo_coef(0,36) = 0.23d0
+!! P type function
+! even_large_expo_seed(1,36) = 9.01590791d+03
+! even_large_expo_coef(1,36) = 0.25d0
+!! D type function
+! even_large_expo_seed(2,36) = 2.25939509d+02
+! even_large_expo_coef(2,36) = 0.25d0
+!!! Xenon
+!! S type function
+! even_large_expo_seed(0,54) = 9.04292743d+06
+! even_large_expo_coef(0,54) = 0.23d0
+!! P type function
+! even_large_expo_seed(1,54) = 2.81773747d+05
+! even_large_expo_coef(1,54) = 0.25d0
+!! D type function
+! even_large_expo_seed(2,54) = 1.95959651d+03
+! even_large_expo_coef(2,54) = 0.25d0
+!!! Radon
+!! S type function
+! even_large_expo_seed(0,86) = 14679405.900000d0
+! even_large_expo_coef(0,86) = 0.25d0
+!! P type function
+! even_large_expo_seed(1,86) = 1.72824122d+07
+! even_large_expo_coef(1,86) = 0.25d0
+!! D type function
+! even_large_expo_seed(2,86) = 1253.856580d0
+! even_large_expo_coef(2,86) = 0.25d0
+!!! Oganesson
+!! S type function
+! even_large_expo_seed(0,118) = 5.24543434d+07
+! even_large_expo_coef(0,118) = 0.245d0
+!! P type function
+! even_large_expo_seed(1,118) = 4.56226785d+07
+! even_large_expo_coef(1,118) = 0.25d0
+!! D type function
+! even_large_expo_seed(2,118) = 6.92742965d+03
+! even_large_expo_coef(2,118) = 0.25d0
+  
+ !!Atomic number used in the on-the-fly even basis
+  even_large_expo_number = 18
  END_PROVIDER
 
 
@@ -155,7 +230,7 @@
    do k = 1, even_large_expo_shell_nucl_num(l_type,i)
     do l =1, (l_type+1)*(l_type+2)/2
      k_count += 1
-     even_large_ao_expo(k_count) = even_large_expo_seed(l_type,86)*(even_large_expo_coef(l_type,86)**(k-1))  
+     even_large_ao_expo(k_count) = even_large_expo_seed(l_type,even_large_expo_number)*(even_large_expo_coef(l_type,even_large_expo_number)**(k-1))  
      if (k_count == 1 .or. even_large_ao_expo(k_count) /= even_large_ao_expo(k_count-1)) then 
       open (10, file='dirac_even_tempered_basis')
       if (l_type == 0) then
