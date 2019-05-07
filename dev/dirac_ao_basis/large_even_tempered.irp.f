@@ -95,26 +95,27 @@
 !! D type function
 ! even_large_expo_seed(2,10) = 2.16640868d+00
 ! even_large_expo_coef(2,10) = 0.25d0
- !! Argon
- ! S type function
-  even_large_expo_seed(0,18) = 2.16279421d+05
-  even_large_expo_coef(0,18) = 0.29d0
- ! P type function
-  even_large_expo_seed(1,18) = 4.94782136d+02
-  even_large_expo_coef(1,18) = 0.32d0
- ! D type function
-  even_large_expo_seed(2,18) = 1.13941141d+01
-  even_large_expo_coef(2,18) = 0.25d0
-!!! Krypton
+!!! Argon
 !! S type function
-! even_large_expo_seed(0,36) = 4.14098736d+06
-! even_large_expo_coef(0,36) = 0.23d0
+! even_large_expo_seed(0,18) = 2.16279421d+05
+! even_large_expo_coef(0,18) = 0.29d0
 !! P type function
-! even_large_expo_seed(1,36) = 9.01590791d+03
-! even_large_expo_coef(1,36) = 0.25d0
+! even_large_expo_seed(1,18) = 4.94782136d+02
+! even_large_expo_coef(1,18) = 0.32d0
 !! D type function
-! even_large_expo_seed(2,36) = 2.25939509d+02
-! even_large_expo_coef(2,36) = 0.25d0
+! even_large_expo_seed(2,18) = 1.13941141d+01
+! even_large_expo_coef(2,18) = 0.25d0
+ !! Krypton
+ ! S type function
+  even_large_expo_seed(0,36) = 4.14098736d+06
+  even_large_expo_coef(0,36) = 0.25d0
+ ! P type function
+  even_large_expo_seed(1,36) = 9.01590791d+03
+  even_large_expo_coef(1,36) = 0.25d0
+ ! D type function
+ !even_large_expo_seed(2,36) = 2.25939509d+02
+  even_large_expo_seed(2,36) = 6.64569801d+01
+  even_large_expo_coef(2,36) = 0.25d0
 !!! Xenon
 !! S type function
 ! even_large_expo_seed(0,54) = 9.04292743d+06
@@ -147,7 +148,7 @@
 ! even_large_expo_coef(2,118) = 0.25d0
   
  !!Atomic number used in the on-the-fly even basis
-  even_large_expo_number = 18
+  even_large_expo_number = 36
  END_PROVIDER
 
 
