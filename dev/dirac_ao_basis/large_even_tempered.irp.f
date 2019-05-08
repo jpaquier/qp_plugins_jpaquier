@@ -105,37 +105,44 @@
 !! D type function
 ! even_large_expo_seed(2,18) = 1.13941141d+01
 ! even_large_expo_coef(2,18) = 0.25d0
- !! Krypton
- ! S type function
-  even_large_expo_seed(0,36) = 4.14098736d+06
-  even_large_expo_coef(0,36) = 0.25d0
- ! P type function
-  even_large_expo_seed(1,36) = 9.01590791d+03
-  even_large_expo_coef(1,36) = 0.25d0
- ! D type function
- !even_large_expo_seed(2,36) = 2.25939509d+02
-  even_large_expo_seed(2,36) = 6.64569801d+01
-  even_large_expo_coef(2,36) = 0.25d0
+!!! Krypton
+!! S type function
+! even_large_expo_seed(0,36) = 4.14098736d+06
+! even_large_expo_coef(0,36) = 0.25d0
+!! P type function
+! even_large_expo_seed(1,36) = 9.01590791d+03
+! even_large_expo_coef(1,36) = 0.25d0
+!! D type function
+!!even_large_expo_seed(2,36) = 2.25939509d+02
+! even_large_expo_seed(2,36) = 6.64569801d+01
+! even_large_expo_coef(2,36) = 0.25d0
 !!! Xenon
 !! S type function
 ! even_large_expo_seed(0,54) = 9.04292743d+06
-! even_large_expo_coef(0,54) = 0.23d0
+! even_large_expo_coef(0,54) = 0.255d0
 !! P type function
-! even_large_expo_seed(1,54) = 2.81773747d+05
-! even_large_expo_coef(1,54) = 0.25d0
+! even_large_expo_seed(1,54) = 9.36856349d+03
+! even_large_expo_coef(1,54) = 0.31d0
 !! D type function
 ! even_large_expo_seed(2,54) = 1.95959651d+03
 ! even_large_expo_coef(2,54) = 0.25d0
-!!! Radon
-!! S type function
-! even_large_expo_seed(0,86) = 14679405.900000d0
-! even_large_expo_coef(0,86) = 0.25d0
-!! P type function
-! even_large_expo_seed(1,86) = 1.72824122d+07
-! even_large_expo_coef(1,86) = 0.25d0
-!! D type function
-! even_large_expo_seed(2,86) = 1253.856580d0
-! even_large_expo_coef(2,86) = 0.25d0
+ !! Radon
+ ! S type function
+ !even_large_expo_seed(0,86) = 5.68476598d+07
+  even_large_expo_seed(0,86) = 1.46794059d+07
+ !even_large_expo_seed(0,86) = 4.74912556d+06
+  even_large_expo_coef(0,86) = 0.25d0
+ ! P type function
+ !even_large_expo_seed(1,86) = 1.72824122d+07
+ !even_large_expo_seed(1,86) = 3.15641728d+06
+  even_large_expo_seed(1,86) = 7.25282723d+05
+ !even_large_expo_seed(1,86) = 1.92412503d+05
+  even_large_expo_coef(1,86) = 0.25d0
+ ! D type function
+ !even_large_expo_seed(2,86) = 1.41613025d+04
+ !even_large_expo_seed(2,86) = 3.58429411d+03
+  even_large_expo_seed(2,86) = 1.25385658d+03
+  even_large_expo_coef(2,86) = 0.25d0
 !!! Oganesson
 !! S type function
 ! even_large_expo_seed(0,118) = 5.24543434d+07
@@ -148,7 +155,7 @@
 ! even_large_expo_coef(2,118) = 0.25d0
   
  !!Atomic number used in the on-the-fly even basis
-  even_large_expo_number = 36
+  even_large_expo_number = 86
  END_PROVIDER
 
 
