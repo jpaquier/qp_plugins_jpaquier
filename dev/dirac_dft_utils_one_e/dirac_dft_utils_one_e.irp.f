@@ -14,7 +14,7 @@ program dirac_dft_utils_one_e
   ! r(1) = final_grid_points(1,i)
   ! r(2) = final_grid_points(2,i)
   ! r(3) = final_grid_points(3,i)
-  do i = 1,10000
+  do i = 1,30000
    call dirac_dm_dft_at_r(r,dm)
   !call density_and_grad_alpha_beta_and_all_aos_and_grad_aos_at_r(r,dm_a,dm_b, grad_dm_a, grad_dm_b, aos_array, grad_aos_array)
    call dirac_grad_dm_dft_at_r(r,grad_dm,grad_dm_2,grad_dm_abs)
@@ -42,8 +42,8 @@ program dirac_dft_utils_one_e
    write(29,*) r(1),grad_dm_abs
    open (30, file='mu_of_r_Z.dat')
    write(30,*) r(1), mu_of_r
-  !r(1)+=0.00005d0
-   r(1)+=0.0001d0
+  !r(1)+=0.00001d0
+   r(1)+=0.0002d0
   !r(1)+=0.001d0
   enddo
    end

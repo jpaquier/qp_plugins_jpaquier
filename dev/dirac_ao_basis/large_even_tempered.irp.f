@@ -113,7 +113,6 @@
 ! even_large_expo_seed(1,36) = 9.01590791d+03
 ! even_large_expo_coef(1,36) = 0.25d0
 !! D type function
-!!even_large_expo_seed(2,36) = 2.25939509d+02
 ! even_large_expo_seed(2,36) = 6.64569801d+01
 ! even_large_expo_coef(2,36) = 0.25d0
 !!! Xenon
@@ -126,36 +125,80 @@
 !! D type function
 ! even_large_expo_seed(2,54) = 1.95959651d+03
 ! even_large_expo_coef(2,54) = 0.25d0
- !! Radon
- ! S type function
- !even_large_expo_seed(0,86) = 5.68476598d+07
-  even_large_expo_seed(0,86) = 1.46794059d+07
- !even_large_expo_seed(0,86) = 4.74912556d+06
-  even_large_expo_coef(0,86) = 0.25d0
- ! P type function
- !even_large_expo_seed(1,86) = 1.72824122d+07
- !even_large_expo_seed(1,86) = 3.15641728d+06
-  even_large_expo_seed(1,86) = 7.25282723d+05
- !even_large_expo_seed(1,86) = 1.92412503d+05
-  even_large_expo_coef(1,86) = 0.25d0
- ! D type function
- !even_large_expo_seed(2,86) = 1.41613025d+04
- !even_large_expo_seed(2,86) = 3.58429411d+03
-  even_large_expo_seed(2,86) = 1.25385658d+03
-  even_large_expo_coef(2,86) = 0.25d0
+!!! Radon
+!! S type function
+! even_large_expo_seed(0,86) = 1.46794059d+07
+! even_large_expo_coef(0,86) = 0.25d0
+!! P type function
+! even_large_expo_seed(1,86) = 5.70898829d+04
+! even_large_expo_coef(1,86) = 0.30d0
+!! D type function
+! even_large_expo_seed(2,86) = 1.25385658d+03
+! even_large_expo_coef(2,86) = 0.25d0
 !!! Oganesson
 !! S type function
 ! even_large_expo_seed(0,118) = 5.24543434d+07
-! even_large_expo_coef(0,118) = 0.245d0
+! even_large_expo_coef(0,118) = 0.25d0
 !! P type function
-! even_large_expo_seed(1,118) = 4.56226785d+07
+! even_large_expo_seed(1,118) = 4.39439154d+05
 ! even_large_expo_coef(1,118) = 0.25d0
 !! D type function
 ! even_large_expo_seed(2,118) = 6.92742965d+03
 ! even_large_expo_coef(2,118) = 0.25d0
-  
- !!Atomic number used in the on-the-fly even basis
-  even_large_expo_number = 86
+ !! 18-electrons even-tempered basis sets
+ !! Argon
+ ! S type function
+  even_large_expo_seed(0,18) = 2.16279421d+05
+  even_large_expo_coef(0,18) = 0.25d0
+ ! P type function
+  even_large_expo_seed(1,18) = 4.94782136d+02
+  even_large_expo_coef(1,18) = 0.25d0
+ ! D type function
+  even_large_expo_seed(2,18) = 1.13941141d+01
+  even_large_expo_coef(2,18) = 0.25d0
+!!! Krypton
+!! S type function
+! even_large_expo_seed(0,36) = 4.14098736d+06
+! even_large_expo_coef(0,36) = 0.25d0
+!! P type function
+! even_large_expo_seed(1,36) = 9.01590791d+03
+! even_large_expo_coef(1,36) = 0.25d0
+!! D type function
+! even_large_expo_seed(2,36) = 6.64569801d+01
+! even_large_expo_coef(2,36) = 0.25d0
+!!! Xenon
+!! S type function
+! even_large_expo_seed(0,54) = 9.04292743d+06
+! even_large_expo_coef(0,54) = 0.255d0
+!! P type function
+! even_large_expo_seed(1,54) = 9.36856349d+03
+! even_large_expo_coef(1,54) = 0.31d0
+!! D type function
+! even_large_expo_seed(2,54) = 1.95959651d+03
+! even_large_expo_coef(2,54) = 0.25d0
+!!! Radon
+!! S type function
+! even_large_expo_seed(0,86) = 1.46794059d+07
+! even_large_expo_coef(0,86) = 0.25d0
+!! P type function
+! even_large_expo_seed(1,86) = 5.70898829d+04
+! even_large_expo_coef(1,86) = 0.30d0
+!! D type function
+! even_large_expo_seed(2,86) = 1.25385658d+03
+! even_large_expo_coef(2,86) = 0.25d0
+!!! Oganesson
+!! S type function
+! even_large_expo_seed(0,118) = 5.24543434d+07
+! even_large_expo_coef(0,118) = 0.25d0
+!! P type function
+! even_large_expo_seed(1,118) = 4.39439154d+05
+! even_large_expo_coef(1,118) = 0.25d0
+!! D type function
+! even_large_expo_seed(2,118) = 6.92742965d+03
+! even_large_expo_coef(2,118) = 0.25d0
+
+!!Atomic number used in the on-the-fly even basis
+  even_large_expo_number = 18
  END_PROVIDER
 
 
@@ -195,11 +238,11 @@
  do i = 1, nucl_num
  !do some test on the type of the nucleus i
    ! S type function
-   even_large_expo_shell_nucl_num(0,i)+=10
+   even_large_expo_shell_nucl_num(0,i)+=12
    ! P type function
-   even_large_expo_shell_nucl_num(1,i)+=6
+   even_large_expo_shell_nucl_num(1,i)+=8
    ! D type function
-   even_large_expo_shell_nucl_num(2,i)+=1
+   even_large_expo_shell_nucl_num(2,i)+=3
    ! F type function
    even_large_expo_shell_nucl_num(3,i)+=0
    ! G type function
