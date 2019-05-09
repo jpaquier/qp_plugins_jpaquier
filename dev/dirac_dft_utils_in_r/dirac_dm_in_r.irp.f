@@ -537,7 +537,7 @@
    enddo
   !grad_dm_complex_1(k,istate) = u_dotc_v(two_dirac_aos_grad_array(k,1),two_dirac_aos_array_bis,2*dirac_ao_num)
   enddo
- !! If one wants to use only the real  
+ !! If one wants to use only the real part  
   grad_dm = 2.d0*real(grad_dm_complex_1)
  !! If one wants to check if the other term is indeed the conjugate
  !two_dirac_aos_grad_array_bis = (0.d0,0.d0)

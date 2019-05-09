@@ -20,11 +20,14 @@
    weight=final_weight_at_r_vector(i) 
    rho(istate) = dirac_one_body_dm_at_r(i,istate)
    tr_gamma_2(istate) = dirac_one_body_tr_dm_2_at_r(i,istate)
-   mu_of_r = mu_of_r_for_ints_vector(i)
-  !call dirac_ex_LDA_sr(mu_erf,rho(istate),tr_gamma_2(istate),e_x,v_x)
-   call dirac_ex_LDA_sr(mu_of_r,rho(istate),tr_gamma_2(istate),e_x,v_x)
+   if ( dirac_mu == "mu_erf" ) then
+    call dirac_ex_LDA_sr(mu_erf,rho(istate),tr_gamma_2(istate),e_x,v_x)
+   elseif( dirac_mu == "mu_of_r" ) then
+    mu_of_r = mu_of_r_for_ints_vector(i)
+    call dirac_ex_LDA_sr(mu_of_r,rho(istate),tr_gamma_2(istate),e_x,v_x)
+   endif
    dirac_energy_x_LDA(istate) += weight * e_x
-   dirac_energy_c_LDA(istate) += weight * e_c
+  !dirac_energy_c_LDA(istate) += weight * e_c
   enddo
  enddo
  END_PROVIDER 
@@ -76,3 +79,35 @@
 !print*,'time to provide dirac_potential_x/c_ao_LDA = ',wall_2 - wall_1
  END_PROVIDER 
 
+
+ BEGIN_PROVIDER[double precision, dirac_energy_x_PBE, (N_states) ]
+ &BEGIN_PROVIDER[double precision, dirac_energy_c_PBE, (N_states) ]
+ implicit none
+ BEGIN_DOC
+ ! exchange/correlation energy with the relativistic short range PBE functional
+ END_DOC
+ integer :: istate,i,j
+ double precision :: r(3)
+ double precision :: mu,weight
+ double precision :: e_c,v_c,e_x,v_x
+ double precision, allocatable :: rho(:),tr_gamma_2(:),grad_rho_2(:),mu_of_r
+ allocate(rho(N_states),tr_gamma_2(N_states),grad_rho_2(N_states))
+ dirac_energy_x_PBE = 0.d0
+ dirac_energy_c_PBE = 0.d0
+ do istate = 1, N_states
+  do i = 1, n_points_final_grid
+   r(1) = final_grid_points(1,i)
+   r(2) = final_grid_points(2,i)
+   r(3) = final_grid_points(3,i)
+   weight=final_weight_at_r_vector(i) 
+   rho(istate) = dirac_one_body_dm_at_r(i,istate)
+   tr_gamma_2(istate) = dirac_one_body_tr_dm_2_at_r(i,istate)
+   grad_rho_2(istate) = dirac_grad_dm_2_at_r(i,istate)
+   mu_of_r = mu_of_r_for_ints_vector(i)
+   call dirac_ex_PBE_sr(mu_erf,rho(istate),tr_gamma_2(istate),grad_rho_2(istate),e_x,v_x)
+  !call dirac_ex_PBE_sr(mu_of_r,rho(istate),tr_gamma_2(istate),grad_rho_2(istate),e_x,v_x)
+   dirac_energy_x_PBE(istate) += weight * e_x
+  !dirac_energy_c_PBE(istate) += weight * e_c
+  enddo
+ enddo
+ END_PROVIDER 

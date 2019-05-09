@@ -31,15 +31,15 @@ program dirac_exchange_lda_mu
 
 
  !For helium
- !if (mu_erf .lt. 1.25) then
- ! mu_erf += 0.125d0
- !elseif (mu_erf .lt. 2.5) then
- ! mu_erf+=0.25d0
- !elseif (mu_erf .lt. 25) then
- ! mu_erf+=1.25d0
- !else 
- ! mu_erf+=2.5d0
- !endif
+  if (mu_erf .lt. 1.25) then
+   mu_erf += 0.125d0
+  elseif (mu_erf .lt. 2.5) then
+   mu_erf+=0.25d0
+  elseif (mu_erf .lt. 25) then
+   mu_erf+=1.25d0
+  else 
+   mu_erf+=2.5d0
+  endif
 
  !For berylium
  !if (mu_erf .lt. 1.25) then
@@ -124,19 +124,19 @@ program dirac_exchange_lda_mu
  !endif
 
  !For Oganesson
-  if (mu_erf .lt. 80) then
-   mu_erf += 8d0
-  elseif (mu_erf .lt. 320) then
-   mu_erf+=16.d0
-  elseif (mu_erf .lt. 1600) then
-   mu_erf+=80.d0
-  elseif (mu_erf .lt. 3200) then
-   mu_erf+=160.0d0
-  elseif (mu_erf .lt. 9600) then
-   mu_erf+=320.d0
-  else
-   mu_erf+=640.d0
-  endif
+ !if (mu_erf .lt. 80) then
+ ! mu_erf += 8d0
+ !elseif (mu_erf .lt. 320) then
+ ! mu_erf+=16.d0
+ !elseif (mu_erf .lt. 1600) then
+ ! mu_erf+=80.d0
+ !elseif (mu_erf .lt. 3200) then
+ ! mu_erf+=160.0d0
+ !elseif (mu_erf .lt. 9600) then
+ ! mu_erf+=320.d0
+ !else
+ ! mu_erf+=640.d0
+ !endif
 
   call ezfio_set_ao_two_e_erf_ints_mu_erf(mu_erf)
 

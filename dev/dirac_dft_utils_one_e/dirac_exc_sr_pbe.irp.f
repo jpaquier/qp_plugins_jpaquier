@@ -1,48 +1,49 @@
 
- subroutine dirac_ex_pbe_sr(mu,rho,tr_gamma_2,grad_dm_2,e_x,v_x)
+ subroutine dirac_ex_pbe_sr(mu,rho,tr_gamma_2,grad_rho_2,e_x,v_x)
  include 'constants.include.F'
  implicit none 
  integer :: i,j
  double precision, intent(out) ::  e_x
  double precision, intent(out) ::  v_x
- double precision, intent(in)  ::  rho,tr_gamma_2,mu,grad_dm_2
+ double precision, intent(in)  ::  rho,tr_gamma_2,mu,grad_rho_2
  double precision :: rho_lda, kF
  double precision :: e_x_lda, v_x_lda
- double precision :: f13,ckf,kappa, sq,fx
- double precision berf
- double precision dberfda
-
+ double precision :: f13,ckf,c,tmp_c,kappa, sq,fx
+ double precision :: berf
  f13 = 0.3333333333333333d0
  ckf = 3.0936677262801355d0
-
-!!!! To use the electronic density
- kF = ckf*(rho**f13)
-!!!! To use the electronic density obtained from the on-top pair density 
-!rho_lda = dsqrt(2.d0*tr_gamma_2)
-!kF = ckf*(rho_lda**f13)
-! !!! To use the effective electronic density obtained from the on-top pair density
-! if (tr_gamma_2 .gt. 1d-5) then
-!  tmp_c = c/kF
-!  do j = 1, 4
-!   kF = 4.375106855981304d0*(rho_lda*dsqrt(-1.d0/(-4.d0 - 9.d0*tmp_c**2 -       &    
-!       9.d0*tmp_c**4 + 9.d0*tmp_c**4*dlog(dsqrt(1.d0 + tmp_c**(-2)) + 1.d0/tmp_c)*  &     
-!       (2.d0*dsqrt(1.d0 + tmp_c**2) - tmp_c**2*dlog(dsqrt(1.d0 + tmp_c**(-2)) +     &
-!       1.d0/tmp_c)))))**f13
-!   tmp_c = c/kF
-!  enddo
-! endif
-
+ c = speed_of_light
+ if (dirac_rho == "rho") then
+ !!! To use the usual electronic density
+  kF = ckf*(rho**f13)
+ elseif (dirac_rho == "rho_on_top") then
+ !!! To use the electronic density obtained from the on-top pair density 
+  rho_lda = dsqrt(2.d0*tr_gamma_2)
+  kF = ckf*(rho_lda**f13)
+  if (dirac_effective_rho == "yes") then
+   !!! To use the effective electronic density obtained from the on-top pair density
+   if (tr_gamma_2 .gt. 1d-5) then
+    tmp_c = c/kF
+    do j = 1, 4
+     kF = 4.375106855981304d0*(rho_lda*dsqrt(-1.d0/(-4.d0 - 9.d0*tmp_c**2 -       &    
+         9.d0*tmp_c**4 + 9.d0*tmp_c**4*dlog(dsqrt(1.d0 + tmp_c**(-2)) + 1.d0/tmp_c)*  &     
+         (2.d0*dsqrt(1.d0 + tmp_c**2) - tmp_c**2*dlog(dsqrt(1.d0 + tmp_c**(-2)) +     &
+         1.d0/tmp_c)))))**f13
+     tmp_c = c/kF
+    enddo
+   endif
+  endif
+ endif
  call dirac_ex_lda_sr(mu,rho,tr_gamma_2,e_x_lda,v_x_lda)
-
  kappa=0.804d0
- sq=grad_dm_2*2.6121172985233599567768d-2*rho**(-8d0/3d0)
+ sq=grad_rho_2*2.6121172985233599567768d-2*rho**(-8d0/3d0)
  fx=1.d0+ kappa - kappa/(1.d0+berf(mu/(2*kF))*sq/kappa)
  e_x=e_x_lda*fx
 
- 
  v_x =0.d0
  
  end 
+
 
 !-------------------------------------------
       function berf(a)
@@ -65,9 +66,9 @@
       fak=2.540118935556d0*dexp(-eta*a*a)
 
       if(a .lt. 0.075d0) then
-       expansion for small mu to avoid numerical problems
-       denominator becomes zero for a approximately 0.4845801308
-       (and for one negative and two complex values of a)
+      !expansion for small mu to avoid numerical problems
+      !denominator becomes zero for a approximately 0.4845801308
+      !(and for one negative and two complex values of a)
        berf = (-7d0+72.d0*a*a)/(27.d0*(-3d0-24.d0*a*a+32.d0*a**4+8d0*dsqrt(pi)*a))
       else if(a .gt. 50.d0) then
        berf = 1.d0/(72.d0*a*a)-1.d0/(17280.d0*a**4) - 23.d0/(358400.d0*a**6)
@@ -79,7 +80,7 @@
         )))/(a**2*(3.2d1*a**4*(-1.d0 + berf_dexp) - 3.d0*berf_dexp        &
         + 1.417963080724412821838534d1*a*derf(5.d-1/a)*berf_dexp         &
         - 8.d0*a**2*(-2.d0 + 3.d0*berf_dexp)))
-      end if
+      endif
       berf=berf*fak
       return
       end

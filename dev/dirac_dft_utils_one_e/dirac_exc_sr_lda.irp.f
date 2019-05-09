@@ -195,22 +195,27 @@
  c48 = 0.0005099248761589486d0
  c49 = 0.02258151625021997d0
  c = speed_of_light
- !!! To use the electronic density
-!kF = ckf*(rho**f13)
+ if (dirac_rho == "rho") then
+ !!! To use the usual electronic density
+  kF = ckf*(rho**f13)
+ elseif (dirac_rho == "rho_on_top") then
  !!! To use the electronic density obtained from the on-top pair density 
- rho_lda = dsqrt(2.d0*tr_gamma_2)
- kF = ckf*(rho_lda**f13)
-  !!! To use the effective electronic density obtained from the on-top pair density
-  if (tr_gamma_2 .gt. 1d-5) then
-   tmp_c = c/kF
-   do j = 1, 4
-    kF = 4.375106855981304d0*(rho_lda*dsqrt(-1.d0/(-4.d0 - 9.d0*tmp_c**2 -       &    
-        9.d0*tmp_c**4 + 9.d0*tmp_c**4*dlog(dsqrt(1.d0 + tmp_c**(-2)) + 1.d0/tmp_c)*  &     
-        (2.d0*dsqrt(1.d0 + tmp_c**2) - tmp_c**2*dlog(dsqrt(1.d0 + tmp_c**(-2)) +     &
-        1.d0/tmp_c)))))**f13
+  rho_lda = dsqrt(2.d0*tr_gamma_2)
+  kF = ckf*(rho_lda**f13)
+  if (dirac_effective_rho == "yes") then
+   !!! To use the effective electronic density obtained from the on-top pair density
+   if (tr_gamma_2 .gt. 1d-5) then
     tmp_c = c/kF
-   enddo
+    do j = 1, 4
+     kF = 4.375106855981304d0*(rho_lda*dsqrt(-1.d0/(-4.d0 - 9.d0*tmp_c**2 -       &    
+         9.d0*tmp_c**4 + 9.d0*tmp_c**4*dlog(dsqrt(1.d0 + tmp_c**(-2)) + 1.d0/tmp_c)*  &     
+         (2.d0*dsqrt(1.d0 + tmp_c**2) - tmp_c**2*dlog(dsqrt(1.d0 + tmp_c**(-2)) +     &
+         1.d0/tmp_c)))))**f13
+     tmp_c = c/kF
+    enddo
+   endif
   endif
+ endif
  kF_4 = kF*kF*kF*kF
  kF_6 = kF_4*kF*kF
  tmp_c = c/kF
@@ -238,9 +243,9 @@
 
 
  ! To test the non-relativistic fonctional with the relativistic DHF density
-!if (tmp_c .gt. 0.d0) then
+ if (tmp_c .gt. 0.d0) then
  ! Non-relativistic equations
- if (tmp_c .gt. 2d+1) then
+!if (tmp_c .gt. 2d+1) then
   ! Linear/quadratic range-separation for very low values of tmp_mu
   if (tmp_mu .lt. 1.d-2) then
 
