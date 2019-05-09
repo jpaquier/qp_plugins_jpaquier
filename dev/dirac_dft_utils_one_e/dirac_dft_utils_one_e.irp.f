@@ -43,7 +43,7 @@ program dirac_dft_utils_one_e
    open (30, file='mu_of_r_Z.dat')
    write(30,*) r(1), mu_of_r
   !r(1)+=0.00001d0
-   r(1)+=0.0002d0
+   r(1)+=0.0005d0
   !r(1)+=0.001d0
   enddo
    end

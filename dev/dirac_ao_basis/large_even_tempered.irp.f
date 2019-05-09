@@ -149,10 +149,10 @@
  !! Argon
  ! S type function
   even_large_expo_seed(0,18) = 2.16279421d+05
-  even_large_expo_coef(0,18) = 0.25d0
+  even_large_expo_coef(0,18) = 0.30d0
  ! P type function
   even_large_expo_seed(1,18) = 4.94782136d+02
-  even_large_expo_coef(1,18) = 0.25d0
+  even_large_expo_coef(1,18) = 0.325d0
  ! D type function
   even_large_expo_seed(2,18) = 1.13941141d+01
   even_large_expo_coef(2,18) = 0.25d0
