@@ -199,7 +199,6 @@
   do j=1, 2*dirac_ao_num
    do i=1, 2*dirac_ao_num
     dirac_HF_two_electron_C_Exchange_energy_complex += 0.5d0* (dirac_ao_bi_elec_C_Exchange_integral(i,j)) * dirac_SCF_density_matrix_ao(j,i)
-    write(26,*),j,i,dirac_SCF_density_matrix_ao(j,i)
    enddo
   enddo
   dirac_HF_two_electron_C_Exchange_energy = real(dirac_HF_two_electron_C_Exchange_energy_complex)

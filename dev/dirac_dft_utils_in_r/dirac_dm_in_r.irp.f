@@ -531,9 +531,8 @@
   do k =1,3
    do i = 1, 2*dirac_ao_num
     grad_dm_complex_1(k,istate) += two_dirac_aos_grad_array(k,i)*two_dirac_aos_array_bis(i)
-    if (k == 1) then
-     write(26,*),i,two_dirac_aos_grad_array(1,i),two_dirac_aos_array_bis(i)
-    endif 
+   !if (k == 1) then
+   !endif 
    enddo
   !grad_dm_complex_1(k,istate) = u_dotc_v(two_dirac_aos_grad_array(k,1),two_dirac_aos_array_bis,2*dirac_ao_num)
   enddo
@@ -554,6 +553,9 @@
  !  grad_dm_complex_2(k,istate) += two_dirac_aos_array(i)*two_dirac_aos_grad_array_bis(k,i)
  ! enddo
  !enddo
+ !write(12,*),"x",grad_dm_complex_1(1,1), grad_dm_complex_2(1,1)
+ !write(12,*),"y",grad_dm_complex_1(2,1), grad_dm_complex_2(2,1)
+ !write(12,*),"z",grad_dm_complex_1(3,1), grad_dm_complex_2(3,1)
  !grad_dm_complex = grad_dm_complex_1 + grad_dm_complex_2
  !grad_dm = real(grad_dm_complex)
   grad_dm_2(istate)   = grad_dm(1,istate) * grad_dm(1,istate) + grad_dm(2,istate) * grad_dm(2,istate) + grad_dm(3,istate) * grad_dm(3,istate)
@@ -611,3 +613,103 @@
  deallocate(grad_dm)
  END_PROVIDER
 
+ subroutine dirac_grad_tr_dm_2_dft_at_r(r,grad_tr_dm_2)
+ implicit none
+ BEGIN_DOC
+ ! input:
+ ! * r(1) ==> r(1) = x, r(2) = y, r(3) = z
+ ! output:
+ ! * grad_tr_dm_2(1) = X gradient of the trace of the squared density matrix evaluated at r
+ END_DOC
+ double precision, intent(in)  :: r(3)
+ double precision, intent(out) :: grad_tr_dm_2(3,N_states)
+ complex*16 :: grad_tr_dm_2_complex(3,N_states)
+ integer :: i,j,k,istate
+ complex*16  :: large_aos_array(large_ao_num),large_aos_array_bis(large_ao_num),u_dotc_v
+ complex*16  :: large_aos_grad_array(3,large_ao_num),large_aos_grad_array_bis(3,large_ao_num)
+ complex*16  :: small_aos_array(small_ao_num),small_aos_array_bis(small_ao_num)
+ complex*16  :: small_aos_grad_array(3,small_ao_num),small_aos_grad_array_bis(3,small_ao_num)
+ complex*16, Allocatable :: grad_tr_dm_2_complex_tmp_part1(:,:),grad_tr_dm_2_complex_tmp_part2(:,:)
+ complex*16, Allocatable :: grad_tr_dm_2_complex_tmp_part1_d1(:,:),grad_tr_dm_2_complex_tmp_part1_d2(:,:)
+ complex*16, Allocatable :: grad_tr_dm_2_complex_tmp_part2_d1(:,:),grad_tr_dm_2_complex_tmp_part2_d2(:,:)
+ complex*16, Allocatable :: LL_one_body_dm_ao_for_dft_tmp(:,:,:),SS_one_body_dm_ao_for_dft_tmp(:,:,:)
+ complex*16, Allocatable :: LS_one_body_dm_ao_for_dft_tmp(:,:,:),SL_one_body_dm_ao_for_dft_tmp(:,:,:)
+ Allocate(grad_tr_dm_2_complex_tmp_part1(3,N_states),grad_tr_dm_2_complex_tmp_part2(3,N_states), &
+          grad_tr_dm_2_complex_tmp_part1_d1(3,N_states),grad_tr_dm_2_complex_tmp_part1_d2(3,N_states), &
+          grad_tr_dm_2_complex_tmp_part2_d2(3,N_states),grad_tr_dm_2_complex_tmp_part2_d2(3,N_states), &
+          LL_one_body_dm_ao_for_dft_tmp(large_ao_num,large_ao_num,N_states),SS_one_body_dm_ao_for_dft_tmp(small_ao_num,small_ao_num,N_states), &
+          LS_one_body_dm_ao_for_dft_tmp(large_ao_num,small_ao_num,N_states),SL_one_body_dm_ao_for_dft_tmp(small_ao_num,large_ao_num,N_states))
+ grad_tr_dm_2 = 0.d0
+ call give_all_large_aos_at_r(r,large_aos_array)
+ call give_all_grad_large_aos_at_r(r,large_aos_grad_array)
+ call give_all_small_aos_at_r(r,small_aos_array)
+ call give_all_grad_small_aos_at_r(r,small_aos_grad_array)
+
+ do istate = 1, N_states
+  large_aos_array_bis = large_aos_array
+  large_aos_grad_array_bis = large_aos_grad_array
+  small_aos_array_bis = small_aos_array
+  small_aos_grad_array_bis = small_aos_grad_array
+  !L_alpha L_alpha* x L_alpha L_alpha*
+  do j = 1, large_ao_num
+   do i = 1, large_ao_num
+    LL_one_body_dm_ao_for_dft_tmp(i,j,istate) = dirac_one_body_dm_ao_for_dft(i,j,istate)
+   enddo
+  enddo
+   grad_tr_dm_2_complex_tmp_part1 = (0.d0,0.d0)
+   do j = 1, large_ao_num
+    do i  = 1, large_ao_num 
+     large_aos_array_bis(i) += LL_one_body_dm_ao_for_dft_tmp(i,j,istate)*large_aos_array(j)
+    enddo
+   enddo
+   tr_dm_2_complex_tmp_part1 =(0.d0,0.d0)
+   do i  = 1, large_ao_num
+    tr_dm_2_complex_tmp_part1(istate) += large_aos_array(i)*large_aos_array_bis(i)
+   enddo  
+  do j = 1, large_ao_num
+   do i = 1, large_ao_num
+    LL_one_body_dm_ao_for_dft_tmp(i,j,istate) = dirac_one_body_dm_ao_for_dft(i,j,istate)
+   enddo
+  enddo
+   large_aos_array_bis = (0.d0,0.d0)
+   do j = 1, large_ao_num
+    do i  = 1, large_ao_num 
+     large_aos_array_bis(i) += LL_one_body_dm_ao_for_dft_tmp(i,j,istate)*large_aos_array(j)
+    enddo
+   enddo
+   tr_dm_2_complex_tmp_part2 =(0.d0,0.d0)
+   do i  = 1, large_ao_num
+    tr_dm_2_complex_tmp_part2(istate) += large_aos_array(i)*large_aos_array_bis(i)
+   enddo  
+  grad_tr_dm_2_complex += (grad_tr_dm_2_complex_tmp_part1_d1 + grad_tr_dm_2_complex_tmp_part1_d2)*grad_tr_dm_2_complex_tmp_part2 &
+                          grad_tr_dm_2_complex_tmp_part1 * ((grad_tr_dm_2_complex_tmp_part2_d1 + grad_tr_dm_2_complex_tmp_part2_d2)
+ 
+  grad_tr_dm_2_complex_tmp_part1 = (0.d0,0.d0)
+  do k =1,3
+   do i = 1, small_ao_num
+    grad_tr_dm_2_complex_tmp_part1(k,istate) += small_aos_grad_array(k,i)*small_aos_array_bis(i)
+   enddo
+  enddo
+  small_aos_grad_array_bis = (0.d0,0.d0)
+  do k = 1,3
+   do j = 1, small_ao_num
+    do i  = 1, small_ao_num
+     small_aos_grad_array_bis(k,i) += SS_one_body_dm_ao_for_dft_tmp(i,j,istate)*small_aos_grad_array(k,j)
+    enddo
+   enddo
+  enddo  
+  grad_tr_dm_2_complex_tmp_part2 = (0.d0,0.d0)
+  do k =1,3
+   do i = 1, small_ao_num
+    grad_tr_dm_2_complex_tmp_part2(k,istate) += small_aos_array(i)*small_aos_grad_array_bis(k,i)
+   enddo
+  enddo
+
+ enddo
+!write(11,*),"x",grad_tr_dm_2_complex_tmp_part1(1,1), grad_tr_dm_2_complex_tmp_part2(1,1)
+!write(11,*),"y",grad_tr_dm_2_complex_tmp_part1(2,1), grad_tr_dm_2_complex_tmp_part2(2,1)
+!write(11,*),"z",grad_tr_dm_2_complex_tmp_part1(3,1), grad_tr_dm_2_complex_tmp_part2(3,1)
+
+ 
+
+end

@@ -8,19 +8,6 @@
      v_c = 0.d0
  end
 
- subroutine dirac_n2x_sr(mu,tr_gamma_2,e_x,v_x)
- include 'constants.include.F'
- implicit none
- double precision, intent(out) ::  e_x
- double precision, intent(out) ::  v_x
- double precision, intent(in)  ::  tr_gamma_2,mu
-
- e_x = -1.5708d0*tr_gamma_2/mu**2
- 
- v_x = 0.d0
-
- end
-
 
  subroutine dirac_ex_lda_sr(mu,rho,tr_gamma_2,e_x,v_x)
  include 'constants.include.F'
@@ -242,11 +229,10 @@
  tmp_mu_m_2 = 1.d0/tmp_mu_2
 
 
- ! To test the non-relativistic fonctional with the relativistic DHF density
- if (tmp_c .gt. 0.d0) then
  ! Non-relativistic equations
-!if (tmp_c .gt. 2d+1) then
-  ! Linear/quadratic range-separation for very low values of tmp_mu
+ if (dirac_approximant == "non-relativistic" .or. tmp_c .gt. 2d+1) then
+    
+ ! Linear/quadratic range-separation for very low values of tmp_mu
   if (tmp_mu .lt. 1.d-2) then
 
   !e_x = 0.002687627869433291d0*kF_4*(-3.d0 + 7.089815403622064d0*tmp_mu)
