@@ -1151,7 +1151,7 @@
     SL_one_body_dm_ao_for_dft_tmp(i,j,istate) = dirac_one_body_dm_ao_for_dft(2*large_ao_num+i,j,istate)
    enddo
   enddo
-  large_aos_array_bis = (0.d0,0.d0)
+  small_aos_array_bis = (0.d0,0.d0)
   do j = 1, large_ao_num
    do i  = 1, small_ao_num 
     small_aos_array_bis(i) += SL_one_body_dm_ao_for_dft_tmp(i,j,istate)*large_aos_array(j)
@@ -1189,7 +1189,7 @@
   !!part1
   do j = 1, small_ao_num
    do i = 1, large_ao_num
-    LS_one_body_dm_ao_for_dft_tmp(i,j,istate) = dirac_one_body_dm_ao_for_dft(large_ao_num+i,2*large_ao_num+large_ao_num+j,istate)
+    LS_one_body_dm_ao_for_dft_tmp(i,j,istate) = dirac_one_body_dm_ao_for_dft(large_ao_num+i,2*large_ao_num+small_ao_num+j,istate)
    enddo
   enddo
   large_aos_array_bis = (0.d0,0.d0)
@@ -1225,10 +1225,164 @@
   !!part2 
   do j = 1, large_ao_num
    do i = 1, small_ao_num
-    SL_one_body_dm_ao_for_dft_tmp(i,j,istate) = dirac_one_body_dm_ao_for_dft(2*large_ao_num+large_ao_num+i,large_ao_num+j,istate)
+    SL_one_body_dm_ao_for_dft_tmp(i,j,istate) = dirac_one_body_dm_ao_for_dft(2*large_ao_num+small_ao_num+i,large_ao_num+j,istate)
+   enddo
+  enddo
+  small_aos_array_bis = (0.d0,0.d0)
+  do j = 1, large_ao_num
+   do i  = 1, small_ao_num 
+    small_aos_array_bis(i) += SL_one_body_dm_ao_for_dft_tmp(i,j,istate)*large_aos_array(j)
+   enddo
+  enddo
+  grad_tr_dm_2_complex_tmp_part2 = (0.d0,0.d0)
+  do i  = 1, small_ao_num
+   grad_tr_dm_2_complex_tmp_part2(istate) += small_aos_array(i)*small_aos_array_bis(i)
+  enddo  
+  grad_tr_dm_2_complex_tmp_part2_d1 = (0.d0,0.d0)
+  do k =1,3
+   do i = 1, small_ao_num
+    grad_tr_dm_2_complex_tmp_part2_d1(k,istate) += small_aos_grad_array(k,i)*small_aos_array_bis(i)
+   enddo
+  enddo
+  small_aos_grad_array_bis = (0.d0,0.d0)
+  do k = 1,3
+   do j = 1, large_ao_num
+    do i  = 1, small_ao_num
+     small_aos_grad_array_bis(k,i) += SL_one_body_dm_ao_for_dft_tmp(i,j,istate)*large_aos_grad_array(k,j)
+    enddo
+   enddo
+  enddo
+  grad_tr_dm_2_complex_tmp_part2_d2 = (0.d0,0.d0)
+  do k =1,3
+   do i = 1, small_ao_num
+    grad_tr_dm_2_complex_tmp_part2_d2(k,istate) += small_aos_array(i)*small_aos_grad_array_bis(k,i)
+   enddo
+  enddo
+  do k = 1,3
+   grad_tr_dm_2_complex(k,istate) += (grad_tr_dm_2_complex_tmp_part1_d1(k,istate) + grad_tr_dm_2_complex_tmp_part1_d2(k,istate))*grad_tr_dm_2_complex_tmp_part2(istate) + &
+                                      grad_tr_dm_2_complex_tmp_part1(istate)*(grad_tr_dm_2_complex_tmp_part2_d1(k,istate) + grad_tr_dm_2_complex_tmp_part2_d2(k,istate)) 
+  enddo
+  !!L_alpha S_beta* x S_beta L_alpha*
+  !!part1
+  do j = 1, small_ao_num
+   do i = 1, large_ao_num
+    LS_one_body_dm_ao_for_dft_tmp(i,j,istate) = dirac_one_body_dm_ao_for_dft(i,2*large_ao_num+small_ao_num+j,istate)
    enddo
   enddo
   large_aos_array_bis = (0.d0,0.d0)
+  do j = 1, small_ao_num
+   do i  = 1, large_ao_num 
+    large_aos_array_bis(i) += LS_one_body_dm_ao_for_dft_tmp(i,j,istate)*small_aos_array(j)
+   enddo
+  enddo
+  grad_tr_dm_2_complex_tmp_part1 = (0.d0,0.d0)
+  do i  = 1, large_ao_num
+   grad_tr_dm_2_complex_tmp_part1(istate) += large_aos_array(i)*large_aos_array_bis(i)
+  enddo 
+  grad_tr_dm_2_complex_tmp_part1_d1 = (0.d0,0.d0)
+  do k =1,3
+   do i = 1, large_ao_num
+    grad_tr_dm_2_complex_tmp_part1_d1(k,istate) += large_aos_grad_array(k,i)*large_aos_array_bis(i)
+   enddo
+  enddo
+  large_aos_grad_array_bis = (0.d0,0.d0)
+  do k = 1,3
+   do j = 1, small_ao_num
+    do i  = 1, large_ao_num
+     large_aos_grad_array_bis(k,i) += LS_one_body_dm_ao_for_dft_tmp(i,j,istate)*small_aos_grad_array(k,j)
+    enddo
+   enddo
+  enddo
+  grad_tr_dm_2_complex_tmp_part1_d2 = (0.d0,0.d0)
+  do k =1,3
+   do i = 1, large_ao_num
+    grad_tr_dm_2_complex_tmp_part1_d2(k,istate) += large_aos_array(i)*large_aos_grad_array_bis(k,i)
+   enddo
+  enddo
+  !!part2 
+  do j = 1, large_ao_num
+   do i = 1, small_ao_num
+    SL_one_body_dm_ao_for_dft_tmp(i,j,istate) = dirac_one_body_dm_ao_for_dft(2*large_ao_num+small_ao_num+i,j,istate)
+   enddo
+  enddo
+  small_aos_array_bis = (0.d0,0.d0)
+  do j = 1, large_ao_num
+   do i  = 1, small_ao_num 
+    small_aos_array_bis(i) += SL_one_body_dm_ao_for_dft_tmp(i,j,istate)*large_aos_array(j)
+   enddo
+  enddo
+  grad_tr_dm_2_complex_tmp_part2 = (0.d0,0.d0)
+  do i  = 1, small_ao_num
+   grad_tr_dm_2_complex_tmp_part2(istate) += small_aos_array(i)*small_aos_array_bis(i)
+  enddo  
+  grad_tr_dm_2_complex_tmp_part2_d1 = (0.d0,0.d0)
+  do k =1,3
+   do i = 1, small_ao_num
+    grad_tr_dm_2_complex_tmp_part2_d1(k,istate) += small_aos_grad_array(k,i)*small_aos_array_bis(i)
+   enddo
+  enddo
+  small_aos_grad_array_bis = (0.d0,0.d0)
+  do k = 1,3
+   do j = 1, large_ao_num
+    do i  = 1, small_ao_num
+     small_aos_grad_array_bis(k,i) += SL_one_body_dm_ao_for_dft_tmp(i,j,istate)*large_aos_grad_array(k,j)
+    enddo
+   enddo
+  enddo
+  grad_tr_dm_2_complex_tmp_part2_d2 = (0.d0,0.d0)
+  do k =1,3
+   do i = 1, small_ao_num
+    grad_tr_dm_2_complex_tmp_part2_d2(k,istate) += small_aos_array(i)*small_aos_grad_array_bis(k,i)
+   enddo
+  enddo
+  do k = 1,3
+   grad_tr_dm_2_complex(k,istate) += (grad_tr_dm_2_complex_tmp_part1_d1(k,istate) + grad_tr_dm_2_complex_tmp_part1_d2(k,istate))*grad_tr_dm_2_complex_tmp_part2(istate) + &
+                                      grad_tr_dm_2_complex_tmp_part1(istate)*(grad_tr_dm_2_complex_tmp_part2_d1(k,istate) + grad_tr_dm_2_complex_tmp_part2_d2(k,istate)) 
+  enddo
+  !!L_beta S_alph* x S_alpha L_beta*
+  !!part1
+  do j = 1, small_ao_num
+   do i = 1, large_ao_num
+    LS_one_body_dm_ao_for_dft_tmp(i,j,istate) = dirac_one_body_dm_ao_for_dft(large_ao_num+i,2*large_ao_num+j,istate)
+   enddo
+  enddo
+  large_aos_array_bis = (0.d0,0.d0)
+  do j = 1, small_ao_num
+   do i  = 1, large_ao_num 
+    large_aos_array_bis(i) += LS_one_body_dm_ao_for_dft_tmp(i,j,istate)*small_aos_array(j)
+   enddo
+  enddo
+  grad_tr_dm_2_complex_tmp_part1 = (0.d0,0.d0)
+  do i  = 1, large_ao_num
+   grad_tr_dm_2_complex_tmp_part1(istate) += large_aos_array(i)*large_aos_array_bis(i)
+  enddo 
+  grad_tr_dm_2_complex_tmp_part1_d1 = (0.d0,0.d0)
+  do k =1,3
+   do i = 1, large_ao_num
+    grad_tr_dm_2_complex_tmp_part1_d1(k,istate) += large_aos_grad_array(k,i)*large_aos_array_bis(i)
+   enddo
+  enddo
+  large_aos_grad_array_bis = (0.d0,0.d0)
+  do k = 1,3
+   do j = 1, small_ao_num
+    do i  = 1, large_ao_num
+     large_aos_grad_array_bis(k,i) += LS_one_body_dm_ao_for_dft_tmp(i,j,istate)*small_aos_grad_array(k,j)
+    enddo
+   enddo
+  enddo
+  grad_tr_dm_2_complex_tmp_part1_d2 = (0.d0,0.d0)
+  do k =1,3
+   do i = 1, large_ao_num
+    grad_tr_dm_2_complex_tmp_part1_d2(k,istate) += large_aos_array(i)*large_aos_grad_array_bis(k,i)
+   enddo
+  enddo
+  !!part2 
+  do j = 1, large_ao_num
+   do i = 1, small_ao_num
+    SL_one_body_dm_ao_for_dft_tmp(i,j,istate) = dirac_one_body_dm_ao_for_dft(2*large_ao_num+i,large_ao_num+j,istate)
+   enddo
+  enddo
+  small_aos_array_bis = (0.d0,0.d0)
   do j = 1, large_ao_num
    do i  = 1, small_ao_num 
     small_aos_array_bis(i) += SL_one_body_dm_ao_for_dft_tmp(i,j,istate)*large_aos_array(j)
@@ -1265,8 +1419,8 @@
 
   grad_tr_dm_2 = Real(grad_tr_dm_2_complex)
  enddo
- write(11,*),"x",grad_tr_dm_2_complex(1,1)
- write(11,*),"y",grad_tr_dm_2_complex(2,1)
- write(11,*),"z",grad_tr_dm_2_complex(3,1)
- 
- end
+ write(11,*) "x",grad_tr_dm_2_complex(1,1)
+ write(11,*) "y",grad_tr_dm_2_complex(2,1)
+ write(11,*) "z",grad_tr_dm_2_complex(3,1)
+ write(11,*) "********************" 
+end
