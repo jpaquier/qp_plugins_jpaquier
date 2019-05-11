@@ -1424,3 +1424,27 @@
  write(11,*) "z",grad_tr_dm_2_complex(3,1)
  write(11,*) "********************" 
 end
+
+
+ subroutine dirac_grad_dm_on_top_dft_at_r(r,grad_dm_on_top,grad_dm_on_top_2,grad_dm_on_top_abs)
+ implicit none
+ BEGIN_DOC
+ ! input:
+ ! * r(1) ==> r(1) = x, r(2) = y, r(3) = z
+ ! output:
+ ! * grad_dm_on_top(1) = X gradient of the density on_top evaluated at r
+ END_DOC
+ double precision, intent(in)  :: r(3)
+ double precision, intent(out) :: grad_dm_on_top(3,N_states),grad_dm_on_top_2(N_states),grad_dm_on_top_abs(N_states)
+ double precision :: grad_tr_dm_2(3,N_states),tr_dm_2(N_states)
+ integer :: i,j,k,istate
+ call dirac_grad_tr_dm_2_dft_at_r(r,grad_tr_dm_2)
+ call dirac_tr_dm_2_dft_at_r(r,tr_dm_2)
+ do istate = 1, N_states
+  do k = 1,3
+   grad_dm_on_top(k,istate) = grad_tr_dm_2(k,istate)/dsqrt(2*tr_dm_2(istate))
+  enddo
+  grad_dm_on_top_2(istate)   = grad_dm_on_top(1,istate) * grad_dm_on_top(1,istate) + grad_dm_on_top(2,istate) * grad_dm_on_top(2,istate) + grad_dm_on_top(3,istate) * grad_dm_on_top(3,istate)
+  grad_dm_on_top_abs(istate) = dsqrt(grad_dm_on_top_2(istate))
+ enddo
+ end
