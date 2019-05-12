@@ -90,8 +90,8 @@
  double precision :: r(3)
  double precision :: mu,weight
  double precision :: e_c,v_c,e_x,v_x
- double precision, allocatable :: rho(:),tr_gamma_2(:),grad_rho(:,:),grad_rho_2(:),mu_of_r
- allocate(rho(N_states),tr_gamma_2(N_states),grad_rho(3,N_states),grad_rho_2(N_states))
+ double precision, allocatable :: rho(:),tr_gamma_2(:),grad_rho(:,:),grad_rho_on_top(:,:),grad_rho_2(:),grad_rho_on_top_2(:),mu_of_r
+ allocate(rho(N_states),tr_gamma_2(N_states),grad_rho(3,N_states),grad_rho_on_top(3,N_states),grad_rho_2(N_states),grad_rho_on_top_2(N_states))
  dirac_energy_x_PBE = 0.d0
  dirac_energy_c_PBE = 0.d0
  do istate = 1, N_states
@@ -103,12 +103,12 @@
    rho(istate) = dirac_one_body_dm_at_r(i,istate)
    tr_gamma_2(istate) = dirac_one_body_tr_dm_2_at_r(i,istate)
    do k = 1,3 
-    grad_rho(k,istate) = dirac_grad_dm_at_r(k,i,istate)
+    grad_rho_on_top(k,istate) = dirac_grad_dm_on_top_at_r(k,i,istate)
    enddo
    grad_rho_2(istate) = dirac_grad_dm_2_at_r(i,istate)
+   grad_rho_on_top_2(istate) = dirac_grad_dm_on_top_2_at_r(i,istate)
    mu_of_r = mu_of_r_for_ints_vector(i)
-   call dirac_ex_PBE_sr(mu_erf,rho(istate),tr_gamma_2(istate),grad_rho(1,istate),grad_rho(2,istate),grad_rho(3,istate),grad_rho_2(istate),e_x,v_x)
-  !call dirac_ex_PBE_sr(mu_of_r,rho(istate),tr_gamma_2(istate),grad_rho_2(istate),e_x,v_x)
+   call dirac_ex_PBE_sr(mu_erf,rho(istate),tr_gamma_2(istate),grad_rho_on_top(1,istate),grad_rho_on_top(2,istate),grad_rho_on_top(3,istate),grad_rho_2(istate),grad_rho_on_top_2(istate),e_x,v_x)
    dirac_energy_x_PBE(istate) += weight * e_x
   !dirac_energy_c_PBE(istate) += weight * e_c
   enddo

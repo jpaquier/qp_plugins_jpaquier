@@ -1448,3 +1448,36 @@ end
   grad_dm_on_top_abs(istate) = dsqrt(grad_dm_on_top_2(istate))
  enddo
  end
+
+ BEGIN_PROVIDER [double precision, dirac_grad_dm_on_top_at_r, (3,n_points_final_grid,N_states) ]
+ &BEGIN_PROVIDER [double precision, dirac_grad_dm_on_top_2_at_r, (n_points_final_grid,N_states) ]
+ &BEGIN_PROVIDER [double precision, dirac_grad_dm_on_top_abs_at_r,(n_points_final_grid,N_states) ]
+ BEGIN_DOC
+ ! dirac_dm_on_top_and_grad_at_r(1,i,i_state) = d\dx n(r_i,istate)
+ ! dirac_dm_on_top_and_grad_at_r(2,i,i_state) = d\dy n(r_i,istate)
+ ! dirac_dm_on_top_and_grad_at_r(3,i,i_state) = d\dz n(r_i,istate)
+ ! dirac_dm_on_top_and_grad_at_r(4,i,i_state) = n(r_i,istate)
+ ! dirac_grad_dm_on_top_2_at_r(i,istate)      = d\dx n(r_i,istate)^2 + d\dy n(r_i,istate)^2 + d\dz n(r_i,istate)^2
+ ! dirac_grad_dm_on_top_abs_at_r(i,istate)    = dsqrt(dirac_grad_dm_on_top_2_at_r(i,istate)) 
+ ! where r_i is the ith point of the grid and istate is the state number
+ END_DOC
+ implicit none
+ integer :: i,istate
+ double precision :: r(3)
+ double precision, allocatable :: grad_dm_on_top(:,:),grad_dm_on_top_2(:),grad_dm_on_top_abs(:)
+ allocate(grad_dm_on_top(3,N_states),grad_dm_on_top_2(N_states),grad_dm_on_top_abs(N_states))
+ do istate = 1, N_states
+  do i = 1, n_points_final_grid
+   r(1) = final_grid_points(1,i)
+   r(2) = final_grid_points(2,i)
+   r(3) = final_grid_points(3,i)
+   call dirac_grad_dm_on_top_dft_at_r(r,grad_dm_on_top,grad_dm_on_top_2,grad_dm_on_top_abs)
+   dirac_grad_dm_on_top_at_r (1,i,istate)  = grad_dm_on_top(1,istate)
+   dirac_grad_dm_on_top_at_r (2,i,istate)  = grad_dm_on_top(2,istate)
+   dirac_grad_dm_on_top_at_r (3,i,istate)  = grad_dm_on_top(3,istate)
+   dirac_grad_dm_on_top_2_at_r(i,istate)   = grad_dm_on_top_2(istate) 
+   dirac_grad_dm_on_top_abs_at_r(i,istate) = grad_dm_on_top_abs(istate)
+  enddo
+ enddo
+ deallocate(grad_dm_on_top)
+ END_PROVIDER
