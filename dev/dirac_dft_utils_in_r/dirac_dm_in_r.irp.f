@@ -1028,8 +1028,8 @@
    enddo
   enddo
   do k = 1,3
-   grad_tr_dm_2_complex(k,istate) += (grad_tr_dm_2_complex_tmp_part1_d1(k,istate) + grad_tr_dm_2_complex_tmp_part1_d2(k,istate))*grad_tr_dm_2_complex_tmp_part2(istate) + &
-                                      grad_tr_dm_2_complex_tmp_part1(istate)*(grad_tr_dm_2_complex_tmp_part2_d1(k,istate) + grad_tr_dm_2_complex_tmp_part2_d2(k,istate)) 
+   grad_tr_dm_2_complex(k,istate) += 2.d0*(grad_tr_dm_2_complex_tmp_part1_d1(k,istate) + grad_tr_dm_2_complex_tmp_part1_d2(k,istate))*grad_tr_dm_2_complex_tmp_part2(istate) + &
+                                      2.d0*grad_tr_dm_2_complex_tmp_part1(istate)*(grad_tr_dm_2_complex_tmp_part2_d1(k,istate) + grad_tr_dm_2_complex_tmp_part2_d2(k,istate)) 
   enddo
   !!S_alpha S_beta* x S_beta S_alpha*
   !!part1
@@ -1105,8 +1105,8 @@
    enddo
   enddo
   do k = 1,3
-   grad_tr_dm_2_complex(k,istate) += (grad_tr_dm_2_complex_tmp_part1_d1(k,istate) + grad_tr_dm_2_complex_tmp_part1_d2(k,istate))*grad_tr_dm_2_complex_tmp_part2(istate) + &
-                                      grad_tr_dm_2_complex_tmp_part1(istate)*(grad_tr_dm_2_complex_tmp_part2_d1(k,istate) + grad_tr_dm_2_complex_tmp_part2_d2(k,istate)) 
+   grad_tr_dm_2_complex(k,istate) += 2.d0*(grad_tr_dm_2_complex_tmp_part1_d1(k,istate) + grad_tr_dm_2_complex_tmp_part1_d2(k,istate))*grad_tr_dm_2_complex_tmp_part2(istate) + &
+                                      2.d0*grad_tr_dm_2_complex_tmp_part1(istate)*(grad_tr_dm_2_complex_tmp_part2_d1(k,istate) + grad_tr_dm_2_complex_tmp_part2_d2(k,istate)) 
   enddo
   !!L_alpha S_alpha* x S_alpha L_alpha*
   !!part1
@@ -1182,8 +1182,8 @@
    enddo
   enddo
   do k = 1,3
-   grad_tr_dm_2_complex(k,istate) += (grad_tr_dm_2_complex_tmp_part1_d1(k,istate) + grad_tr_dm_2_complex_tmp_part1_d2(k,istate))*grad_tr_dm_2_complex_tmp_part2(istate) + &
-                                      grad_tr_dm_2_complex_tmp_part1(istate)*(grad_tr_dm_2_complex_tmp_part2_d1(k,istate) + grad_tr_dm_2_complex_tmp_part2_d2(k,istate)) 
+   grad_tr_dm_2_complex(k,istate) += 2.d0*(grad_tr_dm_2_complex_tmp_part1_d1(k,istate) + grad_tr_dm_2_complex_tmp_part1_d2(k,istate))*grad_tr_dm_2_complex_tmp_part2(istate) + &
+                                      2.d0*grad_tr_dm_2_complex_tmp_part1(istate)*(grad_tr_dm_2_complex_tmp_part2_d1(k,istate) + grad_tr_dm_2_complex_tmp_part2_d2(k,istate)) 
   enddo
   !!L_beta S_beta* x S_beta L_beta*
   !!part1
@@ -1336,10 +1336,10 @@
    enddo
   enddo
   do k = 1,3
-   grad_tr_dm_2_complex(k,istate) += (grad_tr_dm_2_complex_tmp_part1_d1(k,istate) + grad_tr_dm_2_complex_tmp_part1_d2(k,istate))*grad_tr_dm_2_complex_tmp_part2(istate) + &
-                                      grad_tr_dm_2_complex_tmp_part1(istate)*(grad_tr_dm_2_complex_tmp_part2_d1(k,istate) + grad_tr_dm_2_complex_tmp_part2_d2(k,istate)) 
+   grad_tr_dm_2_complex(k,istate) += 2.d0*(grad_tr_dm_2_complex_tmp_part1_d1(k,istate) + grad_tr_dm_2_complex_tmp_part1_d2(k,istate))*grad_tr_dm_2_complex_tmp_part2(istate) + &
+                                      2.d0*grad_tr_dm_2_complex_tmp_part1(istate)*(grad_tr_dm_2_complex_tmp_part2_d1(k,istate) + grad_tr_dm_2_complex_tmp_part2_d2(k,istate)) 
   enddo
-  !!L_beta S_alph* x S_alpha L_beta*
+  !!L_beta S_alpha* x S_alpha L_beta*
   !!part1
   do j = 1, small_ao_num
    do i = 1, large_ao_num
@@ -1413,16 +1413,16 @@
    enddo
   enddo
   do k = 1,3
-   grad_tr_dm_2_complex(k,istate) += (grad_tr_dm_2_complex_tmp_part1_d1(k,istate) + grad_tr_dm_2_complex_tmp_part1_d2(k,istate))*grad_tr_dm_2_complex_tmp_part2(istate) + &
-                                      grad_tr_dm_2_complex_tmp_part1(istate)*(grad_tr_dm_2_complex_tmp_part2_d1(k,istate) + grad_tr_dm_2_complex_tmp_part2_d2(k,istate)) 
+   grad_tr_dm_2_complex(k,istate) += 2.d0*(grad_tr_dm_2_complex_tmp_part1_d1(k,istate) + grad_tr_dm_2_complex_tmp_part1_d2(k,istate))*grad_tr_dm_2_complex_tmp_part2(istate) + &
+                                      2.d0*grad_tr_dm_2_complex_tmp_part1(istate)*(grad_tr_dm_2_complex_tmp_part2_d1(k,istate) + grad_tr_dm_2_complex_tmp_part2_d2(k,istate)) 
   enddo
 
-  grad_tr_dm_2 = Real(grad_tr_dm_2_complex)
+  grad_tr_dm_2 = real(grad_tr_dm_2_complex)
  enddo
- write(11,*) "x",grad_tr_dm_2_complex(1,1)
- write(11,*) "y",grad_tr_dm_2_complex(2,1)
- write(11,*) "z",grad_tr_dm_2_complex(3,1)
- write(11,*) "********************" 
+!write(11,*) "x",grad_tr_dm_2_complex(1,1)
+!write(11,*) "y",grad_tr_dm_2_complex(2,1)
+!write(11,*) "z",grad_tr_dm_2_complex(3,1)
+!write(11,*) "********************" 
 end
 
 
@@ -1442,7 +1442,7 @@ end
  call dirac_tr_dm_2_dft_at_r(r,tr_dm_2)
  do istate = 1, N_states
   do k = 1,3
-   grad_dm_on_top(k,istate) = grad_tr_dm_2(k,istate)/dsqrt(2*tr_dm_2(istate))
+   grad_dm_on_top(k,istate) = grad_tr_dm_2(k,istate)/dsqrt(2.d0*tr_dm_2(istate))
   enddo
   grad_dm_on_top_2(istate)   = grad_dm_on_top(1,istate) * grad_dm_on_top(1,istate) + grad_dm_on_top(2,istate) * grad_dm_on_top(2,istate) + grad_dm_on_top(3,istate) * grad_dm_on_top(3,istate)
   grad_dm_on_top_abs(istate) = dsqrt(grad_dm_on_top_2(istate))
