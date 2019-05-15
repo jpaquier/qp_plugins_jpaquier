@@ -18,7 +18,7 @@ program dirac_exchange_pbe_mu
    print*,'short-range coulomb interaction'   
    print*, mu_erf, dirac_energy_x_pbe(1)
    open (10, file='exchange_pbe_Z.dat',position ='append') 
-   write(10,*) mu_erf, dirac_energy_x_pbe(1)
+   write(10,*) mu_erf, dirac_energy_x_pbe(1),dirac_C_Exchange_Energy - dirac_HF_two_electron_C_Exchange_energy
   elseif (dirac_interaction == "Coulomb_Gaunt") then
    print*,'**********'
    print*,'Short-range Coulomb-Gaunt interaction'
@@ -31,15 +31,15 @@ program dirac_exchange_pbe_mu
 
 
  !For helium
-  if (mu_erf .lt. 1.25) then
-   mu_erf += 0.125d0
-  elseif (mu_erf .lt. 2.5) then
-   mu_erf+=0.25d0
-  elseif (mu_erf .lt. 25) then
-   mu_erf+=1.25d0
-  else 
-   mu_erf+=2.5d0
-  endif
+ !if (mu_erf .lt. 1.25) then
+ ! mu_erf += 0.125d0
+ !elseif (mu_erf .lt. 2.5) then
+ ! mu_erf+=0.25d0
+ !elseif (mu_erf .lt. 25) then
+ ! mu_erf+=1.25d0
+ !else 
+ ! mu_erf+=2.5d0
+ !endif
 
  !For berylium
  !if (mu_erf .lt. 1.25) then
@@ -109,19 +109,19 @@ program dirac_exchange_pbe_mu
  !endif
 
  !For Radon
- !if (mu_erf .lt. 40) then
- ! mu_erf += 4d0
- !elseif (mu_erf .lt. 160) then
- ! mu_erf+=8.d0
- !elseif (mu_erf .lt. 800) then
- ! mu_erf+=40.d0
- !elseif (mu_erf .lt. 1600) then
- ! mu_erf+=80.0d0
- !elseif (mu_erf .lt. 4800) then
- ! mu_erf+=160.d0
- !else
- ! mu_erf+=320.d0
- !endif
+  if (mu_erf .lt. 40) then
+   mu_erf += 4d0
+  elseif (mu_erf .lt. 160) then
+   mu_erf+=8.d0
+  elseif (mu_erf .lt. 800) then
+   mu_erf+=40.d0
+  elseif (mu_erf .lt. 1600) then
+   mu_erf+=80.0d0
+  elseif (mu_erf .lt. 4800) then
+   mu_erf+=160.d0
+  else
+   mu_erf+=320.d0
+  endif
 
  !For Oganesson
  !if (mu_erf .lt. 80) then

@@ -111,6 +111,7 @@
    call dirac_ex_PBE_sr(mu_erf,rho(istate),tr_gamma_2(istate),grad_rho_on_top(1,istate),grad_rho_on_top(2,istate),grad_rho_on_top(3,istate),grad_rho_2(istate),grad_rho_on_top_2(istate),e_x,v_x)
    dirac_energy_x_PBE(istate) += weight * e_x
   !dirac_energy_c_PBE(istate) += weight * e_c
+   write(14,*) weight * e_x, r(1),r(2),r(3)
   enddo
  enddo
  END_PROVIDER 

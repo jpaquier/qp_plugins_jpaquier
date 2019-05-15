@@ -1259,8 +1259,8 @@
    enddo
   enddo
   do k = 1,3
-   grad_tr_dm_2_complex(k,istate) += (grad_tr_dm_2_complex_tmp_part1_d1(k,istate) + grad_tr_dm_2_complex_tmp_part1_d2(k,istate))*grad_tr_dm_2_complex_tmp_part2(istate) + &
-                                      grad_tr_dm_2_complex_tmp_part1(istate)*(grad_tr_dm_2_complex_tmp_part2_d1(k,istate) + grad_tr_dm_2_complex_tmp_part2_d2(k,istate)) 
+   grad_tr_dm_2_complex(k,istate) += 2.d0*(grad_tr_dm_2_complex_tmp_part1_d1(k,istate) + grad_tr_dm_2_complex_tmp_part1_d2(k,istate))*grad_tr_dm_2_complex_tmp_part2(istate) + &
+                                      2.d0*grad_tr_dm_2_complex_tmp_part1(istate)*(grad_tr_dm_2_complex_tmp_part2_d1(k,istate) + grad_tr_dm_2_complex_tmp_part2_d2(k,istate)) 
   enddo
   !!L_alpha S_beta* x S_beta L_alpha*
   !!part1
