@@ -147,15 +147,15 @@
 ! even_large_expo_coef(2,118) = 0.25d0
  !! 18-electrons even-tempered basis sets
  !! Argon
- ! S type function
-  even_large_expo_seed(0,18) = 2.16279421d+05
-  even_large_expo_coef(0,18) = 0.30d0
- ! P type function
-  even_large_expo_seed(1,18) = 4.94782136d+02
-  even_large_expo_coef(1,18) = 0.325d0
- ! D type function
-  even_large_expo_seed(2,18) = 1.13941141d+01
-  even_large_expo_coef(2,18) = 0.25d0
+!! S type function
+! even_large_expo_seed(0,18) = 2.16279421d+05
+! even_large_expo_coef(0,18) = 0.30d0
+!! P type function
+! even_large_expo_seed(1,18) = 4.94782136d+02
+! even_large_expo_coef(1,18) = 0.325d0
+!! D type function
+! even_large_expo_seed(2,18) = 1.13941141d+01
+! even_large_expo_coef(2,18) = 0.25d0
 !!! Krypton
 !! S type function
 ! even_large_expo_seed(0,36) = 4.14098736d+06
@@ -176,16 +176,17 @@
 !! D type function
 ! even_large_expo_seed(2,54) = 1.95959651d+03
 ! even_large_expo_coef(2,54) = 0.25d0
-!!! Radon
-!! S type function
-! even_large_expo_seed(0,86) = 1.46794059d+07
-! even_large_expo_coef(0,86) = 0.25d0
-!! P type function
-! even_large_expo_seed(1,86) = 5.70898829d+04
-! even_large_expo_coef(1,86) = 0.30d0
-!! D type function
-! even_large_expo_seed(2,86) = 1.25385658d+03
-! even_large_expo_coef(2,86) = 0.25d0
+ !! Radon
+ ! S type function
+  even_large_expo_seed(0,86) = 1.46794059d+07
+  even_large_expo_coef(0,86) = 0.30d0
+ ! P type function
+  even_large_expo_seed(1,86) = 1.92412503d+05
+  even_large_expo_coef(1,86) = 0.30d0
+ ! D type function
+ !even_large_expo_seed(2,86) = 1.41613025d+04
+  even_large_expo_seed(2,86) = 1.25385658d+03
+  even_large_expo_coef(2,86) = 0.25d0
 !!! Oganesson
 !! S type function
 ! even_large_expo_seed(0,118) = 5.24543434d+07
@@ -198,7 +199,7 @@
 ! even_large_expo_coef(2,118) = 0.25d0
 
 !!Atomic number used in the on-the-fly even basis
-  even_large_expo_number = 18
+  even_large_expo_number = 86
  END_PROVIDER
 
 

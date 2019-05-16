@@ -14,7 +14,7 @@ program dirac_dft_utils_one_e
   ! r(1) = final_grid_points(1,i)
   ! r(2) = final_grid_points(2,i)
   ! r(3) = final_grid_points(3,i)
-  do i = 1,20000
+  do i = 1,10000
    call dirac_tr_dm_2_dft_at_r(r,tr_dm_2)
    call dirac_dm_dft_at_r(r,dm)
   !call density_and_grad_alpha_beta_and_all_aos_and_grad_aos_at_r(r,dm_a,dm_b, grad_dm_a, grad_dm_b, aos_array, grad_aos_array)
@@ -40,19 +40,19 @@ program dirac_dft_utils_one_e
    write(32,*) "grad_z =",grad_dm(3,1),grad_dm_on_top(3,1)
    Write(32,*) "mu_of_r_for_ints_vector =",mu_of_r
    open (27, file='density_of_r_Z.dat')
-   write(27,*) r(3),dm(1),3.0936677262801355d0*(dm(1)**0.3333333333333333d0)
-   open (28, file='density_of_r_on_top_Z.dat')
-   write(28,*) r(3),dsqrt(2*tr_dm_2(1)),3.0936677262801355d0*( dsqrt(2*tr_dm_2(1))**0.3333333333333333d0)
+   write(27,*) r(1),dm(1),3.0936677262801355d0*(dm(1)**0.3333333333333333d0)
+  !open (28, file='density_of_r_on_top_Z.dat')
+  !write(28,*) r(1),dsqrt(2*tr_dm_2(1)),3.0936677262801355d0*( dsqrt(2*tr_dm_2(1))**0.3333333333333333d0)
    open (29, file='density_grad_of_r_Z.dat')
-   write(29,*) r(3),grad_dm_2
- ! open (30, file='mu_of_r_Z.dat')
- ! write(30,*) r(1), mu_of_r
- ! open (33, file='ecart.dat')
- ! write(33,*) r(1), 100*dsqrt((grad_dm_abs- grad_dm_on_top_abs)**2)/grad_dm_abs 
-   open (34, file='density_grad_on_top_Z.dat.dat')
-   write(34,*) r(1), grad_dm_on_top_2
-   r(1)+=0.000001d0
-  !r(1)+=0.0005d0
+   write(29,*) r(1),grad_dm_2
+  !open (34, file='density_grad_on_top_Z.dat.dat')
+  !write(34,*) r(1), grad_dm_on_top_2
+   open (30, file='mu_of_r_Z.dat')
+   write(30,*) r(1), mu_of_r
+  !open (33, file='ecart.dat')
+  !write(33,*) r(1), 100*dsqrt((grad_dm_abs- grad_dm_on_top_abs)**2)/grad_dm_abs 
+  !r(1)+=0.000001d0
+   r(1)+=0.0001d0
   !r(1)+=0.001d0
   enddo
    end
