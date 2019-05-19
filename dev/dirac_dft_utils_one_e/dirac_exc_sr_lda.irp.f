@@ -202,7 +202,7 @@
     enddo
    endif
   endif
- kF = ((kF + ckf*(rho**f13)) + (kF - ckf*(rho**f13))*derf(mu/kF))/2
+!kF = ((kF + ckf*(rho**f13)) + (kF - ckf*(rho**f13))*derf(mu/kF))/2
  endif
  kF_4 = kF*kF*kF*kF
  kF_6 = kF_4*kF*kF

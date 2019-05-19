@@ -52,7 +52,7 @@ program dirac_dft_utils_one_e
   !open (33, file='ecart.dat')
   !write(33,*) r(1), 100*dsqrt((grad_dm_abs- grad_dm_on_top_abs)**2)/grad_dm_abs 
   !r(1)+=0.000001d0
-   r(1)+=0.0001d0
+   r(1)+=0.0003d0
   !r(1)+=0.001d0
   enddo
    end
