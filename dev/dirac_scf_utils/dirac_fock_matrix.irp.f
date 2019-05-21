@@ -3,11 +3,19 @@
   BEGIN_DOC
   !Dirac Fock matrix in AO basis set 
   END_DOC
-  integer                        ::i,j
+  integer                       ::i,j
   if (dirac_interaction == "Coulomb") then
-   dirac_fock_matrix_ao = dirac_Fock_matrix_C_ao
+   do j = 1,2*dirac_ao_num
+    do i = 1,2*dirac_ao_num
+      dirac_fock_matrix_ao(i,j) = dirac_Fock_matrix_C_ao(i,j)
+    enddo
+   enddo
   elseif (dirac_interaction == "Coulomb_Gaunt") then
-   dirac_fock_matrix_ao = dirac_Fock_matrix_C_G_ao
+   do j = 1,2*dirac_ao_num
+    do i = 1,2*dirac_ao_num
+     dirac_fock_matrix_ao(i,j) = dirac_Fock_matrix_C_G_ao(i,j)
+    enddo
+   enddo
   else
    print *,  'Unrecognized dirac_interaction : '//dirac_interaction
    stop 1
@@ -21,9 +29,17 @@
   END_DOC
   integer                        ::i,j
   if (dirac_interaction == "Coulomb") then
-   eigenvectors_dirac_fock_matrix_ao = eigenvectors_dirac_Fock_matrix_C_ao
+   do j = 1,2*dirac_mo_tot_num
+    do i = 1,2*dirac_mo_tot_num
+     eigenvectors_dirac_fock_matrix_ao(i,j) = eigenvectors_dirac_Fock_matrix_C_ao(i,j)
+    enddo
+   enddo
   elseif (dirac_interaction == "Coulomb_Gaunt") then
-   eigenvectors_dirac_fock_matrix_ao = eigenvectors_dirac_Fock_matrix_C_G_ao
+   do j = 1,2*dirac_mo_tot_num
+    do i = 1,2*dirac_mo_tot_num
+     eigenvectors_dirac_fock_matrix_ao(i,j) = eigenvectors_dirac_Fock_matrix_C_G_ao(i,j)
+    enddo
+   enddo
   else
    print *,  'Unrecognized dirac_interaction : '//dirac_interaction
    stop 1

@@ -5,8 +5,8 @@ program dirac_scf
   END_DOC
   call create_dirac_guess
   call run_dirac
-  call print_dirac_energies
-  call print_dirac_mo_coef
+ !call print_dirac_energies
+ !call print_dirac_mo_coef
  end
 
  subroutine create_dirac_guess
@@ -21,9 +21,9 @@ program dirac_scf
   if (exists_Re .and. exists_Im) then
    dirac_mo_coef = (1,0)*dirac_mo_coef_Re + (0,1)*dirac_mo_coef_Im
    print*, 'dirac_mo_coef from previous calculation'
-  else 
+  else
    if (dirac_mo_guess_type == "HCore") then
-    dirac_mo_coef = eigenvectors_dirac_mono_elec_ao
+   dirac_mo_coef = eigenvectors_dirac_mono_elec_ao
     TOUCH dirac_mo_coef       
     dirac_mo_label = 'Guess'
     SOFT_TOUCH dirac_mo_coef dirac_mo_label

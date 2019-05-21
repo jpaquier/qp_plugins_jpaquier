@@ -186,52 +186,6 @@
   enddo
  END_PROVIDER
  
-
-!BEGIN_PROVIDER [ double precision, dirac_mo_coef_guess, (2*(dirac_ao_num),2*(dirac_mo_tot_num))
-!implicit none
-! BEGIN_DOC
-! !Molecular orbital coefficients on AO basis set obtained from non-relativistic
-! ! calculations and transformed as a relativistic guess
-! !dirac_mo_coef(i,j) = coefficient of the ith ao on the jth mo
-! END_DOC
-! integer                        :: i,i_minus,i_plus,j,j_minus,j_plus
-! PROVIDE ezfio_filename
-! dirac_mo_coef_guess = 0.d0
-! do j=1, 2*dirac_mo_tot_num
-!  if (j .le. 2*small_mo_tot_num) then
-!   j_plus = j + 2*large_ao_num
-!   dirac_mo_coef_guess(j_plus,j) = 1.d0
-!  elseif (j.gt. 2*small_mo_tot_num .and. j .le. (2*small_mo_tot_num+large_mo_tot_num)) then
-!   j_minus = j - 2*small_mo_tot_num
-!   do i=1, large_ao_num
-!    dirac_mo_coef_guess(i,j) = mo_coef(i,j_minus)
-!   enddo
-!  elseif (j .gt. (2*small_mo_tot_num + large_mo_tot_num)) then
-!   j_minus = j - 2*small_mo_tot_num 
-!   dirac_mo_coef_guess(j_minus,j) = 1.d0
-!  endif
-! enddo
-!END_PROVIDER
-
-!BEGIN_PROVIDER [ complex*16, dirac_mo_coef_guess_ortho_canonical, (2*(dirac_ao_num),2*(dirac_mo_tot_num))
-!implicit none
-! BEGIN_DOC
-! !Molecular orbital coefficients on AO basis set obtained from non-relativistic
-! ! calculations and transformed as an ortho_canonical relativistic guess
-! !dirac_mo_coef(i,j) = coefficient of the ith ao on the jth mo
-! END_DOC
-! integer                        :: i,i_minus,j,j_minus
-! double precision               :: dirac_mo_coef_guess_ortho_canonical_tmp(2*(dirac_ao_num),2*(dirac_mo_tot_num))
-! PROVIDE ezfio_filename
-! dirac_mo_coef_guess_ortho_canonical_tmp = 0.d0
-! do i = 1, 2*dirac_ao_num
-!  dirac_mo_coef_guess_ortho_canonical_tmp(i,i) += 1.d0
-! enddo
-!!dirac_mo_ortho_canonical_num = 2*dirac_ao_num
-! call ortho_canonical(dirac_mo_coef_guess,size(dirac_mo_coef_guess,1), 2*dirac_ao_num, dirac_mo_coef_guess_ortho_canonical_tmp, size(dirac_mo_coef_guess_ortho_canonical_tmp,1), 2*dirac_ao_num)
-! dirac_mo_coef_guess_ortho_canonical = (1.d0,0.d0)*dirac_mo_coef_guess_ortho_canonical_tmp
-!END_PROVIDER
-
  subroutine dirac_ao_to_mo(A_ao,LDA_ao,A_mo,LDA_mo)
   implicit none
   BEGIN_DOC
@@ -370,15 +324,4 @@
  !IRP_ENDIF
  END_PROVIDER
 
-!subroutine orthonormalize_dirac_mos
-! implicit none
-! BEGIN_DOC
-! !Orthonormalized complex MOs
-! END_DOC 
-! call ortho_canonical_complex(dirac_mo_overlap,2*dirac_mo_tot_num,2*dirac_mo_tot_num,dirac_mo_coef,2*dirac_ao_num,2*dirac_ao_num)
-! dirac_mo_label = 'Orthonormalized'
-! SOFT_TOUCH dirac_mo_coef dirac_mo_label
-!end
-
- 
 

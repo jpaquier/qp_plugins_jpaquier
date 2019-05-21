@@ -311,14 +311,16 @@
   eigenvectors_dirac_fock_matrix_C_mo = eigenvectors
  END_PROVIDER
 
- BEGIN_PROVIDER [complex*16, eigenvectors_dirac_Fock_matrix_C_ao, (2*(dirac_mo_tot_num),2*(dirac_mo_tot_num))]
+!BEGIN_PROVIDER [complex*16, eigenvectors_dirac_Fock_matrix_C_ao, (2*(dirac_mo_tot_num),2*(dirac_mo_tot_num))]
+ BEGIN_PROVIDER [complex*16, eigenvectors_dirac_Fock_matrix_C_ao, (2*(dirac_ao_num),2*(dirac_mo_tot_num))]
  implicit none
  BEGIN_DOC
  !The eigenvectors in the AO basis, which does not diagonalize S, 
  ! for a Coulomb ee interaction
  END_DOC
  integer :: n,nmax
-  call zgemm('N','N', 2*(dirac_ao_num), 2*(dirac_mo_tot_num), 2*(dirac_ao_num),              &
+ !call zgemm('N','N', 2*(dirac_ao_num), 2*(dirac_mo_tot_num), 2*(dirac_ao_num),              &
+  call zgemm('N','N', 2*(dirac_ao_num), 2*(dirac_mo_tot_num), 2*(dirac_mo_tot_num),              &
       (1.d0,0.d0), dirac_mo_coef_S,size(dirac_mo_coef_S,1),                                      &
       eigenvectors_dirac_Fock_matrix_C_mo, size(eigenvectors_dirac_Fock_matrix_C_mo,1),              &
       (0.d0,0.d0), eigenvectors_dirac_Fock_matrix_C_ao, size(eigenvectors_dirac_Fock_matrix_C_ao,1)) 

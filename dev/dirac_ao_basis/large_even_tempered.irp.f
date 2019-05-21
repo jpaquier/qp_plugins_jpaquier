@@ -145,8 +145,8 @@
 !! D type function
 ! even_large_expo_seed(2,118) = 6.92742965d+03
 ! even_large_expo_coef(2,118) = 0.25d0
- !! 18-electrons even-tempered basis sets
- !! Argon
+!!! 18-electrons even-tempered basis sets
+!!! Argon
 !! S type function
 ! even_large_expo_seed(0,18) = 2.16279421d+05
 ! even_large_expo_coef(0,18) = 0.30d0
@@ -166,16 +166,16 @@
 !! D type function
 ! even_large_expo_seed(2,36) = 6.64569801d+01
 ! even_large_expo_coef(2,36) = 0.25d0
- !! Xenon
- ! S type function
-  even_large_expo_seed(0,54) = 9.04292743d+06
-  even_large_expo_coef(0,54) = 0.25d0
- ! P type function
-  even_large_expo_seed(1,54) = 9.36856349d+03
-  even_large_expo_coef(1,54) = 0.36d0
- ! D type function
-  even_large_expo_seed(2,54) = 1.95959651d+03
-  even_large_expo_coef(2,54) = 0.25d0
+!!! Xenon
+!! S type function
+! even_large_expo_seed(0,54) = 9.04292743d+06
+! even_large_expo_coef(0,54) = 0.25d0
+!! P type function
+! even_large_expo_seed(1,54) = 9.36856349d+03
+! even_large_expo_coef(1,54) = 0.36d0
+!! D type function
+! even_large_expo_seed(2,54) = 1.95959651d+03
+! even_large_expo_coef(2,54) = 0.25d0
 !!! Radon
 !! S type function
 ! even_large_expo_seed(0,86) = 1.46794059d+07
@@ -187,20 +187,20 @@
 !!even_large_expo_seed(2,86) = 1.41613025d+04
 ! even_large_expo_seed(2,86) = 1.25385658d+03
 ! even_large_expo_coef(2,86) = 0.25d0
-!!! Oganesson
-!! S type function
-! even_large_expo_seed(0,118) = 5.24543434d+07
-! even_large_expo_coef(0,118) = 0.25d0
-!! P type function
-! even_large_expo_seed(1,118) = 4.39439154d+05
-! even_large_expo_coef(1,118) = 0.26d0
-!! D type function
-! even_large_expo_seed(2,118) = 6.92742965d+03
-!!even_large_expo_seed(2,118) = 2.64817876d+03
-! even_large_expo_coef(2,118) = 0.24d0
+ !! Oganesson
+ ! S type function
+  even_large_expo_seed(0,118) = 5.24543434d+07
+  even_large_expo_coef(0,118) = 0.25d0
+ ! P type function
+  even_large_expo_seed(1,118) = 4.39439154d+05
+  even_large_expo_coef(1,118) = 0.26d0
+ ! D type function
+  even_large_expo_seed(2,118) = 6.92742965d+03
+ !even_large_expo_seed(2,118) = 2.64817876d+03
+  even_large_expo_coef(2,118) = 0.24d0
 
-!!Atomic number used in the on-the-fly even basis
-  even_large_expo_number = 54
+ !Atomic number used in the on-the-fly even basis
+  even_large_expo_number = 118
  END_PROVIDER
 
 
@@ -284,27 +284,27 @@
     do l =1, (l_type+1)*(l_type+2)/2
      k_count += 1
      even_large_ao_expo(k_count) = even_large_expo_seed(l_type,even_large_expo_number)*(even_large_expo_coef(l_type,even_large_expo_number)**(k-1))  
-     if (k_count == 1 .or. even_large_ao_expo(k_count) /= even_large_ao_expo(k_count-1)) then 
-      open (10, file='dirac_even_tempered_basis')
-      if (l_type == 0) then
-       write(10,'(A4, 3X, I0)'),"S",1
-      elseif (l_type == 1) then
-       write(10,'(A4, 3X, I0)'),"P",1 
-      elseif (l_type == 2) then
-       write(10,'(A4, 3X, I0)'),"D",1
-      elseif (l_type == 3) then
-       write(10,'(A4, 3X, I0)'),"F",1
-      elseif (l_type == 4) then
-       write(10,'(A4, 3X, I0)'),"G",1
-      elseif (l_type == 5) then
-       write(10,'(A4, 3X, I0)'),"H",1 
-      elseif (l_type == 6) then
-       write(10,'(A4, 3X, I0)'),"I",1
-      elseif (l_type == 7) then
-       write(10,'(A4, 3X, I0)'),"J",1
-      endif
-       write(10,'(5X, I0, 1X, F22.8,5X,F10.8)'),1, even_large_ao_expo(k_count),1.0000000
-     endif
+    !if (k_count == 1 .or. even_large_ao_expo(k_count) /= even_large_ao_expo(k_count-1)) then 
+    ! open (10, file='dirac_even_tempered_basis')
+    ! if (l_type == 0) then
+    !  write(10,'(A4, 3X, I0)'),"S",1
+    ! elseif (l_type == 1) then
+    !  write(10,'(A4, 3X, I0)'),"P",1 
+    ! elseif (l_type == 2) then
+    !  write(10,'(A4, 3X, I0)'),"D",1
+    ! elseif (l_type == 3) then
+    !  write(10,'(A4, 3X, I0)'),"F",1
+    ! elseif (l_type == 4) then
+    !  write(10,'(A4, 3X, I0)'),"G",1
+    ! elseif (l_type == 5) then
+    !  write(10,'(A4, 3X, I0)'),"H",1 
+    ! elseif (l_type == 6) then
+    !  write(10,'(A4, 3X, I0)'),"I",1
+    ! elseif (l_type == 7) then
+    !  write(10,'(A4, 3X, I0)'),"J",1
+    ! endif
+    !  write(10,'(5X, I0, 1X, F22.8,5X,F10.8)'),1, even_large_ao_expo(k_count),1.0000000
+    !endif
     enddo
    enddo
   enddo

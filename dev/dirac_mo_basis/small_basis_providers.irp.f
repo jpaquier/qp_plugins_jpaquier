@@ -13,7 +13,7 @@
     small_ao_ortho_canonical_coef(i,i) = 1.d0
   enddo
   small_ao_ortho_canonical_num = small_ao_num
-  call ortho_canonical(small_ao_overlap,size(small_ao_overlap,1), small_ao_num,small_ao_ortho_canonical_coef, size(small_ao_ortho_canonical_coef,1), small_ao_ortho_canonical_num)
+  call dirac_ortho_canonical(small_ao_overlap,size(small_ao_overlap,1), small_ao_num,small_ao_ortho_canonical_coef, size(small_ao_ortho_canonical_coef,1), small_ao_ortho_canonical_num)
  END_PROVIDER
   
  BEGIN_PROVIDER [double precision, small_ao_ortho_canonical_overlap, (small_ao_ortho_canonical_num, small_ao_ortho_canonical_num)]
