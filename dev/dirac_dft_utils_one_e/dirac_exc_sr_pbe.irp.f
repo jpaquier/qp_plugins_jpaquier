@@ -28,18 +28,15 @@
     grad_rho_z_new = grad_rho_z    
     rho_new = rho_lda
     tmp_c = c/(ckf*(rho_new**f13))
-   !write(13,*), "","rho_lda =",rho_lda, "x=",grad_rho_x, "y=",grad_rho_y, "z=",grad_rho_z, "grad_2=",grad_rho_2_lda
     do j = 1, 4
      rho_new = rho_lda*coef(tmp_c) 
      tmp_c = c/(ckf*(rho_new**f13)) 
      grad_rho_x_new = coef(tmp_c)*grad_rho_x + coef_derivative(rho_new,tmp_c)*grad_rho_x_new*rho_lda 
      grad_rho_y_new = coef(tmp_c)*grad_rho_y + coef_derivative(rho_new,tmp_c)*grad_rho_y_new*rho_lda 
      grad_rho_z_new = coef(tmp_c)*grad_rho_z + coef_derivative(rho_new,tmp_c)*grad_rho_z_new*rho_lda 
-    !write(13,*),j,"rho_new =",rho_new, "x=",grad_rho_x_new,"y=",grad_rho_y_new,"z",grad_rho_z_new
     enddo
     rho_lda = rho_new
     grad_rho_2_lda = grad_rho_x_new**2 + grad_rho_y_new**2 + grad_rho_z_new**2
-   !write(13,*), "", "rho_new =", rho_new, "x=",grad_rho_x_new,"y=",grad_rho_y_new,"z",grad_rho_z_new, "grad_2=",grad_rho_2_lda
    endif
   endif
  endif

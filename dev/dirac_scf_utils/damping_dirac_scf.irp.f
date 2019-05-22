@@ -43,55 +43,55 @@
    endif
    write(6,'(I4, 1X, F16.8, 1X, F16.8, 1X, F16.8, 3X, A4 )')  &
     k, dirac_SCF_energy, delta_E, delta_D, save_char
-  !do j=1,2*dirac_ao_num
-  ! do i=1,2*dirac_ao_num
-  !  D(i,j) = dirac_SCF_density_matrix_ao(i,j)
-  ! enddo
-  !enddo
-   D = dirac_SCF_density_matrix_ao
-  !do j=1,2*dirac_mo_tot_num
-  ! do i=1,2*dirac_mo_tot_num
-  !  dirac_mo_coef(i,j) = eigenvectors_dirac_fock_matrix_ao(i,j)
-  ! enddo
-  !enddo
-   dirac_mo_coef = eigenvectors_dirac_fock_matrix_ao
-  !TOUCH dirac_mo_coef
-  !do j=1,2*dirac_ao_num
-  ! do i=1,2*dirac_ao_num
-  !  D_new(i,j) = dirac_SCF_density_matrix_ao(i,j)
-  ! enddo
-  !enddo
-   D_new = dirac_SCF_density_matrix_ao
-  !do j=1,2*dirac_ao_num
-  ! do i=1,2*dirac_ao_num
-  !  F_new(i,j) = dirac_Fock_matrix_ao(i,j)
-  ! enddo
-  !enddo
-   F_new = dirac_Fock_matrix_ao
-  !E_new = dirac_SCF_energy
-  !do j=1,2*dirac_ao_num
-  ! do i=1,2*dirac_ao_num
-  !  delta(i,j) = D_new(i,j) - D(i,j)
-  ! enddo
-  !enddo
-   delta = D_new - D
+   do j=1,2*dirac_ao_num
+    do i=1,2*dirac_ao_num
+     D(i,j) = dirac_SCF_density_matrix_ao(i,j)
+    enddo
+   enddo
+  !D = dirac_SCF_density_matrix_ao
+   do j=1,2*dirac_mo_tot_num
+    do i=1,2*dirac_ao_num
+     dirac_mo_coef(i,j) = eigenvectors_dirac_fock_matrix_ao(i,j)
+    enddo
+   enddo
+  !dirac_mo_coef = eigenvectors_dirac_fock_matrix_ao
+   TOUCH dirac_mo_coef
+   do j=1,2*dirac_ao_num
+    do i=1,2*dirac_ao_num
+     D_new(i,j) = dirac_SCF_density_matrix_ao(i,j)
+    enddo
+   enddo
+  !D_new = dirac_SCF_density_matrix_ao
+   do j=1,2*dirac_ao_num
+    do i=1,2*dirac_ao_num
+     F_new(i,j) = dirac_Fock_matrix_ao(i,j)
+    enddo
+   enddo
+  !F_new = dirac_Fock_matrix_ao
+   E_new = dirac_SCF_energy
+   do j=1,2*dirac_ao_num
+    do i=1,2*dirac_ao_num
+     delta(i,j) = D_new(i,j) - D(i,j)
+    enddo
+   enddo
+  !delta = D_new - D
    E_new = dirac_SCF_energy
    lambda = .5d0
    E_half = 0.d0
    do while (E_half > E)
-   !do j=1,2*dirac_ao_num
-   ! do i=1,2*dirac_ao_num
-   !  dirac_SCF_density_matrix_ao(i,j) = D(i,j) + lambda*delta(i,j)
-   ! enddo
-   !enddo
-    dirac_SCF_density_matrix_ao = D + lambda * delta
+    do j=1,2*dirac_ao_num
+     do i=1,2*dirac_ao_num
+      dirac_SCF_density_matrix_ao(i,j) = D(i,j) + lambda*delta(i,j)
+     enddo
+    enddo
+   !dirac_SCF_density_matrix_ao = D + lambda * delta
     TOUCH dirac_SCF_density_matrix_ao
-   !do j=1,2*dirac_mo_tot_num
-   ! do i=1,2*dirac_mo_tot_num
-   !  dirac_mo_coef(i,j) = eigenvectors_dirac_fock_matrix_ao(i,j)
-   ! enddo
-   !enddo
-    dirac_mo_coef = eigenvectors_dirac_fock_matrix_ao
+    do j=1,2*dirac_mo_tot_num
+     do i=1,2*dirac_ao_num
+      dirac_mo_coef(i,j) = eigenvectors_dirac_fock_matrix_ao(i,j)
+     enddo
+    enddo
+   !dirac_mo_coef = eigenvectors_dirac_fock_matrix_ao
     TOUCH dirac_mo_coef
     E_half = dirac_SCF_energy
     if ((E_half > E).and.(E_new < E)) then
@@ -121,9 +121,19 @@
     print*, 'delta_D_complex =', delta_D_complex
     STOP
    endif
-   dirac_SCF_density_matrix_ao = D
+   do j=1,2*dirac_ao_num
+    do i=1,2*dirac_ao_num
+     dirac_SCF_density_matrix_ao(i,j) = D(i,j)
+    enddo
+   enddo
+  !dirac_SCF_density_matrix_ao = D
    TOUCH dirac_SCF_density_matrix_ao
-   dirac_mo_coef = eigenvectors_dirac_fock_matrix_ao
+   do j=1,2*dirac_mo_tot_num
+    do i=1,2*dirac_ao_num
+     dirac_mo_coef(i,j) = eigenvectors_dirac_fock_matrix_ao(i,j)
+    enddo
+   enddo
+  !dirac_mo_coef = eigenvectors_dirac_fock_matrix_ao
    TOUCH dirac_mo_coef
   enddo
   write(6,'(A4,1X,A16, 1X, A16, 1X, A16, 1X, A4 )')  '====','================','================','================', '===='

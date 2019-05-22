@@ -5,8 +5,8 @@ program dirac_scf
   END_DOC
   call create_dirac_guess
   call run_dirac
- !call print_dirac_energies
- !call print_dirac_mo_coef
+  call print_dirac_energies
+  call print_dirac_mo_coef
  end
 
  subroutine create_dirac_guess

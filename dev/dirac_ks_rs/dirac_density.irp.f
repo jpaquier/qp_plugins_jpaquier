@@ -17,7 +17,6 @@ program dirac_density
  c = speed_of_light
  do istate = 1, N_states
   do i = 1, n_points_final_grid
- !do i = 1, 5000 
    r(1) = final_grid_points(1,i)
    r(2) = final_grid_points(2,i)
    r(3) = final_grid_points(3,i)
@@ -32,12 +31,12 @@ program dirac_density
     do j = 1, 4
      tmp_kF = 4.375106855981304d0*(rho_lda*dsqrt(-1.d0/(-4.d0 - 9.d0*tmp_c**2 - 9.d0*tmp_c**4 + 9.d0*tmp_c**4*dlog(dsqrt(1.d0 + tmp_c**(-2)) + 1.d0/tmp_c)* (2.d0*dsqrt(1.d0 + tmp_c**2) - tmp_c**2*dlog(dsqrt(1.d0 + tmp_c**(-2)) + 1.d0/tmp_c)))))**f13
      tmp_c = c/tmp_kF
-    !write(11,*) j,kF(istate),tr_gamma_2(istate),tmp_kF(istate)
     enddo
    else
     tmp_kF = kF_bis
    endif
-   write(10,*) r(1),r(2),r(3), kF(istate),tr_gamma_2(istate),kF_bis(istate),tmp_kF(istate)
+   open (10, file='density_Z')
+   write(10,*) r(1),r(2),r(3), rho(istate), kF(istate),tr_gamma_2(istate),kF_bis(istate),tmp_kF(istate)
   enddo
  enddo
 

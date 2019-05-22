@@ -15,8 +15,8 @@ program dirac_density_nr
    rhoa(istate) = one_e_dm_alpha_at_r(i,istate)
    rhob(istate) = one_e_dm_beta_at_r(i,istate)
    call ex_LDA_sr(mu_erf,rhoa(istate),rhob(istate),ex_ab,vx_a,vx_b)
-   print*,r(1),r(2),r(3), rhoa(istate), rhob(istate)
-   open (12, file='density_X_nr')
+  !print*,r(1),r(2),r(3), rhoa(istate), rhob(istate)
+   open (12, file='density_Z_nr')
    write(12,*) r(1),r(2),r(3), rhoa(istate)+ rhob(istate)
   enddo
  enddo
