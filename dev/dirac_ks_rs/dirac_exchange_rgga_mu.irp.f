@@ -1,11 +1,11 @@
-program dirac_exchange_lda_mu
+program dirac_exchange_rgga_mu
   BEGIN_DOC
-  ! produce the exchange energy given by the relativistic lda
+  ! produce the exchange energy given by the relativistic rgga
   END_DOC
-   call run_exchange_lda_mu 
+   call run_exchange_rgga_mu 
  end
 
- subroutine run_exchange_lda_mu
+ subroutine run_exchange_rgga_mu
   BEGIN_DOC
   ! Gives the energy for a given value of mu_erf
   END_DOC
@@ -16,14 +16,14 @@ program dirac_exchange_lda_mu
   if (dirac_interaction == "Coulomb") then
    print*,'**********'
    print*,'short-range coulomb interaction'   
-   print*, mu_erf, dirac_energy_x_lda(1)
-   open (10, file='exchange_lda_Z.dat',position ='append') 
-   write(10,*) mu_erf, dirac_energy_x_lda(1),dirac_C_Exchange_Energy - dirac_HF_two_electron_C_Exchange_energy
+   print*, mu_erf, dirac_energy_x_rgga(1)
+   open (10, file='exchange_rgga_Z.dat',position ='append') 
+   write(10,*) mu_erf, dirac_energy_x_rgga(1),dirac_C_Exchange_Energy - dirac_HF_two_electron_C_Exchange_energy
   elseif (dirac_interaction == "Coulomb_Gaunt") then
    print*,'**********'
    print*,'Short-range Coulomb-Gaunt interaction'
-   open (10, file='exchange_lda_Z_CG.dat',position ='append')
-   write(10,*) mu_erf, dirac_energy_x_lda(1)
+   open (10, file='exchange_rgga_Z_CG.dat',position ='append')
+   write(10,*) mu_erf, dirac_energy_x_rgga(1)
   else
    print *,  'Unrecognized dirac_interaction : '//dirac_interaction
    stop 1

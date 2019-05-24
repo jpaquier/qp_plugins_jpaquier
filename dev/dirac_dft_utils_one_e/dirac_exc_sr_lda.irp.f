@@ -27,7 +27,7 @@
  double precision :: z960,z984,z1466,z1680,z1715,z2100,z2304,z2625,z3280,z6300,z8064
  double precision :: z8694,z13533,z14000,z19680,z28704,z80640
  double precision :: f16,f13,f120,f23,f25,f43
- double precision :: ckf 
+ double precision :: ckf,kF_HF,kF_HF_3 
  double precision :: c0,c1,c2,c2bis,c2ter,c3,c4,c5,c6,c7,c8,c9,c10,c11,c12,c13,c14,c15
  double precision :: c16,c17,c18,c19,c20,c21,c22,c23,c24,c25,c26,c27,c28,c29,c30
  double precision :: c31,c32,c33,c34,c35,c36,c37,c38,c39,c40,c41,c42,c43,c44
@@ -182,22 +182,33 @@
  c48 = 0.0005099248761589486d0
  c49 = 0.02258151625021997d0
  c = speed_of_light
+ kF_HF= ckf*(rho**f13)
+ kF_HF_3 = kF_HF*kF_hF*kF_HF
  if (dirac_rho == "rho") then
  !!! To use the usual electronic density
   kF = ckf*(rho**f13)
  elseif (dirac_rho == "rho_on_top") then
- !!! To use the electronic density obtained from the on-top pair density 
-  rho_lda = dsqrt(2.d0*tr_gamma_2)
+  !! To use the electronic density obtained from the on-top pair density 
+  !! First way: n_{2,x} = n_eff^2*g(n_eff)
+ !rho_lda = dsqrt(2.d0*tr_gamma_2)
+ !kF = ckf*(rho_lda**f13)
+  !! Second way : n_2{2,x} = n^{HF}*n_eff*g(n_eff)
+  rho_lda = 2.d0*tr_gamma_2/rho
   kF = ckf*(rho_lda**f13)
   if (dirac_effective_rho == "yes") then
    !!! To use the effective electronic density obtained from the on-top pair density
    if (tr_gamma_2 .gt. 1d-5) then
     tmp_c = c/kF
-    do j = 1, 4
-     kF = 4.375106855981304d0*(rho_lda*dsqrt(-1.d0/(-4.d0 - 9.d0*tmp_c**2 -       &    
-         9.d0*tmp_c**4 + 9.d0*tmp_c**4*dlog(dsqrt(1.d0 + tmp_c**(-2)) + 1.d0/tmp_c)*  &     
-         (2.d0*dsqrt(1.d0 + tmp_c**2) - tmp_c**2*dlog(dsqrt(1.d0 + tmp_c**(-2)) +     &
-         1.d0/tmp_c)))))**f13
+    do j = 1,6 
+    !! Autocoherence for the first way
+    !kF = 4.375106855981304d0*(rho_lda*dsqrt(-1.d0/(-4.d0 - 9.d0*tmp_c**2 -       &    
+    !    9.d0*tmp_c**4 + 9.d0*tmp_c**4*dlog(dsqrt(1.d0 + tmp_c**(-2)) + 1.d0/tmp_c)*  &     
+    !    (2.d0*dsqrt(1.d0 + tmp_c**2) - tmp_c**2*dlog(dsqrt(1.d0 + tmp_c**(-2)) +     &
+    !    1.d0/tmp_c)))))**f13
+    !! Autocoherence for the second way
+     kF =  7.795554179441508d0*((-1.d0*rho_lda)/(-4.d0 - 9.d0*tmp_c**2 - 9.d0*tmp_c**4 +                        &
+           9.d0*tmp_c**4*dlog(dsqrt(1.d0 + tmp_c**(-2)) + 1.d0/tmp_c)*                                          &
+           (2.d0*dsqrt(1.d0 + tmp_c**2) - 1.d0*tmp_c**2*dlog(dsqrt(1.d0 + tmp_c**(-2)) + 1.d0/tmp_c))))**f13 
      tmp_c = c/kF
     enddo
    endif
@@ -237,30 +248,32 @@
   if (tmp_mu .lt. 1.d-2) then
 
   !e_x = 0.002687627869433291d0*kF_4*(-3.d0 + 7.089815403622064d0*tmp_mu)
-   e_x = 0.002687627869433291d0*kF_4*(-3.d0 + 7.089815403622064d0*tmp_mu - 6.d0*tmp_mu_2)
-
+  !e_x = 0.002687627869433291d0*kF_4*(-3.d0 + 7.089815403622064d0*tmp_mu - 6.d0*tmp_mu_2)
+   !! To integrate on the real density of the system
+   e_x = 0.002687627869433291d0*kF_HF_3*kF*(-3.d0 + 7.089815403622064d0*tmp_mu - 6.d0*tmp_mu_2)
 
   !v_x = 0.3183098861837907d0*kF*(-1.d0 + 1.772453850905516d0*tmp_mu)
-   v_x = 0.3183098861837907d0*kF*(-1.d0 + (1.772453850905516d0 - 1.d0*tmp_mu)*tmp_mu)
+  !v_x = 0.3183098861837907d0*kF*(-1.d0 + (1.772453850905516d0 - 1.d0*tmp_mu)*tmp_mu)
   
   ! Medium values of tmp_mu
   elseif (tmp_mu .le. 1.d+2) then
  
-   e_x =  -c1*kF_4*(z1 + f23*tmp_mu_2*(z3 - z1*tmp_mu_2 + (-z2 + tmp_mu_2)/dexp(z1/tmp_mu_2)) -              &
-        c5*tmp_mu*derf(z1/tmp_mu)) 
+  !e_x =  -c1*kF_4*(z1 + f23*tmp_mu_2*(z3 - z1*tmp_mu_2 + (-z2 + tmp_mu_2)/dexp(z1/tmp_mu_2)) - c5*tmp_mu*derf(z1/tmp_mu)) 
+   e_x =  -c1*kF_HF_3*kF*(z1 + f23*tmp_mu_2*(z3 - z1*tmp_mu_2 + (-z2 + tmp_mu_2)/dexp(z1/tmp_mu_2)) - c5*tmp_mu*derf(z1/tmp_mu)) 
 
-   v_x = c6*kF*(-z1 + (-z1 + dexp(-z1/tmp_mu_2))*tmp_mu_2 + c7*tmp_mu*derf(z1/tmp_mu)) 
+  !v_x = c6*kF*(-z1 + (-z1 + dexp(-z1/tmp_mu_2))*tmp_mu_2 + c7*tmp_mu*derf(z1/tmp_mu)) 
   
   ! Inverse quadratic/quartic/hexuple for large values of tmp_mu
   elseif (tmp_mu .lt. 1.d+9) then
   
   !e_x = (-c8*kF_4)/tmp_mu_2 
   !e_x = (c12*kF_4*(z3 - z20*tmp_mu_2))/tmp_mu_4 
-   e_x = (-c35*kF_4*(z3 - z21*tmp_mu_2 + z140*tmp_mu_4))/tmp_mu_6
+  !e_x = (-c35*kF_4*(z3 - z21*tmp_mu_2 + z140*tmp_mu_4))/tmp_mu_6
+   e_x = (-c35*kF_HF_3*kF*(z3 - z21*tmp_mu_2 + z140*tmp_mu_4))/tmp_mu_6
 
   !v_x = (-c9*kF)/tmp_mu_2
   !v_x = (c36*(kF - z5*kF*tmp_mu_2))/tmp_mu_4
-   v_x = (-c37*kF*(z5 - z28*tmp_mu_2 + z140*tmp_mu_4))/tmp_mu_6
+  !v_x = (-c37*kF*(z5 - z28*tmp_mu_2 + z140*tmp_mu_4))/tmp_mu_6
 
   ! Limit for large tmp_mu 
   else
@@ -282,13 +295,14 @@
 
   ! e_x = kF_4*(c10*(-z2 + tmp_c_2 + z2*(z1 + tmp_c_2)**2*dlog(z1 + z1/tmp_c_2) - z2*dsqrt(z1 + tmp_c_2)*(z2 + z3*tmp_c_2)*dlog(dsqrt(z1 + tmp_c_m_2)    & 
   !     + z1/tmp_c) + z3*tmp_c_4*dlog(dsqrt(z1 + tmp_c_m_2) + z1/tmp_c)**2) + c2*tmp_mu)                                                                                
-    e_x =  kF_4*(c10*(-z2 + tmp_c_2 + z2*(z1 + tmp_c_2)**2*dlog(z1 + z1/tmp_c_2) - z2*dsqrt(z1 + tmp_c_2)*(z2 + z3*tmp_c_2)*dlog(dsqrt(z1 + tmp_c_m_2)    & 
+   !e_x =  kF_4*(c10*(-z2 + tmp_c_2 + z2*(z1 + tmp_c_2)**2*dlog(z1 + z1/tmp_c_2) - z2*dsqrt(z1 + tmp_c_2)*(z2 + z3*tmp_c_2)*dlog(dsqrt(z1 + tmp_c_m_2)    & 
+    e_x =  kF_HF_3*kF*(c10*(-z2 + tmp_c_2 + z2*(z1 + tmp_c_2)**2*dlog(z1 + z1/tmp_c_2) - z2*dsqrt(z1 + tmp_c_2)*(z2 + z3*tmp_c_2)*dlog(dsqrt(z1 + tmp_c_m_2)    & 
         + z1/tmp_c) + z3*tmp_c_4*dlog(dsqrt(z1 + tmp_c_m_2) + z1/tmp_c)**2) +c2bis*(c2ter - z3*tmp_mu)*tmp_mu)
 
  ! v_x =  kF*((c11*(-z1 - z1*tmp_c_2 + (z1 + tmp_c_2)**2*dlog(z1 + z1/tmp_c_2) +  dsqrt(z1 + tmp_c_2)*(z2 + z3*tmp_c_2)*dlog(tmp_c/(z1 +                 & 
   !     dsqrt(z1 + tmp_c_2)))))/(z1 + tmp_c_2) + c4*tmp_mu)
-    v_x =  kF*((c11*(-z1 - z1*tmp_c_2 + (z1 + tmp_c_2)**2*dlog(z1 + z1/tmp_c_2) +  dsqrt(z1 + tmp_c_2)*(z2 + z3*tmp_c_2)*dlog(tmp_c/(z1 +                 & 
-        dsqrt(z1 + tmp_c_2)))))/(z1 + tmp_c_2) + c3*(c7 - tmp_mu)*tmp_mu)
+   !v_x =  kF*((c11*(-z1 - z1*tmp_c_2 + (z1 + tmp_c_2)**2*dlog(z1 + z1/tmp_c_2) +  dsqrt(z1 + tmp_c_2)*(z2 + z3*tmp_c_2)*dlog(tmp_c/(z1 +                 & 
+   !    dsqrt(z1 + tmp_c_2)))))/(z1 + tmp_c_2) + c3*(c7 - tmp_mu)*tmp_mu)
 
    ! Medium values of tmp_mu
   !elseif (tmp_mu .le. 1d+1) then
@@ -297,7 +311,8 @@
 
     if (dirac_approximant == "dirac_pade_order_2") then
 
-     e_x = (c12*kF_4*(z60*(-z3 + z2*tmp_mu_2*(-z3 + tmp_mu_2 - (z1*(-z2 + tmp_mu_2))*dexp(-tmp_mu_m_2)) +                       &           
+    !e_x = (c12*kF_4*(z60*(-z3 + z2*tmp_mu_2*(-z3 + tmp_mu_2 - (z1*(-z2 + tmp_mu_2))*dexp(-tmp_mu_m_2)) +                       &           
+     e_x = (c12*kF_HF_3*kF*(z60*(-z3 + z2*tmp_mu_2*(-z3 + tmp_mu_2 - (z1*(-z2 + tmp_mu_2))*dexp(-tmp_mu_m_2)) +                       &           
         c13*tmp_mu*derf(tmp_mu_m)) + (z20*(z1 + z6*tmp_mu_4*(z3 - z2*tmp_mu_2 + (-z1 + z2*tmp_mu_2)*dexp(-tmp_mu_m_2)) -        &
         c14*tmp_mu_3*derf(tmp_mu_m))**2 - (z3*(-z2*tmp_mu_2*(-z2 + tmp_mu_2) + dexp(tmp_mu_m_2)*(-z3 - z6*tmp_mu_2 +                &
         z2*tmp_mu_4 + c13*tmp_mu*derf(tmp_mu_m)))*(z24*tmp_mu_4*(z4 + z13*tmp_mu_2 - z27*tmp_mu_4) + dexp(tmp_mu_m_2)*(-z13 -    &
@@ -338,7 +353,8 @@
 
     elseif (dirac_approximant == "dirac_pade_order_4") then
 
-     e_x =  (c18*kF_4*tmp_c_4*(z7*(z24*tmp_mu_4*(z4 + z13*tmp_mu_2 - z27*tmp_mu_4) + dexp(tmp_mu_m_2)*(-z13 - z540*tmp_mu_4 - z960*tmp_mu_6 + z648*tmp_mu_8) +          &
+    !e_x =  (c18*kF_4*tmp_c_4*(z7*(z24*tmp_mu_4*(z4 + z13*tmp_mu_2 - z27*tmp_mu_4) + dexp(tmp_mu_m_2)*(-z13 - z540*tmp_mu_4 - z960*tmp_mu_6 + z648*tmp_mu_8) +          &
+     e_x =  (c18*kF_HF_3*kF*tmp_c_4*(z7*(z24*tmp_mu_4*(z4 + z13*tmp_mu_2 - z27*tmp_mu_4) + dexp(tmp_mu_m_2)*(-z13 - z540*tmp_mu_4 - z960*tmp_mu_6 + z648*tmp_mu_8) +          &
         c15*dexp(tmp_mu_m_2)*tmp_mu_3*(z8 + z45*tmp_mu_2)*derf(tmp_mu_m))**2 - z8*dexp(tmp_mu_m_2)*(z1 + z6*tmp_mu_4*(z3 - z2*tmp_mu_2 + (-z1 +                         &
         z2*tmp_mu_2)/dexp(z1/tmp_mu_2)) - c14*tmp_mu_3*derf(tmp_mu_m))*(z60*tmp_mu_4*(-z25 - z313*tmp_mu_2 - z906*tmp_mu_4 + z984*tmp_mu_6) +                           &
         dexp(tmp_mu_m_2)*(z163 - z120*tmp_mu_4*(-z105 - z770*tmp_mu_2 - z945*tmp_mu_4 + z492*tmp_mu_6)) - c19*dexp(tmp_mu_m_2)*tmp_mu_3*(z50 +                          &
@@ -822,7 +838,8 @@
 
     elseif (dirac_approximant == "dirac_pade_order_6") then
 
-     e_x =    (0.03377372788077926d0*kF**3*(0.07957747154594767d0*kF*                                                                     & 
+    !e_x =    (0.03377372788077926d0*kF**3*(0.07957747154594767d0*kF*                                                                     & 
+     e_x =    (0.03377372788077926d0*kF_HF_3*(0.07957747154594767d0*kF*                                                                     & 
              (-3.d0 + 2.d0*tmp_mu_2*(-3.d0 + tmp_mu_2 - (1.d0*(-2.d0 + tmp_mu_2))/dexp(z1/tmp_mu_2)) +                                    & 
                7.089815403622064d0*tmp_mu*derf(z1/tmp_mu)) +                                                                              & 
             (0.02652582384864922d0*kF*(1.d0 + 6.d0*tmp_mu_4*                                                                              & 
@@ -1897,7 +1914,8 @@
 
     elseif (dirac_approximant == "mu_interpolation") then
 
-     e_x = (0.001343813934716645d0*kF_4*(4.d0 + 9.d0*(tmp_c_2 + tmp_c_4) +                                            &                 
+    !e_x = (0.001343813934716645d0*kF_4*(4.d0 + 9.d0*(tmp_c_2 + tmp_c_4) +                                            &                 
+     e_x = (0.001343813934716645d0*kF_HF_3*kF*(4.d0 + 9.d0*(tmp_c_2 + tmp_c_4) +                                            &                 
              9.d0*tmp_c_4*dlog(dsqrt(1.d0 + tmp_c_m_2) + 1.d0/tmp_c)*                                                 &      
               (-2.d0*dsqrt(1.d0 + tmp_c_2) + tmp_c_2*dlog(dsqrt(1.d0 + tmp_c_m_2) + 1.d0/tmp_c)))**2*                 &      
           (3.544907701811032d0*(-2.d0 + tmp_c_2 + 2.d0*(1.d0 + tmp_c_2)**2*dlog(1.d0 + tmp_c_m_2) -                   &      
@@ -2205,7 +2223,8 @@
    !   z1*dsqrt(z1 + tmp_c_2)*(z105*tmp_c_4 + z60*tmp_c_2*(-z1 + z9*tmp_mu_2) + &       
    !   z8*(z2 - z27*tmp_mu_2 + z288*tmp_mu_4))*                                 &         
    !   (dlog(tmp_c) - z1*dlog(z1 + dsqrt(z1 + tmp_c_2))))))/tmp_mu_6 
-    e_x = (1.084919225877748d-11*kF_4*                                                                 &   
+   !e_x = (1.084919225877748d-11*kF_4*                                                                 &   
+    e_x = (1.084919225877748d-11*kF_HF_3*kF*                                                                 &   
           (46816.d0 - 454656.d0*tmp_mu_2 +                                                             &   
             21.d0*(tmp_c_2*(13248.d0 + 5.d0*tmp_c_2*                                                   &   
                    (-3564.d0 + 35.d0*tmp_c_2*(44.d0 + 51.d0*tmp_c_2 - 189.d0*tmp_c_4))) -              &   
