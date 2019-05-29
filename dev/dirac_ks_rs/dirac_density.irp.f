@@ -24,19 +24,20 @@ program dirac_density
    rho(istate) = dirac_one_body_dm_at_r(i,istate)
    kF(istate) = ckf*(rho(istate)**f13)
    tr_gamma_2(istate) = dirac_one_body_tr_dm_2_at_r(i,istate)
-   rho_lda(istate) = dsqrt(2.d0*tr_gamma_2(istate))
+   rho_lda(istate) = 2.d0*tr_gamma_2(istate)/rho(istate)
    kF_bis(istate) = ckf*(rho_lda(istate)**f13)
-   tmp_c(istate) = c/kF_bis(istate)
+   tmp_kF(istate) = kF_bis(istate) 
    if (tr_gamma_2(istate) .gt. 1d-5) then
-    do j = 1, 4
-     tmp_kF = 4.375106855981304d0*(rho_lda*dsqrt(-1.d0/(-4.d0 - 9.d0*tmp_c**2 - 9.d0*tmp_c**4 + 9.d0*tmp_c**4*dlog(dsqrt(1.d0 + tmp_c**(-2)) + 1.d0/tmp_c)* (2.d0*dsqrt(1.d0 + tmp_c**2) - tmp_c**2*dlog(dsqrt(1.d0 + tmp_c**(-2)) + 1.d0/tmp_c)))))**f13
-     tmp_c = c/tmp_kF
+    tmp_c(istate) = c/tmp_kF(istate)
+    do j = 1,6 
+     tmp_kF =  6.187335452560272d0*((-1.d0*rho_lda)/(-4.d0 - 9.d0*tmp_c**2 - 9.d0*tmp_c**4 +                        &
+           9.d0*tmp_c**4*dlog(dsqrt(1.d0 + tmp_c**(-2)) + 1.d0/tmp_c)*                                          &
+           (2.d0*dsqrt(1.d0 + tmp_c**2) - 1.d0*tmp_c**2*dlog(dsqrt(1.d0 + tmp_c**(-2)) + 1.d0/tmp_c))))**f13 
+     tmp_c= c/tmp_kF
     enddo
-   else
-    tmp_kF = kF_bis
    endif
    open (10, file='density_Z')
-   write(10,*) r(1),r(2),r(3), rho(istate), kF(istate),tr_gamma_2(istate),kF_bis(istate),tmp_kF(istate)
+   write(10,*) r(1),r(2),r(3), kF(istate),tr_gamma_2(istate),kF_bis(istate),tmp_kF(istate)
   enddo
  enddo
 

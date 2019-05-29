@@ -206,7 +206,8 @@
     !    (2.d0*dsqrt(1.d0 + tmp_c**2) - tmp_c**2*dlog(dsqrt(1.d0 + tmp_c**(-2)) +     &
     !    1.d0/tmp_c)))))**f13
     !! Autocoherence for the second way
-     kF =  7.795554179441508d0*((-1.d0*rho_lda)/(-4.d0 - 9.d0*tmp_c**2 - 9.d0*tmp_c**4 +                        &
+    !kF =  7.795554179441508d0*((-1.d0*rho_lda)/(-4.d0 - 9.d0*tmp_c**2 - 9.d0*tmp_c**4 +                        &
+     kF =  6.187335452560272d0*((-1.d0*rho_lda)/(-4.d0 - 9.d0*tmp_c**2 - 9.d0*tmp_c**4 +                        &
            9.d0*tmp_c**4*dlog(dsqrt(1.d0 + tmp_c**(-2)) + 1.d0/tmp_c)*                                          &
            (2.d0*dsqrt(1.d0 + tmp_c**2) - 1.d0*tmp_c**2*dlog(dsqrt(1.d0 + tmp_c**(-2)) + 1.d0/tmp_c))))**f13 
      tmp_c = c/kF

@@ -6,8 +6,8 @@
  double precision, intent(in)  ::  mu,rho,tr_gamma_2,grad_rho_x,grad_rho_y,grad_rho_z,grad_rho_2,grad_rho_on_top_2
  double precision :: rho_lda, rho_new, grad_rho_2_lda,grad_rho_x_new, grad_rho_y_new, grad_rho_z_new
  double precision :: e_x_lda, v_x_lda
- double precision :: f13,ckf,c,tmp_c,kappa, sq,fx
- double precision :: berf,coef,coef_derivative
+ double precision :: f13,ckf,kF_HF,kF_HF_3,c,tmp_c,kappa, sq,fx
+ double precision :: berf,coef_first, coef_second,coef_derivative_first,coef_derivative_second
  call dirac_ex_lda_sr(mu,rho,tr_gamma_2,e_x_lda,v_x_lda) 
  f13 = 0.3333333333333333d0
  ckf = 3.0936677262801355d0
@@ -18,7 +18,10 @@
   grad_rho_2_lda = grad_rho_2
  elseif (dirac_rho == "rho_on_top") then
  !!! To use the electronic density obtained from the on-top pair density 
-  rho_lda = dsqrt(2.d0*tr_gamma_2)
+  !! First way: n_{2,x} = n_eff^2*g(n_eff)
+ !rho_lda = dsqrt(2.d0*tr_gamma_2)
+  !! Second way : n_2{2,x} = n^{HF}*n_eff*g(n_eff)
+  rho_lda = 2.d0*tr_gamma_2/rho
   grad_rho_2_lda = grad_rho_on_top_2
   if (dirac_effective_rho == "yes") then
    !!! To use the effective electronic density obtained from the on-top pair density
@@ -28,12 +31,24 @@
     grad_rho_z_new = grad_rho_z    
     rho_new = rho_lda
     tmp_c = c/(ckf*(rho_new**f13))
-    do j = 1, 4
-     rho_new = rho_lda*coef(tmp_c) 
+   write(10,*) "******************************************************"
+   write(10,*) rho_new, grad_rho_x_new, grad_rho_y_new, grad_rho_z_new
+   !!! Autocoherence for the first way
+   !do j = 1, 4
+   ! rho_new = rho_lda*coef_first(tmp_c) 
+   ! tmp_c = c/(ckf*(rho_new**f13)) 
+   ! grad_rho_x_new = coef_first(tmp_c)*grad_rho_x + coef_derivative_first(rho_new,tmp_c)*grad_rho_x_new*rho_lda 
+   ! grad_rho_y_new = coef_first(tmp_c)*grad_rho_y + coef_derivative_first(rho_new,tmp_c)*grad_rho_y_new*rho_lda 
+   ! grad_rho_z_new = coef_first(tmp_c)*grad_rho_z + coef_derivative_first(rho_new,tmp_c)*grad_rho_z_new*rho_lda 
+   !enddo
+    !! Autocoherence for the second way
+    do j = 1, 6
+     rho_new = rho_lda*coef_second(tmp_c) 
      tmp_c = c/(ckf*(rho_new**f13)) 
-     grad_rho_x_new = coef(tmp_c)*grad_rho_x + coef_derivative(rho_new,tmp_c)*grad_rho_x_new*rho_lda 
-     grad_rho_y_new = coef(tmp_c)*grad_rho_y + coef_derivative(rho_new,tmp_c)*grad_rho_y_new*rho_lda 
-     grad_rho_z_new = coef(tmp_c)*grad_rho_z + coef_derivative(rho_new,tmp_c)*grad_rho_z_new*rho_lda 
+     grad_rho_x_new = coef_second(tmp_c)*grad_rho_x + coef_derivative_second(rho_new,tmp_c)*grad_rho_x_new*rho_lda 
+     grad_rho_y_new = coef_second(tmp_c)*grad_rho_y + coef_derivative_second(rho_new,tmp_c)*grad_rho_y_new*rho_lda 
+     grad_rho_z_new = coef_second(tmp_c)*grad_rho_z + coef_derivative_second(rho_new,tmp_c)*grad_rho_z_new*rho_lda 
+    write(10,*) j, rho_new, grad_rho_x_new, grad_rho_y_new, grad_rho_z_new
     enddo
     rho_lda = rho_new
     grad_rho_2_lda = grad_rho_x_new**2 + grad_rho_y_new**2 + grad_rho_z_new**2
@@ -49,55 +64,92 @@
   e_x = 0.d0
  endif 
  v_x =0.d0
- 
+
  end 
 
- function coef(b) 
+!function coef_first(b) 
+!! b = tmp_c
+!implicit none 
+!include 'constants.include.F'
+!double precision :: b 
+!double precision :: coef_first
+!    coef_first = 2.82842712474619*dsqrt(-1.d0/(-4.d0 - 9.d0*b**2 - 9.d0*b**4 +     &
+!       9.d0*b**4*dlog(dsqrt(1.d0 + b**(-2)) + 1.d0/b)*(2.d0*dsqrt(1.d0 +     &
+!       b**2) - 1.d0*b**2*dlog(dsqrt(1.d0 + b**(-2)) + 1.d0/b)))) 
+!  return
+! end
+
+!function coef_derivative_first(a,b)
+!! a = rho_new
+!! b = tmp_c
+!implicit none
+!include 'constants.include.F'
+!double precision :: a,b
+!double precision :: coef_derivative_first
+!   coef_derivative_first = (a**2*b**2*(1.d0/                                                                  &                            
+!            (a**2*(0.44444444444444425d0 + 0.9999999999999996d0*b**2 +                                  &
+!                0.9999999999999996d0*b**4 -                                                             &
+!                1.999999999999999d0*b**4*dsqrt(1.d0 + 1.0000000000000002d0*b**2)*                       &
+!                 dlog(dsqrt(1.d0 + 1.d0/b**2) + 1.d0/b) +                                               &
+!                1.d0*b**6*dlog(dsqrt(1.d0 + 1.d0/b**2) + 1.d0/b)**2)))**1.5d0*                          &
+!         (0.31426968052735427d0*dsqrt(1.d0 + 1.d0/b**2)*b**5 +                                          &
+!           0.31426968052735427d0*dsqrt(1.d0 + 1.0000000000000002d0*b**2) +                              &
+!           0.3142696805273542d0*dsqrt(1.d0 + 1.d0/b**2)*b*dsqrt(1.d0 + 1.0000000000000002d0*b**2) +     &
+!           b**4*(0.3142696805273543d0 + 0.6285393610547085d0*dsqrt(1.d0 + 1.0000000000000002d0*b**2)) + &
+!           b**2*(0.31426968052735427d0 + 0.9428090415820631d0*dsqrt(1.d0 + 1.0000000000000002d0*b**2)) +& 
+!           0.6285393610547085d0*dsqrt(1.d0 + 1.d0/b**2)*b**3*                                           &
+!            (0.4999999999999999d0 + 1.d0*dsqrt(1.d0 + 1.0000000000000002d0*b**2)) +                     &
+!           b**2*dlog(dsqrt(1.d0 + 1.d0/b**2) + 1.d0/b)*                                                 &
+!            (-1.2570787221094173d0 + b*(-1.257078722109417d0*dsqrt(1.d0 + 1.d0/b**2) +                  &
+!                 b*(-2.828427124746189d0 - 1.571348402636772d0*b**2 -                                   &
+!                    0.3142696805273543d0*dsqrt(1.d0 + 1.0000000000000002d0*b**2) -                      &
+!                    0.31426968052735427d0*dsqrt(1.d0 + 1.d0/b**2)*b*                                    &
+!                     (5.000000000000002d0 + 1.d0*dsqrt(1.d0 + 1.0000000000000002d0*b**2)))) +           &
+!              b**2*(0.9428090415820631d0 + 0.9428090415820629d0*dsqrt(1.d0 + 1.d0/b**2)*b +             &
+!                 0.9428090415820629d0*b**2)*dsqrt(1.d0 + 1.0000000000000002d0*b**2)*                    &
+!               dlog(dsqrt(1.d0 + 1.d0/b**2) + 1.d0/b))))/                                               &
+!       ((1.0000000000000002d0 + 1.d0*dsqrt(1.d0 + 1.d0/b**2)*b + 1.d0*b**2)*                            &
+!         dsqrt(1.d0 + 1.0000000000000002d0*b**2))                                                        
+!  return
+! end
+        
+ function coef_second(b) 
  ! b = tmp_c
  implicit none 
  include 'constants.include.F'
  double precision :: b 
- double precision :: coef
-     coef = 2.82842712474619*dsqrt(-1.d0/(-4.d0 - 9.d0*b**2 - 9.d0*b**4 +     &
-        9.d0*b**4*dlog(dsqrt(1.d0 + b**(-2)) + 1.d0/b)*(2.d0*dsqrt(1.d0 +     &
-        b**2) - 1.d0*b**2*dlog(dsqrt(1.d0 + b**(-2)) + 1.d0/b)))) 
+ double precision :: coef_second
+   coef_second = -8.d0/(-4.d0 - 9.d0*b**2 - 9.d0*b**4 + 9.d0*b**4*dlog(dsqrt(1.d0 + b**(-2)) +          & 
+                 1.d0/b)*(2.d0*dsqrt(1.d0 + b**2) - 1.d0*b**2*dlog(dsqrt(1.d0 + b**(-2)) + 1.d0/b)))
    return
   end
 
- function coef_derivative(a,b)
+ function coef_derivative_second(a,b)
  ! a = rho_new
  ! b = tmp_c
  implicit none
  include 'constants.include.F'
  double precision :: a,b
- double precision :: coef_derivative
-    coef_derivative = (a**2*b**2*(1.d0/                                                                  &                            
-             (a**2*(0.44444444444444425d0 + 0.9999999999999996d0*b**2 +                                  &
-                 0.9999999999999996d0*b**4 -                                                             &
-                 1.999999999999999d0*b**4*dsqrt(1.d0 + 1.0000000000000002d0*b**2)*                       &
-                  dlog(dsqrt(1.d0 + 1.d0/b**2) + 1.d0/b) +                                               &
-                 1.d0*b**6*dlog(dsqrt(1.d0 + 1.d0/b**2) + 1.d0/b)**2)))**1.5d0*                          &
-          (0.31426968052735427d0*dsqrt(1.d0 + 1.d0/b**2)*b**5 +                                          &
-            0.31426968052735427d0*dsqrt(1.d0 + 1.0000000000000002d0*b**2) +                              &
-            0.3142696805273542d0*dsqrt(1.d0 + 1.d0/b**2)*b*dsqrt(1.d0 + 1.0000000000000002d0*b**2) +     &
-            b**4*(0.3142696805273543d0 + 0.6285393610547085d0*dsqrt(1.d0 + 1.0000000000000002d0*b**2)) + &
-            b**2*(0.31426968052735427d0 + 0.9428090415820631d0*dsqrt(1.d0 + 1.0000000000000002d0*b**2)) +& 
-            0.6285393610547085d0*dsqrt(1.d0 + 1.d0/b**2)*b**3*                                           &
-             (0.4999999999999999d0 + 1.d0*dsqrt(1.d0 + 1.0000000000000002d0*b**2)) +                     &
-            b**2*dlog(dsqrt(1.d0 + 1.d0/b**2) + 1.d0/b)*                                                 &
-             (-1.2570787221094173d0 + b*(-1.257078722109417d0*dsqrt(1.d0 + 1.d0/b**2) +                  &
-                  b*(-2.828427124746189d0 - 1.571348402636772d0*b**2 -                                   &
-                     0.3142696805273543d0*dsqrt(1.d0 + 1.0000000000000002d0*b**2) -                      &
-                     0.31426968052735427d0*dsqrt(1.d0 + 1.d0/b**2)*b*                                    &
-                      (5.000000000000002d0 + 1.d0*dsqrt(1.d0 + 1.0000000000000002d0*b**2)))) +           &
-               b**2*(0.9428090415820631d0 + 0.9428090415820629d0*dsqrt(1.d0 + 1.d0/b**2)*b +             &
-                  0.9428090415820629d0*b**2)*dsqrt(1.d0 + 1.0000000000000002d0*b**2)*                    &
-                dlog(dsqrt(1.d0 + 1.d0/b**2) + 1.d0/b))))/                                               &
-        ((1.0000000000000002d0 + 1.d0*dsqrt(1.d0 + 1.d0/b**2)*b + 1.d0*b**2)*                            &
-          dsqrt(1.d0 + 1.0000000000000002d0*b**2))                                                        
-   return
+ double precision :: coef_derivative_second
+    coef_derivative_second = (76.56624000501844d0*b**2*((0.6269081516456064d0 +                                          &  
+               b*(0.6269081516456063d0*dsqrt(1.d0 + 1.d0/b**2) +                                                         &
+                  b*(1.8807244549368196d0 + 1.2538163032912129d0*b**2 +                                                  &
+                     0.6269081516456064d0*dsqrt(1.d0 + 1.d0*b**2) +                                                      &
+                     0.6269081516456064d0*dsqrt(1.d0 + 1.d0/b**2)*b*                                                     &
+                      (2.d0 + 1.d0*dsqrt(1.d0 + 1.d0*b**2)))))/                                                          &
+             (1.d0 + 1.d0*dsqrt(1.d0 + 1.d0/b**2)*b + 1.d0*b**2) +                                                       &
+            b**2*dlog(dsqrt(1.d0 + 1.d0/b**2) + 1.d0/b)*                                                                 &
+             (-2.5076326065824257d0*dsqrt(1.d0 + 1.d0*b**2) +                                                            &
+               1.d0/(-1.5951300001045505d0 + (-1.595130000104551d0 - 1.5951300001045505d0*dsqrt(1.d0 + 1.d0/b**2)*b)/    &
+                   b**2) + b**2*(1.d0/(-1.595130000104551d0 - 1.595130000104551d0*dsqrt(1.d0 + 1.d0/b**2)*b) -           &
+                  0.6269081516456065d0/dsqrt(1.d0 + 1.d0*b**2)) +                                                        &
+               1.8807244549368194d0*b**2*dlog(dsqrt(1.d0 + 1.d0/b**2) + 1.d0/b))))/                                      &
+        (a*(4.d0 + 9.d0*b**2 + 9.d0*b**4 -                                                                               &
+             17.999999999999996d0*b**4*dsqrt(1.d0 + 1.d0*b**2)*                                                          &
+              dlog(dsqrt(1.d0 + 1.d0/b**2) + 1.d0/b) +                                                                   &
+             9.d0*b**6*dlog(dsqrt(1.d0 + 1.d0/b**2) + 1.d0/b)**2)**2)                                                     
+   return                                                                                                                 
   end
-        
 !-------------------------------------------
       function berf(a)
 !-------------------------------------------

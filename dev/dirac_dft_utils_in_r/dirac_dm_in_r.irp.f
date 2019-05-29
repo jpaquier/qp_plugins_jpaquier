@@ -1437,12 +1437,20 @@ end
  double precision, intent(in)  :: r(3)
  double precision, intent(out) :: grad_dm_on_top(3,N_states),grad_dm_on_top_2(N_states),grad_dm_on_top_abs(N_states)
  double precision :: grad_tr_dm_2(3,N_states),tr_dm_2(N_states)
+ double precision :: grad_dm(3,N_states),grad_dm_2(N_states),grad_dm_abs(N_states), dm(N_states)
  integer :: i,j,k,istate
  call dirac_grad_tr_dm_2_dft_at_r(r,grad_tr_dm_2)
  call dirac_tr_dm_2_dft_at_r(r,tr_dm_2)
+ call dirac_grad_dm_dft_at_r(r,grad_dm,grad_dm_2,grad_dm_abs)
+ call dirac_dm_dft_at_r(r,dm) 
  do istate = 1, N_states
+ !! First way: n_{2,x} = n_eff^2*g(n_eff)
+ !do k = 1,3
+ ! grad_dm_on_top(k,istate) = grad_tr_dm_2(k,istate)/dsqrt(2.d0*tr_dm_2(istate))
+ !enddo
+ !! Second way : n_2{2,x} = n^{HF}*n_eff*g(n_eff)
   do k = 1,3
-   grad_dm_on_top(k,istate) = grad_tr_dm_2(k,istate)/dsqrt(2.d0*tr_dm_2(istate))
+   grad_dm_on_top(k,istate) = 2.d0*(grad_tr_dm_2(k,istate)- (tr_dm_2(istate)/dm(istate))*grad_dm(k,istate) )/dm(istate)
   enddo
   grad_dm_on_top_2(istate)   = grad_dm_on_top(1,istate) * grad_dm_on_top(1,istate) + grad_dm_on_top(2,istate) * grad_dm_on_top(2,istate) + grad_dm_on_top(3,istate) * grad_dm_on_top(3,istate)
   grad_dm_on_top_abs(istate) = dsqrt(grad_dm_on_top_2(istate))

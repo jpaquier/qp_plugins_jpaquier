@@ -5,83 +5,122 @@
  double precision, intent(out) ::  e_x,v_x
  double precision, intent(in)  ::  mu,rho,tr_gamma_2,grad_rho_x,grad_rho_y,grad_rho_z,grad_rho_2,grad_rho_on_top_2
  double precision :: rho_lda, rho_new, grad_rho_2_lda,grad_rho_x_new, grad_rho_y_new, grad_rho_z_new
- double precision :: e_x_0
- double precision :: z1,z2,z3,c10
- double precision :: f13,ckf,kF,kF_3,kF_4,c,tmp_c,tmp_c_2,tmp_c_4,tmp_c_m,tmp_c_m_2,tmp_c_m_4,sq,sq_2
- double precision :: mu_2,mu_3,tmp_mu,tmp_mu_2,tmp_mu_3
- f13 = 0.3333333333333333d0
+ double precision :: e_x_lda, v_x_lda,e_x_lda_nr,v_x_lda_nr
+ double precision :: z1, z2, z3, z21, z140
+ double precision :: c1,c5,c35
+ double precision :: tmp_mu, tmp_mu_2, tmp_mu_4, tmp_mu_6
+ double precision :: f13,f23,ckf,kF,kF_HF,kF_HF_3,c,tmp_c,tmp_c_2,tmp_c_4, tmp_c_m, tmp_c_m_2, tmp_c_m_4
+ double precision :: kappa, sq,kx
+ double precision :: berf,coef_first, coef_second,coef_derivative_first,coef_derivative_second
+ call dirac_ex_lda_sr(mu,rho,tr_gamma_2,e_x_lda,v_x_lda) 
  z1 = 1.d0
  z2 = 2.d0
  z3 = 3.d0
+ z21 = 21.d0
+ z140 = 140.d0
+ f13 = 0.3333333333333333d0
+ f23 = 0.6666666666666667d0
  ckf = 3.0936677262801355d0
- c10 = 0.001343813934716645d0
  c = speed_of_light
-!if (dirac_rho == "rho") then
-!!!! To use the usual electronic density
+ c1  = 0.008062883608299872d0
+ c5  = 2.363271801207355d0
+ c35 = 0.000006399113974841168d0
+ kF_HF= ckf*(rho**f13)
+ kF_HF_3 = kF_HF*kF_hF*kF_HF
+ if (dirac_rho == "rho") then
+ !!! To use the usual electronic density
   rho_lda = rho
   grad_rho_2_lda = grad_rho_2
-!elseif (dirac_rho == "rho_on_top") then
-!!!! To use the electronic density obtained from the on-top pair density 
-! rho_lda = dsqrt(2.d0*tr_gamma_2)
-! grad_rho_2_lda = grad_rho_on_top_2
-! if (dirac_effective_rho == "yes") then
-!  !!! To use the effective electronic density obtained from the on-top pair density
-!  if (tr_gamma_2 .gt. 1d-5) then
-!   grad_rho_x_new = grad_rho_x
-!   grad_rho_y_new = grad_rho_y
-!   grad_rho_z_new = grad_rho_z    
-!   rho_new = rho_lda
-!   tmp_c = c/(ckf*(rho_new**f13))
-!   do j = 1, 4
-!    rho_new = rho_lda*coef(tmp_c) 
-!    tmp_c = c/(ckf*(rho_new**f13)) 
-!    grad_rho_x_new = coef(tmp_c)*grad_rho_x + coef_derivative(rho_new,tmp_c)*grad_rho_x_new*rho_lda 
-!    grad_rho_y_new = coef(tmp_c)*grad_rho_y + coef_derivative(rho_new,tmp_c)*grad_rho_y_new*rho_lda 
-!    grad_rho_z_new = coef(tmp_c)*grad_rho_z + coef_derivative(rho_new,tmp_c)*grad_rho_z_new*rho_lda 
-!   enddo
-!   rho_lda = rho_new
-!   grad_rho_2_lda = grad_rho_x_new**2 + grad_rho_y_new**2 + grad_rho_z_new**2
-!  endif
-! endif
-!endif
- if (rho_lda .gt. 1d-10 ) then
-  kF = ckf*(rho_lda**f13)
-  kF_3 = kF*kF*kF
-  kF_4 = kF_3*kF
-  tmp_c = c/kF
-  tmp_c_2 = tmp_c*tmp_c
-  tmp_c_4 = tmp_c_2*tmp_c_2
-  tmp_c_m = 1.d0/tmp_c
-  tmp_c_m_2 = 1.d0/tmp_c_2
-  tmp_c_m_4 = 1.d0/tmp_c_4
-  mu_2 = mu*mu
-  mu_3 = mu_2*mu
-  tmp_mu = mu/kF
-  tmp_mu_2 = tmp_mu*tmp_mu
-  tmp_mu_3 = tmp_mu_2*tmp_mu
-  sq=grad_rho_2_lda*2.6121172985233599567768d-2*rho_lda**(-8d0/3d0)
-  sq_2 = sq*sq
-  !!Non-relativistic equations
-  if (tmp_c .gt. 2d+1) then
-   e_x_0 = 0.002687627869433291d0*kF_4*(-3.d0) + 0.002687627869433291d0*kF_4*(-3.d0)*((0.3402*sq + 5.9955*sq_2)/(1 + 27.5026*sq + 5.7728*sq_2))
-   e_x = (e_x_0 + kF_3*0.019054785467912103d0*mu)/(1 + (e_x_0 + kF_3*0.019054785467912103d0*mu)*(-mu_2/(1.57079603267948966d0*tr_gamma_2)))
-  !e_x = (e_x_0 )/(1 + (e_x_0 )*(-mu_2/(1.57079603267948966d0*tr_gamma_2)))
+ elseif (dirac_rho == "rho_on_top") then
+ !!! To use the electronic density obtained from the on-top pair density 
+  !! First way: n_{2,x} = n_eff^2*g(n_eff)
+ !rho_lda = dsqrt(2.d0*tr_gamma_2)
+  !! Second way : n_2{2,x} = n^{HF}*n_eff*g(n_eff)
+  rho_lda = 2.d0*tr_gamma_2/rho
+  grad_rho_2_lda = grad_rho_on_top_2
+ !if (dirac_effective_rho == "yes") then
+ ! !!! To use the effective electronic density obtained from the on-top pair density
+ ! if (tr_gamma_2 .gt. 1d-5) then
+ !  grad_rho_x_new = grad_rho_x
+ !  grad_rho_y_new = grad_rho_y
+ !  grad_rho_z_new = grad_rho_z    
+ !  rho_new = rho_lda
+ !  tmp_c = c/(ckf*(rho_new**f13))
+ ! write(10,*) "******************************************************"
+ ! write(10,*) rho_new, grad_rho_x_new, grad_rho_y_new, grad_rho_z_new
+ ! !!! Autocoherence for the first way
+ ! !do j = 1, 4
+ ! ! rho_new = rho_lda*coef_first(tmp_c) 
+ ! ! tmp_c = c/(ckf*(rho_new**f13)) 
+ ! ! grad_rho_x_new = coef_first(tmp_c)*grad_rho_x + coef_derivative_first(rho_new,tmp_c)*grad_rho_x_new*rho_lda 
+ ! ! grad_rho_y_new = coef_first(tmp_c)*grad_rho_y + coef_derivative_first(rho_new,tmp_c)*grad_rho_y_new*rho_lda 
+ ! ! grad_rho_z_new = coef_first(tmp_c)*grad_rho_z + coef_derivative_first(rho_new,tmp_c)*grad_rho_z_new*rho_lda 
+ ! !enddo
+ !  !! Autocoherence for the second way
+ !  do j = 1, 6
+ !   rho_new = rho_lda*coef_second(tmp_c) 
+ !   tmp_c = c/(ckf*(rho_new**f13)) 
+ !   grad_rho_x_new = coef_second(tmp_c)*grad_rho_x + coef_derivative_second(rho_new,tmp_c)*grad_rho_x_new*rho_lda 
+ !   grad_rho_y_new = coef_second(tmp_c)*grad_rho_y + coef_derivative_second(rho_new,tmp_c)*grad_rho_y_new*rho_lda 
+ !   grad_rho_z_new = coef_second(tmp_c)*grad_rho_z + coef_derivative_second(rho_new,tmp_c)*grad_rho_z_new*rho_lda 
+ !  write(10,*) j, rho_new, grad_rho_x_new, grad_rho_y_new, grad_rho_z_new
+ !  enddo
+ !  rho_lda = rho_new
+ !  grad_rho_2_lda = grad_rho_x_new**2 + grad_rho_y_new**2 + grad_rho_z_new**2
+ ! endif
+ !endif
+ endif
+ kF=(ckf*(rho_lda**f13))
+ tmp_c = c/kF
+ tmp_c_2 = tmp_c*tmp_c
+ tmp_c_4 = tmp_c_2*tmp_c_2
+ tmp_c_m = 1.d0/tmp_c
+ tmp_c_m_2 = 1.d0/tmp_c_2
+ tmp_c_m_4 = 1.d0/tmp_c_4
+ tmp_mu = mu/kF
+ tmp_mu_2 = tmp_mu*tmp_mu
+ tmp_mu_4 = tmp_mu_2*tmp_mu_2
+ tmp_mu_6 = tmp_mu_4*tmp_mu_2
+ ! Non-relativistic equations
+ ! Quadratic range-separation for very low values of tmp_mu
+ if (tmp_mu .lt. 1.d-2) then
+  e_x_lda_nr = 0.002687627869433291d0*kF_HF_3*kF*(-3.d0 + 7.089815403622064d0*tmp_mu - 6.d0*tmp_mu_2)
+ 
+ ! Medium values of tmp_mu
+ elseif (tmp_mu .le. 1.d+2) then
 
-  !!Relativistic equations
-  else
-   e_x_0 = kF_4*(c10*(-z2 + tmp_c_2 + z2*(z1 + tmp_c_2)**2*dlog(z1 + z1/tmp_c_2) -                                       &
-         z2*dsqrt(z1 + tmp_c_2)*(z2 + z3*tmp_c_2)*dlog(dsqrt(z1 + tmp_c_m_2)                                             &
-         + z1/tmp_c) + z3*tmp_c_4*dlog(dsqrt(z1 + tmp_c_m_2) + z1/tmp_c)**2))                                            &    
-         + 0.002687627869433291d0*kF_4*(-3.d0) * ((0.3402*sq + 5.9955*sq_2)/(1 + 27.5026*sq + 5.7728*sq_2)) *            &        
-         ((1 + 2.21255*tmp_c_m_2 + 0.66915*tmp_c_m_4)/(1 + 1.32998*tmp_c_m_2 + 0.794803*tmp_c_m_4)) 
-   e_x = (e_x_0 + kF_3*0.019054785467912103d0*mu)/(1 + (e_x_0 + kF_3*0.019054785467912103d0*mu)*(-mu_2/(1.57079603267948966d0*tr_gamma_2)))  
-  !e_x = (e_x_0 )/(1 + (e_x_0 )*(-mu_2/(1.57079603267948966d0*tr_gamma_2)))  
-  endif
-! write(16,*) e_x_0, kF_3*0.019054785467912103d0*mu, (e_x_0 + kF_3*0.019054785467912103d0*mu), -mu_2/(1.57079603267948966d0*tr_gamma_2),-1.57079603267948966d0*tr_gamma_2/mu_2
+  e_x_lda_nr =  -c1*kF_HF_3*kF*(z1 + f23*tmp_mu_2*(z3 - z1*tmp_mu_2 + (-z2 + tmp_mu_2)/dexp(z1/tmp_mu_2)) - c5*tmp_mu*derf(z1/tmp_mu)) 
+
+ ! Inverse quadratic/quartic/hexuple for large values of tmp_mu
+ elseif (tmp_mu .lt. 1.d+9) then
+ 
+  e_x_lda_nr = (-c35*kF_HF_3*kF*(z3 - z21*tmp_mu_2 + z140*tmp_mu_4))/tmp_mu_6
+
+ ! Limit for large tmp_mu 
+ else
+  e_x_lda_nr = 0.d0
+ endif
+
+ kappa=0.804d0
+ if (rho_lda .gt. 1d-10 ) then
+  sq=grad_rho_2_lda*2.6121172985233599567768d-2*rho_lda**(-8d0/3d0)
+  kx=kappa - kappa/(1.d0+berf(mu/(2*ckf*(rho_lda**f13)))*sq/kappa)
+ !!! 
+ !e_x = e_x_lda +  e_x_lda_nr*kx
+ !!! x_engel
+ !e_x = e_x_lda +  e_x_lda_nr*kx*((1.d0 + 2.21255d0*tmp_c_m_2 + 0.66915d0*tmp_c_m_4)/(1.d0 + 1.32998d0*tmp_c_m_2 + 0.794803d0*tmp_c_m_4))
+ !!! x_test1
+ !e_x = e_x_lda +  e_x_lda_nr*kx*((1.d0 + 1.32998d0*tmp_c_m_2 + 0.66915d0*tmp_c_m_4)/(1.d0 + 1.32998d0*tmp_c_m_2 + 0.794803d0*tmp_c_m_4))
+ !!! x_test2
+ !e_x = e_x_lda +  e_x_lda_nr*kx*((1.d0 + 1.32998d0*tmp_c_m_2 + 0.66915d0*tmp_c_m_4)/(1.d0 + 1.32998d0*tmp_c_m_2 + 1.d0*tmp_c_m_4))
+ !!! x_test3
+ !e_x = e_x_lda +  e_x_lda_nr*kx*((1.d0 + 1.d0*tmp_c_m_2 + 0.66915d0*tmp_c_m_4)/(1.d0 + 1.32998d0*tmp_c_m_2 + 1.d0*tmp_c_m_4))
+  !! x_test4
+  e_x = e_x_lda +  e_x_lda_nr*kx*((1.d0 + 1.32998d0*tmp_c_m_2 + 0.66915d0*tmp_c_m_4)/(1.d0 + 1.32998d0*tmp_c_m_2 + 1.1d0*tmp_c_m_4))
  else 
   e_x = 0.d0
  endif 
  v_x =0.d0
- 
+
  end 
 
