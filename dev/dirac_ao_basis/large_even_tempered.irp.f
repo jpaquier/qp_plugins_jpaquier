@@ -13,6 +13,19 @@
  BEGIN_DOC
  !even_large_expo :: exponents seed for each shell
  END_DOC
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! 2-electrons even-tempered basis sets
+!!! Ytterbium
+!! S type function
+! even_large_expo_seed(0,70) = 1.39601904d+07
+! even_large_expo_coef(0,70) = 0.30d0
+!! P type function
+! even_large_expo_seed(1,70) = 3.39128349d+06
+! even_large_expo_coef(1,70) = 0.25d0
+!! D type function
+! even_large_expo_seed(2,70) = 4.75587491d+03
+! even_large_expo_coef(2,70) = 0.25d0
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !!! 4-electrons even-tempered basis sets
 !!! Berylium
 !! S type function
@@ -64,6 +77,16 @@
 !! D type function
 ! even_large_expo_seed(2,54) = 1.95959651d+03
 ! even_large_expo_coef(2,54) = 0.25d0
+!!! Ytterbium
+!! S type function
+! even_large_expo_seed(0,70) = 1.39601904d+07
+! even_large_expo_coef(0,70) = 0.236d0
+!! P type function
+! even_large_expo_seed(1,70) = 3.39128349d+06
+! even_large_expo_coef(1,70) = 0.25d0
+!! D type function
+! even_large_expo_seed(2,70) = 4.75587491d+03
+! even_large_expo_coef(2,70) = 0.25d0
 !!! Radon
 !! S type function
 ! even_large_expo_seed(0,86) = 14679405.900000d0
@@ -84,6 +107,7 @@
 !! D type function
 ! even_large_expo_seed(2,118) = 6.92742965d+03
 ! even_large_expo_coef(2,118) = 0.25d0
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !!! 10-electrons even-tempered basis sets
 !!! Neon
 !! S type function
@@ -125,6 +149,17 @@
 !! D type function
 ! even_large_expo_seed(2,54) = 1.95959651d+03
 ! even_large_expo_coef(2,54) = 0.25d0
+ !! Ytterbium
+ ! S type function
+ !even_large_expo_seed(0,70) = 5.87148847d+07
+  even_large_expo_seed(0,70) = 1.39601904d+07
+  even_large_expo_coef(0,70) = 0.235d0
+ ! P type function
+  even_large_expo_seed(1,70) = 2.61264417d+04
+  even_large_expo_coef(1,70) = 0.32d0
+ ! D type function
+  even_large_expo_seed(2,70) = 4.75587491d+03
+  even_large_expo_coef(2,70) = 0.25d0
 !!! Radon
 !! S type function
 ! even_large_expo_seed(0,86) = 1.46794059d+07
@@ -145,6 +180,7 @@
 !! D type function
 ! even_large_expo_seed(2,118) = 6.92742965d+03
 ! even_large_expo_coef(2,118) = 0.25d0
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !!! 18-electrons even-tempered basis sets
 !!! Argon
 !! S type function
@@ -159,12 +195,15 @@
 !!! Krypton
 !! S type function
 ! even_large_expo_seed(0,36) = 4.14098736d+06
+!!even_large_expo_seed(0,36) = 4.88473543d+05
 ! even_large_expo_coef(0,36) = 0.25d0
 !! P type function
 ! even_large_expo_seed(1,36) = 9.01590791d+03
-! even_large_expo_coef(1,36) = 0.25d0
+!!even_large_expo_seed(1,36) = 1.73131083d+03
+! even_large_expo_coef(1,36) = 0.30d0
 !! D type function
-! even_large_expo_seed(2,36) = 6.64569801d+01
+! even_large_expo_seed(2,36) = 2.25939509d+02
+!!even_large_expo_seed(2,36) = 6.64569801d+01
 ! even_large_expo_coef(2,36) = 0.25d0
 !!! Xenon
 !! S type function
@@ -187,20 +226,20 @@
 !!even_large_expo_seed(2,86) = 1.41613025d+04
 ! even_large_expo_seed(2,86) = 1.25385658d+03
 ! even_large_expo_coef(2,86) = 0.25d0
- !! Oganesson
- ! S type function
-  even_large_expo_seed(0,118) = 5.24543434d+07
-  even_large_expo_coef(0,118) = 0.25d0
- ! P type function
-  even_large_expo_seed(1,118) = 4.39439154d+05
-  even_large_expo_coef(1,118) = 0.26d0
- ! D type function
-  even_large_expo_seed(2,118) = 6.92742965d+03
- !even_large_expo_seed(2,118) = 2.64817876d+03
-  even_large_expo_coef(2,118) = 0.24d0
+!!! Oganesson
+!! S type function
+! even_large_expo_seed(0,118) = 5.24543434d+07
+! even_large_expo_coef(0,118) = 0.25d0
+!! P type function
+! even_large_expo_seed(1,118) = 4.39439154d+05
+! even_large_expo_coef(1,118) = 0.26d0
+!! D type function
+! even_large_expo_seed(2,118) = 6.92742965d+03
+!!even_large_expo_seed(2,118) = 2.64817876d+03
+! even_large_expo_coef(2,118) = 0.24d0
 
  !Atomic number used in the on-the-fly even basis
-  even_large_expo_number = 118
+  even_large_expo_number = 70
  END_PROVIDER
 
 
@@ -240,11 +279,11 @@
  do i = 1, nucl_num
  !do some test on the type of the nucleus i
    ! S type function
-   even_large_expo_shell_nucl_num(0,i)+=12
+   even_large_expo_shell_nucl_num(0,i)+=10
    ! P type function
-   even_large_expo_shell_nucl_num(1,i)+=8
+   even_large_expo_shell_nucl_num(1,i)+=6
    ! D type function
-   even_large_expo_shell_nucl_num(2,i)+=3
+   even_large_expo_shell_nucl_num(2,i)+=1
    ! F type function
    even_large_expo_shell_nucl_num(3,i)+=0
    ! G type function
@@ -284,27 +323,27 @@
     do l =1, (l_type+1)*(l_type+2)/2
      k_count += 1
      even_large_ao_expo(k_count) = even_large_expo_seed(l_type,even_large_expo_number)*(even_large_expo_coef(l_type,even_large_expo_number)**(k-1))  
-    !if (k_count == 1 .or. even_large_ao_expo(k_count) /= even_large_ao_expo(k_count-1)) then 
-    ! open (10, file='dirac_even_tempered_basis')
-    ! if (l_type == 0) then
-    !  write(10,'(A4, 3X, I0)'),"S",1
-    ! elseif (l_type == 1) then
-    !  write(10,'(A4, 3X, I0)'),"P",1 
-    ! elseif (l_type == 2) then
-    !  write(10,'(A4, 3X, I0)'),"D",1
-    ! elseif (l_type == 3) then
-    !  write(10,'(A4, 3X, I0)'),"F",1
-    ! elseif (l_type == 4) then
-    !  write(10,'(A4, 3X, I0)'),"G",1
-    ! elseif (l_type == 5) then
-    !  write(10,'(A4, 3X, I0)'),"H",1 
-    ! elseif (l_type == 6) then
-    !  write(10,'(A4, 3X, I0)'),"I",1
-    ! elseif (l_type == 7) then
-    !  write(10,'(A4, 3X, I0)'),"J",1
-    ! endif
-    !  write(10,'(5X, I0, 1X, F22.8,5X,F10.8)'),1, even_large_ao_expo(k_count),1.0000000
-    !endif
+     if (k_count == 1 .or. even_large_ao_expo(k_count) /= even_large_ao_expo(k_count-1)) then 
+      open (10, file='dirac_even_tempered_basis')
+      if (l_type == 0) then
+       write(10,'(A4, 3X, I0)'),"S",1
+      elseif (l_type == 1) then
+       write(10,'(A4, 3X, I0)'),"P",1 
+      elseif (l_type == 2) then
+       write(10,'(A4, 3X, I0)'),"D",1
+      elseif (l_type == 3) then
+       write(10,'(A4, 3X, I0)'),"F",1
+      elseif (l_type == 4) then
+       write(10,'(A4, 3X, I0)'),"G",1
+      elseif (l_type == 5) then
+       write(10,'(A4, 3X, I0)'),"H",1 
+      elseif (l_type == 6) then
+       write(10,'(A4, 3X, I0)'),"I",1
+      elseif (l_type == 7) then
+       write(10,'(A4, 3X, I0)'),"J",1
+      endif
+       write(10,'(5X, I0, 1X, F22.8,5X,F10.8)'),1, even_large_ao_expo(k_count),1.0000000
+     endif
     enddo
    enddo
   enddo

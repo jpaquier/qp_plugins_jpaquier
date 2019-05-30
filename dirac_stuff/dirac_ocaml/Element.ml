@@ -12,8 +12,10 @@ type t =
 |Rb|Sr|Y |Zr|Nb|Mo|Tc|Ru|Rh|Pd|Ag|Cd|In|Sn|Sb|Te|I |Xe
                            |Pt                     |Rn
                                                    |Og
-
-[@@deriving sexp]
+                                                   |Yb
+                                                   |U     
+                                                  
+                                                   [@@deriving sexp]
 
 let of_string x =
   match (String.capitalize_ascii (String.lowercase_ascii x)) with
@@ -72,8 +74,10 @@ let of_string x =
 |  "Te"  |  "Tellurium"   ->  Te
 |  "I"   |  "Iodine"      ->  I
 |  "Xe"  |  "Xenon"       ->  Xe
+|  "Yb"  |  "Ytterbium"   ->  Yb
 |  "Pt"  |  "Platinum"    ->  Pt
 |  "Rn"  |  "Radon"       ->  Rn
+|  "U"   |  "Uranium"     ->  U
 |  "Og"  |  "Oganesson"   ->  Og
 | x -> raise (ElementError ("Element "^x^" unknown"))
 
@@ -134,8 +138,10 @@ let to_string = function
 | Te  -> "Te"
 | I   -> "I"
 | Xe  -> "Xe"
+| Yb  -> "Yb"
 | Pt  -> "Pt"
 | Rn  -> "Rn"
+| U   -> "U"
 | Og  -> "Og"
 
 let to_long_string = function
@@ -194,8 +200,10 @@ let to_long_string = function
 | Te  ->  "Tellurium"
 | I   ->  "Iodine"
 | Xe  ->  "Xenon"
+| Yb  ->  "Ytterbium"
 | Pt  ->  "Platinum"
 | Rn  ->  "Radon"
+| U   ->  "Uranium"
 | Og  ->  "Oganesson"
 
 let to_charge c =
@@ -255,8 +263,10 @@ let to_charge c =
   | Te  -> 52
   | I   -> 53
   | Xe  -> 54
+  | Yb  -> 70
   | Pt  -> 78
   | Rn  -> 86
+  | U   -> 92
   | Og  -> 118
   in Charge.of_int result
 
@@ -317,8 +327,10 @@ let of_charge c = match (Charge.to_int c) with
 |  52  -> Te
 |  53  -> I
 |  54  -> Xe
+|  70  -> Yb
 |  78  -> Pt
 |  86  -> Rn
+|  92  -> U
 |  118 -> Og
 | x -> raise (ElementError ("Element of charge "^(string_of_int x)^" unknown"))
 
@@ -380,8 +392,10 @@ let covalent_radius x =
   | Te  -> 1.38
   | I   -> 1.39
   | Xe  -> 1.40
+  | Yb  -> 0.00
   | Pt  -> 1.30
   | Rn  -> 0.00
+  | U   -> 0.00
   | Og  -> 0.00
   in
   Units.angstrom_to_bohr *. (result x)
@@ -444,8 +458,10 @@ let vdw_radius x =
   | Te  -> 2.06
   | I   -> 1.98
   | Xe  -> 2.16
+  | Yb  -> 0.
   | Pt  -> 1.75
   | Rn  -> 0.
+  | U   -> 0.
   | Og  -> 0.
   in
   Units.angstrom_to_bohr *. (result x)
@@ -508,8 +524,10 @@ let mass x =
   | Te  -> 127.60
   | I   -> 126.90447
   | Xe  -> 131.293
+  | Yb  -> 173.04
   | Pt  -> 195.084
   | Rn  -> 222.
+  | U   -> 238.03
   | Og  -> 294.
   in
   result x

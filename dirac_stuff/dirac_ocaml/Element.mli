@@ -9,6 +9,8 @@ type t =
 |Rb|Sr|Y |Zr|Nb|Mo|Tc|Ru|Rh|Pd|Ag|Cd|In|Sn|Sb|Te|I |Xe
                            |Pt                     |Rn
                                                    |Og
+                                                   |Yb
+                                                   |U
 [@@deriving sexp]
 
 (** String conversion functions *)

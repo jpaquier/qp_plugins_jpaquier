@@ -40,16 +40,16 @@ program dirac_dft_utils_one_e
    write(27,*) r(3),dm(1), 3.0936677262801355d0*(dm(1)**0.3333333333333333d0)
   !open (28, file='density_of_r_on_top_Z.dat')
   !write(28,*) r(1),dsqrt(2*tr_dm_2(1)),3.0936677262801355d0*( dsqrt(2*tr_dm_2(1))**0.3333333333333333d0)
-   open (29, file='density_grad_Z.dat')
-   write(29,*) r(3),grad_dm_2
-   open (34, file='density_grad_on_top_Z.dat')
-   write(34,*) r(3), grad_dm_on_top_2
-   open (35, file='density_grad_ecart_Z.dat')
-   write(35,*) r(3), 100*dsqrt(((grad_dm_on_top_2-grad_dm_2)/grad_dm_2)**2)
-  !open (30, file='mu_of_r_Z.dat')
-  !write(30,*) r(1), mu_of_r
+  !open (29, file='density_grad_Z.dat')
+  !write(29,*) r(3),grad_dm_2
+  !open (34, file='density_grad_on_top_Z.dat')
+  !write(34,*) r(3), grad_dm_on_top_2
+  !open (35, file='density_grad_ecart_Z.dat')
+  !write(35,*) r(3), 100*dsqrt(((grad_dm_on_top_2-grad_dm_2)/grad_dm_2)**2)
+   open (30, file='mu_of_r_Z.dat')
+   write(30,*) r(3), mu_of_r
   !r(3)+=0.000001d0
-   r(3)+=0.00005d0
+   r(3)+=0.0001d0
   !r(1)+=0.001d0
   enddo
    end
