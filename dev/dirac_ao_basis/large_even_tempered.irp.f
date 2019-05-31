@@ -25,6 +25,16 @@
 !! D type function
 ! even_large_expo_seed(2,70) = 4.75587491d+03
 ! even_large_expo_coef(2,70) = 0.25d0
+!!! Uranium
+!! S type function
+! even_large_expo_seed(0,92) = 5.58567332d+07
+! even_large_expo_coef(0,92) = 0.295d0
+!! P type function
+! even_large_expo_seed(1,92) = 2.64721605d+07
+! even_large_expo_coef(1,92) = 0.25d0
+!! D type function
+! even_large_expo_seed(2,92) = 3.34172062d+04
+! even_large_expo_coef(2,92) = 0.25d0
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !!! 4-electrons even-tempered basis sets
 !!! Berylium
@@ -97,6 +107,18 @@
 !! D type function
 ! even_large_expo_seed(2,86) = 1253.856580d0
 ! even_large_expo_coef(2,86) = 0.25d0
+!!! Uranium
+!! S type function
+!!even_large_expo_seed(0,92) = 5.58567332d+07
+! even_large_expo_seed(0,92) = 1.46346866d+07
+!!even_large_expo_seed(0,92) = 4.84272821d+06
+! even_large_expo_coef(0,92) = 0.26d0
+!! P type function
+! even_large_expo_seed(1,92) = 2.64721605d+07
+! even_large_expo_coef(1,92) = 0.25d0
+!! D type function
+! even_large_expo_seed(2,92) = 3.34172062d+04
+! even_large_expo_coef(2,92) = 0.25d0
 !!! Oganesson
 !! S type function
 ! even_large_expo_seed(0,118) = 5.24543434d+07
@@ -149,17 +171,16 @@
 !! D type function
 ! even_large_expo_seed(2,54) = 1.95959651d+03
 ! even_large_expo_coef(2,54) = 0.25d0
- !! Ytterbium
- ! S type function
- !even_large_expo_seed(0,70) = 5.87148847d+07
-  even_large_expo_seed(0,70) = 1.39601904d+07
-  even_large_expo_coef(0,70) = 0.235d0
- ! P type function
-  even_large_expo_seed(1,70) = 2.61264417d+04
-  even_large_expo_coef(1,70) = 0.32d0
- ! D type function
-  even_large_expo_seed(2,70) = 4.75587491d+03
-  even_large_expo_coef(2,70) = 0.25d0
+!!! Ytterbium
+!! S type function
+! even_large_expo_seed(0,70) = 1.39601904d+07
+! even_large_expo_coef(0,70) = 0.235d0
+!! P type function
+! even_large_expo_seed(1,70) = 2.61264417d+04
+! even_large_expo_coef(1,70) = 0.32d0
+!! D type function
+! even_large_expo_seed(2,70) = 4.75587491d+03
+! even_large_expo_coef(2,70) = 0.25d0
 !!! Radon
 !! S type function
 ! even_large_expo_seed(0,86) = 1.46794059d+07
@@ -170,6 +191,16 @@
 !! D type function
 ! even_large_expo_seed(2,86) = 1.25385658d+03
 ! even_large_expo_coef(2,86) = 0.25d0
+!!! Uranium
+!! S type function
+! even_large_expo_seed(0,92) = 1.46346866d+07
+! even_large_expo_coef(0,92) = 0.26d0
+! P type function
+! even_large_expo_seed(1,92) = 1.22880210d+05
+! even_large_expo_coef(1,92) = 0.28d0
+!! D type function
+! even_large_expo_seed(2,92) = 3.34172062d+04
+! even_large_expo_coef(2,92) = 0.25d0
 !!! Oganesson
 !! S type function
 ! even_large_expo_seed(0,118) = 5.24543434d+07
@@ -215,6 +246,16 @@
 !! D type function
 ! even_large_expo_seed(2,54) = 1.95959651d+03
 ! even_large_expo_coef(2,54) = 0.25d0
+!!! Ytterbium
+!! S type function
+! even_large_expo_seed(0,70) = 1.39601904d+07
+! even_large_expo_coef(0,70) = 0.26d0
+!! P type function
+! even_large_expo_seed(1,70) = 2.61264417d+04
+! even_large_expo_coef(1,70) = 0.33d0
+!! D type function
+! even_large_expo_seed(2,70) = 4.75587491d+03
+! even_large_expo_coef(2,70) = 0.25d0
 !!! Radon
 !! S type function
 ! even_large_expo_seed(0,86) = 1.46794059d+07
@@ -226,6 +267,20 @@
 !!even_large_expo_seed(2,86) = 1.41613025d+04
 ! even_large_expo_seed(2,86) = 1.25385658d+03
 ! even_large_expo_coef(2,86) = 0.25d0
+! even_large_expo_coef(2,86) = 0.25d0
+ !! Uranium
+ ! S type function
+ !even_large_expo_seed(0,92) = 5.58567332d+07
+  even_large_expo_seed(0,92) = 1.46346866d+07
+ !even_large_expo_seed(0,92) = 4.84272821d+06
+  even_large_expo_coef(0,92) = 0.25d0
+! P type function
+ !even_large_expo_seed(1,92) = 3.97635680d+05
+  even_large_expo_seed(1,92) = 1.22880210d+05
+  even_large_expo_coef(1,92) = 0.32d0
+ ! D type function
+  even_large_expo_seed(2,92) = 3.34172062d+04
+  even_large_expo_coef(2,92) = 0.25d0
 !!! Oganesson
 !! S type function
 ! even_large_expo_seed(0,118) = 5.24543434d+07
@@ -235,11 +290,10 @@
 ! even_large_expo_coef(1,118) = 0.26d0
 !! D type function
 ! even_large_expo_seed(2,118) = 6.92742965d+03
-!!even_large_expo_seed(2,118) = 2.64817876d+03
 ! even_large_expo_coef(2,118) = 0.24d0
 
  !Atomic number used in the on-the-fly even basis
-  even_large_expo_number = 70
+  even_large_expo_number = 92
  END_PROVIDER
 
 
@@ -279,11 +333,11 @@
  do i = 1, nucl_num
  !do some test on the type of the nucleus i
    ! S type function
-   even_large_expo_shell_nucl_num(0,i)+=10
+   even_large_expo_shell_nucl_num(0,i)+=12
    ! P type function
-   even_large_expo_shell_nucl_num(1,i)+=6
+   even_large_expo_shell_nucl_num(1,i)+=8
    ! D type function
-   even_large_expo_shell_nucl_num(2,i)+=1
+   even_large_expo_shell_nucl_num(2,i)+=3
    ! F type function
    even_large_expo_shell_nucl_num(3,i)+=0
    ! G type function

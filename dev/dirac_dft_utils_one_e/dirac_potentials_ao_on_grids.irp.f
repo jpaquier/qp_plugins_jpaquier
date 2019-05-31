@@ -28,7 +28,7 @@
     call dirac_ex_LDA_sr(mu_of_r,rho(istate),tr_gamma_2(istate),e_x,v_x)
    endif
    dirac_energy_x_LDA(istate) += weight * e_x
-   write(20,*) r(1),r(2),r(3),rho(istate), weight, weight*e_x
+ ! write(20,*) r(1),r(2),r(3),rho(istate), weight, weight*e_x
  !dirac_energy_c_LDA(istate) += weight * e_c
   enddo
  enddo
@@ -133,7 +133,8 @@
  dirac_energy_x_RGGA = 0.d0
  dirac_energy_c_RGGA = 0.d0
  do istate = 1, N_states
-  do i = 1, n_points_final_grid
+ !do i = 1, n_points_final_grid
+  do i = 1, 22046
    r(1) = final_grid_points(1,i)
    r(2) = final_grid_points(2,i)
    r(3) = final_grid_points(3,i)
@@ -149,7 +150,7 @@
    call dirac_ex_RGGA_sr(mu_erf,rho(istate),tr_gamma_2(istate),grad_rho_on_top(1,istate),grad_rho_on_top(2,istate),grad_rho_on_top(3,istate),grad_rho_2(istate),grad_rho_on_top_2(istate),e_x,v_x)
    dirac_energy_x_RGGA(istate) += weight * e_x
   !dirac_energy_c_RGGA(istate) += weight * e_c
-   write(15,*) weight * e_x, r(1),r(2),r(3)  
+   write(20,*) r(1),r(2),r(3),rho(istate), weight, weight*e_x
   enddo
  enddo
  END_PROVIDER 
