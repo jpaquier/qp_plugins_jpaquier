@@ -199,7 +199,9 @@
    !!! To use the effective electronic density obtained from the on-top pair density
    if (tr_gamma_2 .gt. 1d-5) then
     tmp_c = c/kF
-    do j = 1,6 
+!   write(21,*) "******************************************"
+!   write(21,*) kF
+    do j = 1,10 
     !! Autocoherence for the first way
     !kF = 4.375106855981304d0*(rho_lda*dsqrt(-1.d0/(-4.d0 - 9.d0*tmp_c**2 -       &    
     !    9.d0*tmp_c**4 + 9.d0*tmp_c**4*dlog(dsqrt(1.d0 + tmp_c**(-2)) + 1.d0/tmp_c)*  &     
@@ -211,7 +213,8 @@
            9.d0*tmp_c**4*dlog(dsqrt(1.d0 + tmp_c**(-2)) + 1.d0/tmp_c)*                                          &
            (2.d0*dsqrt(1.d0 + tmp_c**2) - 1.d0*tmp_c**2*dlog(dsqrt(1.d0 + tmp_c**(-2)) + 1.d0/tmp_c))))**f13 
      tmp_c = c/kF
-    enddo
+!   write(21,*) j, kF
+     enddo
    endif
   endif
 !kF = ((kF + ckf*(rho**f13)) + (kF - ckf*(rho**f13))*derf(mu/kF))/2

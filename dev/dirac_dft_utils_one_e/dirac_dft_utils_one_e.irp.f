@@ -48,9 +48,9 @@ program dirac_dft_utils_one_e
   !write(35,*) r(3), 100*dsqrt(((grad_dm_on_top_2-grad_dm_2)/grad_dm_2)**2)
    open (30, file='mu_of_r_Z.dat')
    write(30,*) r(3), mu_of_r
-  !r(3)+=0.000001d0
-  !r(3)+=0.0001d0
-   r(3)+=0.001d0
+  !r(3)+=0.00005d0
+   r(3)+=0.0002d0
+  !r(3)+=0.001d0
   enddo
    end
 

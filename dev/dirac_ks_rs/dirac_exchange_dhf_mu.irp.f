@@ -103,18 +103,33 @@ program dirac_exchange_dhf_mu
  !endif
 
  !For Xenon
-  if (mu_erf .lt. 20) then
-   mu_erf += 2d0
-  elseif (mu_erf .lt. 80) then
-   mu_erf+=4.d0
-  elseif (mu_erf .lt. 400) then
-   mu_erf+=20.d0
-  elseif (mu_erf .lt. 800) then
-   mu_erf+=40.0d0
-  elseif (mu_erf .lt. 2400) then
-   mu_erf+=80.d0
+ !if (mu_erf .lt. 20) then
+ ! mu_erf += 2d0
+ !elseif (mu_erf .lt. 80) then
+ ! mu_erf+=4.d0
+ !elseif (mu_erf .lt. 400) then
+ ! mu_erf+=20.d0
+ !elseif (mu_erf .lt. 800) then
+ ! mu_erf+=40.0d0
+ !elseif (mu_erf .lt. 2400) then
+ ! mu_erf+=80.d0
+ !else
+ ! mu_erf+=160.d0
+ !endif
+ 
+ !For Ytterbium
+  if (mu_erf .lt. 30) then
+   mu_erf += 3d0
+  elseif (mu_erf .lt. 120) then
+   mu_erf+=6.d0
+  elseif (mu_erf .lt. 600) then
+   mu_erf+=30.d0
+  elseif (mu_erf .lt. 1200) then
+   mu_erf+=60.0d0
+  elseif (mu_erf .lt. 3600) then
+   mu_erf+=120.d0
   else
-   mu_erf+=160.d0
+   mu_erf+=240.d0
   endif
 
  !For Radon

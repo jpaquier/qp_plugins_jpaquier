@@ -270,16 +270,13 @@
 ! even_large_expo_coef(2,86) = 0.25d0
  !! Uranium
  ! S type function
- !even_large_expo_seed(0,92) = 5.58567332d+07
   even_large_expo_seed(0,92) = 1.46346866d+07
- !even_large_expo_seed(0,92) = 4.84272821d+06
-  even_large_expo_coef(0,92) = 0.25d0
+  even_large_expo_coef(0,92) = 0.29d0
 ! P type function
- !even_large_expo_seed(1,92) = 3.97635680d+05
   even_large_expo_seed(1,92) = 1.22880210d+05
-  even_large_expo_coef(1,92) = 0.32d0
+  even_large_expo_coef(1,92) = 0.29d0
  ! D type function
-  even_large_expo_seed(2,92) = 3.34172062d+04
+  even_large_expo_seed(2,92) = 4.95593590d+02
   even_large_expo_coef(2,92) = 0.25d0
 !!! Oganesson
 !! S type function

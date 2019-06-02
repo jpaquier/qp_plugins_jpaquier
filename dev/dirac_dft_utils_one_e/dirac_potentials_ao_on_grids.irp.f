@@ -9,9 +9,12 @@
  double precision :: mu,weight
  double precision :: e_c,v_c,e_x,v_x
  double precision, allocatable :: rho(:),tr_gamma_2(:),mu_of_r
+ double precision :: f13, ckf
  allocate(rho(N_states),tr_gamma_2(N_states))
  dirac_energy_x_LDA = 0.d0
  dirac_energy_c_LDA = 0.d0
+ f13 = 0.3333333333333333d0
+ ckf = 3.0936677262801355d0
  do istate = 1, N_states
  !do i = 1, n_points_final_grid
   do i = 1, 22046
@@ -28,7 +31,7 @@
     call dirac_ex_LDA_sr(mu_of_r,rho(istate),tr_gamma_2(istate),e_x,v_x)
    endif
    dirac_energy_x_LDA(istate) += weight * e_x
- ! write(20,*) r(1),r(2),r(3),rho(istate), weight, weight*e_x
+   write(20,*)  ckf*((rho)**f13),ckf*((2.d0*tr_gamma_2(istate)/rho(istate))**f13), e_x
  !dirac_energy_c_LDA(istate) += weight * e_c
   enddo
  enddo
