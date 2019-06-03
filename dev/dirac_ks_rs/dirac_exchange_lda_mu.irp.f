@@ -124,19 +124,36 @@ program dirac_exchange_lda_mu
  !endif
 
  !For Radon
-  if (mu_erf .lt. 40) then
-   mu_erf += 4d0
-  elseif (mu_erf .lt. 160) then
-   mu_erf+=8.d0
-  elseif (mu_erf .lt. 800) then
-   mu_erf+=40.d0
-  elseif (mu_erf .lt. 1600) then
-   mu_erf+=80.0d0
-  elseif (mu_erf .lt. 4800) then
-   mu_erf+=160.d0
+ !if (mu_erf .lt. 40) then
+ ! mu_erf += 4d0
+ !elseif (mu_erf .lt. 160) then
+ ! mu_erf+=8.d0
+ !elseif (mu_erf .lt. 800) then
+ ! mu_erf+=40.d0
+ !elseif (mu_erf .lt. 1600) then
+ ! mu_erf+=80.0d0
+ !elseif (mu_erf .lt. 4800) then
+ ! mu_erf+=160.d0
+ !else
+ ! mu_erf+=320.d0
+ !endif
+
+
+ !For Uranium 
+  if (mu_erf .lt. 50) then
+   mu_erf += 5d0
+  elseif (mu_erf .lt. 200) then
+   mu_erf+=10.d0
+  elseif (mu_erf .lt. 1000) then
+   mu_erf+=50.d0
+  elseif (mu_erf .lt. 2000) then
+   mu_erf+=100.0d0
+  elseif (mu_erf .lt. 600) then
+   mu_erf+=200.d0
   else
-   mu_erf+=320.d0
+   mu_erf+=400.d0
   endif
+
 
  !For Oganesson
  !if (mu_erf .lt. 80) then

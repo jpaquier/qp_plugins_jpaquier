@@ -117,12 +117,17 @@
  !e_x = e_x_lda +  e_x_lda_nr*kx*((1.d0 + 1.d0*tmp_c_m_2 + 0.66915d0*tmp_c_m_4)/(1.d0 + 1.32998d0*tmp_c_m_2 + 1.d0*tmp_c_m_4))
  !!! x_test4
  !e_x = e_x_lda +  e_x_lda_nr*kx*((1.d0 + 1.32998d0*tmp_c_m_2 + 0.66915d0*tmp_c_m_4)/(1.d0 + 1.32998d0*tmp_c_m_2 + 1.1d0*tmp_c_m_4))
-  !! x_test5
-  e_x = e_x_lda +  e_x_lda_nr*kx*((1.d0 + (1.32998d0*tmp_c_m_2 + 0.66915d0*tmp_c_m_4)*(1-derf(tmp_mu)))/(1.d0 + 1.32998d0*tmp_c_m_2 + 1.1d0*tmp_c_m_4))
+ !!! x_test5
+ !e_x = e_x_lda +  e_x_lda_nr*kx*((1.d0 + (1.32998d0*tmp_c_m_2 + 0.66915d0*tmp_c_m_4)*(1-derf(tmp_mu)))/(1.d0 + 1.32998d0*tmp_c_m_2 + 1.1d0*tmp_c_m_4))
  !!! x_test6
  !e_x = e_x_lda +  e_x_lda_nr*kx*((1.d0 + (1.32998d0*tmp_c_m_2 + 0.66915d0*tmp_c_m_4)*(1-derf(mu/230.d0)))/(1.d0 + 1.32998d0*tmp_c_m_2 + 1.1d0*tmp_c_m_4))
  !!! x_test7
  !e_x = e_x_lda +  e_x_lda_nr*kx*((1.d0 + 1.32998d0*tmp_c_m_2 + 0.66915d0*tmp_c_m_4*(1-derf(tmp_mu)))/(1.d0 + 1.32998d0*tmp_c_m_2 + 1.1d0*tmp_c_m_4))
+ !!! x_test8
+ !e_x = e_x_lda +  e_x_lda_nr*kx*((1.d0 + 1.32998d0*tmp_c_m_2 + 0.66915d0*tmp_c_m_4*(1-derf(tmp_mu)))/(1.d0 + 1.32998d0*tmp_c_m_2 + 1.15d0*tmp_c_m_4*(1/(1.d0-0.9d0*derf(tmp_mu)))))
+  !! x_test9
+  e_x = e_x_lda +  e_x_lda_nr*kx*((1.d0 + 1.32998d0*tmp_c_m_2 + 0.66915d0*tmp_c_m_4*(1-derf(tmp_mu)))/(1.d0 + 1.32998d0*tmp_c_m_2 + 1.25d0*tmp_c_m_4*(1/(1.d0-0.8d0*derf(tmp_mu)))))
+
  else 
   e_x = 0.d0
  endif 
