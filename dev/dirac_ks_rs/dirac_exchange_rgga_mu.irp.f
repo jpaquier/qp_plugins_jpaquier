@@ -109,19 +109,19 @@ program dirac_exchange_rgga_mu
  !endif
 
  !For Ytterbium
-  if (mu_erf .lt. 30) then
-   mu_erf += 3d0
-  elseif (mu_erf .lt. 120) then
-   mu_erf+=6.d0
-  elseif (mu_erf .lt. 600) then
-   mu_erf+=30.d0
-  elseif (mu_erf .lt. 1200) then
-   mu_erf+=60.0d0
-  elseif (mu_erf .lt. 3600) then
-   mu_erf+=120.d0
-  else
-   mu_erf+=240.d0
-  endif
+ !if (mu_erf .lt. 30) then
+ ! mu_erf += 3d0
+ !elseif (mu_erf .lt. 120) then
+ ! mu_erf+=6.d0
+ !elseif (mu_erf .lt. 600) then
+ ! mu_erf+=30.d0
+ !elseif (mu_erf .lt. 1200) then
+ ! mu_erf+=60.0d0
+ !elseif (mu_erf .lt. 3600) then
+ ! mu_erf+=120.d0
+ !else
+ ! mu_erf+=240.d0
+ !endif
 
  !For Radon
  !if (mu_erf .lt. 40) then
@@ -139,19 +139,19 @@ program dirac_exchange_rgga_mu
  !endif
 
  !For Uranium 
- !if (mu_erf .lt. 50) then
- ! mu_erf += 5d0
- !elseif (mu_erf .lt. 200) then
- ! mu_erf+=10.d0
- !elseif (mu_erf .lt. 1000) then
- ! mu_erf+=50.d0
- !elseif (mu_erf .lt. 2000) then
- ! mu_erf+=100.0d0
- !elseif (mu_erf .lt. 600) then
- ! mu_erf+=200.d0
- !else
- ! mu_erf+=400.d0
- !endif
+  if (mu_erf .lt. 50) then
+   mu_erf += 5d0
+  elseif (mu_erf .lt. 200) then
+   mu_erf+=10.d0
+  elseif (mu_erf .lt. 1000) then
+   mu_erf+=50.d0
+  elseif (mu_erf .lt. 2000) then
+   mu_erf+=100.0d0
+  elseif (mu_erf .lt. 600) then
+   mu_erf+=200.d0
+  else
+   mu_erf+=400.d0
+  endif
 
 
  !For Oganesson

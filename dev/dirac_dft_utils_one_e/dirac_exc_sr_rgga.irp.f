@@ -9,7 +9,8 @@
  double precision :: z1, z2, z3, z21, z140
  double precision :: c1,c5,c35
  double precision :: tmp_mu, tmp_mu_2, tmp_mu_4, tmp_mu_6
- double precision :: f13,f23,ckf,kF,kF_HF,kF_HF_3,c,tmp_c,tmp_c_2,tmp_c_4, tmp_c_m, tmp_c_m_2, tmp_c_m_4
+ double precision :: f13,f23,ckf,kF,kF_HF,kF_HF_3,c,tmp_c,tmp_c_2,tmp_c_4,tmp_c_6 
+ double precision :: tmp_c_m, tmp_c_m_2, tmp_c_m_4, tmp_c_m_6
  double precision :: kappa, sq,kx
  double precision :: berf,coef_first, coef_second,coef_derivative_first,coef_derivative_second
  call dirac_ex_lda_sr(mu,rho,tr_gamma_2,e_x_lda,v_x_lda) 
@@ -38,45 +39,47 @@
   !! Second way : n_2{2,x} = n^{HF}*n_eff*g(n_eff)
   rho_lda = 2.d0*tr_gamma_2/rho
   grad_rho_2_lda = grad_rho_on_top_2
- !if (dirac_effective_rho == "yes") then
- ! !!! To use the effective electronic density obtained from the on-top pair density
- ! if (tr_gamma_2 .gt. 1d-5) then
- !  grad_rho_x_new = grad_rho_x
- !  grad_rho_y_new = grad_rho_y
- !  grad_rho_z_new = grad_rho_z    
- !  rho_new = rho_lda
- !  tmp_c = c/(ckf*(rho_new**f13))
- ! write(10,*) "******************************************************"
- ! write(10,*) rho_new, grad_rho_x_new, grad_rho_y_new, grad_rho_z_new
- ! !!! Autocoherence for the first way
- ! !do j = 1, 4
- ! ! rho_new = rho_lda*coef_first(tmp_c) 
- ! ! tmp_c = c/(ckf*(rho_new**f13)) 
- ! ! grad_rho_x_new = coef_first(tmp_c)*grad_rho_x + coef_derivative_first(rho_new,tmp_c)*grad_rho_x_new*rho_lda 
- ! ! grad_rho_y_new = coef_first(tmp_c)*grad_rho_y + coef_derivative_first(rho_new,tmp_c)*grad_rho_y_new*rho_lda 
- ! ! grad_rho_z_new = coef_first(tmp_c)*grad_rho_z + coef_derivative_first(rho_new,tmp_c)*grad_rho_z_new*rho_lda 
- ! !enddo
- !  !! Autocoherence for the second way
- !  do j = 1, 6
- !   rho_new = rho_lda*coef_second(tmp_c) 
- !   tmp_c = c/(ckf*(rho_new**f13)) 
- !   grad_rho_x_new = coef_second(tmp_c)*grad_rho_x + coef_derivative_second(rho_new,tmp_c)*grad_rho_x_new*rho_lda 
- !   grad_rho_y_new = coef_second(tmp_c)*grad_rho_y + coef_derivative_second(rho_new,tmp_c)*grad_rho_y_new*rho_lda 
- !   grad_rho_z_new = coef_second(tmp_c)*grad_rho_z + coef_derivative_second(rho_new,tmp_c)*grad_rho_z_new*rho_lda 
- !  write(10,*) j, rho_new, grad_rho_x_new, grad_rho_y_new, grad_rho_z_new
- !  enddo
- !  rho_lda = rho_new
- !  grad_rho_2_lda = grad_rho_x_new**2 + grad_rho_y_new**2 + grad_rho_z_new**2
- ! endif
- !endif
+  if (dirac_effective_rho == "yes") then
+   !!! To use the effective electronic density obtained from the on-top pair density
+   if (tr_gamma_2 .gt. 1d-5) then
+    grad_rho_x_new = grad_rho_x
+    grad_rho_y_new = grad_rho_y
+    grad_rho_z_new = grad_rho_z    
+    rho_new = rho_lda
+    tmp_c = c/(ckf*(rho_new**f13))
+   write(10,*) "******************************************************"
+   write(10,*) rho_new, grad_rho_x_new, grad_rho_y_new, grad_rho_z_new
+   !!! Autocoherence for the first way
+   !do j = 1, 4
+   ! rho_new = rho_lda*coef_first(tmp_c) 
+   ! tmp_c = c/(ckf*(rho_new**f13)) 
+   ! grad_rho_x_new = coef_first(tmp_c)*grad_rho_x + coef_derivative_first(rho_new,tmp_c)*grad_rho_x_new*rho_lda 
+   ! grad_rho_y_new = coef_first(tmp_c)*grad_rho_y + coef_derivative_first(rho_new,tmp_c)*grad_rho_y_new*rho_lda 
+   ! grad_rho_z_new = coef_first(tmp_c)*grad_rho_z + coef_derivative_first(rho_new,tmp_c)*grad_rho_z_new*rho_lda 
+   !enddo
+    !! Autocoherence for the second way
+    do j = 1, 6
+     rho_new = rho_lda*coef_second(tmp_c) 
+     tmp_c = c/(ckf*(rho_new**f13)) 
+     grad_rho_x_new = coef_second(tmp_c)*grad_rho_x + coef_derivative_second(rho_new,tmp_c)*grad_rho_x_new*rho_lda 
+     grad_rho_y_new = coef_second(tmp_c)*grad_rho_y + coef_derivative_second(rho_new,tmp_c)*grad_rho_y_new*rho_lda 
+     grad_rho_z_new = coef_second(tmp_c)*grad_rho_z + coef_derivative_second(rho_new,tmp_c)*grad_rho_z_new*rho_lda 
+    write(10,*) j, rho_new, grad_rho_x_new, grad_rho_y_new, grad_rho_z_new
+    enddo
+    rho_lda = rho_new
+    grad_rho_2_lda = grad_rho_x_new**2 + grad_rho_y_new**2 + grad_rho_z_new**2
+   endif
+  endif
  endif
  kF=(ckf*(rho_lda**f13))
  tmp_c = c/kF
  tmp_c_2 = tmp_c*tmp_c
  tmp_c_4 = tmp_c_2*tmp_c_2
+ tmp_c_6 = tmp_c_4*tmp_c_2
  tmp_c_m = 1.d0/tmp_c
  tmp_c_m_2 = 1.d0/tmp_c_2
  tmp_c_m_4 = 1.d0/tmp_c_4
+ tmp_c_m_6 = 1.d0/tmp_c_6
  tmp_mu = mu/kF
  tmp_mu_2 = tmp_mu*tmp_mu
  tmp_mu_4 = tmp_mu_2*tmp_mu_2
@@ -127,9 +130,11 @@
  !e_x = e_x_lda +  e_x_lda_nr*kx*((1.d0 + 1.32998d0*tmp_c_m_2 + 0.66915d0*tmp_c_m_4*(1-derf(tmp_mu)))/(1.d0 + 1.32998d0*tmp_c_m_2 + 1.15d0*tmp_c_m_4*(1/(1.d0-0.9d0*derf(tmp_mu)))))
  !!! x_test9
  !e_x = e_x_lda +  e_x_lda_nr*kx*((1.d0 + 1.32998d0*tmp_c_m_2 + 0.66915d0*tmp_c_m_4*(1-derf(tmp_mu)))/(1.d0 + 1.32998d0*tmp_c_m_2 + 1.25d0*tmp_c_m_4*(1/(1.d0-0.8d0*derf(tmp_mu)))))
-  !! x_test10
-  e_x = e_x_lda +  e_x_lda_nr*kx*((1.d0 + 1.32998d0*tmp_c_m_2 + 0.66915d0*tmp_c_m_4*(1-derf(2*tmp_mu)))/(1.d0 + 1.32998d0*tmp_c_m_2 + 1.25d0*tmp_c_m_4*(1/(1.d0-0.8d0*derf(tmp_mu)))))
- else 
+ !!! x_test10
+ !e_x = e_x_lda +  e_x_lda_nr*kx*((1.d0 + 1.32998d0*tmp_c_m_2 + 0.66915d0*tmp_c_m_4*(1-derf(2*tmp_mu)))/(1.d0 + 1.32998d0*tmp_c_m_2 + 1.25d0*tmp_c_m_4*(1/(1.d0-0.8d0*derf(tmp_mu)))))
+  !! x_test11
+  e_x = e_x_lda +  e_x_lda_nr*kx*((1.d0 + 2.5d0*tmp_c_m_2*(2.d0-derf(2.d0-derf(1.5d0*tmp_mu))) + 1.d0*tmp_c_m_4*(1-derf(3*tmp_mu)))/(1.d0 + 2.5d0*tmp_c_m_2*(2.d0-derf(2.d0-derf(1.5d0*tmp_mu))) + 2.5d0*tmp_c_m_4*(1/(1.d0-0.8d0*derf(tmp_mu)))))
+ else
   e_x = 0.d0
  endif 
  v_x =0.d0
