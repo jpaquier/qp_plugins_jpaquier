@@ -58,7 +58,7 @@
    ! grad_rho_z_new = coef_first(tmp_c)*grad_rho_z + coef_derivative_first(rho_new,tmp_c)*grad_rho_z_new*rho_lda 
    !enddo
     !! Autocoherence for the second way
-    do j = 1, 6
+    do j = 1, 10
      rho_new = rho_lda*coef_second(tmp_c) 
      tmp_c = c/(ckf*(rho_new**f13)) 
      grad_rho_x_new = coef_second(tmp_c)*grad_rho_x + coef_derivative_second(rho_new,tmp_c)*grad_rho_x_new*rho_lda 

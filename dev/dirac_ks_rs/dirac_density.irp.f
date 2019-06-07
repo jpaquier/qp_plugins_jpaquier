@@ -38,7 +38,7 @@ program dirac_density
    endif
    open (10, file='density_Z')
    write(10,*) r(1),r(2),r(3), kF(istate),tr_gamma_2(istate),kF_bis(istate),tmp_kF(istate)
-  enddo
+ enddo
  enddo
 
 end
