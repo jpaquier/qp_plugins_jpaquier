@@ -78,6 +78,19 @@ program dirac_exchange_lda_mu
  ! mu_erf+=20.d0
  !endif
 
+ !For Zinc
+  if (mu_erf .lt. 8) then
+   mu_erf += 0.8d0
+  elseif (mu_erf .lt. 32) then
+   mu_erf+=1.6d0
+  elseif (mu_erf .lt. 160) then
+   mu_erf+=8.d0
+  elseif (mu_erf .lt. 320) then
+   mu_erf+=16.0d0
+  else
+   mu_erf+=32.d0
+  endif
+
  !For Krypton
  !if (mu_erf .lt. 10) then
  ! mu_erf += 1d0
@@ -140,19 +153,19 @@ program dirac_exchange_lda_mu
 
 
  !For Uranium 
-  if (mu_erf .lt. 50) then
-   mu_erf += 5d0
-  elseif (mu_erf .lt. 200) then
-   mu_erf+=10.d0
-  elseif (mu_erf .lt. 1000) then
-   mu_erf+=50.d0
-  elseif (mu_erf .lt. 2000) then
-   mu_erf+=100.0d0
-  elseif (mu_erf .lt. 600) then
-   mu_erf+=200.d0
-  else
-   mu_erf+=400.d0
-  endif
+ !if (mu_erf .lt. 50) then
+ ! mu_erf += 5d0
+ !elseif (mu_erf .lt. 200) then
+ ! mu_erf+=10.d0
+ !elseif (mu_erf .lt. 1000) then
+ ! mu_erf+=50.d0
+ !elseif (mu_erf .lt. 2000) then
+ ! mu_erf+=100.0d0
+ !elseif (mu_erf .lt. 600) then
+ ! mu_erf+=200.d0
+ !else
+ ! mu_erf+=400.d0
+ !endif
 
 
  !For Oganesson

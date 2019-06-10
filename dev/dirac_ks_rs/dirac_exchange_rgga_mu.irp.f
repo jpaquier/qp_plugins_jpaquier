@@ -78,20 +78,33 @@ program dirac_exchange_rgga_mu
  ! mu_erf+=20.d0
  !endif
 
- !For Krypton
-  if (mu_erf .lt. 10) then
-   mu_erf += 1d0
-  elseif (mu_erf .lt. 40) then
-   mu_erf+=2.d0
-  elseif (mu_erf .lt. 200) then
-   mu_erf+=10.d0
-  elseif (mu_erf .lt. 400) then
-   mu_erf+=20.0d0
-  elseif (mu_erf .lt. 1200) then
-   mu_erf+=40.d0
+ !For Zinc
+  if (mu_erf .lt. 8) then
+   mu_erf += 0.8d0
+  elseif (mu_erf .lt. 32) then
+   mu_erf+=1.6d0
+  elseif (mu_erf .lt. 160) then
+   mu_erf+=8.d0
+  elseif (mu_erf .lt. 320) then
+   mu_erf+=16.0d0
   else
-   mu_erf+=80.d0
+   mu_erf+=32.d0
   endif
+
+ !For Krypton
+ !if (mu_erf .lt. 10) then
+ ! mu_erf += 1d0
+ !elseif (mu_erf .lt. 40) then
+ ! mu_erf+=2.d0
+ !elseif (mu_erf .lt. 200) then
+ ! mu_erf+=10.d0
+ !elseif (mu_erf .lt. 400) then
+ ! mu_erf+=20.0d0
+ !elseif (mu_erf .lt. 1200) then
+ ! mu_erf+=40.d0
+ !else
+ ! mu_erf+=80.d0
+ !endif
 
  !For Xenon
  !if (mu_erf .lt. 20) then
