@@ -78,18 +78,31 @@ program dirac_exchange_rgga_mu
  ! mu_erf+=20.d0
  !endif
 
- !For Zinc
-  if (mu_erf .lt. 8) then
-   mu_erf += 0.8d0
-  elseif (mu_erf .lt. 32) then
-   mu_erf+=1.6d0
-  elseif (mu_erf .lt. 160) then
-   mu_erf+=8.d0
-  elseif (mu_erf .lt. 320) then
-   mu_erf+=16.0d0
+ !For Calcium
+  if (mu_erf .lt. 5.5) then
+   mu_erf += 0.55d0
+  elseif (mu_erf .lt. 22) then
+   mu_erf+=1.1d0
+  elseif (mu_erf .lt. 110) then
+   mu_erf+=5.5d0
+  elseif (mu_erf .lt. 220) then
+   mu_erf+=11.0d0
   else
-   mu_erf+=32.d0
+   mu_erf+=22.d0
   endif
+
+ !For Zinc
+ !if (mu_erf .lt. 8) then
+ ! mu_erf += 0.8d0
+ !elseif (mu_erf .lt. 32) then
+ ! mu_erf+=1.6d0
+ !elseif (mu_erf .lt. 160) then
+ ! mu_erf+=8.d0
+ !elseif (mu_erf .lt. 320) then
+ ! mu_erf+=16.0d0
+ !else
+ ! mu_erf+=32.d0
+ !endif
 
  !For Krypton
  !if (mu_erf .lt. 10) then
