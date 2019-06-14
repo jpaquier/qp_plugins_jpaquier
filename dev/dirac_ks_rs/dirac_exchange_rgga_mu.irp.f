@@ -66,30 +66,30 @@ program dirac_exchange_rgga_mu
  !endif
 
  !For argon
- !if (mu_erf .lt. 5) then
- ! mu_erf += 0.5d0
- !elseif (mu_erf .lt. 20) then
- ! mu_erf+=1.d0
- !elseif (mu_erf .lt. 100) then
- ! mu_erf+=5.d0
- !elseif (mu_erf .lt. 200) then
- ! mu_erf+=10.0d0
- !else
- ! mu_erf+=20.d0
- !endif
+  if (mu_erf .lt. 5) then
+   mu_erf += 0.5d0
+  elseif (mu_erf .lt. 20) then
+   mu_erf+=1.d0
+  elseif (mu_erf .lt. 100) then
+   mu_erf+=5.d0
+  elseif (mu_erf .lt. 200) then
+   mu_erf+=10.0d0
+  else
+   mu_erf+=20.d0
+  endif
 
  !For Calcium
-  if (mu_erf .lt. 5.5) then
-   mu_erf += 0.55d0
-  elseif (mu_erf .lt. 22) then
-   mu_erf+=1.1d0
-  elseif (mu_erf .lt. 110) then
-   mu_erf+=5.5d0
-  elseif (mu_erf .lt. 220) then
-   mu_erf+=11.0d0
-  else
-   mu_erf+=22.d0
-  endif
+ !if (mu_erf .lt. 5.5) then
+ ! mu_erf += 0.55d0
+ !elseif (mu_erf .lt. 22) then
+ ! mu_erf+=1.1d0
+ !elseif (mu_erf .lt. 110) then
+ ! mu_erf+=5.5d0
+ !elseif (mu_erf .lt. 220) then
+ ! mu_erf+=11.0d0
+ !else
+ ! mu_erf+=22.d0
+ !endif
 
  !For Zinc
  !if (mu_erf .lt. 8) then
