@@ -17,22 +17,24 @@
   rho_lda = rho
   grad_rho_2_lda = grad_rho_2
  elseif (dirac_rho == "rho_on_top") then
- !!! To use the electronic density obtained from the on-top pair density 
-  !! First way: n_{2,x} = n_eff^2*g(n_eff)
- !rho_lda = dsqrt(2.d0*tr_gamma_2)
-  !! Second way : n_2{2,x} = n^{HF}*n_eff*g(n_eff)
-  rho_lda = 2.d0*tr_gamma_2/rho
-  grad_rho_2_lda = grad_rho_on_top_2
-  if (dirac_effective_rho == "yes") then
-   !!! To use the effective electronic density obtained from the on-top pair density
+  if (dirac_approximant == "non-relativistic") then
+  !!! To use the electronic density obtained from the on-top pair density 
+   !! First way: n_{2,x} = n_eff^2*g(n_eff)
+  !rho_lda = dsqrt(2.d0*tr_gamma_2)
+   !! Second way : n_2{2,x} = n^{HF}*n_eff*g(n_eff)
+   rho_lda = 2.d0*tr_gamma_2/rho
+   grad_rho_2_lda = grad_rho_on_top_2
+! if (dirac_effective_rho == "yes") then
+  !!! To use the effective electronic density obtained from the on-top pair density
+  else 
+   rho_lda = 2.d0*tr_gamma_2/rho
+   grad_rho_2_lda = grad_rho_on_top_2
    if (tr_gamma_2 .gt. 1d-5) then
     grad_rho_x_new = grad_rho_x
     grad_rho_y_new = grad_rho_y
     grad_rho_z_new = grad_rho_z    
     rho_new = rho_lda
     tmp_c = c/(ckf*(rho_new**f13))
-   write(10,*) "******************************************************"
-   write(10,*) rho_new, grad_rho_x_new, grad_rho_y_new, grad_rho_z_new
    !!! Autocoherence for the first way
    !do j = 1, 4
    ! rho_new = rho_lda*coef_first(tmp_c) 
@@ -48,7 +50,6 @@
      grad_rho_x_new = coef_second(tmp_c)*grad_rho_x + coef_derivative_second(rho_new,tmp_c)*grad_rho_x_new*rho_lda 
      grad_rho_y_new = coef_second(tmp_c)*grad_rho_y + coef_derivative_second(rho_new,tmp_c)*grad_rho_y_new*rho_lda 
      grad_rho_z_new = coef_second(tmp_c)*grad_rho_z + coef_derivative_second(rho_new,tmp_c)*grad_rho_z_new*rho_lda 
-    write(10,*) j, rho_new, grad_rho_x_new, grad_rho_y_new, grad_rho_z_new
     enddo
     rho_lda = rho_new
     grad_rho_2_lda = grad_rho_x_new**2 + grad_rho_y_new**2 + grad_rho_z_new**2

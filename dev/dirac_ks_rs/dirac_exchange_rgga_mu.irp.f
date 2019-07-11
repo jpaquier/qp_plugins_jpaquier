@@ -53,30 +53,30 @@ program dirac_exchange_rgga_mu
  !endif
 
  !For Neon
- !if (mu_erf .lt. 2.5) then
- ! mu_erf += 0.25d0
- !elseif (mu_erf .lt. 10) then
- ! mu_erf+=0.5d0
- !elseif (mu_erf .lt. 50) then
- ! mu_erf+=2.5d0
- !elseif (mu_erf .lt. 100) then
- ! mu_erf+=5.0d0
- !else
- ! mu_erf+=10.d0
- !endif
+  if (mu_erf .lt. 2.5) then
+   mu_erf += 0.25d0
+  elseif (mu_erf .lt. 10) then
+   mu_erf+=0.5d0
+  elseif (mu_erf .lt. 50) then
+   mu_erf+=2.5d0
+  elseif (mu_erf .lt. 100) then
+   mu_erf+=5.0d0
+  else
+   mu_erf+=10.d0
+  endif
 
  !For argon
-  if (mu_erf .lt. 5) then
-   mu_erf += 0.5d0
-  elseif (mu_erf .lt. 20) then
-   mu_erf+=1.d0
-  elseif (mu_erf .lt. 100) then
-   mu_erf+=5.d0
-  elseif (mu_erf .lt. 200) then
-   mu_erf+=10.0d0
-  else
-   mu_erf+=20.d0
-  endif
+ !if (mu_erf .lt. 5) then
+ ! mu_erf += 0.5d0
+ !elseif (mu_erf .lt. 20) then
+ ! mu_erf+=1.d0
+ !elseif (mu_erf .lt. 100) then
+ ! mu_erf+=5.d0
+ !elseif (mu_erf .lt. 200) then
+ ! mu_erf+=10.0d0
+ !else
+ ! mu_erf+=20.d0
+ !endif
 
  !For Calcium
  !if (mu_erf .lt. 5.5) then
@@ -195,6 +195,6 @@ program dirac_exchange_rgga_mu
  ! mu_erf+=640.d0
  !endif
 
-  call ezfio_set_ao_two_e_erf_ints_mu_erf(mu_erf)
+! call ezfio_set_ao_two_e_erf_ints_mu_erf(mu_erf)
 
 end

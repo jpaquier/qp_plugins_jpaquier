@@ -188,33 +188,33 @@
  !!! To use the usual electronic density
   kF = ckf*(rho**f13)
  elseif (dirac_rho == "rho_on_top") then
-  !! To use the electronic density obtained from the on-top pair density 
-  !! First way: n_{2,x} = n_eff^2*g(n_eff)
- !rho_lda = dsqrt(2.d0*tr_gamma_2)
- !kF = ckf*(rho_lda**f13)
-  !! Second way : n_2{2,x} = n^{HF}*n_eff*g(n_eff)
-  rho_lda = 2.d0*tr_gamma_2/rho
-  kF = ckf*(rho_lda**f13)
-  if (dirac_effective_rho == "yes") then
+  if (dirac_approximant == "non-relativistic") then
+   !! To use the electronic density obtained from the on-top pair density 
+   !! First way: n_{2,x} = n_eff^2*g(n_eff)
+  !rho_lda = dsqrt(2.d0*tr_gamma_2)
+  !kF = ckf*(rho_lda**f13)
+   !! Second way : n_2{2,x} = n^{HF}*n_eff*g(n_eff)
+   rho_lda = 2.d0*tr_gamma_2/rho
+   kF = ckf*(rho_lda**f13)
+! if (dirac_effective_rho == "yes") then
    !!! To use the effective electronic density obtained from the on-top pair density
+  elseif (dirac_approximant == "dirac_pade_order_6") then
+   rho_lda = 2.d0*tr_gamma_2/rho
+   kF = ckf*(rho_lda**f13)
    if (tr_gamma_2 .gt. 1d-5) then
     tmp_c = c/kF
-!   write(21,*) "******************************************"
-!   write(21,*) kF
     do j = 1,10 
-    !! Autocoherence for the first way
+    !!! Autocoherence for the first way
     !kF = 4.375106855981304d0*(rho_lda*dsqrt(-1.d0/(-4.d0 - 9.d0*tmp_c**2 -       &    
     !    9.d0*tmp_c**4 + 9.d0*tmp_c**4*dlog(dsqrt(1.d0 + tmp_c**(-2)) + 1.d0/tmp_c)*  &     
     !    (2.d0*dsqrt(1.d0 + tmp_c**2) - tmp_c**2*dlog(dsqrt(1.d0 + tmp_c**(-2)) +     &
     !    1.d0/tmp_c)))))**f13
     !! Autocoherence for the second way
-    !kF =  7.795554179441508d0*((-1.d0*rho_lda)/(-4.d0 - 9.d0*tmp_c**2 - 9.d0*tmp_c**4 +                        &
      kF =  6.187335452560272d0*((-1.d0*rho_lda)/(-4.d0 - 9.d0*tmp_c**2 - 9.d0*tmp_c**4 +                        &
            9.d0*tmp_c**4*dlog(dsqrt(1.d0 + tmp_c**(-2)) + 1.d0/tmp_c)*                                          &
            (2.d0*dsqrt(1.d0 + tmp_c**2) - 1.d0*tmp_c**2*dlog(dsqrt(1.d0 + tmp_c**(-2)) + 1.d0/tmp_c))))**f13 
      tmp_c = c/kF
-!   write(21,*) j, kF
-     enddo
+    enddo
    endif
   endif
 !kF = ((kF + ckf*(rho**f13)) + (kF - ckf*(rho**f13))*derf(mu/kF))/2
