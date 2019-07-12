@@ -106,7 +106,7 @@
  !!! 
  !! x_test11
  !e_x = e_x_lda +  e_x_lda_nr*kx*((1.d0 + 2.5d0*tmp_c_m_2*(2.d0-derf(2.d0-derf(1.5d0*tmp_mu))) + 1.d0*tmp_c_m_4*(1-derf(3*tmp_mu)))/(1.d0 + 2.5d0*tmp_c_m_2*(2.d0-derf(2.d0-derf(1.5d0*tmp_mu))) + 2.5d0*tmp_c_m_4*(1/(1.d0-0.8d0*derf(tmp_mu)))))
-  e_x = e_x_lda + e_x_lda_nr*kx*((1.d0 + dirac_a1*tmp_c_m_2 + dirac_a2*tmp_c_m_4)/(1.d0 + dirac_b1*tmp_c_m_2 + dirac_b2*tmp_c_m_4))
+  e_x = e_x_lda + e_x_lda_nr*kx*((1.d0 + dirac_a1*tmp_c_m_2 + dirac_a2*tmp_c_m_4)/(1.d0 + dirac_a1*tmp_c_m_2 + dirac_b2*tmp_c_m_4))
  else
   e_x = 0.d0
  endif 

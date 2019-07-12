@@ -195,6 +195,6 @@ program dirac_exchange_pbe_mu
  ! mu_erf+=640.d0
  !endif
 
-  call ezfio_set_ao_two_e_erf_ints_mu_erf(mu_erf)
+! call ezfio_set_ao_two_e_erf_ints_mu_erf(mu_erf)
 
 end
