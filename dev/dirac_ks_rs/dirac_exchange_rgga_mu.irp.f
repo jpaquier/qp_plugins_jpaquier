@@ -12,6 +12,10 @@ program dirac_exchange_rgga_mu
   use bitmasks
   implicit none 
   integer :: i,length
+  mu_erf = 0.d0
+  call ezfio_set_ao_two_e_erf_ints_mu_erf(mu_erf)
+  TOUCH mu_erf
+! do i = 1,50
  !Choose Interaction
   if (dirac_interaction == "Coulomb") then
    print*,'**********'
@@ -195,6 +199,7 @@ program dirac_exchange_rgga_mu
  ! mu_erf+=640.d0
  !endif
 
-! call ezfio_set_ao_two_e_erf_ints_mu_erf(mu_erf)
-
-end
+ call ezfio_set_ao_two_e_erf_ints_mu_erf(mu_erf)
+ TOUCH mu_erf
+!enddo
+ end
