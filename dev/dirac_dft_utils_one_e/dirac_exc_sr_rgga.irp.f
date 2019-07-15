@@ -39,7 +39,6 @@
   !! Second way : n_2{2,x} = n^{HF}*n_eff*g(n_eff)
   rho_lda = 2.d0*tr_gamma_2/rho
   grad_rho_2_lda = grad_rho_on_top_2
-  !!! To use the effective electronic density obtained from the on-top pair density
   if (tr_gamma_2 .gt. 1d-5) then
    grad_rho_x_new = grad_rho_x
    grad_rho_y_new = grad_rho_y
@@ -83,17 +82,12 @@
  ! Quadratic range-separation for very low values of tmp_mu
  if (tmp_mu .lt. 1.d-2) then
   e_x_lda_nr = 0.002687627869433291d0*kF_HF_3*kF*(-3.d0 + 7.089815403622064d0*tmp_mu - 6.d0*tmp_mu_2)
- 
  ! Medium values of tmp_mu
  elseif (tmp_mu .le. 1.d+2) then
-
   e_x_lda_nr =  -c1*kF_HF_3*kF*(z1 + f23*tmp_mu_2*(z3 - z1*tmp_mu_2 + (-z2 + tmp_mu_2)/dexp(z1/tmp_mu_2)) - c5*tmp_mu*derf(z1/tmp_mu)) 
-
  ! Inverse quadratic/quartic/hexuple for large values of tmp_mu
  elseif (tmp_mu .lt. 1.d+9) then
- 
   e_x_lda_nr = (-c35*kF_HF_3*kF*(z3 - z21*tmp_mu_2 + z140*tmp_mu_4))/tmp_mu_6
-
  ! Limit for large tmp_mu 
  else
   e_x_lda_nr = 0.d0
@@ -106,10 +100,19 @@
  !!! 
  !! x_test11
  !e_x = e_x_lda +  e_x_lda_nr*kx*((1.d0 + 2.5d0*tmp_c_m_2*(2.d0-derf(2.d0-derf(1.5d0*tmp_mu))) + 1.d0*tmp_c_m_4*(1-derf(3*tmp_mu)))/(1.d0 + 2.5d0*tmp_c_m_2*(2.d0-derf(2.d0-derf(1.5d0*tmp_mu))) + 2.5d0*tmp_c_m_4*(1/(1.d0-0.8d0*derf(tmp_mu)))))
+ !!! 0 parameters test
+ !e_x = e_x_lda + e_x_lda_nr*kx
+ !!! 3 parameters for mu_erf = 0
  !e_x = e_x_lda + e_x_lda_nr*kx*((1.d0 + dirac_a1*tmp_c_m_2 + dirac_a2*tmp_c_m_4)/(1.d0 + dirac_a1*tmp_c_m_2 + dirac_b2*tmp_c_m_4))
-  e_x = e_x_lda + e_x_lda_nr*kx*((1.d0 + dirac_a1*(1.d0-dirac_a1_bis*derf(tmp_mu))*tmp_c_m_2 +                          &
-  dirac_a2*(1.d0-dirac_a2_bis*derf(tmp_mu))*tmp_c_m_4)/(1.d0 + dirac_a1*(1.d0-dirac_a1_bis*derf(tmp_mu))*tmp_c_m_2 +    &
-  dirac_b2*(1.d0+dirac_b2_bis*derf(tmp_mu))*tmp_c_m_4))
+  !! 3+3 parameters for general mu_erf
+  e_x = e_x_lda + e_x_lda_nr*kx*((1.d0 + dirac_a1*(1.d0-dirac_a1_bis_6p*derf(tmp_mu))*tmp_c_m_2 +      &
+  dirac_a2*(1.d0-dirac_a2_bis_6p*derf(tmp_mu))*tmp_c_m_4)/(1.d0 + dirac_a1*(1.d0 -                     &
+  dirac_a1_bis_6p*derf(tmp_mu))*tmp_c_m_2 + dirac_b2*(1.d0+dirac_b2_bis_6p*derf(tmp_mu))*tmp_c_m_4))
+ !!! 3+3+3 parameters for general mu_erf
+ !e_x = e_x_lda + e_x_lda_nr*kx*((1.d0 + dirac_a1*(1.d0-dirac_a1_bis_9p*derf(dirac_a1_ter*tmp_mu))*tmp_c_m_2 +     &
+ !       dirac_a2*(1.d0-dirac_a2_bis_9p*derf(dirac_a2_ter*tmp_mu))*tmp_c_m_4)/                                     &
+ !      (1.d0 + dirac_a1*(1.d0-dirac_a1_bis_9p*derf(dirac_a1_ter*tmp_mu))*tmp_c_m_2 +                              &
+ !      dirac_b2*(1.d0+dirac_b2_bis_9p*derf(dirac_b2_ter*tmp_mu))*tmp_c_m_4))
  else
   e_x = 0.d0
  endif 

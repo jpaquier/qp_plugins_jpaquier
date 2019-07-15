@@ -19,7 +19,7 @@ program dirac_exchange_dhf_mu
    print*, 'mu_erf =',mu_erf
    print*, 'dirac_HF_two_electron_C_Exchange_energy=', dirac_C_Exchange_Energy - dirac_HF_two_electron_C_Exchange_energy
    open (10, file='exchange_dhf_Z.dat',position ='append') 
-   write(10,*) mu_erf, dirac_C_Exchange_Energy - dirac_HF_two_electron_C_Exchange_energy
+   write(10,*) dirac_C_Exchange_Energy - dirac_HF_two_electron_C_Exchange_energy
   elseif (dirac_interaction == "Coulomb_Gaunt") then
    print*,'**********'
    print*,'Short-range Coulomb-Gaunt interaction'
@@ -88,19 +88,19 @@ program dirac_exchange_dhf_mu
  !endif
 
  !For Krypton
-  if (mu_erf .lt. 10) then
-   mu_erf += 1d0
-  elseif (mu_erf .lt. 40) then
-   mu_erf+=2.d0
-  elseif (mu_erf .lt. 200) then
-   mu_erf+=10.d0
-  elseif (mu_erf .lt. 400) then
-   mu_erf+=20.0d0
-  elseif (mu_erf .lt. 1200) then
-   mu_erf+=40.d0
-  else 
-   mu_erf+=80.d0
-  endif
+ !if (mu_erf .lt. 10) then
+ ! mu_erf += 1d0
+ !elseif (mu_erf .lt. 40) then
+ ! mu_erf+=2.d0
+ !elseif (mu_erf .lt. 200) then
+ ! mu_erf+=10.d0
+ !elseif (mu_erf .lt. 400) then
+ ! mu_erf+=20.0d0
+ !elseif (mu_erf .lt. 1200) then
+ ! mu_erf+=40.d0
+ !else 
+ ! mu_erf+=80.d0
+ !endif
 
  !For Xenon
  !if (mu_erf .lt. 20) then
@@ -147,20 +147,20 @@ program dirac_exchange_dhf_mu
  ! mu_erf+=320.d0
  !endif
 
- !For Uranium 
- !if (mu_erf .lt. 50) then
- ! mu_erf += 5d0
- !elseif (mu_erf .lt. 200) then
- ! mu_erf+=10.d0
- !elseif (mu_erf .lt. 1000) then
- ! mu_erf+=50.d0
- !elseif (mu_erf .lt. 2000) then
- ! mu_erf+=100.0d0
- !elseif (mu_erf .lt. 600) then
- ! mu_erf+=200.d0
- !else
- ! mu_erf+=400.d0
- !endif
+ !!For Uranium 
+  if (mu_erf .lt. 50) then
+   mu_erf += 5d0
+  elseif (mu_erf .lt. 200) then
+   mu_erf+=10.d0
+  elseif (mu_erf .lt. 1000) then
+   mu_erf+=50.d0
+  elseif (mu_erf .lt. 2000) then
+   mu_erf+=100.0d0
+  elseif (mu_erf .lt. 600) then
+   mu_erf+=200.d0
+  else
+   mu_erf+=400.d0
+  endif
 
  !For Oganesson
  !if (mu_erf .lt. 80) then
