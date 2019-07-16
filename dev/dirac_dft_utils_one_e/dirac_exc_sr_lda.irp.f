@@ -2440,6 +2440,7 @@
    endif
   endif 
  endif 
+ write(19,*) e_x
  end
 
 

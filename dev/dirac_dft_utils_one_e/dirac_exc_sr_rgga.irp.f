@@ -14,6 +14,7 @@
  double precision :: kappa, sq,kx
  double precision :: berf,coef_first, coef_second,coef_derivative_first,coef_derivative_second
  call dirac_ex_lda_sr(mu,rho,tr_gamma_2,e_x_lda,v_x_lda) 
+ write(20,*) e_x_lda
  z1 = 1.d0
  z2 = 2.d0
  z3 = 3.d0
@@ -100,14 +101,15 @@
  !!! 
  !! x_test11
  !e_x = e_x_lda +  e_x_lda_nr*kx*((1.d0 + 2.5d0*tmp_c_m_2*(2.d0-derf(2.d0-derf(1.5d0*tmp_mu))) + 1.d0*tmp_c_m_4*(1-derf(3*tmp_mu)))/(1.d0 + 2.5d0*tmp_c_m_2*(2.d0-derf(2.d0-derf(1.5d0*tmp_mu))) + 2.5d0*tmp_c_m_4*(1/(1.d0-0.8d0*derf(tmp_mu)))))
- !!! 0 parameters test
+  !! 0 parameters test
  !e_x = e_x_lda + e_x_lda_nr*kx
+  e_x = e_x_lda + e_x_lda*kx
  !!! 3 parameters for mu_erf = 0
  !e_x = e_x_lda + e_x_lda_nr*kx*((1.d0 + dirac_a1*tmp_c_m_2 + dirac_a2*tmp_c_m_4)/(1.d0 + dirac_a1*tmp_c_m_2 + dirac_b2*tmp_c_m_4))
-  !! 3+3 parameters for general mu_erf
-  e_x = e_x_lda + e_x_lda_nr*kx*((1.d0 + dirac_a1*(1.d0-dirac_a1_bis_6p*derf(tmp_mu))*tmp_c_m_2 +      &
-  dirac_a2*(1.d0-dirac_a2_bis_6p*derf(tmp_mu))*tmp_c_m_4)/(1.d0 + dirac_a1*(1.d0 -                     &
-  dirac_a1_bis_6p*derf(tmp_mu))*tmp_c_m_2 + dirac_b2*(1.d0+dirac_b2_bis_6p*derf(tmp_mu))*tmp_c_m_4))
+ !!! 3+3 parameters for general mu_erf
+ !e_x = e_x_lda + e_x_lda_nr*kx*((1.d0 + dirac_a1*(1.d0-dirac_a1_bis_6p*derf(tmp_mu))*tmp_c_m_2 +      &
+ !dirac_a2*(1.d0-dirac_a2_bis_6p*derf(tmp_mu))*tmp_c_m_4)/(1.d0 + dirac_a1*(1.d0 -                     &
+ !dirac_a1_bis_6p*derf(tmp_mu))*tmp_c_m_2 + dirac_b2*(1.d0+dirac_b2_bis_6p*derf(tmp_mu))*tmp_c_m_4))
  !!! 3+3+3 parameters for general mu_erf
  !e_x = e_x_lda + e_x_lda_nr*kx*((1.d0 + dirac_a1*(1.d0-dirac_a1_bis_9p*derf(dirac_a1_ter*tmp_mu))*tmp_c_m_2 +     &
  !       dirac_a2*(1.d0-dirac_a2_bis_9p*derf(dirac_a2_ter*tmp_mu))*tmp_c_m_4)/                                     &
