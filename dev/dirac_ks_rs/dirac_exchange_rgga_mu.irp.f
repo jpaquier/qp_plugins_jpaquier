@@ -12,6 +12,10 @@ program dirac_exchange_rgga_mu
   use bitmasks
   implicit none 
   integer :: i,length
+  mu_erf = 0.d0
+  call ezfio_set_ao_two_e_erf_ints_mu_erf(mu_erf)
+  TOUCH mu_erf
+  do i = 1,50
  !Choose Interaction
   mu_erf = 0.d0
   call ezfio_set_ao_two_e_erf_ints_mu_erf(mu_erf)   
@@ -23,8 +27,7 @@ program dirac_exchange_rgga_mu
    print*, mu_erf, dirac_energy_x_rgga(1)
    open (10, file='exchange_rgga_Z.dat',position ='append') 
    write(10,*) mu_erf, dirac_energy_x_rgga(1)
- elseif (dirac_interaction == "Coulomb_Gaunt") then
-   print*,'**********'
+  elseif (dirac_interaction == "Coulomb_Gaunt") then
    print*,'Short-range Coulomb-Gaunt interaction'
    open (10, file='exchange_rgga_Z_CG.dat',position ='append')
    write(10,*) mu_erf, dirac_energy_x_rgga(1)
@@ -32,7 +35,8 @@ program dirac_exchange_rgga_mu
    print *,  'Unrecognized dirac_interaction : '//dirac_interaction
    stop 1
   endif
- !For helium
+ 
+ !!For helium
  !if (mu_erf .lt. 1.25) then
  ! mu_erf += 0.125d0
  !elseif (mu_erf .lt. 2.5) then
@@ -43,7 +47,7 @@ program dirac_exchange_rgga_mu
  ! mu_erf+=2.5d0
  !endif
 
- !For berylium
+ !!For berylium
  !if (mu_erf .lt. 1.25) then
  ! mu_erf += 0.125d0
  !elseif (mu_erf .lt. 2.5) then
@@ -54,7 +58,7 @@ program dirac_exchange_rgga_mu
  ! mu_erf+=5d0
  !endif
 
- !For Neon
+ !!For Neon
  !if (mu_erf .lt. 2.5) then
  ! mu_erf += 0.25d0
  !elseif (mu_erf .lt. 10) then
@@ -67,7 +71,7 @@ program dirac_exchange_rgga_mu
  ! mu_erf+=10.d0
  !endif
 
- !For argon
+ !!For argon
  !if (mu_erf .lt. 5) then
  ! mu_erf += 0.5d0
  !elseif (mu_erf .lt. 20) then
@@ -80,7 +84,7 @@ program dirac_exchange_rgga_mu
  ! mu_erf+=20.d0
  !endif
 
- !For Calcium
+ !!For Calcium
  !if (mu_erf .lt. 5.5) then
  ! mu_erf += 0.55d0
  !elseif (mu_erf .lt. 22) then
@@ -93,7 +97,7 @@ program dirac_exchange_rgga_mu
  ! mu_erf+=22.d0
  !endif
 
- !For Zinc
+ !!For Zinc
  !if (mu_erf .lt. 8) then
  ! mu_erf += 0.8d0
  !elseif (mu_erf .lt. 32) then
@@ -106,37 +110,37 @@ program dirac_exchange_rgga_mu
  ! mu_erf+=32.d0
  !endif
 
- !For Krypton
- !if (mu_erf .lt. 10) then
- ! mu_erf += 1d0
- !elseif (mu_erf .lt. 40) then
- ! mu_erf+=2.d0
- !elseif (mu_erf .lt. 200) then
- ! mu_erf+=10.d0
- !elseif (mu_erf .lt. 400) then
- ! mu_erf+=20.0d0
- !elseif (mu_erf .lt. 1200) then
- ! mu_erf+=40.d0
- !else
- ! mu_erf+=80.d0
- !endif
-
- !For Xenon
-  if (mu_erf .lt. 20) then
-   mu_erf += 2d0
-  elseif (mu_erf .lt. 80) then
-   mu_erf+=4.d0
+ !!For Krypton
+  if (mu_erf .lt. 10) then
+   mu_erf += 1d0
+  elseif (mu_erf .lt. 40) then
+   mu_erf+=2.d0
+  elseif (mu_erf .lt. 200) then
+   mu_erf+=10.d0
   elseif (mu_erf .lt. 400) then
-   mu_erf+=20.d0
-  elseif (mu_erf .lt. 800) then
-   mu_erf+=40.0d0
-  elseif (mu_erf .lt. 2400) then
-   mu_erf+=80.d0
+   mu_erf+=20.0d0
+  elseif (mu_erf .lt. 1200) then
+   mu_erf+=40.d0
   else
-   mu_erf+=160.d0
+   mu_erf+=80.d0
   endif
 
- !For Ytterbium
+ !!For Xenon
+ !if (mu_erf .lt. 20) then
+ ! mu_erf += 2d0
+ !elseif (mu_erf .lt. 80) then
+ ! mu_erf+=4.d0
+ !elseif (mu_erf .lt. 400) then
+ ! mu_erf+=20.d0
+ !elseif (mu_erf .lt. 800) then
+ ! mu_erf+=40.0d0
+ !elseif (mu_erf .lt. 2400) then
+ ! mu_erf+=80.d0
+ !else
+ ! mu_erf+=160.d0
+ !endif
+
+ !!For Ytterbium
  !if (mu_erf .lt. 30) then
  ! mu_erf += 3d0
  !elseif (mu_erf .lt. 120) then
@@ -151,7 +155,7 @@ program dirac_exchange_rgga_mu
  ! mu_erf+=240.d0
  !endif
 
- !For Radon
+ !!For Radon
  !if (mu_erf .lt. 40) then
  ! mu_erf += 4d0
  !elseif (mu_erf .lt. 160) then
@@ -166,7 +170,7 @@ program dirac_exchange_rgga_mu
  ! mu_erf+=320.d0
  !endif
 
- !For Uranium 
+ !!For Uranium 
  !if (mu_erf .lt. 50) then
  ! mu_erf += 5d0
  !elseif (mu_erf .lt. 200) then
@@ -182,7 +186,7 @@ program dirac_exchange_rgga_mu
  !endif
 
 
- !For Oganesson
+ !!For Oganesson
  !if (mu_erf .lt. 80) then
  ! mu_erf += 8d0
  !elseif (mu_erf .lt. 320) then
@@ -197,7 +201,8 @@ program dirac_exchange_rgga_mu
  ! mu_erf+=640.d0
  !endif
 
- call ezfio_set_ao_two_e_erf_ints_mu_erf(mu_erf)
- TOUCH mu_erf
+  call ezfio_set_ao_two_e_erf_ints_mu_erf(mu_erf)
+  TOUCH mu_erf
  enddo
-end
+
+ end

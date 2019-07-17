@@ -2,7 +2,7 @@ program dirac_exchange_rgga_fit
   BEGIN_DOC
   ! produce the exchange energy given by the relativistic rgga
   END_DOC
-   call run_exchange_rgga_fit 
+   call run_exchange_rgga_fit
  end
 
  subroutine run_exchange_rgga_fit
@@ -10,7 +10,7 @@ program dirac_exchange_rgga_fit
   ! Gives the energy for a given value of mu_erf
   END_DOC
   use bitmasks
-  implicit none 
+  implicit none
   integer :: i,j,k,l,counter
   double precision :: dirac_a1_coef, dirac_a2_coef, dirac_b1_coef, dirac_b2_coef
  !Choose Interaction
@@ -25,12 +25,12 @@ program dirac_exchange_rgga_fit
   dirac_b2_coef = dirac_b2
   counter = 1
   print*,'**********'
-  print*,'short-range coulomb interaction'   
+  print*,'short-range coulomb interaction'
   open (9, file='counter.dat')
   open (10, file='exchange_rgga_Z.dat',position ='append')
   open (11, file='squared_exchange_rgga_Z.dat',position ='append')
   do l = 1,5
-   if (l == 1) then 
+   if (l == 1) then
     dirac_b2 = 0.8d0*dirac_b2_coef
    elseif (l == 2) then
     dirac_b2 = 0.9d0*dirac_b2_coef
@@ -86,4 +86,9 @@ program dirac_exchange_rgga_fit
   call ezfio_set_dirac_dft_utils_one_e_dirac_a2(dirac_a2)
   call ezfio_set_dirac_dft_utils_one_e_dirac_a1(dirac_a1)
 
+  mu_erf = mu_erf*2.d0
+  call ezfio_set_ao_two_e_erf_ints_mu_erf(mu_erf)
+  TOUCH mu_erf
+
  end
+

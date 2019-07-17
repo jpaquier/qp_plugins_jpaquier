@@ -17,15 +17,13 @@
   rho_lda = rho
   grad_rho_2_lda = grad_rho_2
  elseif (dirac_rho == "rho_on_top") then
-  if (dirac_approximant == "non-relativistic") then
   !!! To use the electronic density obtained from the on-top pair density 
+  if (dirac_approximant == "non-relativistic") then
    !! First way: n_{2,x} = n_eff^2*g(n_eff)
   !rho_lda = dsqrt(2.d0*tr_gamma_2)
    !! Second way : n_2{2,x} = n^{HF}*n_eff*g(n_eff)
    rho_lda = 2.d0*tr_gamma_2/rho
    grad_rho_2_lda = grad_rho_on_top_2
-! if (dirac_effective_rho == "yes") then
-  !!! To use the effective electronic density obtained from the on-top pair density
   else 
    rho_lda = 2.d0*tr_gamma_2/rho
    grad_rho_2_lda = grad_rho_on_top_2
