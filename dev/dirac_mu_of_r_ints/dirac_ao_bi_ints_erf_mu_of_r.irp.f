@@ -15,7 +15,8 @@
  double precision :: dm(N_states),grad_dm(3,N_states),grad_dm_2(N_states),grad_dm_abs(N_states)
  call dirac_dm_dft_at_r(r,dm)
  call dirac_grad_dm_dft_at_r(r,grad_dm,grad_dm_2,grad_dm_abs)
- mu_of_r = 0.135d0 * grad_dm_abs(1) / dm(1)
+!mu_of_r = 0.135d0 * grad_dm_abs(1) / dm(1)
+ mu_of_r = 1.d0
  end
 
  BEGIN_PROVIDER [double precision, mu_of_r_for_ints_vector, (n_points_final_grid)]
@@ -41,24 +42,38 @@
  integer, intent(in) :: k,l
  double precision, intent(out) :: ints(dirac_ao_num,dirac_ao_num)
  integer :: i_point,i,j
- double precision :: ints_kl_of_r(n_points_final_grid),r(3),NAI_pol_mult_erf_dirac_ao,tmp
+ double precision :: dirac_aos_array(dirac_ao_num)
+ double precision :: ints_kl_of_r(n_points_final_grid),r(3),mu_of_r,NAI_pol_mult_erf_dirac_ao,tmp,NAI_pol_mult_erfc_dirac_ao
  double precision,allocatable :: v_vector(:)
  allocate(v_vector(n_points_final_grid))
- ints = 0.d0
- do i_point = 1, n_points_final_grid
-  r(1) = final_grid_points(1,i_point)
-  r(2) = final_grid_points(2,i_point)
-  r(3) = final_grid_points(3,i_point)
-  v_vector(i_point) = NAI_pol_mult_erf_dirac_ao(k,l,mu_of_r_for_ints_vector(i_point),r)
- enddo
- ! use DGEMM!!!
- do i_point = 1, n_points_final_grid
+ ints=0.d0
+ if (dirac_dhf == "local_dhf") then
+  r(1) = dirac_r_x 
+  r(2) = dirac_r_y
+  r(3) = dirac_r_z
+  call dirac_mu_of_r (r,mu_of_r)
+  call give_all_dirac_aos_at_r(r,dirac_aos_array)
   do i = 1, dirac_ao_num
    do j = 1, dirac_ao_num
-     ints(j,i) += v_vector(i_point) * dirac_aos_in_r_array(i,i_point) * dirac_aos_in_r_array(j,i_point) * final_weight_at_r_vector(i_point)
+    ints(j,i) = NAI_pol_mult_erfc_dirac_ao(k,l,mu_of_r,r) * dirac_aos_array(i) * dirac_aos_array(j) 
    enddo
   enddo
- enddo
+ else
+  do i_point = 1, n_points_final_grid
+   r(1) = final_grid_points(1,i_point)
+   r(2) = final_grid_points(2,i_point)
+   r(3) = final_grid_points(3,i_point)
+   v_vector(i_point) = NAI_pol_mult_erf_dirac_ao(k,l,mu_of_r_for_ints_vector(i_point),r)
+  enddo
+  ! use DGEMM!!!
+  do i_point = 1, n_points_final_grid
+   do i = 1, dirac_ao_num
+    do j = 1, dirac_ao_num
+     ints(j,i) += v_vector(i_point) * dirac_aos_in_r_array(i,i_point) * dirac_aos_in_r_array(j,i_point) * final_weight_at_r_vector(i_point)
+    enddo
+   enddo
+  enddo
+ endif
  end
  
  subroutine compute_dirac_ao_ints_erf_mu_of_r_jl(j,l,n_ints,buffer_i,buffer_value)

@@ -56,7 +56,7 @@
        !L_alpha L_alpha .or. S_alpha S_alpha
        dirac_HF_two_electron_c_ex_int_mu_of_r_tmp(dirac_inverse_list(i,1),dirac_inverse_list(l,1)) -= (dirac_SCF_density_matrix_ao(dirac_inverse_list(j,1),dirac_inverse_list(k,1))) * integral
        !L_beta L_beta .or. S_beta S_beta
-       dirac_HF_two_electron_c_ex_int_mu_of_r_tmp(dirac_inverse_list(i,2),dirac_inverse_list(l,2)) -= (dirac_SCF_density_matrix_ao(dirac_inverse_list(j,2),dirac_inverse_list(k,2))) * integral   
+       dirac_HF_two_electron_c_ex_int_mu_of_r_tmp(dirac_inverse_list(i,2),dirac_inverse_list(l,2)) -= (dirac_SCF_density_matrix_ao(dirac_inverse_list(j,2),dirac_inverse_list(k,2))) * integral 
        !L_beta L_alpha .or. S_beta S_alpha
        dirac_HF_two_electron_c_ex_int_mu_of_r_tmp(dirac_inverse_list(i,2),dirac_inverse_list(l,1)) -= (dirac_SCF_density_matrix_ao(dirac_inverse_list(j,2),dirac_inverse_list(k,1))) * integral
        !L_alpha L_beta .or. S_alpha S_beta

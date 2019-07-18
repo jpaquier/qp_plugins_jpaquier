@@ -29,7 +29,6 @@
    endif
    dirac_energy_x_LDA(istate) += weight * e_x
   !dirac_energy_c_LDA(istate) += weight * e_c
-   write(21,*) e_x
   enddo
  enddo
  END_PROVIDER 
