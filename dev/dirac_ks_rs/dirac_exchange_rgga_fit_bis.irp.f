@@ -14,9 +14,9 @@ program dirac_exchange_rgga_fit_bis_6p
   integer :: i,j,k,l,counter
   double precision :: dirac_a1_bis_6p_coef, dirac_a2_bis_6p_coef, dirac_b2_bis_6p_coef
  !Choose Interaction
-  dirac_a1_bis_6p = 0.69984d0
-  dirac_a2_bis_6p = 0.99792
-  dirac_b2_bis_6p = 9.8496d0
+  dirac_a1_bis_6p = 0.4d0
+  dirac_a2_bis_6p = 0.4d0
+  dirac_b2_bis_6p = 0.6d0
   call ezfio_set_dirac_dft_utils_one_e_dirac_b2_bis_6p(dirac_b2_bis_6p)
   call ezfio_set_dirac_dft_utils_one_e_dirac_a2_bis_6p(dirac_a2_bis_6p)
   call ezfio_set_dirac_dft_utils_one_e_dirac_a1_bis_6p(dirac_a1_bis_6p)
@@ -31,44 +31,43 @@ program dirac_exchange_rgga_fit_bis_6p
   open (11, file='squared_exchange_rgga_Z.dat',position ='append')
   do l = 1,5
    if (l == 1) then
-    dirac_b2_bis_6p = 0.9d0*dirac_b2_bis_6p_coef
+    dirac_b2_bis_6p = 0.8d0*dirac_b2_bis_6p_coef
    elseif (l == 2) then
-    dirac_b2_bis_6p = 0.95d0*dirac_b2_bis_6p_coef
+    dirac_b2_bis_6p = 0.9d0*dirac_b2_bis_6p_coef
    elseif (l == 3) then
     dirac_b2_bis_6p = dirac_b2_bis_6p_coef
    elseif (l == 4) then
-    dirac_b2_bis_6p = 1.05d0*dirac_b2_bis_6p_coef
-   elseif (l == 5) then
     dirac_b2_bis_6p = 1.1d0*dirac_b2_bis_6p_coef
+   elseif (l == 5) then
+    dirac_b2_bis_6p = 1.2d0*dirac_b2_bis_6p_coef
    endif
    call ezfio_set_dirac_dft_utils_one_e_dirac_b2_bis_6p(dirac_b2_bis_6p)
    TOUCH dirac_b2_bis_6p
-   do k = 1,4
+   do k = 1,5
     if (k == 1) then
-     dirac_a2_bis_6p = 0.9d0*dirac_a2_bis_6p_coef
+     dirac_a2_bis_6p = 0.8d0*dirac_a2_bis_6p_coef
     elseif (k == 2) then
-     dirac_a2_bis_6p = 0.95d0*dirac_a2_bis_6p_coef
+     dirac_a2_bis_6p = 0.9d0*dirac_a2_bis_6p_coef
     elseif (k == 3) then
      dirac_a2_bis_6p = dirac_a2_bis_6p_coef
     elseif (k == 4) then
-     dirac_a2_bis_6p = 1.d0
-  !  dirac_a2_bis_6p = 1.025d0*dirac_a2_bis_6p_coef
-  ! elseif (k == 5) then
-  !  dirac_a2_bis_6p = 1.05d0*dirac_a2_bis_6p_coef
+     dirac_a2_bis_6p = 1.1d0*dirac_a2_bis_6p_coef
+    elseif (k == 5) then
+     dirac_a2_bis_6p = 1.2d0*dirac_a2_bis_6p_coef
     endif
     call ezfio_set_dirac_dft_utils_one_e_dirac_a2_bis_6p(dirac_a2_bis_6p)
     TOUCH dirac_a2_bis_6p
     do j = 1,5
      if (j == 1) then
-      dirac_a1_bis_6p = 0.9d0*dirac_a1_bis_6p_coef
+      dirac_a1_bis_6p = 0.8d0*dirac_a1_bis_6p_coef
      elseif (j == 2) then
-      dirac_a1_bis_6p = 0.95d0*dirac_a1_bis_6p_coef
+      dirac_a1_bis_6p = 0.9d0*dirac_a1_bis_6p_coef
      elseif (j == 3) then
       dirac_a1_bis_6p = dirac_a1_bis_6p_coef
      elseif (j == 4) then
-      dirac_a1_bis_6p = 1.05d0*dirac_a1_bis_6p_coef
+      dirac_a1_bis_6p = 1.1d0*dirac_a1_bis_6p_coef 
      elseif (j == 5) then
-      dirac_a1_bis_6p = 1.1d0*dirac_a1_bis_6p_coef
+      dirac_a1_bis_6p = 1.2d0*dirac_a1_bis_6p_coef
      endif
      call ezfio_set_dirac_dft_utils_one_e_dirac_a1_bis_6p(dirac_a1_bis_6p)
      TOUCH dirac_a1_bis_6p
