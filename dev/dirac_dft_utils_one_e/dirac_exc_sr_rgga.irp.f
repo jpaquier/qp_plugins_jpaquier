@@ -111,11 +111,11 @@
 !!!! 3 parameters for mu_erf = 0
 ! e_x = e_x_lda + e_x_lda*kx*((1.d0 + dirac_a1_3p*tmp_c_m_2 + dirac_a2_3p*tmp_c_m_4)/(1.d0 + dirac_a1_3p*tmp_c_m_2 + dirac_b2_3p*tmp_c_m_4))
 !!!! 3+3 parameters for general mu_erf
-! e_x = e_x_lda + e_x_lda*kx*((1.d0 + dirac_a1_3p*(1.d0-dirac_a1_bis_6p*derf(tmp_mu))*tmp_c_m_2 +               &               
+! e_x = e_x_lda + e_x_lda*kx*((1.d0 + dirac_a1_3p*(1.d0-dirac_a1_bis_6p*derf(tmp_mu))*tmp_c_m_2 +               &
 !       dirac_a2_3p*(1.d0-dirac_a2_bis_6p*derf(tmp_mu))*tmp_c_m_4)/(1.d0 + dirac_a1_3p*(1.d0 -                  &
 !       dirac_a1_bis_6p*derf(tmp_mu))*tmp_c_m_2 + dirac_b2_3p*(1.d0 + dirac_b2_bis_6p*derf(tmp_mu))*tmp_c_m_4))
  !!! 3+3 parameters for general mu/c
-  e_x = e_x_lda + e_x_lda*kx*((1.d0 + dirac_a1_3p*(1.d0+dirac_a1_bis_6p*derf(mu_m_c))*tmp_c_m_2 +               &               
+  e_x = e_x_lda + e_x_lda*kx*((1.d0 + dirac_a1_3p*(1.d0+dirac_a1_bis_6p*derf(mu_m_c))*tmp_c_m_2 +               &     
         dirac_a2_3p*(1.d0+dirac_a2_bis_6p*derf(mu_m_c))*tmp_c_m_4)/(1.d0 + dirac_a1_3p*(1.d0 +                  &
         dirac_a1_bis_6p*derf(mu_m_c))*tmp_c_m_2 + dirac_b2_3p*(1.d0 + dirac_b2_bis_6p*derf(mu_m_c))*tmp_c_m_4))
  else
