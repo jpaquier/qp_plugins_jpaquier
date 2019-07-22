@@ -38,7 +38,9 @@
  double precision, intent(in)   :: mu_in, C_center(3)
  integer                        :: i,j,num_A,num_B, power_A(3), power_B(3), n_pt_in
  double precision               :: A_center(3), B_center(3),integral, alpha,beta
- double precision               :: NAI_pol_mult_erf, NAI_pol_mult
+ double precision               :: NAI_pol_mult_erf
+ double precision               :: mu_infinite
+ mu_infinite = 1d+10
  num_A = dirac_ao_nucl(i_dirac_ao)
  power_A(1:3)= dirac_ao_power(i_dirac_ao,1:3)
  A_center(1:3) = nucl_coord(num_A,1:3)
@@ -51,7 +53,7 @@
   alpha = dirac_ao_expo_ordered_transp(i,i_dirac_ao)
   do j = 1, dirac_ao_prim_num(j_dirac_ao)
     beta = dirac_ao_expo_ordered_transp(j,j_dirac_ao)
-    integral = NAI_pol_mult(A_center,B_center,power_A,power_B,alpha,beta,C_center,n_pt_in) - NAI_pol_mult_erf(A_center,B_center,power_A,power_B,alpha,beta,C_center,n_pt_in,mu_in)
+    integral = NAI_pol_mult_erf(A_center,B_center,power_A,power_B,alpha,beta,C_center,n_pt_in,mu_infinite) - NAI_pol_mult_erf(A_center,B_center,power_A,power_B,alpha,beta,C_center,n_pt_in,mu_in)
     write(11,*), integral
     NAI_pol_mult_erfc_dirac_ao += integral * dirac_ao_coef_normalized_ordered_transp(j,j_dirac_ao)*dirac_ao_coef_normalized_ordered_transp(i,i_dirac_ao)
   enddo

@@ -16,7 +16,7 @@
  call dirac_dm_dft_at_r(r,dm)
  call dirac_grad_dm_dft_at_r(r,grad_dm,grad_dm_2,grad_dm_abs)
 !mu_of_r = 0.135d0 * grad_dm_abs(1) / dm(1)
- mu_of_r = 1.d0
+ mu_of_r = 0.d0
  end
 
  BEGIN_PROVIDER [double precision, mu_of_r_for_ints_vector, (n_points_final_grid)]
@@ -48,6 +48,7 @@
  allocate(v_vector(n_points_final_grid))
  ints=0.d0
  if (dirac_dhf == "local_dhf") then
+ !!! local_dhf uses mu_erf
   r(1) = dirac_r_x 
   r(2) = dirac_r_y
   r(3) = dirac_r_z
@@ -55,7 +56,7 @@
   call give_all_dirac_aos_at_r(r,dirac_aos_array)
   do i = 1, dirac_ao_num
    do j = 1, dirac_ao_num
-    ints(j,i) = NAI_pol_mult_erfc_dirac_ao(k,l,mu_of_r,r) * dirac_aos_array(i) * dirac_aos_array(j) 
+    ints(j,i) = NAI_pol_mult_erfc_dirac_ao(k,l,mu_erf,r) * dirac_aos_array(i) * dirac_aos_array(j) 
    enddo
   enddo
  else
