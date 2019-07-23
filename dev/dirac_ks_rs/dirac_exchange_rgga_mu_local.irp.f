@@ -37,39 +37,68 @@ program dirac_exchange_rgga_mu_local
   print *,  'Unrecognized dirac_interaction : '//dirac_interaction
   stop 1
  endif
- if (nucl_charge(1) .gt. 1.9d0 .and. nucl_charge(1) .lt. 2.1d0 ) then
- !!For helium
-  if (dirac_r_x .lt. 0.5d0) then
-   dirac_r_x += 0.05d0
-  elseif (dirac_r_x .lt. 1.5d0) then
-   dirac_r_x += 0.1d0
-  else
-   dirac_r_x += 0.2d0
-  endif
- elseif (nucl_charge(1) .gt. 85.9d0 .and. nucl_charge(1) .lt. 86.1d0 ) then
- !!For Radon
-  if (dirac_r_x .lt. 0.0005d0) then
-   dirac_r_x += 0.0001d0
-  elseif (dirac_r_x .lt. 0.001d0) then
-   dirac_r_x += 0.00025d0
-  elseif (dirac_r_x .lt. 0.01d0) then
-   dirac_r_x += 0.001d0
-  else
-   dirac_r_x += 0.005d0
-  endif
- elseif (nucl_charge(1) .gt. 91.9d0 .and. nucl_charge(1) .lt. 92.1d0 ) then
- !!For Uranium
-  if (dirac_r_x .lt. 0.0005d0) then
-   dirac_r_x += 0.00008d0
-  elseif (dirac_r_x .lt. 0.001d0) then
-   dirac_r_x += 0.0002d0
-  elseif (dirac_r_x .lt. 0.01d0) then
-   dirac_r_x += 0.001d0
-  else
-   dirac_r_x += 0.005d0
-  endif
- endif 
+ if (elec_num == 2) then
+  if (nucl_charge(1) == 2 ) then
+  !!For helium
+   if (dirac_r_x .lt. 0.5d0) then
+    dirac_r_x += 0.05d0
+   elseif (dirac_r_x .lt. 1.5d0) then
+    dirac_r_x += 0.1d0
+   else
+    dirac_r_x += 0.2d0
+   endif
+  elseif (nucl_charge(1) == 10 ) then
+  !!For Neon
+   if (dirac_r_x .lt. 0.1d0) then
+    dirac_r_x += 0.01d0
+   elseif (dirac_r_x .lt. 0.3d0) then
+    dirac_r_x += 0.02d0
+   else
+    dirac_r_x += 0.04d0
+   endif
+  elseif (nucl_charge(1) == 18 ) then
+  !!!.gt. 17.9d0 .and. nucl_charge(1) .lt. 18.1d0) then
+  !!For Argon
+   if (dirac_r_x .lt. 0.07d0) then
+    dirac_r_x += 0.007d0
+   elseif (dirac_r_x .lt. 0.21d0) then
+    dirac_r_x += 0.014d0
+   else
+    dirac_r_x += 0.028d0
+   endif
+  elseif (nucl_charge(1) == 36 ) then
+  !!For Krypton
+   if (dirac_r_x .lt. 0.035d0) then
+    dirac_r_x += 0.0035d0
+   elseif (dirac_r_x .lt. 0.105d0) then
+    dirac_r_x += 0.007d0
+   else
+    dirac_r_x += 0.014d0
+   endif
+  elseif (nucl_charge(1) == 86 ) then
+  !!For Radon
+   if (dirac_r_x .lt. 0.0005d0) then
+    dirac_r_x += 0.0001d0
+   elseif (dirac_r_x .lt. 0.001d0) then
+    dirac_r_x += 0.00025d0
+   elseif (dirac_r_x .lt. 0.01d0) then
+    dirac_r_x += 0.001d0
+   else
+    dirac_r_x += 0.005d0
+   endif
+  elseif (nucl_charge(1) == 92 ) then
+  !!For Uranium
+   if (dirac_r_x .lt. 0.0005d0) then
+    dirac_r_x += 0.00008d0
+   elseif (dirac_r_x .lt. 0.001d0) then
+    dirac_r_x += 0.0002d0
+   elseif (dirac_r_x .lt. 0.01d0) then
+    dirac_r_x += 0.001d0
+   else
+    dirac_r_x += 0.005d0
+   endif
+  endif 
+ endif
   call ezfio_set_dirac_ao_basis_dirac_r_x(dirac_r_x)
   TOUCH dirac_r_x
  end
-
