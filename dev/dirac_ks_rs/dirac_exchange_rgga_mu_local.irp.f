@@ -37,7 +37,7 @@ program dirac_exchange_rgga_mu_local
   print *,  'Unrecognized dirac_interaction : '//dirac_interaction
   stop 1
  endif
- if (elec_num == 2) then
+!if (elec_num == 2) then
   if (nucl_charge(1) == 2 ) then
   !!For helium
    if (dirac_r_x .lt. 0.5d0) then
@@ -75,6 +75,28 @@ program dirac_exchange_rgga_mu_local
    else
     dirac_r_x += 0.014d0
    endif
+  elseif (nucl_charge(1) == 54 ) then
+  !!For Xenon
+   if (dirac_r_x .lt. 0.002d0) then
+    dirac_r_x += 0.0004d0
+   elseif (dirac_r_x .lt. 0.010d0) then
+    dirac_r_x += 0.0010d0
+   elseif (dirac_r_x .lt. 0.04d0) then
+    dirac_r_x += 0.0025d0
+   else
+    dirac_r_x += 0.010d0
+   endif
+  elseif (nucl_charge(1) == 70 ) then
+  !!For Ytterbium
+   if (dirac_r_x .lt. 0.001d0) then
+    dirac_r_x += 0.0002d0
+   elseif (dirac_r_x .lt. 0.005d0) then
+    dirac_r_x += 0.0005d0
+   elseif (dirac_r_x .lt. 0.02d0) then
+    dirac_r_x += 0.0020d0
+   else
+    dirac_r_x += 0.010d0
+   endif
   elseif (nucl_charge(1) == 86 ) then
   !!For Radon
    if (dirac_r_x .lt. 0.0005d0) then
@@ -98,7 +120,7 @@ program dirac_exchange_rgga_mu_local
     dirac_r_x += 0.005d0
    endif
   endif 
- endif
+!endif
   call ezfio_set_dirac_ao_basis_dirac_r_x(dirac_r_x)
   TOUCH dirac_r_x
  end
