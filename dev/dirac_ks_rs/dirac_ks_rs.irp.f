@@ -54,9 +54,16 @@ program dirac_ks_rs
 
  do j = 1,2*dirac_ao_num
   do i = 1,2*dirac_ao_num
-   write(25,*), i,j,dirac_ao_bi_elec_C_Exchange_integral(i,j)
-   write(35,*), i,j,dirac_HF_two_electron_c_ex_int_mu_of_r(i,j)
+   write(25,*), i,j, dirac_one_body_dm_ao_for_dft(i,j,1)
+  !write(25,*), i,j,dirac_ao_bi_elec_C_Exchange_integral(i,j)
+  !write(35,*), i,j,dirac_HF_two_electron_c_ex_int_mu_of_r(i,j)
   enddo
  enddo
  
+!do j = 1,4
+! do i = 1,2*dirac_ao_num
+!  write(26,*), i,j, dirac_mo_coef_electronic_for_dft(i,j)
+! enddo
+!enddo
+  
 end
