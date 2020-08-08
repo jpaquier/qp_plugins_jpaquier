@@ -8,6 +8,9 @@
  double precision :: r(3)
  double precision :: mu,weight
  double precision :: e_c,v_c,e_x,v_x
+
+ double precision :: vc_a,vc_b
+
  double precision, allocatable :: rho(:),tr_gamma_2(:),mu_of_r
  double precision :: f13, ckf
  allocate(rho(N_states),tr_gamma_2(N_states))
@@ -28,7 +31,13 @@
     call dirac_ex_LDA_sr(mu_of_r,rho(istate),tr_gamma_2(istate),e_x,v_x)
    endif
    dirac_energy_x_LDA(istate) += weight * e_x
-  !dirac_energy_c_LDA(istate) += weight * e_c
+  !!dirac_energy_c_LDA(istate) += weight * e_c
+
+   call ec_lda_sr(mu_erf,rho(istate)/2,rho(istate)/2,e_c,vc_a,vc_b) 
+   open (10, file='correlation_lda_Z.dat',position ='append')
+   write(10,*) rho(istate), e_c/rho(istate)
+
+
   enddo
  enddo
  END_PROVIDER 
